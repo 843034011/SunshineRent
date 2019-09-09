@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.RentGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.RentGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+    <result column="goods_model" property="goodsModel" jdbcType="VARCHAR" />
+    <result column="goods_info" property="goodsInfo" jdbcType="VARCHAR" />
+    <result column="goods_number" property="goodsNumber" jdbcType="INTEGER" />
+    <result column="goods_surplus" property="goodsSurplus" jdbcType="INTEGER" />
+    <result column="goods_deposit" property="goodsDeposit" jdbcType="DECIMAL" />
+    <result column="goods_dayprice" property="goodsDayprice" jdbcType="DECIMAL" />
+    <result column="goods_weekprice" property="goodsWeekprice" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="goods_grade" property="goodsGrade" jdbcType="INTEGER" />
+    <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
+    <result column="reg_id" property="regId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_name, goods_type, goods_model, goods_info, goods_number, goods_surplus, 
+    goods_deposit, goods_dayprice, goods_weekprice, create_time, goods_grade, rent_count, 
+    reg_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rent_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rent_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rent_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.RentGoodsExample" >
+    delete from rent_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.RentGoods" >
+    insert into rent_goods (id, goods_name, goods_type, 
+      goods_model, goods_info, goods_number, 
+      goods_surplus, goods_deposit, goods_dayprice, 
+      goods_weekprice, create_time, goods_grade, 
+      rent_count, reg_id)
+    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, 
+      #{goodsModel,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR}, #{goodsNumber,jdbcType=INTEGER}, 
+      #{goodsSurplus,jdbcType=INTEGER}, #{goodsDeposit,jdbcType=DECIMAL}, #{goodsDayprice,jdbcType=DECIMAL}, 
+      #{goodsWeekprice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{goodsGrade,jdbcType=INTEGER}, 
+      #{rentCount,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.RentGoods" >
+    insert into rent_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsType != null" >
+        goods_type,
+      </if>
+      <if test="goodsModel != null" >
+        goods_model,
+      </if>
+      <if test="goodsInfo != null" >
+        goods_info,
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number,
+      </if>
+      <if test="goodsSurplus != null" >
+        goods_surplus,
+      </if>
+      <if test="goodsDeposit != null" >
+        goods_deposit,
+      </if>
+      <if test="goodsDayprice != null" >
+        goods_dayprice,
+      </if>
+      <if test="goodsWeekprice != null" >
+        goods_weekprice,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="goodsGrade != null" >
+        goods_grade,
+      </if>
+      <if test="rentCount != null" >
+        rent_count,
+      </if>
+      <if test="regId != null" >
+        reg_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsModel != null" >
+        #{goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfo != null" >
+        #{goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSurplus != null" >
+        #{goodsSurplus,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDeposit != null" >
+        #{goodsDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDayprice != null" >
+        #{goodsDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWeekprice != null" >
+        #{goodsWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsGrade != null" >
+        #{goodsGrade,jdbcType=INTEGER},
+      </if>
+      <if test="rentCount != null" >
+        #{rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        #{regId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.RentGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from rent_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rent_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsType != null" >
+        goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsModel != null" >
+        goods_model = #{record.goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsInfo != null" >
+        goods_info = #{record.goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsNumber != null" >
+        goods_number = #{record.goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsSurplus != null" >
+        goods_surplus = #{record.goodsSurplus,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDeposit != null" >
+        goods_deposit = #{record.goodsDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsDayprice != null" >
+        goods_dayprice = #{record.goodsDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsWeekprice != null" >
+        goods_weekprice = #{record.goodsWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsGrade != null" >
+        goods_grade = #{record.goodsGrade,jdbcType=INTEGER},
+      </if>
+      <if test="record.rentCount != null" >
+        rent_count = #{record.rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.regId != null" >
+        reg_id = #{record.regId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rent_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      goods_model = #{record.goodsModel,jdbcType=VARCHAR},
+      goods_info = #{record.goodsInfo,jdbcType=VARCHAR},
+      goods_number = #{record.goodsNumber,jdbcType=INTEGER},
+      goods_surplus = #{record.goodsSurplus,jdbcType=INTEGER},
+      goods_deposit = #{record.goodsDeposit,jdbcType=DECIMAL},
+      goods_dayprice = #{record.goodsDayprice,jdbcType=DECIMAL},
+      goods_weekprice = #{record.goodsWeekprice,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      goods_grade = #{record.goodsGrade,jdbcType=INTEGER},
+      rent_count = #{record.rentCount,jdbcType=INTEGER},
+      reg_id = #{record.regId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.RentGoods" >
+    update rent_goods
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsModel != null" >
+        goods_model = #{goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfo != null" >
+        goods_info = #{goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number = #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSurplus != null" >
+        goods_surplus = #{goodsSurplus,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDeposit != null" >
+        goods_deposit = #{goodsDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDayprice != null" >
+        goods_dayprice = #{goodsDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWeekprice != null" >
+        goods_weekprice = #{goodsWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsGrade != null" >
+        goods_grade = #{goodsGrade,jdbcType=INTEGER},
+      </if>
+      <if test="rentCount != null" >
+        rent_count = #{rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        reg_id = #{regId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elife.pojo.RentGoods" >
+    update rent_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_model = #{goodsModel,jdbcType=VARCHAR},
+      goods_info = #{goodsInfo,jdbcType=VARCHAR},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      goods_surplus = #{goodsSurplus,jdbcType=INTEGER},
+      goods_deposit = #{goodsDeposit,jdbcType=DECIMAL},
+      goods_dayprice = #{goodsDayprice,jdbcType=DECIMAL},
+      goods_weekprice = #{goodsWeekprice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      goods_grade = #{goodsGrade,jdbcType=INTEGER},
+      rent_count = #{rentCount,jdbcType=INTEGER},
+      reg_id = #{regId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

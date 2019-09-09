@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.RentUserMapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.RentUser" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_idcard" property="userIdcard" jdbcType="CHAR" />
+    <result column="idcard_front" property="idcardFront" jdbcType="VARCHAR" />
+    <result column="idcard_back" property="idcardBack" jdbcType="VARCHAR" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_realname" property="userRealname" jdbcType="VARCHAR" />
+    <result column="user_picture" property="userPicture" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="CHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="rent_credit" property="rentCredit" jdbcType="INTEGER" />
+    <result column="rentout_credit" property="rentoutCredit" jdbcType="INTEGER" />
+    <result column="is_identified" property="isIdentified" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, user_idcard, idcard_front, idcard_back, user_nickname, user_realname, user_picture, 
+    user_phone, user_email, rent_credit, rentout_credit, is_identified
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rent_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.RentUserExample" >
+    delete from rent_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.RentUser" >
+    insert into rent_user (user_id, user_idcard, idcard_front, 
+      idcard_back, user_nickname, user_realname, 
+      user_picture, user_phone, user_email, 
+      rent_credit, rentout_credit, is_identified
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userIdcard,jdbcType=CHAR}, #{idcardFront,jdbcType=VARCHAR}, 
+      #{idcardBack,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{userRealname,jdbcType=VARCHAR}, 
+      #{userPicture,jdbcType=VARCHAR}, #{userPhone,jdbcType=CHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{rentCredit,jdbcType=INTEGER}, #{rentoutCredit,jdbcType=INTEGER}, #{isIdentified,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.RentUser" >
+    insert into rent_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userIdcard != null" >
+        user_idcard,
+      </if>
+      <if test="idcardFront != null" >
+        idcard_front,
+      </if>
+      <if test="idcardBack != null" >
+        idcard_back,
+      </if>
+      <if test="userNickname != null" >
+        user_nickname,
+      </if>
+      <if test="userRealname != null" >
+        user_realname,
+      </if>
+      <if test="userPicture != null" >
+        user_picture,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="rentCredit != null" >
+        rent_credit,
+      </if>
+      <if test="rentoutCredit != null" >
+        rentout_credit,
+      </if>
+      <if test="isIdentified != null" >
+        is_identified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userIdcard != null" >
+        #{userIdcard,jdbcType=CHAR},
+      </if>
+      <if test="idcardFront != null" >
+        #{idcardFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBack != null" >
+        #{idcardBack,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null" >
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPicture != null" >
+        #{userPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=CHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="rentCredit != null" >
+        #{rentCredit,jdbcType=INTEGER},
+      </if>
+      <if test="rentoutCredit != null" >
+        #{rentoutCredit,jdbcType=INTEGER},
+      </if>
+      <if test="isIdentified != null" >
+        #{isIdentified,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.RentUserExample" resultType="java.lang.Integer" >
+    select count(*) from rent_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rent_user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userIdcard != null" >
+        user_idcard = #{record.userIdcard,jdbcType=CHAR},
+      </if>
+      <if test="record.idcardFront != null" >
+        idcard_front = #{record.idcardFront,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardBack != null" >
+        idcard_back = #{record.idcardBack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNickname != null" >
+        user_nickname = #{record.userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRealname != null" >
+        user_realname = #{record.userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPicture != null" >
+        user_picture = #{record.userPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhone != null" >
+        user_phone = #{record.userPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.userEmail != null" >
+        user_email = #{record.userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentCredit != null" >
+        rent_credit = #{record.rentCredit,jdbcType=INTEGER},
+      </if>
+      <if test="record.rentoutCredit != null" >
+        rentout_credit = #{record.rentoutCredit,jdbcType=INTEGER},
+      </if>
+      <if test="record.isIdentified != null" >
+        is_identified = #{record.isIdentified,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rent_user
+    set user_id = #{record.userId,jdbcType=INTEGER},
+      user_idcard = #{record.userIdcard,jdbcType=CHAR},
+      idcard_front = #{record.idcardFront,jdbcType=VARCHAR},
+      idcard_back = #{record.idcardBack,jdbcType=VARCHAR},
+      user_nickname = #{record.userNickname,jdbcType=VARCHAR},
+      user_realname = #{record.userRealname,jdbcType=VARCHAR},
+      user_picture = #{record.userPicture,jdbcType=VARCHAR},
+      user_phone = #{record.userPhone,jdbcType=CHAR},
+      user_email = #{record.userEmail,jdbcType=VARCHAR},
+      rent_credit = #{record.rentCredit,jdbcType=INTEGER},
+      rentout_credit = #{record.rentoutCredit,jdbcType=INTEGER},
+      is_identified = #{record.isIdentified,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
