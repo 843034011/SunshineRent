@@ -9,9 +9,9 @@ spring:
   #    cache: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/test?characterencoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/sunshine?characterencoding=utf-8&serverTimezone=UTC
     username: root
-    password: 123456
+    password: liulanbo
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 5
@@ -43,10 +43,10 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
-  mvc:
-    view:
-      suffix: .jsp
-      prefix: /WEB-INF/rent/
+  #  跳转到/WEB-INF/下的.html页面
+  freemarker:
+    template-loader-path: /WEB-INF/
+    suffix: .html
 
 mybatis:
   type-aliases-package: com.elife.pojo
