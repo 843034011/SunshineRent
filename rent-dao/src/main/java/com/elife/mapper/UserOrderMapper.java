@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserOrderExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserOrderMapper {
     int countByExample(UserOrderExample example);
 
@@ -28,4 +30,6 @@ public interface UserOrderMapper {
     int updateByPrimaryKeySelective(UserOrder record);
 
     int updateByPrimaryKey(UserOrder record);
+
+    List<UserOrder> selectAllUserOrderUnpaid();
 }
