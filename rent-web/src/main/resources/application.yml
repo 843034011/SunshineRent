@@ -43,7 +43,7 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
-  #  跳转到/WEB-INF/下的.html页面
+  # 跳转到/WEB-INF/下的.html页面
   freemarker:
     template-loader-path: /WEB-INF/
     suffix: .html
