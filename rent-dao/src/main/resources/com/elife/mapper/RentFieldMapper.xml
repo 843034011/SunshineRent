@@ -16,6 +16,9 @@
     <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
     <result column="reg_id" property="regId" jdbcType="INTEGER" />
   </resultMap>
+  <select id="selectAllFields"  resultMap="BaseResultMap">
+    select * from rent_field
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
