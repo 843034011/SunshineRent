@@ -15,8 +15,4 @@ public class RentApplication {
         SpringApplication.run(RentApplication.class,args);
     }
 
-    @RequestMapping("shoppingcart")
-    public String shoppingcart(){
-        return "shoppingcart";
-    }
 }
