@@ -40,3 +40,41 @@ $(".choose-one-box").click(function () {
         $(this).parent().parent().attr("choosed","0")
     }
 })
+
+$.post({
+    url:"/shoppingcart/selectall",
+    dataType:"json",
+    success:function (data) {
+        $.each(data.data,function (index,value) {
+
+            if((value.fieldId != null) && (value.goodsId == null)){
+                // 按Id查找场地图片、信息、押金、租金
+                $.post({
+                    url:"/shoppingcart/selectfieldbyid",
+                    dataType:"json",
+                    success:function (data) {
+                        console.log("=======================")
+                        console.log(data.id)
+                        console.log(data.id)
+                    }
+                })
+            } else if((value.fieldId == null) && (value.goodsId != null)){
+                // 按Id查找商品图片、信息、押金、租金
+            }
+
+            // 查找订单中的数量、租期
+            console.log(value.orderNumber)
+
+            console.log(value.startTime)
+            console.log(value.endTime)
+
+
+            console.log("=============")
+
+
+        })
+    },
+    error:function () {
+        alert("失败了！！")
+    }
+})

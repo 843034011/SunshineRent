@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentFieldExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RentFieldMapper {
     int countByExample(RentFieldExample example);
 
