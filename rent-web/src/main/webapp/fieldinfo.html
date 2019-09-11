@@ -1,10 +1,1271 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<!--[if IE 9]> <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <title>场地信息</title>
+    <!-- basic page needs -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Single Product | GreenTech</title>
+    <meta name="description" content="add your site description here">
+    <!-- mobile meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">-->
+    <!-- fancybox -->
+    <link rel="stylesheet" href="css/fieldinfo/jquery.fancybox.css">
+    <!-- mobile menu -->
+    <link rel="stylesheet" href="css/fieldinfo/meanmenu.min.css">
+    <!-- jquery-ui-slider -->
+    <link rel="stylesheet" href="css/fieldinfo/jquery-ui-slider.css">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" href="css/fieldinfo/nivo-slider.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="css/fieldinfo/owl.transitions.css">
+    <link rel="stylesheet" href="css/fieldinfo/owl.theme.css">
+    <link rel="stylesheet" href="css/fieldinfo/owl.carousel.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/fieldinfo/animate.css">
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css' />
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="css/fieldinfo/font-awesome.min.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/fieldinfo/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/fieldinfo/responsive.css">
+    <!-- modernizr js -->
+
+
+
+    <!--  ditu-->
+    <!--<link rel="stylesheet" href="css/demo-center.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/fieldinfo/prety-json.css">
+
+    <style>
+
+        #ditu{
+            width: 500px;
+            height: 500px;
+        }
+        #ditua{
+            display:block;
+            font-size:15px;
+            line-height:30px;
+        }
+    </style>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+    <link href="css/fieldinfo/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/fieldinfo/daterangepicker.css"/>
+
+
+    <script src="js/fieldinfo/vendor/modernizr-2.6.2.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/fieldinfo/vendor/html5shiv.min.js"></script>
+    <script src="js/fieldinfo/vendor/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+    <script type="text/javascript" src="js/fieldinfo/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/fieldinfo/moment.js"></script>
+    <script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
+
+
+    <style type="text/css">
+        *{margin:0;padding:0;list-style-type:none;}
+        a,img{border:0;}
+        body{font:12px/180% Arial, Helvetica, sans-serif,"宋体";}
+        /* zoombox */
+        .zoombox{width:686px;margin:20px auto 0 auto;}
+        .zoompic{border:solid 1px #dfdfdf;width:684px;height:394px;background:url(img/images/loading.gif) no-repeat 50% 50%;}
+
+        .sliderbox{height:76px;overflow:hidden;margin:6px 0 0 0;}
+        .sliderbox .arrow-btn{width:38px;height:76px;background:url(img/images/arrow-btn.png) no-repeat;cursor:pointer;}
+        .sliderbox #btn-left{float:left;background-position:0 0;}
+        .sliderbox #btn-left.dasabled{background-position:0 -76px;}
+        .sliderbox #btn-right{float:right;background-position:-38px 0;}
+        .sliderbox #btn-right.dasabled{background-position:-38px -76px;}
+        .sliderbox .slider{float:left;height:76px;width:605px;position:relative;overflow:hidden;margin:0 0 0 3px;display:inline;}
+        .sliderbox .slider ul{position:absolute;left:0;width:999em;}
+        .sliderbox .slider li{float:left;width:121px;height:76px;text-align:center;}
+        .sliderbox .slider li img{border:solid 1px #dfdfdf;}
+        .sliderbox .slider li.current img{border:solid 1px #3366cc;}
+    </style>
+
+
+    <style>
+        .line {
+            height: 1px;
+            overflow: hidden;
+            border-bottom: 1px solid #e5e5e5;
+            width:1200px;
+
+        }
+
+    </style>
 </head>
 <body>
-场地具体信息页面
+
+
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<!-- header-area start -->
+<header class="header-area">
+    <!-- header-top start -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="welcome-mes">
+                        <p>欢迎来到阳光租赁</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="header-right-menu">
+                        <nav>
+                            <ul>
+                                <li><a href="">账户</a><i class="fa fa-angle-down"></i>
+                                    <ul>
+                                        <li><a href="my-account.html">个人中心</a></li>
+                                        <!--<li><a href="wishlist.html">收藏夹</a></li>-->
+                                        <!--<li><a href="cart.html">购物车</a></li>-->
+                                        <li><a href="cart.html">订单</a></li>
+                                        <li><a href="checkout.html">退出登录</a></li>
+                                        <!--<li><a href="#">Log in</a></li>-->
+                                    </ul>
+                                </li>
+
+                                <li class="last"><a href="#">帮助</a><!--<i class="fa fa-angle-down">--></i>
+                                    <!--<ul>
+                                        <li><a href="#">English</a></li>
+                                        <li><a href="#">France</a></li>
+                                    </ul>-->
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- header-top end -->
+    <!-- header-middle start -->
+    <div class="header-middle">
+        <div class="container" style="margin-left: 50px">
+            <div class="row" >
+                <div class="col-xs-12 col-md-3" >
+                    <!-- logo start -->
+                    <div class="logo" >
+                        <a href="index.html"><img src="img/fieldinfo/logo3.png" alt="GreenTech" /></a>
+                    </div>
+                    <!-- logo end -->
+                </div>
+                <div class="col-xs-12 col-md-9">
+                    <!-- category search start -->
+
+                    <div class="category-search-area">
+                        <div class="search-cat">
+                            <select>
+                                <option value="1">请选择类目</option>
+                                <option value="2">办公场地</option>
+                                <option value="3">运动场地</option>
+                                <option value="4">体育电竞</option>
+                                <option value="5">展览展示</option>
+                                <option value="6">派对沙龙</option>
+                                <option value="7">其它</option>
+                                <!--	<option value="5">Toys</option>
+                                    <option value="5">Kids</option>
+                                    <option value="6">Sport</option>
+                                    <option value="6">Healthy</option>
+                                    <option value="7">Accessories</option>-->
+                            </select>
+                        </div>
+                        <div class="search-form">
+                            <form action="#" method="post">
+                                <input class="cat-search-box" type="text" placeholder="搜索你想要的场地商品" />
+                                <a href="" class="cat-search-btn"><i class="fa fa-search"></i></a>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- category search end -->
+                    <!-- top-shoping-cart start -->
+                    <!-- 我的爱好-->
+                    <div class="top-shoping-cart">
+                        <div class="top-wishlist">
+                            <a class="top-wishlist-link" href="mylove.html"><!--<span>3</span>--></a>
+                            <!--<div class="wishlist-box-overlay">-->
+                        </div>
+
+
+
+                        <!--	<div class="single-mycart-item">
+                                <div class="mycart-item-pro">
+                                    <div class="mycart-item-img">
+                                        <a href="wishlist.html"><img src="img/product/shoping-cart/5.jpg" alt="cart" /></a>
+                                    </div>
+                                    <div class="mycart-item-text">
+                                        <a href="#" class="item-delete" title="delete">delete Item</a>
+                                        <p><a class="mycart-title" href="wishlist.html">Cras neque metus </a></p>
+                                        <div class="product-price">
+                                            <span class="regular-price">$280.00</span>
+                                        </div>
+                                        <p><a class="t-w-add-cart" href="#" title="Add to Cart">Add to Cart</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-mycart-item">
+                                <div class="mycart-item-pro">
+                                    <div class="mycart-item-img">
+                                        <a href="wishlist.html"><img src="img/product/shoping-cart/2.jpg" alt="cart" /></a>
+                                    </div>
+                                    <div class="mycart-item-text">
+                                        <a href="#" class="item-delete" title="delete">delete Item</a>
+                                        <p><a class="mycart-title" href="wishlist.html">Cras neque metus </a></p>
+                                        <div class="product-price">
+                                            <span class="regular-price">$220.00</span>
+                                            <span class="old-price">$200.00</span>
+                                        </div>
+                                        <p><a class="t-w-add-cart" href="#" title="Add to Cart">Add to Cart</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="go-to-wishlist"><a href="wishlist.html">Go to Wishlist</a></p>
+                        </div>
+                    </div>
+-->                        <!--我的购物车页面-->
+                        <div class="top-mycart">
+                            <a class="top-mycart-link" href="shoppingcart.html"></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--     &lt;!&ndash; &lt;!&ndash;header-area end&ndash;&gt; &ndash;&gt;
+     &lt;!&ndash;&lt;!&ndash; main content area start&ndash;&gt;  &ndash;&gt;-->
+<section class="main-content-area" >
+    <!--<div class="container">
+        &lt;!&ndash; &lt;!&ndash;bradcame start &ndash;&gt;&ndash;&gt;
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="greentect_bradcame">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="shop-grid.html">Games & Software</a></li>
+                        <li>Consequences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+    <!--    &lt;!&ndash;&lt;!&ndash; bradcame end&ndash;&gt; &ndash;&gt;
+        &lt;!&ndash;&lt;!&ndash; single page product information start&ndash;&gt; &ndash;&gt;-->
+    <div class="single-product-page-area" style="margin-left:70px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="single-product-image">
+                    <div class="single-pro-main-image">
+                        <a href=""><img id="optima_zoom" src="img/fieldinfo/场地.jpg" data-zoom-image="img/fieldinfo/场地.jpg" alt="optima"/></a>
+                    </div>
+                    <div class="single-pro-thumb">
+                        <ul class="thubm-caro" id="optima_gallery">
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地.jpg" data-zoom-image="img/fieldinfo/场地.jpg"> <img src="img/fieldinfo/场地.jpg" alt="optima" /> </a>
+                            </li>
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地1a.jpg" data-zoom-image="img/fieldinfo/场地1a.jpg"> <img src="img/fieldinfo/场地1a.jpg" alt="optima" /> </a>
+                            </li>
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地1b.jpg" data-zoom-image="img/fieldinfo/场地1b.jpg"> <img src="img/fieldinfo/场地1b.jpg" alt="optima" /> </a>
+                            </li>
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地1c.jpg" data-zoom-image="img/fieldinfo/场地1c.jpg"> <img src="img/fieldinfo/场地1c.jpg" alt="optima" /> </a>
+                            </li>
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地1c.jpg" data-zoom-image="img/fieldinfo/场地1c.jpg"> <img src="img/fieldinfo/场地1c.jpg" alt="optima" /> </a>
+                            </li>
+                            <li>
+                                <a href="#" data-image="img/fieldinfo/场地1c.jpg" data-zoom-image="img/fieldinfo/场地1c.jpg"> <img src="img/fieldinfo/场地1c.jpg" alt="optima" /> </a>
+                            </li>
+
+                            <!--  <li>
+                                  <a href="#" data-image="img/product/home1/9.jpg" data-zoom-image="img/product/large-image/9.jpg"> <img src="img/product/home1/9.jpg" alt="optima" /> </a>
+                              </li>
+                              <li>
+                                  <a href="#" data-image="img/product/home1/6.jpg" data-zoom-image="img/product/large-image/6.jpg"> <img src="img/product/home1/6.jpg" alt="optima" /> </a>
+                              </li>
+                              <li>
+                                  <a href="#" data-image="img/product/home1/15.jpg" data-zoom-image="img/product/large-image/15.jpg"> <img src="img/product/home1/15.jpg" alt="optima" /> </a>
+                              </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <div class="single-product-description">
+                    <div class="pro-desc">
+                        <h2>创意产业园</h2>
+                        <div class="review_forum">
+                            <div class="rating-box">
+                                <a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                <a title="2 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                <a title="3 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                <a title="4 star" href="#" ><i class="fa fa-star-o"></i></a>
+                                <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                            </div>
+                            <p><span><a href="#review">其他用户的评价</a> <!--| --></span> <!--<a href="#"> Add your review</a>--></p>
+                        </div>
+
+                        <div class="pro-availability">
+                            <p class="availability">状态：<span>有货</span></p>
+                        </div>
+
+                        <span class="regular-price">¥131</span>
+                        <div class="product-content">
+                            <p>创意产业园是一个大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球
+                                大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球大圆球 </p>
+                        </div>
+
+                    </div>
+                    <div class="product-variation">
+                        <div class="product-quantity">
+                            <div class="cart-plus-minus">
+                                <label  style="color: darkgrey;" >租用数量: </label>
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="0">
+
+
+                            </div>
+
+                            </br>
+
+                            </br>  </br>
+                            <!--<div class="bjui-pageContent" >-->
+                            <!-- </div>-->
+
+                            <div >
+                                <label style="color: darkgrey;"> 租用日期：</label>
+                                <button type="button" class="btn btn-default" id="daterange-btn">
+
+                                                        <span>
+                                                          <i class="icon iconfont icon-calendar1"></i> 日期选择
+                                                        </span>
+                                    <i class="icon iconfont icon-danxian-youjiantou-copy" ></i>
+                                </button>
+                                <!--    </div>
+                                 </div>-->
+                                <!--  </div>--></div>
+                        </div>
+                    </div>
+
+                    <!--   <div class="form-group d_t_dater" >
+                            <label class="col-sm-3 control-label"  ></label>
+                            <div class="col-sm-12" >-->
+                    <!--  <div class="input-group" style="background-color: yellow" >-->
+
+
+                    <div class="pro-add-to-cart" style="float:left; " >
+                        <p ><a title="Add to Cart" href="#">加入购物车</a></p>
+                    </div>
+                    <!--  <div class="single-product-social-share">
+                          <img src="img/social-share.jpg" alt="" />
+                      </div>-->
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <!--   &lt;!&ndash; product description tab start &ndash;&gt;-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="product-more-info-tab">
+                    <!--  &lt;!&ndash; Nav tabs &ndash;&gt;-->
+                    <ul class="more-info-tab nav nav-tabs">
+                        <li class="active"><a href="#proDescription" data-toggle="tab">场地周边环境</a></li>
+                        <li><a name="review" href="#proReview" data-toggle="tab">其他用户的评价</a></li>
+                        <!-- <li><a href="#proTag" data-toggle="tab">场地商品标签</a></li>-->
+                    </ul>
+
+                    <!--     &lt;!&ndash; Tab panes &ndash;&gt;-->
+                    <div class="product-tab-content tab-content">
+                        <div class="tab-pane active" id="proDescription">
+                            <div class="tab-description">
+                                <!-- <h2>周边环境</h2>
+                                 <p>周边有华为，有国科数据中心，周边有华为，有国科数据中心，周边有华为，有国科数据中心，
+                                     周边有华为，有国科数据中心，周边有华为，有国科数据中心，. </p>-->
+                                <div id="ditu"></div>
+
+                                <div class="info">
+                                    <div class="input-item">
+                                        <div class="input-item-prepend">
+                                            <span class="input-item-text" style="width:10rem;">请输入关键字</span>
+                                        </div>
+                                        <input id='input' type="text" value='昆明' >
+                                    </div>
+                                    <p  id="ditua"><span></span></p>
+                                    <div class="input-item">
+                                        <div class="input-item-prepend"><span class="input-item-text" >地址</span></div>
+                                        <input id='address' type="text" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="proReview">
+                            <div class="comment-show-con clearfix">
+                                <div class="comment-show-con-img pull-left" style="margin-left: 5px">
+                                    <img src="header-img-comment_03.png"  alt="" >
+                                </div>
+                                <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">
+                                    <a href="#" class="comment-size-name">杨阳 </a> <span class="my-pl-con">&nbsp;刚刚</span> </div>
+                                    <div class="rating-box">
+                                        <a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" href="#" class="rated1"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" href="#" ><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="date-dz">
+                                        <span class="date-dz-left  comment-time">2019-9-9 18:17:50</span>
+
+                                        <span class=" date-dz-line">|</span>
+                                        <a href="javascript:;" class="date-dz-z "><i class="date-dz-z-click-red"></i>赞
+                                            (<i class="z-num">666</i>)</a> </div> </div>
+                                <br><br><br>
+                                <div class="hf-list-con">
+                                    <div >
+                                        杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊
+                                    </div>
+                                    <br>
+                                    <div class="sliderbox" style="float:left;">
+                                        <div id="btn-left" class="arrow-btn dasabled"></div>
+                                        <div class="slider" id="thumbnail">
+                                            <ul>
+                                                <li class="current" style="float:left;" ><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="1" /></a></li>
+                                            </ul>
+                                        </div>
+                                        <div id="btn-right" class="arrow-btn"></div>
+                                    </div>
+                                    <div class="zoompic" style="display:none"><img src="meishi.jpg" width="684" height="394" alt="" /></div>
+                                </div><!--slider end-->
+
+                                <div class="line" style="margin-top:130px"></div>
+
+                                <br><br>
+
+
+                                <!--   第二个-->
+                                <div class="comment-show-con-img pull-left" style="margin-left: 5px">
+                                    <img src="header-img-comment_03.png"  alt="" >
+                                </div>
+                                <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">
+                                    <a href="#" class="comment-size-name">杨阳 </a> <span class="my-pl-con">&nbsp;刚刚</span> </div>
+                                    <div class="rating-box">
+                                        <a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" href="#" class="rated1"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" href="#" ><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="date-dz">
+                                        <span class="date-dz-left  comment-time">2019-9-9 18:17:50</span>
+
+                                        <span class=" date-dz-line">|</span>
+                                        <a href="javascript:;" class="date-dz-z "><i class="date-dz-z-click-red"></i>赞
+                                            (<i class="z-num">666</i>)</a> </div> </div>
+                                <br><br><br>
+                                <div class="hf-list-con">
+                                    <div >
+                                        杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊
+                                    </div>
+                                    <br>
+                                    <div class="sliderbox" style="float:left;">
+                                        <div id="btn-left1" class="arrow-btn dasabled"></div>
+                                        <div class="slider" id="thumbnail1">
+                                            <ul>
+                                                <li class="current" style="float:left;" ><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi.jpg" target="_blank"><img src="meishi.jpg" width="115" height="74" alt="" /></a></li>
+                                                <li style="float:left;"><a href="meishi2.jpg" target="_blank"><img src="meishi2.jpg" width="115" height="74" alt="1" /></a></li>
+                                            </ul>
+                                        </div>
+                                        <div id="btn-right1" class="arrow-btn"></div>
+                                    </div>
+                                    <div class="zoompic" style="display:none"><img src="meishi.jpg" width="684" height="394" alt="" /></div>
+                                </div><!--slider end-->
+
+                                <div class="line" style="margin-top:130px"></div>
+
+                                <br><br>
+
+                            </div>
+
+
+
+
+
+
+
+                            <!-- <div class="review-author">
+                                 <p><a href="http://bootexperts.com/">BootExperts </a><label>评论者 </label> <span> Shaddam</span></p>
+                             </div>
+                             <div class="review-rating">
+                                 <p>质量 </p>
+                                 <p>价钱</p>
+                             </div>
+                             <div class="rev-post-time">
+                                 <p>Plazathemes <i>(Posted on 9/12/2014)</i> </p>
+                             </div>
+                         </div>
+                         <div class="tab-right-form-table">
+                             <div class="tab-table">
+                                 <p>You're reviewing: Pellent  habitant </p>
+                                 <label>How do you rate this product? *</label>
+                                 <div class="table-responsive">
+                                     <table class="table-data-sheet">
+                                         <thead>
+                                             <tr>
+                                                 <th> </th>
+                                                 <th>1 star</th>
+                                                 <th>2 star</th>
+                                                 <th>3 star</th>
+                                                 <th>4 star</th>
+                                                 <th>5 star</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr class="first">
+                                                 <td class="left-align">Quality</td>
+                                                 <td>
+                                                     <input type="radio" value="Quality" name="qty_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Quality" name="qty_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Quality" name="qty_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Quality" name="qty_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Quality" name="qty_rate">
+                                                 </td>
+                                             </tr>
+                                             <tr class="meddle">
+                                                 <td class="left-align">Price</td>
+                                                 <td>
+                                                     <input type="radio" value="Price" name="price_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Price" name="price_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Price" name="price_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Price" name="price_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Price" name="price_rate">
+                                                 </td>
+                                             </tr>
+                                             <tr class="last">
+                                                 <td class="left-align">Value</td>
+                                                 <td>
+                                                     <input type="radio" value="Value" name="value_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Value" name="value_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Value" name="value_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Value" name="value_rate">
+                                                 </td>
+                                                 <td>
+                                                     <input type="radio" value="Value" name="value_rate">
+                                                 </td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                     &lt;!&ndash;    分页功能&ndash;&gt;
+                                     <nav aria-label="Page navigation">
+                                         <ul class="pagination">
+                                             <li>
+                                                 <a href="#" aria-label="Previous">
+                                                     <span aria-hidden="true">&laquo;</span>
+                                                 </a>
+                                             </li>
+                                             <li  class="active"><a href="#">1</a></li>
+                                             <li><a href="#">2</a></li>
+                                             <li><a href="#">3</a></li>
+                                             <li><a href="#">4</a></li>
+                                             <li><a href="#">5</a></li>
+                                             <li>
+                                                 <a href="#" aria-label="Next">
+                                                     <span aria-hidden="true">&raquo;</span>
+                                                 </a>
+                                             </li>
+                                         </ul>
+                                     </nav>
+                                    &lt;!&ndash; 分页结束&ndash;&gt;
+                                 </div>
+                             </div>
+
+
+                             <div class="tab-form">
+                                 <div class="form-group">
+                                     <label>Nickname <sup>*</sup></label>
+                                     <input type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Summary of Your Review <sup>*</sup></label>
+                                     <input type="text" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Review <sup>*</sup></label>
+                                     <textarea></textarea>
+                                 </div>
+                                 <div class="submit-review">
+                                     <a href="" class="add-tag-btn">Submit Review</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane" id="proTag">
+                         <div class="pro-tag-form">
+                             <h3>其他用户对它的标签 :<br> <a href="#">men</a><span> (1)</span></h3>
+                             <label>添加你的标签</label>
+                             <input type="text" class="tag-box form-control" />
+
+                             <a href="#" class="add-tag-btn">添加标签</a>
+                             <p>用空格分开标签。对短语使用单引号（'）</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>-->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <!--    product description tab end-->
+                </div>
+                <!--   &lt;!&ndash; single page product information end &ndash;&gt;
+                           &lt;!&ndash; related product start &ndash;&gt;&ndash;&gt;-->
+                <div class="row related-product">
+                    <div class="section-heading">
+                        <h2><span>相关</span> 商品</h2>
+                    </div>
+                    <div class="product-carousel-5">
+                        <!-- &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="sale-stiker product-sticker">
+                                    <img src="img/product/sale1.png" alt="product sticker" /><!--热销-->
+                                </div>
+
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" /><!--新品-->
+                                </div>
+
+                                <!--第一个商品-->
+                                <a href="single-product.html" title=""><img src="img/product/home1/1.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">游戏机</a></h2>
+                                <div class="product-price">
+                                    <span class="regular-price">¥999.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- &lt;!&ndash; single-product-item end &ndash;&gt;
+                         &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/2.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">电脑</a></h2>
+                                <div class="product-price">
+                                    <span class="old-price">$260.00</span>
+                                    <span class="regular-price">$299.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- &lt;!&ndash; single-product-item end &ndash;&gt;
+                         &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/3.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#" ><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><span class="glyphicon glyphicon-heart" style="color:#51c6ff;color-width:50%; font-size: 15px;"> </span></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">电脑</a></h2>
+                                <div class="product-price">
+                                    <!--<span class="old-price">¥697.00</span>-->
+                                    <span class="regular-price">¥784.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--&lt;!&ndash; single-product-item end &ndash;&gt;
+                        &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="sale-stiker product-sticker">
+                                    <img src="img/product/sale1.png" alt="product sticker" />
+                                </div>
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/4.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">椅子</a></h2>
+                                <div class="product-price">
+                                    <span class="regular-price">$879.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  &lt;!&ndash; single-product-item end &ndash;&gt;
+                          &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/5.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">超人玩具</a></h2>
+                                <div class="product-price">
+                                    <span class="regular-price">¥698.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  &lt;!&ndash; single-product-item end &ndash;&gt;
+                          &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="sale-stiker product-sticker">
+                                    <img src="img/product/sale1.png" alt="product sticker" />
+                                </div>
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/6.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">11</a></h2>
+                                <div class="product-price">
+                                    <span class="old-price">400.00</span>
+                                    <span class="regular-price">350.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--&lt;!&ndash; single-product-item end &ndash;&gt;
+                        &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/7.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">s</a></h2>
+                                <div class="product-price">
+                                    <span class="regular-price">687.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  &lt;!&ndash; single-product-item end &ndash;&gt;
+                          &lt;!&ndash; single-product-item start &ndash;&gt;-->
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <div class="sale-stiker product-sticker">
+                                    <img src="img/product/sale1.png" alt="product sticker" />
+                                </div>
+                                <div class="product-sticker">
+                                    <img src="img/product/new1.png" alt="product sticker" />
+                                </div>
+                                <a href="single-product.html" title=""><img src="img/product/home1/8.jpg" alt="product image" /></a>
+                                <div class="single-product-overlay">
+                                    <div class="rating-box">
+                                        <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="3 star" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="4 star" href="#"><i class="fa fa-star-o"></i></a>
+                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="product-quick-view">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="single-product-text">
+                                <h2><a class="product-title" href="single-product.html" title="">gfv</a></h2>
+                                <div class="product-price">
+                                    <span class="regular-price">$850.00</span>
+                                </div>
+                                <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--  &lt;!&ndash; single-product-item end &ndash;&gt;-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>	&ndash;&gt;
+</div>-->
+<!-- main content area end  -->
+
+<script type="text/javascript">
+    $('.ranges_1 ul').remove();
+
+    $('#daterange-btn').daterangepicker({
+
+            ranges: {
+                '全部': [moment(), moment().subtract(-1, 'days')],
+
+                '今天': [moment(), moment()],
+                '明天': [moment().subtract(-1, 'days'), moment().subtract(-1, 'days')],
+                '未来七天': [moment(),moment().subtract(-6, 'days')],
+                '未来30天': [moment(),moment().subtract(-29, 'days')],
+                '未来60天': [moment(),moment().subtract(-59, 'days'), ],
+
+
+
+            },
+            startDate: moment(),
+            endDate: moment()
+        },
+        /* {
+
+             showShortcuts: false,
+             beforeShowDay: function(t)
+             {
+                 var valid = !(t.getDay() == 0 || t.getDay() == 6);  // 禁用 星期六 和 星期日
+                 var _class = '';
+                 var _tooltip = valid ? '' : 'weekends are disabled';
+                 console.log(t.getDay())
+                 alert(t.getDay())
+                 return [valid,_class,_tooltip];
+             }
+         },*/
+        /*   function(){
+               alert(t.getDay())
+               var valid = !(t.getDay() == 0 || t.getDay() == 6);  // 禁用 星期六 和 星期日
+               var _class = '';
+               var _tooltip = valid ? '' : 'weekends are disabled';
+               return [valid,_class,_tooltip];
+           },*/
+
+        function(start, end,label) {
+            /*alert(start.)*/
+            /* var valid = !(start.getDay() == 0 || start.getDay() == 6);  // 禁用 星期六 和 星期日
+             var _class = '';
+             var _tooltip = valid ? '' : 'weekends are disabled';
+             return [valid,_class,_tooltip];*/
+            //label:通过它来知道用户选择的是什么，传给后台进行相应的展示
+            //console.log(label)
+
+            if(label=='全部'){
+                $('#daterange-btn span').html('全部');
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }else if(label=='今天'){
+                $('#daterange-btn span').html(end.format('YYYY/MM/DD'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }else if(label=='明天'){
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }else if(label=='未来七天'){
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+
+            }else if(label=='未来30天'){
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }else if(label=='未来60天'){
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }
+
+
+        }
+
+    );
+
+
+</script>
+<script type="text/javascript">
+    $(".tab-content").click(function(){
+
+        $(".zoompic").hide();
+    })
+    $(document).ready(function (){
+
+        //点击小图切换大图
+        $("#thumbnail li a").click(function(){
+            $(".zoompic").show()
+            $(".zoompic img").hide().attr({ "src": $(this).attr("href"), "title": $("> img", this).attr("title") });
+            $("#thumbnail li.current").removeClass("current");
+            $(this).parents("li").addClass("current");
+            return false;
+        });
+        $(".zoompic>img").load(function(){
+            $(".zoompic>img:hidden").show();
+        });
+
+        //小图片左右滚动
+        var $slider = $('.slider ul');
+        var $slider_child_l = $('.slider ul li').length;
+        var $slider_width = $('.slider ul li').width();
+        $slider.width($slider_child_l * $slider_width);
+
+        var slider_count = 0;
+
+        if ($slider_child_l < 5) {
+            $('#btn-right').css({cursor: 'auto'});
+            $('#btn-right').removeClass("dasabled");
+        }
+
+        $('#btn-right').click(function() {
+            if ($slider_child_l < 5 || slider_count >= $slider_child_l - 5) {
+                return false;
+            }
+
+            slider_count++;
+            $slider.animate({left: '-=' + $slider_width + 'px'}, 'fast');
+            slider_pic();
+        });
+
+        $('#btn-left').click(function() {
+            if (slider_count <= 0) {
+                return false;
+            }
+            slider_count--;
+            $slider.animate({left: '+=' + $slider_width + 'px'}, 'fast');
+            slider_pic();
+        });
+
+        function slider_pic() {
+            if (slider_count >= $slider_child_l - 5) {
+                $('#btn-right').css({cursor: 'auto'});
+                $('#btn-right').addClass("dasabled");
+            }
+            else if (slider_count > 0 && slider_count <= $slider_child_l - 5) {
+                $('#btn-left').css({cursor: 'pointer'});
+                $('#btn-left').removeClass("dasabled");
+                $('#btn-right').css({cursor: 'pointer'});
+                $('#btn-right').removeClass("dasabled");
+            }
+            else if (slider_count <= 0) {
+                $('#btn-left').css({cursor: 'auto'});
+                $('#btn-left').addClass("dasabled");
+            }
+        }
+
+    });
+</script>
+
+
+<!-- 地图-->
+<script src="https://webapi.amap.com/maps?v=1.4.14&key=d733fb8cd38afe151c4ef8b628b4d3a3&plugin=AMap.Autocomplete,AMap.Geocoder"></script>
+<script type="text/javascript" src="js/fieldinfo/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript" src="js/fieldinfo/underscore-min.js" ></script>
+<script type="text/javascript" src="js/fieldinfo/backbone-min.js" ></script>
+<script type="text/javascript" src='js/fieldinfo/prety-json.js'></script>
+
+<!--   地图-->
+<script>
+    //初始化地图
+    var map = new AMap.Map('ditu', {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom: 11, //初始地图级别
+    });
+    var geocoder,marker,lnglat;
+    function regeoCode() {
+        if(!geocoder){
+            geocoder = new AMap.Geocoder({
+                city: "010", //城市设为北京，默认：“全国”
+                radius: 1000 //范围，默认：500
+            });
+        }
+        if(!marker){
+            marker = new AMap.Marker();
+            map.add(marker);
+        }
+        marker.setPosition(lnglat);
+
+        geocoder.getAddress(lnglat, function(status, result) {
+            if (status === 'complete'&&result.regeocode) {
+                var address = result.regeocode.formattedAddress;
+                document.getElementById('address').value = address;
+            }else{
+                log.error('根据经纬度查询地址失败')
+            }
+        });
+    }
+
+    map.on('click',function(e){
+        lnglat = e.lnglat;
+        regeoCode();
+    })
+    // 获取输入提示信息
+    function autoInput(){
+        var keywords = document.getElementById("input").value;
+        AMap.plugin('AMap.Autocomplete', function(){
+            // 实例化Autocomplete
+            var autoOptions = {
+                city: '全国'
+            }
+            var autoComplete = new AMap.Autocomplete(autoOptions);
+            autoComplete.search(keywords, function(status, result) {
+                // 搜索成功时，result即是对应的匹配数据
+                console.log(result);
+                let tips = result.tips;
+                let tishtml = "";
+                tips.forEach((item)=>{
+                    tishtml+=`<span lat="${item.location.lat}" lng="${item.location.lng}">${item.name}</span>`
+                })
+                $("#ditua").html(tishtml);
+            })
+        })
+    }
+
+    autoInput();
+
+    document.getElementById("input").oninput = autoInput;
+    $("#ditua").on("click",'span',function(){
+        let lat = $(this).attr("lat");
+        let lng = $(this).attr("lng");
+        map.panTo([lng, lat]);
+        lnglat=[lng, lat];
+        regeoCode();
+    })
+</script>
+
+
+
+
+
+<!-- jquery js -->
+<script src="js/fieldinfo/vendor/jquery-1.11.3.min.js"></script>
+<!-- jqueryui js -->
+<script src="js/fieldinfo/jqueryui.js"></script>
+<!-- mobile menu js -->
+<script src="js/fieldinfo/jquery.meanmenu.js"></script>
+<!-- fancybox js -->
+<script src="js/fieldinfo//jquery.fancybox.js"></script>
+<!-- elevatezoom js -->
+<script src="js/fieldinfo/jquery.elevatezoom.js"></script>
+<!-- bootstrap js -->
+<script src="js/fieldinfo/bootstrap.min.js"></script>
+<!-- owl.carousel js -->
+<script src="js/fieldinfo/owl.carousel.min.js"></script>
+<!-- owl.carousel js -->
+<script src="js/fieldinfo/jquery.nivo.slider.pack.js"></script>
+<!-- jquery-counterup js -->
+<script src="js/fieldinfo/jquery.counterup.min.js"></script>
+<!-- wow js -->
+<script src="js/fieldinfo/wow.js"></script>
+<script>
+    new WOW().init();
+</script>
+<!-- main js -->
+<script src="js/fieldinfo/main.js"></script>
 </body>
 </html>

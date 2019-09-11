@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SunshineRent.iml" filepath="$PROJECT_DIR$/SunshineRent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-commons/rent-commons.iml" filepath="$PROJECT_DIR$/rent-commons/rent-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-controller/rent-controller.iml" filepath="$PROJECT_DIR$/rent-controller/rent-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-dao/rent-dao.iml" filepath="$PROJECT_DIR$/rent-dao/rent-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-pojo/rent-pojo.iml" filepath="$PROJECT_DIR$/rent-pojo/rent-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-service/rent-service.iml" filepath="$PROJECT_DIR$/rent-service/rent-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rent-web/rent-web.iml" filepath="$PROJECT_DIR$/rent-web/rent-web.iml" />
+    </modules>
+  </component>
+</project>
