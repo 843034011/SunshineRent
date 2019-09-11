@@ -1,6 +1,9 @@
 #server:
 #  port: 8888
 spring:
+  application:
+    name:rent-controller
+
   devtools:
     restart:
       additional-paths: src/main/java
