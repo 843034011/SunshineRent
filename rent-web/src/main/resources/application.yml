@@ -2,7 +2,7 @@
 #  port: 8888
 spring:
   application:
-    name:rent-controller
+    name: rent-controller
 
   devtools:
     restart:
