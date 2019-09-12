@@ -1,9 +1,6 @@
 #server:
 #  port: 8888
 spring:
-  application:
-    name: rent-controller
-
   devtools:
     restart:
       additional-paths: src/main/java
@@ -12,7 +9,7 @@ spring:
   #    cache: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/rent?characterencoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://192.168.1.110:3306/rent?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
     driverClassName: com.mysql.cj.jdbc.Driver

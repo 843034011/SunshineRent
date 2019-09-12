@@ -1,5 +1,6 @@
 package com.elife.service;
 
+import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.UserOrder;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,10 @@ public interface ShoppingCartService {
      */
     List<UserOrder> selectAllUserOrderUnpaid();
 
-    RentField selectFieldById(Integer id);
+    /**
+     * 根据id查找场地及场地图片的信息
+     * @param id
+     * @return
+     */
+    ShoppingCartResult selectFieldById(Integer id);
 }

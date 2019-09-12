@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.RentGoods;
 import com.elife.pojo.RentGoodsExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RentGoodsMapper {
     int countByExample(RentGoodsExample example);
 

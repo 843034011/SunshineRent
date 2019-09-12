@@ -28,6 +28,7 @@ public class ResultData {
     /**
      * 响应的数据
      */
+
     private Object data;
 
     public Integer getCode() {

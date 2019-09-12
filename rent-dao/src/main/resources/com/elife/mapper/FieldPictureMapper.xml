@@ -178,4 +178,8 @@
       field_id = #{fieldId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByFieldId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from field_picture where field_id = #{fieldId}
+  </select>
 </mapper>
