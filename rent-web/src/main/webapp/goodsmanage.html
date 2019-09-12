@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <div class="manage">
+    <div class="manage clearfix">
         <p>商品管理</p>
         <ul class="items items1">
             <li class="item">
@@ -38,39 +38,76 @@
             <button class="search-btn">搜索</button>
         </div>
         <div class="content">
-            <table class="con-table">
-                <tr>
-                    <td>商品信息</td>
-                    <td>操作</td>
-                </tr>
-            </table>
-            <!--<ul class="items items3">-->
-                <!--<li class="item"></li>-->
-                <!--<li class="item">数量</li>-->
-                <!--<li class="item">操作</li>-->
-                <!--&lt;!&ndash;<li class="item"></li>&ndash;&gt;-->
-            <!--</ul>-->
+            <ul class="con-ul">
+                <li class="one">商品信息</li>
+                <li class="one">操作</li>
+                <li class="two">
+                    <div class="div1">
+                        <img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>
+                    </div>
+                    <div class="div2">
+                        <div class="div2-con">
+                            <span>ThinkPad T440 14英寸笔记本电脑租赁</span>
+                            <span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>
+                        </div>
+                        <!--<p></p>-->
 
-        </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="disabled">
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
+                        <div class="div2-input">
+                            数量：<input type="number" min="1" step="1" value="1">
+                        </div>
+
+                    </div>
+                    <div class="div3">
+                        <button>修改</button>
+                        <button>删除</button>
+                    </div>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li class="disabled">
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                <li class="two">
+                    <div class="div1">
+                        <img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>
+                    </div>
+                    <div class="div2">
+                        <div class="div2-con">
+                            <span>ThinkPad T440 14英寸笔记本电脑租赁</span>
+                            <span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>
+                        </div>
+                        <!--<p></p>-->
+
+                        <div class="div2-input">
+                            数量：<input type="number" min="1" step="1" value="1">
+                        </div>
+
+                    </div>
+                    <div class="div3">
+                        <button>修改</button>
+                        <button>删除</button>
+                    </div>
                 </li>
             </ul>
-        </nav>
+
+        </div>
+        <div class="manage-page">
+            <button>添加</button>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="disabled">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </body>
 <script>
