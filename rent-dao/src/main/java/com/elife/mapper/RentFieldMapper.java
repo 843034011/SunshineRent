@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface RentFieldMapper {
+    List<RentField>selectAllFields();
+
     int countByExample(RentFieldExample example);
 
     int deleteByExample(RentFieldExample example);
