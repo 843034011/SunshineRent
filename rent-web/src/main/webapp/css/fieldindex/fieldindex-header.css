@@ -1,0 +1,156 @@
+/* 准备模块 消除默认样式*/
+
+*{margin:0;padding:0;}
+body,p,ul,ol,dl,dd,h1,h2,h3,h4,input,form{margin:0;padding:0;}
+li{list-style:none;}
+body{font:14px/1.5"微软雅黑";color:#333;}
+a{text-decoration:none;color:inherit;}
+h1,h2,h3,h4,h5,h6,strong{font-weight:normal;font-size:100%;}
+i,em{font-style:normal;}
+input{outline:none;border:0;background-color:transparent;}
+img{vertical-align:top;}
+
+.clearfix::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.Triangle::after{
+    content:"";
+    width:0px;
+    height:0px;
+    border:5px solid transparent;
+    margin-left:3px;
+    border-top:5px solid #333;
+    position:relative;
+    top:13px;
+    right:0px;
+}
+.fl{float:left;}
+.fr{float:right;}
+.f12{font-size:12px;}
+.f18{font-size:18px;}
+.font-color{color:#999;}
+.pos-r{position:relative;}
+.pos-a{position:absolute;}
+
+.main{
+
+}
+/*头部导航开始*/
+.head{
+    position: fixed;
+    right:0;
+    left: 0;
+    z-index: 101;
+    background-color: #fff;
+    /*margin:auto;*/
+}
+.head .head-top{
+    height: 85px;
+    width: 1200px;
+    min-width: 1200px;
+    margin: auto;
+    /*background-color: #0abfb6;*/
+    padding-top: 20px;
+    /*line-height:105px;*/
+
+}
+.head-top .logo{
+    width:175px;
+    height:60px;
+    /*margin-top:20px;*/
+    /*background-color: red;*/
+}
+.head-top .logo img{
+    height:60px;
+    /*width:;*/
+}
+.head .city{
+    margin:10px 15px 0 40px;
+    width:45px;
+    height:22px;
+    overflow: hidden;
+    border: 1px solid #aaa;
+    /*background-color: #0a6999;*/
+}
+.head .search{
+    margin: auto;
+    width:600px;
+    height:50px;
+    background-color: #ddd;
+}
+.search-box .search-icon{
+    width:50px;
+    height:50px;
+    background-color: #0f3230;
+}
+.search-box input{
+    width:400px;
+    height:50px;
+    /*background-color: #0abfb6;*/
+    padding-left:15px ;
+}
+.search-box .search-btn{
+    width:100px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: rgb(0,200,190);
+    color:#fff;
+}
+.search-box .search-btn:hover{
+    background-color: rgba(0,200,190,0.5);
+
+}
+
+.head .head-bottom{
+    width: 100%;
+    min-width: 1200px;
+    height: 40px;
+    background: rgb(0,200,190);
+    color: #fff;
+}
+.head-bottom .nav{
+    width: 1200px;
+    min-width: 1200px;
+    margin: auto;
+    height: 40px;
+
+}
+.nav ul{
+    display: flex;
+}
+.nav ul li{
+
+    height:100%;
+    padding:0 25px;
+    text-align: center;
+    line-height: 40px;
+}
+.nav-left ul li:nth-child(1){
+    background-color:#fff;
+    color:rgb(0,200,190);
+}
+.nav-right ul{
+
+}
+.nav-right ul li{
+
+}
+.search-box .navbottom{
+    /*width:100px;*/
+    /*height:20px;*/
+    /*background-color: #0abfb6;*/
+}
+.navbottom dl{
+    color:#999;
+    display: flex;
+}
+.navbottom dl dd{
+    /*overflow: hidden;*/
+    /*width:50px;*/
+    margin:0 7px;
+    /*background-color: red;*/
+}
