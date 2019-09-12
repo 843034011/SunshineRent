@@ -1,5 +1,6 @@
 package com.elife.controller;
 
+import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.UserOrder;
 import com.elife.service.ShoppingCartService;
@@ -28,6 +29,10 @@ public class ShoppingCartController {
         return "shoppingcart";
     }
 
+    /**
+     * 查询所有未支付的订单
+     * @return
+     */
     @RequestMapping("selectall")
     @ResponseBody
     public ResultData selectAll(){
@@ -46,27 +51,33 @@ public class ShoppingCartController {
         return resultData;
     }
 
+    /**
+     * 根据id查询场地信息及场地图片
+     * @param id
+     * @return
+     */
     @RequestMapping("selectfieldbyid")
     @ResponseBody
     public ResultData selectFieldById(Integer id){
 
+        System.out.println(id);
         ResultData resultData = new ResultData();
 
-        RentField rentField = shoppingCartService.selectFieldById(id);
+        ShoppingCartResult shoppingCartResult = shoppingCartService.selectFieldById(id);
 
-        if(null == rentField){
+        if(null == shoppingCartResult){
             resultData.setCode(1);
             resultData.setMessage("按id查询场地信息失败");
         } else {
             resultData.setCode(0);
-            resultData.setData(rentField);
+            resultData.setData(shoppingCartResult);
         }
         return resultData;
     }
 
-    @RequestMapping("selectgoodsbyid")
-    @ResponseBody
-    public ResultData selectByGoodsId(Integer id){
-        return null;
-    }
+//    @RequestMapping("selectgoodsbyid")
+//    @ResponseBody
+//    public ResultData selectByGoodsId(Integer id){
+//        return null;
+//    }
 }

@@ -31,7 +31,5 @@ public interface UserOrderMapper {
 
     int updateByPrimaryKey(UserOrder record);
 
-
-
     List<UserOrder> selectAllUserOrderUnpaid();
 }

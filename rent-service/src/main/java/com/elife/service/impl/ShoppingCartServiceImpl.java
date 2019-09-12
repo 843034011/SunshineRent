@@ -1,5 +1,6 @@
 package com.elife.service.impl;
 
+import com.elife.dto.ShoppingCartResult;
 import com.elife.mapper.RentFieldMapper;
 import com.elife.mapper.UserOrderMapper;
 import com.elife.pojo.RentField;
@@ -26,8 +27,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public RentField selectFieldById(Integer id) {
-        RentField rentField = rentFieldMapper.selectByPrimaryKey(id);
-        return rentField;
+    public ShoppingCartResult selectFieldById(Integer id) {
+        ShoppingCartResult shoppingCartResult = rentFieldMapper.selectFieldWithPictureById(id);
+        return shoppingCartResult;
     }
 }

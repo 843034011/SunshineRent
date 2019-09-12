@@ -16,6 +16,9 @@
     <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
     <result column="reg_id" property="regId" jdbcType="INTEGER" />
   </resultMap>
+  <select id="selectAllFields"  resultMap="BaseResultMap">
+    select * from rent_field
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -335,4 +338,19 @@
       reg_id = #{regId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap type="com.elife.dto.ShoppingCartResult" id="ShoppingCartResultMap">
+    <id column="id" property="shoppingcartId" jdbcType="INTEGER" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="field_info" property="fieldInfo" jdbcType="VARCHAR" />
+    <result column="field_deposit" property="fieldDeposit" jdbcType="DECIMAL" />
+    <result column="field_dayprice" property="fieldDayprice" jdbcType="DECIMAL" />
+    <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
+
+    <collection property="fieldPictures" column="id" select="com.elife.mapper.FieldPictureMapper.selectByFieldId"></collection>
+  </resultMap>
+
+  <select id="selectFieldWithPictureById" resultMap="ShoppingCartResultMap" parameterType="java.lang.Integer">
+    select id,field_name,field_info,field_deposit,field_dayprice,rent_count from rent_field
+  </select>
 </mapper>

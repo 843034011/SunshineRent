@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface FieldPictureMapper {
+
     int countByExample(FieldPictureExample example);
 
     int deleteByExample(FieldPictureExample example);
@@ -28,4 +29,7 @@ public interface FieldPictureMapper {
     int updateByPrimaryKeySelective(FieldPicture record);
 
     int updateByPrimaryKey(FieldPicture record);
+
+
+    List<FieldPicture> selectByFieldId(Integer fieldId);
 }

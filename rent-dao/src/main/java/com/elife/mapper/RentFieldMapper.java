@@ -1,5 +1,6 @@
 package com.elife.mapper;
 
+import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentFieldExample;
 import org.apache.ibatis.annotations.Param;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface RentFieldMapper {
+    List<RentField>selectAllFields();
+
     int countByExample(RentFieldExample example);
 
     int deleteByExample(RentFieldExample example);
@@ -30,4 +33,6 @@ public interface RentFieldMapper {
     int updateByPrimaryKeySelective(RentField record);
 
     int updateByPrimaryKey(RentField record);
+
+    ShoppingCartResult selectFieldWithPictureById(@Param("id") Integer id);
 }
