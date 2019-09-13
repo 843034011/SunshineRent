@@ -1311,6 +1311,7 @@
            // 中心点坐标
            var xyNumber =address;
 
+           console.log(address)
            // 创建XMLHttpRequest对象
            var xhr = new XMLHttpRequest();
 
@@ -1329,6 +1330,7 @@
                        var typecode = arounds[i].typecode;
                        if (typecode.startsWith("05")) {
                            eat += "\t" + arounds[i].name + "\n";
+
                        } else if (typecode.startsWith("07")) {
                            life += "\t" + arounds[i].name + "\n";
                        } else if (typecode.startsWith("12")) {
@@ -1337,6 +1339,7 @@
                    }
 
                    console.log(eat)
+                   console.log(life)
                  /*  document.getElementById("eat").innerText = eat;
                    document.getElementById("life").innerText = life;
                    document.getElementById("business").innerText = business;*/
