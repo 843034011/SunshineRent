@@ -351,6 +351,6 @@
   </resultMap>
 
   <select id="selectFieldWithPictureById" resultMap="ShoppingCartResultMap" parameterType="java.lang.Integer">
-    select id,field_name,field_info,field_deposit,field_dayprice,rent_count from rent_field
+    select id,field_name,field_info,field_deposit,field_dayprice,rent_count from rent_field where id = #{id}
   </select>
 </mapper>
