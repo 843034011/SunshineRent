@@ -1262,6 +1262,7 @@
    var address
    $.get({
        url:"fields/showallfields",
+       /*async:false,*/
        dataType:"json",
        success:function (data) {
            var inputAddress=data.data[0].fieldAddress
@@ -1307,6 +1308,7 @@
    })
 
    $.ajax({
+       async:false,
        success:function () {
            // 中心点坐标
            var xyNumber =address;
