@@ -23,8 +23,10 @@ $.post({
     success: function (data) {
         $.each(data.data, function (index, value) {
 
-            // 查找订单中的数量、租期
+            var orderid = value.id
+            console.log(orderid)
 
+            // 查找订单中的数量、租期
             var startTime = value.startTime.split("T")[0]
             var endTime = value.endTime.split("T")[0]
 
@@ -40,41 +42,16 @@ $.post({
                     dataType: "json",
                     success: function (data) {
 
-                        // 将选择的html设置为 ""
-                        $(".choose-one-box").html("")
-
-                        // 选择的click事件
-                        $(".choose-one-box").click(function () {
-                            if ($(this).html() == "") {
-                                $(this).html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-                                $(this).parent().parent().addClass("curr")
-                                $(this).parent().parent().attr("choosed", "1")
-                                for (var i = 0; i < $(".choose-one-box").length; i++) {
-                                    if ($(".choose-one-box")[i].innerHTML == "<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>") {
-                                        if (i == $(".choose-one-box").length - 1) {
-                                            $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-                                        }
-                                        continue
-                                    } else {
-                                        break
-                                    }
-                                }
-                            } else {
-                                $(this).html("")
-                                $(".choose-all").html("")
-                                $(this).parent().parent().removeClass("curr")
-                                $(this).parent().parent().attr("choosed", "0")
-                            }
-                        })
+                        onechoose()
 
                         $(".choose-list").append(
                             `
-                                <li class="list" choosed="0" kind="field" num="${data.data.shoppingcartId}">
+                                <li class="list" choosed="0" kind="field" num="${data.data.shoppingcartId}" id="${orderid}">
                                     <div class="col-md-2">
                                         <div class="choose-one-box text-left">
                     
                                         </div>
-                                        <div>
+                                        <div style="margin-left: 30px">
                                             <a href="../fieldinfo.html?id=${data.data.shoppingcartId}">
                                                 <img class="field_picture" src="${data.data.fieldPictures[0].fieldPicture}">
                                             </a>
@@ -86,10 +63,17 @@ $.post({
                                             <a href="../fieldinfo.html?id=${data.data.shoppingcartId}">【${data.data.fieldName}】${data.data.fieldInfo}</a> 
                                         </div>                                      
                                     </div>
-                                    <div class="col-md-1 text-center">${data.data.fieldDeposit}</div>
                                     <div class="col-md-1 text-center">${data.data.fieldDayprice}/天</div>
+                                    <div class="col-md-1 text-center">${data.data.fieldDeposit}</div>
                                     <div class="col-md-1 text-center"><input class="order-number" type="number" value="1" min="1" max="1" step="1"></div>
-                                    <div class="col-md-2 text-center">租用日期</div>
+                                    <div class="col-md-2 text-center">                             
+                                        <button type="button" class="btn btn-default daterange-btn" id="${orderid}">
+                                            <span>
+                                                <i class="icon iconfont icon-calendar1"></i>日期选择
+                                            </span>
+                                            <i class="icon iconfont icon-danxian-youjiantou-copy"></i>
+                                        </button>
+                                    </div>
                                     <div class="col-md-1 text-center">金额</div>
                                     <div class="col-md-2 text-center">
                                         <span onclick="deletethis()">删除</span>
@@ -98,34 +82,21 @@ $.post({
                             `
                         )
 
-                        // 将选择的html设置为 ""
-                        $(".choose-one-box").html("")
+                        onechoose()
 
-                        // 选择的click事件
-                        $(".choose-one-box").click(function () {
-                            if ($(this).html() == "") {
-                                $(this).html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-                                $(this).parent().parent().addClass("curr")
-                                $(this).parent().parent().attr("choosed", "1")
-                                for (var i = 0; i < $(".choose-one-box").length; i++) {
-                                    if ($(".choose-one-box")[i].innerHTML == "<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>") {
-                                        if (i == $(".choose-one-box").length - 1) {
-                                            $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-                                        }
-                                        continue
-                                    } else {
-                                        break
-                                    }
-                                }
-                            } else {
-                                $(this).html("")
-                                $(".choose-all").html("")
-                                $(this).parent().parent().removeClass("curr")
-                                $(this).parent().parent().attr("choosed", "0")
+                        $('#'+orderid+' button').daterangepicker({
+                                startDate: moment(),
+                                endDate: moment()
+                            },
+                            function (start, end) {
+                                console.log(start.format('YYYY/MM/DD'))
+                                console.log(end.format('YYYY/MM/DD'))
+                                $('#'+orderid+' button span').html(start.format('YYYY/MM/DD') + '-' + end.format('YYYY/MM/DD'));
                             }
-                        })
+                        );
+
                     },
-                    errot: function () {
+                    error: function () {
                         alert("没取到数据！")
                     }
                 })
@@ -142,4 +113,34 @@ $.post({
 
 function deletethis() {
     alert("删除这个")
+}
+
+// 单选的封装
+function onechoose() {
+    // 将选择的html设置为 ""
+    $(".choose-one-box").html("")
+
+    // 选择的click事件
+    $(".choose-one-box").click(function () {
+        if ($(this).html() == "") {
+            $(this).html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
+            $(this).parent().parent().addClass("curr")
+            $(this).parent().parent().attr("choosed", "1")
+            for (var i = 0; i < $(".choose-one-box").length; i++) {
+                if ($(".choose-one-box")[i].innerHTML == "<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>") {
+                    if (i == $(".choose-one-box").length - 1) {
+                        $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
+                    }
+                    continue
+                } else {
+                    break
+                }
+            }
+        } else {
+            $(this).html("")
+            $(".choose-all").html("")
+            $(this).parent().parent().removeClass("curr")
+            $(this).parent().parent().attr("choosed", "0")
+        }
+    })
 }
