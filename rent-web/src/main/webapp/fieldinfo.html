@@ -431,6 +431,7 @@
                                     </div>-->
 
 
+                                    <button id="button" onclick="around()">显示周边环境</button>
 
                                 </div>
 
@@ -1255,14 +1256,14 @@
         }
     })*/
 
-   var address
+   /*var address
    var x
    var y
    var xy
    var address
    $.get({
        url:"fields/showallfields",
-       /*async:false,*/
+       async:false,
        dataType:"json",
        success:function (data) {
            var inputAddress=data.data[0].fieldAddress
@@ -1342,9 +1343,9 @@
 
                    console.log(eat)
                    console.log(life)
-                 /*  document.getElementById("eat").innerText = eat;
+                  /!* document.getElementById("eat").innerText = eat;
                    document.getElementById("life").innerText = life;
-                   document.getElementById("business").innerText = business;*/
+                   document.getElementById("business").innerText = business;*!/
                }
            }
 
@@ -1355,7 +1356,7 @@
        }
 
    })
-
+*/
 
 
 
@@ -1363,7 +1364,7 @@
 
 <!-- 地图-->
 <script src="https://webapi.amap.com/maps?v=1.4.14&key=d733fb8cd38afe151c4ef8b628b4d3a3&plugin=AMap.Autocomplete,AMap.Geocoder"></script>
-<script type="text/javascript" src="js/fieldinfo/jquery-1.11.1.min.js" ></script>
+<!--<script type="text/javascript" src="js/fieldinfo/jquery-1.11.1.min.js" ></script>-->
 <script type="text/javascript" src="js/fieldinfo/underscore-min.js" ></script>
 <script type="text/javascript" src="js/fieldinfo/backbone-min.js" ></script>
 <script type="text/javascript" src='js/fieldinfo/prety-json.js'></script>
@@ -1443,7 +1444,157 @@
           lnglat=[lng, lat];
           regeoCode();
       })*/
+
+
+    var x
+    var y
+    var xy
+    var address
+    $.get({
+        url:"fields/showallfields",
+
+        dataType:"json",
+        success:function (data) {
+            var inputAddress=data.data[0].fieldAddress
+
+            // 创建XMLHttpRequest对象
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    //解析json并将解析出的值传入html
+                    console.log(xhr)
+                    var obj = eval('(' + xhr.responseText + ')');
+                    console.log(obj)
+                    var geocodesArray = obj.geocodes;
+                    console.log(geocodesArray)
+                    var temp = geocodesArray[0];
+                    console.log(temp)
+                    address = temp.location;
+                    console.log(address)
+                    xy = address.split(",");
+
+                    // x y 代表 经纬度
+                    x = parseFloat(xy[0]);
+                    y = parseFloat(xy[1]);
+
+                    console.log(temp.location);
+                    console.log(x);
+                    console.log(y);
+
+
+                    map.panTo([x,y]);
+                    lnglat=[x,y];
+                    regeoCode();
+
+                }
+            }
+
+            // open的三个参数：请求的类型，请求的url 或者 file，async
+            xhr.open("GET", "https://restapi.amap.com/v3/geocode/geo?address=" + inputAddress + "&output=JSON&key=e6cb4bf508f2544958282e4aef7df450", true);
+            // 发送请求
+            xhr.send();
+            console.log(address)
+        }
+    })
+
+/*console.log(address)
+    var xyNumber
+
+    $.ajax({
+        async:false,
+        success:function () {
+            // 中心点坐标
+            console.log(address)
+            // 创建XMLHttpRequest对象
+            var xhr = new XMLHttpRequest();
+            console.log(address)
+            xhr.onreadystatechange = function () {
+                console.log(address)
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    //解析json并将解析出的值传入html
+                    var obj = eval('(' + xhr.responseText + ')');
+                    console.log(obj)
+                    var arounds = obj.pois;
+                    console.log(arounds)
+                    var eat = "餐饮服务类：" + "\n";
+                    var life = "生活服务类：" + "\n";
+                    var business = "商务住宅类：" + "\n";
+
+                    for (var i = 0; i < arounds.length; i++){
+                        var typecode = arounds[i].typecode;
+                        if(typecode.startsWith("05")){
+                            eat += "\t" + arounds[i].name + "\n";
+                        } else if(typecode.startsWith("07")){
+                            life += "\t" +  arounds[i].name + "\n";
+                        } else if(typecode.startsWith("12")){
+                            business += "\t" +  arounds[i].name + "\n";
+                        }
+                    }
+
+                   /!* document.getElementById("eat").innerText = eat;
+                    document.getElementById("life").innerText = life;
+                    document.getElementById("business").innerText = business;*!/
+                }
+            }
+
+    console.log(address)
+            // open的三个参数：请求的类型，请求的url 或者 file，async
+            xhr.open("GET", "https://restapi.amap.com/v3/place/around?key=e6cb4bf508f2544958282e4aef7df450&output=JSON&location=" + address + "&radius=2000", true);
+            // 发送请求
+            xhr.send();
+        }
+
+    })*/
+
+
+    function around() {
+
+        // 中心点坐标
+        var xyNumber =address;
+console.log(address)
+        // 创建XMLHttpRequest对象
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                //解析json并将解析出的值传入html
+
+                var obj = eval('(' + xhr.responseText + ')');
+                console.log(obj)
+                var arounds = obj.pois;
+                console.log(arounds)
+                var eat = "餐饮服务类：" + "\n";
+                var life = "生活服务类：" + "\n";
+                var business = "商务住宅类：" + "\n";
+
+                for (var i = 0; i < arounds.length; i++) {
+                    var typecode = arounds[i].typecode;
+                    if (typecode.startsWith("05")) {
+                        eat += "\t" + arounds[i].name + "\n";
+                    } else if (typecode.startsWith("07")) {
+                        life += "\t" + arounds[i].name + "\n";
+                    } else if (typecode.startsWith("12")) {
+                        business += "\t" + arounds[i].name + "\n";
+                    }
+                }
+
+
+                document.getElementById("eat").innerText = eat;
+                document.getElementById("life").innerText = life;
+                document.getElementById("business").innerText = business;
+
+            }
+        }
+
+        // open的三个参数：请求的类型，请求的url 或者 file，async
+        xhr.open("GET", "https://restapi.amap.com/v3/place/around?key=e6cb4bf508f2544958282e4aef7df450&output=JSON&location=" + xyNumber + "&radius=2000", true);
+        // 发送请求
+        xhr.send();
+    }
 </script>
+
 
 
 
