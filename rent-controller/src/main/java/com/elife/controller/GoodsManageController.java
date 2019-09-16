@@ -4,7 +4,6 @@ package com.elife.controller;
 import com.elife.pojo.RentGoods;
 import com.elife.service.impl.GoodsManageServiceImpl;
 import com.elife.vo.ResultData;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,6 @@ public class GoodsManageController {
 
     @RequestMapping("regId")
     @ResponseBody
-//    @Test
     public ResultData selectRegId(Integer regId){
         List<RentGoods> rentGoods = goodsManageService.selectByRegId(1);
         ResultData resultData = new ResultData();

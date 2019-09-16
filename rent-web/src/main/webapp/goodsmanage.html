@@ -41,48 +41,48 @@
             <ul class="con-ul">
                 <li class="one">商品信息</li>
                 <li class="one">操作</li>
-                <li class="two">
-                    <div class="div1">
-                        <img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>
-                    </div>
-                    <div class="div2">
-                        <div class="div2-con">
-                            <span>ThinkPad T440 14英寸笔记本电脑租赁</span>
-                            <span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>
-                        </div>
-                        <!--<p></p>-->
+                <!--<li class="two">-->
+                    <!--<div class="div1">-->
+                        <!--<img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>-->
+                    <!--</div>-->
+                    <!--<div class="div2">-->
+                        <!--<div class="div2-con">-->
+                            <!--<span>ThinkPad T440 14英寸笔记本电脑租赁</span>-->
+                            <!--<span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
 
-                        <div class="div2-input">
-                            数量：<input type="number" min="1" step="1" value="1">
-                        </div>
+                        <!--<div class="div2-input">-->
+                            <!--数量：<input type="number" min="1" step="1" value="1">-->
+                        <!--</div>-->
 
-                    </div>
-                    <div class="div3">
-                        <button>修改</button>
-                        <button>删除</button>
-                    </div>
-                </li>
-                <li class="two">
-                    <div class="div1">
-                        <img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>
-                    </div>
-                    <div class="div2">
-                        <div class="div2-con">
-                            <span>ThinkPad T440 14英寸笔记本电脑租赁</span>
-                            <span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>
-                        </div>
-                        <!--<p></p>-->
+                    <!--</div>-->
+                    <!--<div class="div3">-->
+                        <!--<button>修改</button>-->
+                        <!--<button>删除</button>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li class="two">-->
+                    <!--<div class="div1">-->
+                        <!--<img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>-->
+                    <!--</div>-->
+                    <!--<div class="div2">-->
+                        <!--<div class="div2-con">-->
+                            <!--<span>ThinkPad T440 14英寸笔记本电脑租赁</span>-->
+                            <!--<span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
 
-                        <div class="div2-input">
-                            数量：<input type="number" min="1" step="1" value="1">
-                        </div>
+                        <!--<div class="div2-input">-->
+                            <!--数量：<input type="number" min="1" step="1" value="1">-->
+                        <!--</div>-->
 
-                    </div>
-                    <div class="div3">
-                        <button>修改</button>
-                        <button>删除</button>
-                    </div>
-                </li>
+                    <!--</div>-->
+                    <!--<div class="div3">-->
+                        <!--<button>修改</button>-->
+                        <!--<button>删除</button>-->
+                    <!--</div>-->
+                <!--</li>-->
             </ul>
 
         </div>
@@ -110,30 +110,40 @@
         </div>
     </div>
 </body>
-<script>
-    var $target1 = $('.items1').find('li').eq(0).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
-    var $target2 = $('.items1').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
-    var $target3 = $('.items2').find('li').eq(0).css({'color':'rgb(0,200,190)'});
-    var $target4 = $('.items2').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
-    $('.items1').find('li').click(function () {
-        if($(this).val() == 1){
-            // alert($(this).val())
-            $('#ul').css('display','block');
-            $('.items2').find('li').click(function () {
-                $target3.css('color', '#666');
-                $target4.css('color', '#666');
-                $target4 = $(this).find('span').css('color', 'rgb(0,200,190)');
-                $target3 = $(this).css({'color': 'rgb(0,200,190)'});
-            })
-        }else{
-            $('#ul').css('display','none');
-        }
-        $target1.css({'color':'#666','border-bottom':'0px solid #333'});
-        $target2.css('color','#666');
-        $target2 = $(this).find('span').css('color','rgb(0,200,190)');
-        $target1 = $(this).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
-    })
 
-
-</script>
+<script src="js/goodsmanage/goodsmanage.js"></script>
+<!--<script>-->
+    <!--var $target1 = $('.items1').find('li').eq(0).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});-->
+    <!--var $target2 = $('.items1').find('li').eq(0).find('span').css('color','rgb(0,200,190)');-->
+    <!--var $target3 = $('.items2').find('li').eq(0).css({'color':'rgb(0,200,190)'});-->
+    <!--var $target4 = $('.items2').find('li').eq(0).find('span').css('color','rgb(0,200,190)');-->
+    <!--$('.items1').find('li').click(function () {-->
+        <!--if($(this).val() == 1){-->
+            <!--alert($(this).val())-->
+                <!--$('#ul').css('display','block');-->
+            <!--$('.items2').find('li').click(function () {-->
+                <!--$target3.css('color', '#666');-->
+                <!--$target4.css('color', '#666');-->
+                <!--$target4 = $(this).find('span').css('color', 'rgb(0,200,190)');-->
+                <!--$target3 = $(this).css({'color': 'rgb(0,200,190)'});-->
+            <!--})-->
+        <!--}else{-->
+            <!--$('#ul').css('display','none');-->
+        <!--}-->
+        <!--$target1.css({'color':'#666','border-bottom':'0px solid #333'});-->
+        <!--$target2.css('color','#666');-->
+        <!--$target2 = $(this).find('span').css('color','rgb(0,200,190)');-->
+        <!--$target1 = $(this).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});-->
+    <!--})-->
+ <!---->
+     <!--$.post({-->
+        <!--url:"/shoppingcart/selectgoodsbyid",-->
+         <!--dataType:"json",-->
+         <!--success: function (data) {-->
+             <!--$.each(data.data, function (index, value) {-->
+                 <!--alert(1123)-->
+             <!--}-->
+         <!--},-->
+     <!--})-->
+<!--</script>-->
 </html>
