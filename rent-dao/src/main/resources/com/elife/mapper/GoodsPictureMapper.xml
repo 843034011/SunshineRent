@@ -178,4 +178,8 @@
       goods_id = #{goodsId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from goods_picture where goods_id = #{goodsId}
+  </select>
 </mapper>

@@ -28,4 +28,11 @@ public interface GoodsPictureMapper {
     int updateByPrimaryKeySelective(GoodsPicture record);
 
     int updateByPrimaryKey(GoodsPicture record);
+
+    /**
+     * @author llb
+     * @param goodsId
+     * @return
+     */
+    List<GoodsPicture> selectByGoodsId(Integer goodsId);
 }
