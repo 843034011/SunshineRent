@@ -3,6 +3,7 @@ package com.elife.service.impl;
 import com.elife.mapper.RentGoodsMapper;
 import com.elife.pojo.RentGoods;
 import com.elife.service.GoodsManageService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
