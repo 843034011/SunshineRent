@@ -308,4 +308,8 @@
   <select id="selectAllUserOrderUnpaid" resultMap="BaseResultMap">
     select * from user_order where order_status = '未支付'
   </select>
+
+  <select id="selectAllUserOrder" resultMap="BaseResultMap">
+    select * from user_order
+  </select>
 </mapper>

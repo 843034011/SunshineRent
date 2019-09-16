@@ -31,5 +31,10 @@ public interface UserOrderMapper {
 
     int updateByPrimaryKey(UserOrder record);
 
+    //购物车中显示的数据，查询订单表中未支付的数据
     List<UserOrder> selectAllUserOrderUnpaid();
+
+    //订单中心中显示的数据，查询订单表中除了未支付意外的所有数据
+    List<UserOrder> selectAllUserOrder();
+
 }
