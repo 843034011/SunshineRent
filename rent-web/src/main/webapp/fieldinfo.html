@@ -46,10 +46,15 @@
 
     <style>
 
-        #ditu{
+       /* #ditu{
             width: 500px;
             height: 500px;
-        }
+        }*/
+       #ditu{
+           width: 400px;
+           height: 600px;
+           float:left
+       }
         #ditua{
             display:block;
             font-size:15px;
@@ -59,6 +64,36 @@
 
 
 
+   <!-- 地图-->
+    <style>
+        /* 选项卡 */
+
+        ol, ul, li{	list-style: none}
+
+
+        .table_card { width:720px; margin:0 auto;margin-top: 20px}
+        .table_card .tab { height:37px; font-size:14px; border-bottom:1px #e1e1e1 solid;   margin-left: 170px;}
+        .table_card .tab li { float:left; height:36px; line-height:36px; padding:0 25px; margin-right:5px; background:#f0f0f0; border-top:1px #e1e1e1 solid; border-left:1px #e1e1e1 solid; border-right:1px #e1e1e1 solid;}
+        .table_card .tab li:hover { height:37px; background:#fff; color:#333; cursor:pointer;color: #5fa2ff
+        }
+        .table_card .activ { height:37px !important; background:#fff !important; color:#333}
+        .table_card .tabCon { background:#fff; padding:15px; border-bottom:1px #e1e1e1 solid; border-left:1px #e1e1e1 solid; border-right:1px #e1e1e1 solid;width:360px;margin-left:155px; margin-left: 170px}
+        .table_card .tabCon div { display:none}
+        .table_card .tabCon .on { display:block}
+
+        .newslist01 { font-size:16px; }
+        .newslist01 li { line-height:36px;}
+        .newslist01 li .ding { color:#F30; margin-left:5px}
+        .newslist01 li .time { float:right; font-size:12px; color:#888}
+        .newslist02 { font-size:16px; }
+        .newslist02 li { line-height:36px;}
+        .newslist02 li .ding { color:#F30; margin-left:5px}
+        .newslist02 li .time { float:right; font-size:12px; color:#888}
+        .newslist03 { font-size:16px; }
+        .newslist03 li { line-height:36px;}
+        .newslist03 li .ding { color:#F30; margin-left:5px}
+        .newslist03 li .time { float:right; font-size:12px; color:#888}
+    </style>
 
     <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
     <link href="css/fieldinfo/bootstrap.css" rel="stylesheet">
@@ -415,9 +450,9 @@
                                 <!-- <h2>周边环境</h2>
                                  <p>周边有华为，有国科数据中心，周边有华为，有国科数据中心，周边有华为，有国科数据中心，
                                      周边有华为，有国科数据中心，周边有华为，有国科数据中心，. </p>-->
-                                <div id="ditu"></div>
+                                <div id="ditu" ></div>
 
-                                <div class="info">
+                                <!--<div class="info">-->
                                     <!--<div class="input-item">
                                         <div class="input-item-prepend">
                                             <span class="input-item-text" style="width:10rem;">请输入关键字</span>
@@ -431,11 +466,56 @@
                                     </div>-->
 
 
-                                    <button id="button" onclick="around()">显示周边环境</button>
+                                <br>
+                                <br>
+
+                                       <button type="button" class="btn btn-info" onclick="around()" style="float:left;margin-left:20px">显示周边环境</button>
+                                <br>
+                                <br>
+                                    <div class="table_card" >
+                                        <ul class="tab">
+                                            <li class="activ">餐饮服务类</li>
+                                            <li>生活服务类</li>
+                                            <li>商务住宅类</li>
+                                        </ul>
+
+                                        <div class="tabCon">
+                                            <div class="on">
+                                                <ul class="newslist01">
+                                                    <!--<li>创意产业园</li>
+                                                    <li>创意产业园</li>
+                                                    <li>创意产业园</li>
+                                                    -->
+
+                                                    </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="newslist02">
+                                                   <!-- <li>创意产业园2</li>
+                                                    <li>创意产业园2</li>
+                                                    <li>创意产业园2</li>
+                                                    <li>创意产业园2</li>-->
+
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="newslist03">
+                                                  <!--  <li>创意产业园3</li>
+                                                    <li>创意产业园3</li>
+                                                    <li>创意产业园3</li>-->
+
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <div style="background-color: white;height:450px;width:10px"></div>
+                                    </div>
+                                    <!--<button id="button" onclick="around()">显示周边环境</button>-->
 
                                 </div>
 
-                            </div>
+                           <!-- </div>-->
                         </div>
 
                         <div class="tab-pane" id="proReview">
@@ -1547,7 +1627,16 @@
 
     })*/
 
+  /*  <div class="tabCon">
+        <div class="on">
+        <ul class="newslist01">
+        <!--<li>创意产业园</li>
+        <li>创意产业园</li>
+        <li>创意产业园</li>
+    -->
 
+    </ul>
+    </div>*/
     function around() {
 
         // 中心点坐标
@@ -1573,17 +1662,34 @@ console.log(address)
                     var typecode = arounds[i].typecode;
                     if (typecode.startsWith("05")) {
                         eat += "\t" + arounds[i].name + "\n";
+                        console.log(arounds[i].name)
+                        $('.newslist01').append(
+                            `<li>${arounds[i].name}</li>
+
+                            `
+                        )
+
                     } else if (typecode.startsWith("07")) {
                         life += "\t" + arounds[i].name + "\n";
+                        $('.newslist02').append(
+                            `<li>${arounds[i].name}</li>
+
+                            `
+                        )
                     } else if (typecode.startsWith("12")) {
                         business += "\t" + arounds[i].name + "\n";
+                        $('.newslist03').append(
+                            `<li>${arounds[i].name}</li>
+
+                            `
+                        )
                     }
                 }
 
 
-                document.getElementById("eat").innerText = eat;
+               /* document.getElementById("eat").innerText = eat;
                 document.getElementById("life").innerText = life;
-                document.getElementById("business").innerText = business;
+                document.getElementById("business").innerText = business;*/
 
             }
         }
@@ -1599,6 +1705,15 @@ console.log(address)
 
 
 
+<!--地图-->
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $(".tab li").click(function(){
+            $(".tab li").eq($(this).index()).addClass("activ").siblings().removeClass("activ");
+            $(".tabCon div").hide().eq($(this).index()).show();
+        })
+    });
+</script>
 
 <!-- jquery js -->
 <script src="js/fieldinfo/vendor/jquery-1.11.3.min.js"></script>
