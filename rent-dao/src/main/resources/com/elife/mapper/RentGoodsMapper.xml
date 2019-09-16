@@ -81,6 +81,10 @@
     reg_id
   </sql>
 
+  <select id="selectByRegId" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample">
+      select * from rent_goods where regId = #{reg_id}
+  </select>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample" >
     select
     <if test="distinct" >

@@ -15,5 +15,5 @@ public interface GoodsManageService {
      * 通过用户id查找商品 ，一个用户多个商品
      * @return 返回商品集合
      */
-    List<RentGoods> selectByExample(Integer regId);
+    List<RentGoods> selectByRegId(Integer regId);
 }
