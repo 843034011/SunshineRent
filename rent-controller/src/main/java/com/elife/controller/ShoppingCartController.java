@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
 
 /**
- * author:llb
+ * @author:llb
  */
 @Controller
 @RequestMapping("shoppingcart")
