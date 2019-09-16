@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.RentRegister;
 import com.elife.pojo.RentRegisterExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RentRegisterMapper {
     int countByExample(RentRegisterExample example);
 
@@ -28,4 +30,11 @@ public interface RentRegisterMapper {
     int updateByPrimaryKeySelective(RentRegister record);
 
     int updateByPrimaryKey(RentRegister record);
+
+    /**
+     * @author:llb
+     * @param telephone
+     * @return
+     */
+    RentRegister selectByTelephone(String telephone);
 }
