@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface RentGoodsMapper {
+
+    List<RentGoods> selectByRegId(Integer regId);
+
     int countByExample(RentGoodsExample example);
 
     int deleteByExample(RentGoodsExample example);
