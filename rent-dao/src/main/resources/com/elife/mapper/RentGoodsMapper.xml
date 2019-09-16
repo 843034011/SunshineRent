@@ -16,6 +16,9 @@
     <result column="goods_grade" property="goodsGrade" jdbcType="INTEGER" />
     <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
     <result column="reg_id" property="regId" jdbcType="INTEGER" />
+
+    <!--一对多关系———商品对商品图片-->
+    <collection property="goodsPictures" column="id" select="com.elife.mapper.GoodsPictureMapper.selectByGoodsId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -356,4 +359,8 @@
       reg_id = #{regId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectGoodsWithPictureById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from rent_goods where id = #{id}
+  </select>
 </mapper>

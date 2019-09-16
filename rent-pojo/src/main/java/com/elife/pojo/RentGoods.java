@@ -1,6 +1,7 @@
 package com.elife.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class RentGoods {
     private Integer id;
@@ -141,5 +142,15 @@ public class RentGoods {
 
     public void setRegId(Integer regId) {
         this.regId = regId;
+    }
+
+    private List<GoodsPicture> goodsPictures;
+
+    public List<GoodsPicture> getGoodsPictures() {
+        return goodsPictures;
+    }
+
+    public void setGoodsPictures(List<GoodsPicture> goodsPictures) {
+        this.goodsPictures = goodsPictures;
     }
 }

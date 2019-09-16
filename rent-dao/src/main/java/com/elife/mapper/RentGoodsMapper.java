@@ -30,4 +30,11 @@ public interface RentGoodsMapper {
     int updateByPrimaryKeySelective(RentGoods record);
 
     int updateByPrimaryKey(RentGoods record);
+
+    /**
+     * @author llb
+     * @param id
+     * @return
+     */
+    RentGoods selectGoodsWithPictureById(Integer id);
 }

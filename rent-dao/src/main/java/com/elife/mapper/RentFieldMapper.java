@@ -1,6 +1,5 @@
 package com.elife.mapper;
 
-import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentFieldExample;
 import org.apache.ibatis.annotations.Param;
@@ -34,5 +33,8 @@ public interface RentFieldMapper {
 
     int updateByPrimaryKey(RentField record);
 
-    ShoppingCartResult selectFieldWithPictureById(@Param("id") Integer id);
+
+
+    //llb：根据id查询场地及场地图片
+    RentField selectFieldWithPictureById(@Param("id") Integer id);
 }

@@ -1,5 +1,7 @@
 package com.elife.pojo;
 
+import java.util.List;
+
 public class RentField {
     private Integer id;
 
@@ -129,5 +131,18 @@ public class RentField {
 
     public void setRegId(Integer regId) {
         this.regId = regId;
+    }
+
+
+
+
+    private List<FieldPicture> fieldPictures;
+
+    public List<FieldPicture> getFieldPictures() {
+        return fieldPictures;
+    }
+
+    public void setFieldPictures(List<FieldPicture> fieldPictures) {
+        this.fieldPictures = fieldPictures;
     }
 }

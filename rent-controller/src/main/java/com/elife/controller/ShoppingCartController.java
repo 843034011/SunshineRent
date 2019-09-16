@@ -1,7 +1,7 @@
 package com.elife.controller;
 
-import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
+import com.elife.pojo.RentGoods;
 import com.elife.pojo.UserOrder;
 import com.elife.service.ShoppingCartService;
 import com.elife.vo.ResultData;
@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+/**
+ * author:llb
+ */
 @Controller
 @RequestMapping("shoppingcart")
 public class ShoppingCartController {
@@ -43,8 +44,8 @@ public class ShoppingCartController {
         System.out.println(orders.size());
 
         if(null == orders){
-            resultData.setCode(1);
-            resultData.setMessage("信息查询失败");
+            resultData.setCode(3);
+            resultData.setMessage("未支付的订单查询失败");
         } else {
             resultData.setCode(0);
             resultData.setData(orders);
@@ -65,21 +66,34 @@ public class ShoppingCartController {
         System.out.println(id);
         ResultData resultData = new ResultData();
 
-        ShoppingCartResult shoppingCartResult = shoppingCartService.selectFieldById(id);
+        RentField rentField = shoppingCartService.selectFieldById(id);
 
-        if(null == shoppingCartResult){
-            resultData.setCode(1);
+        if(null == rentField){
+            resultData.setCode(3);
             resultData.setMessage("按id查询场地信息失败");
         } else {
             resultData.setCode(0);
-            resultData.setData(shoppingCartResult);
+            resultData.setData(rentField);
         }
         return resultData;
     }
 
-//    @RequestMapping("selectgoodsbyid")
-//    @ResponseBody
-//    public ResultData selectByGoodsId(Integer id){
-//        return null;
-//    }
+    @RequestMapping("selectgoodsbyid")
+    @ResponseBody
+    public ResultData selectByGoodsId(Integer id){
+
+        System.out.println(id);
+        ResultData resultData = new ResultData();
+
+        RentGoods rentGoods = shoppingCartService.selectGoodsById(id);
+
+        if(null == rentGoods){
+            resultData.setCode(3);
+            resultData.setMessage("按id查询商品信息失败");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(rentGoods);
+        }
+        return resultData;
+    }
 }

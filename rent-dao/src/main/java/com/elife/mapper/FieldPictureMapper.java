@@ -30,6 +30,10 @@ public interface FieldPictureMapper {
 
     int updateByPrimaryKey(FieldPicture record);
 
-
+    /**
+     * @author llb
+     * @param fieldId
+     * @return
+     */
     List<FieldPicture> selectByFieldId(Integer fieldId);
 }
