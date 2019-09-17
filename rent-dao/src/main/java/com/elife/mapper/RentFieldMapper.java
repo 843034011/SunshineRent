@@ -40,4 +40,9 @@ public interface RentFieldMapper {
 
     //根据价格排序
     List<RentField>orderByPrice();
+
+    //模糊查找
+    List<RentField>selectByNameType(String NameType);
+
+
 }
