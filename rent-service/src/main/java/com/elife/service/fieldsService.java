@@ -10,4 +10,8 @@ import java.util.List;
 
 public interface fieldsService {
    List<RentField> selectAllFields();
+
+   List<RentField> orderByPrice();
+
+   List<RentField>selectByNameType(String NameType);
 }

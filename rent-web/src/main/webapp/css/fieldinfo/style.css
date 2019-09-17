@@ -323,6 +323,10 @@ a.greentech-scrollertop{
 	float: left;
 	width: 390px;
 }
+.search-form1{
+	float: left;
+	width: 200px;
+}
 .search-form form{
 	position: relative;
 }
@@ -2799,7 +2803,8 @@ a.remove-icon-btn{
 }
 .show-page, .shoort-by, .pagination-bar{
 	float: left;
-	width: 36%;
+	width: 20%;
+	margin-left:90px;
 }
 .show-page label, .shoort-by label, .pagination-bar label{
 	color: #3e3e3e;

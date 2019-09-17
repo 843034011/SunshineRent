@@ -23,4 +23,22 @@ public class fieldsServiceImpl implements fieldsService {
         System.out.println(list.size());
         return list;
     }
+
+    @Override
+    public List<RentField> orderByPrice() {
+        List<RentField> list2=rentFieldMapper.orderByPrice();
+        System.out.println("+++=================================================");
+        System.out.println(list2.size());
+        return list2;
+    }
+
+    @Override
+    public List<RentField> selectByNameType(String NameType) {
+        List<RentField> list3=rentFieldMapper.selectByNameType(NameType);
+        System.out.println("+++=================================================");
+        System.out.println(list3.size());
+        return list3;
+    }
+
+
 }

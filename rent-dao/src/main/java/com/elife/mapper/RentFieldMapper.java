@@ -37,4 +37,12 @@ public interface RentFieldMapper {
 
     //llb：根据id查询场地及场地图片
     RentField selectFieldWithPictureById(@Param("id") Integer id);
+
+    //根据价格排序
+    List<RentField>orderByPrice();
+
+    //模糊查找
+    List<RentField>selectByNameType(String NameType);
+
+
 }

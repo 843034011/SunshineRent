@@ -346,4 +346,14 @@
   <select id="selectFieldWithPictureById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * from rent_field where id = #{id}
   </select>
+
+  <!--yy根据价格排序-->
+  <select id="orderByPrice" resultMap="BaseResultMap">
+    select * from rent_field order by field_dayprice desc
+  </select>
+
+ <!-- yy模糊查找-->
+  <select id="selectByNameType" resultMap="BaseResultMap" parameterType="String">
+    select * from rent_field where field_name LIKE '%${value}%' or field_type LIKE '%${value}%';
+  </select>
 </mapper>

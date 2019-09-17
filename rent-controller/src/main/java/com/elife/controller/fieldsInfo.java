@@ -35,4 +35,36 @@ public class fieldsInfo {
         return resultData;
     }
 
+@RequestMapping("orderbyprice")
+    @ResponseBody
+    public ResultData orderByPrice(){
+    List<RentField> orderlist = fieldsService.orderByPrice();
+    ResultData resultData = new ResultData();
+    if(null == orderlist || orderlist.size() ==0) {
+        resultData.setCode(3);
+        resultData.setMessage("查无数据");
+    } else {
+        resultData.setCode(0);
+        resultData.setData(orderlist);
+    }
+    return resultData;
+
+}
+
+    @RequestMapping("selectnametype")
+    @ResponseBody
+    public ResultData selectByNameType(String nametype){
+        List<RentField> orderlist = fieldsService.selectByNameType(nametype);
+        ResultData resultData = new ResultData();
+        if(null == orderlist || orderlist.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(orderlist);
+        }
+        return resultData;
+
+    }
+
 }
