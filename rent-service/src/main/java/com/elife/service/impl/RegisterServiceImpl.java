@@ -16,4 +16,9 @@ public class RegisterServiceImpl implements RegisterService {
     public RentRegister selectRegisterByTelephone(String telephone) {
         return rentRegisterMapper.selectByTelephone(telephone);
     }
+
+    @Override
+    public int insertRegister(String telephone, String password, String time) {
+        return rentRegisterMapper.insertRegister(telephone, password, time);
+    }
 }

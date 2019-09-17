@@ -1,3 +1,4 @@
+// 定义telecode变量接收服务器发送的短信验证码
 var telecode
 
 // 定义手机号输入框的正则表达式
@@ -16,28 +17,34 @@ $('#btn').click(function () {
         return
     }
 
-    // 手机号正确，即将发送短信验证码
-    // 手机号输入框失去输入功能
-    $('#telephone').attr("disabled","disabled")
-
     $.post({
         url:"/shortmessage/send",
         data:"telephone=" + telephone,
         dataType:"json",
         success:function (data) {
-            telecode = data.data
-            alert(telecode)
+            if(data.code == 0){
+                telecode = data.data
+
+                // 手机号正确，即将发送短信验证码
+                // 发送短信验证码的同时、设置手机号输入框不能输入
+                $('#telephone').attr("disabled","disabled")
+
+                $('#btn').val("短信已发送。。")
+
+                // 设置按钮失去点击功能
+                $('#btn').css("pointer-events","none")
+            } else {
+                alert(data.message)
+            }
         },
         error:function (data) {
-
+            alert("短信验证码获取失败！！")
         }
     })
-
-    $('#btn').val("短信已发送。。")
-    $('#btn').css("pointer-events","none")
 })
 
 $("#submit").click(function () {
+
     var telephone = $("#telephone").val()
     var password = $("#password").val()
     var confirm = $("#confirm-repassword").val()
@@ -51,7 +58,7 @@ $("#submit").click(function () {
     if(password.length >= 6 && password.length <=16 && confirm == password && code == telecode){
         alert("成功了！！")
         $.post({
-            url:""
+            url:"/register/"
         })
     } else {
         $("#password").val("")

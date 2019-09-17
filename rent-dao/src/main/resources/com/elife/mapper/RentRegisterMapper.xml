@@ -199,4 +199,8 @@
   <select id="selectByTelephone" resultMap="BaseResultMap" parameterType="java.lang.String">
     select * from rent_register where reg_username = #{telephone}
   </select>
+
+  <insert id="insertRegister">
+    insert into rent_register values(null,#{telephone},#{password},#{time})
+  </insert>
 </mapper>

@@ -37,4 +37,13 @@ public interface RentRegisterMapper {
      * @return
      */
     RentRegister selectByTelephone(String telephone);
+
+    /**
+     * @author:llb
+     * @param telephone
+     * @param password
+     * @param time
+     * @return
+     */
+    int insertRegister(@Param("telephone") String telephone,@Param("password") String password,@Param("time") String time);
 }
