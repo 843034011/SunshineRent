@@ -84,8 +84,8 @@
     reg_id
   </sql>
 
-  <select id="selectByRegId" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample">
-      select * from rent_goods where regId = #{reg_id}
+  <select id="selectByRegId" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoods">
+      select * from rent_goods where reg_id = #{regId,jdbcType=INTEGER}
   </select>
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample" >

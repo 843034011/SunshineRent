@@ -49,7 +49,7 @@ $.post({
                                 <li class="list" choosed="0" kind="field" num="${data.data.shoppingcartId}" id="${orderid}">
                                     <div class="col-md-2">
                                         <div class="choose-one-box text-left">
-                    
+                   
                                         </div>
                                         <div style="margin-left: 30px">
                                             <a href="../fieldinfo.html?id=${data.data.shoppingcartId}">

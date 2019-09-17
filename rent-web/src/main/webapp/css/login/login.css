@@ -11,25 +11,12 @@ body, button, ul, li, ol, p, dl, dd, h1, h2, h3, h4, h5, h6, img, iframe, form, 
     list-style-type: none;
     border: 0;
 }
-body{
 
-}
-form{
-    width:1349px;
-    height:600px;
-    background-image: url("../../img/login/login2.jpg");
-    background-repeat: no-repeat;
-    background-size:1349px 600px;
 
-    /*background*/
-    /*background*/
-    /*background-color: #0abfb6;*/
-}
 #bd {
-    margin-left:800px;
-    width: 500px;
+    margin: 0 auto;
+    width: 960px;
     padding-top: 80px;
-    /*background-color: #00A0DC;*/
 }
 
 .body:after {
@@ -49,9 +36,9 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+a:hover {text-decoration: underline;}
+
+
 
 .btn_go_buy {
     display: inline-block;
@@ -98,20 +85,23 @@ a:hover {
 
 .shadow_box {
     background-color: #ebeeef;
-    width: 490px;
+    width: 950px;
     margin-bottom: 40px;
     position: relative;
 }
-
+.shadow_box .reg-text{
+    position: relative;
+    top:-20px;
+    left:800px;
+}
 .register_box {
     background: #fff;
     position: relative;
     top: -10px;
     right: -10px;
-    width: 490px;
+    width: 950px;
     font-family: 'Microsoft YaHei';
     box-shadow: -1px 1px 1px rgb(232, 235, 236);
-    border:1px solid #eee;
 }
 
 .register_box .head {
@@ -218,7 +208,7 @@ a:hover {
 
 .register_box table .t {
     font-size: 14px;
-    width: 100px;
+    width: 338px;
     padding-right: 10px;
     text-align: right;
     vertical-align: top;
@@ -252,7 +242,7 @@ a:hover {
 }
 
 .register_box .text.pin {
-    width: 160px;
+    width: 290px;
     margin-right: 5px;
 }
 

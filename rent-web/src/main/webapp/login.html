@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>用户登陆</title>
+
     <link rel="stylesheet" href="css/login/login.css">
-    <!--    <link rel="stylesheet" href="../peoplecss/register2.css">-->
 
 </head>
 
-
 <body ddt-page="register_page">
-<form id="register_form" method="post" action="register.php" onsubmit="return false;">
-    <input type="password" style="display: none;"/>
+<form id="register_form" method="post">
     <div id="bd">
         <!--默认-->
         <div class="shadow_box">
@@ -19,36 +17,23 @@
                 <div class="head">
                     <a href="" class="head_a head_a1">登录</a>
                 </div>
-                <div class="help_icon_trigger" style="display: none">
-                    <a title="联系客服" id="feedback" name="feedback" target="_blank" href="">
-                    </a>
-                </div>
+
                 <div class="body">
-                    <div id="J_cheatProofTop" class="new_tip" style="display:none;"></div>
+                    <!--<div id="J_cheatProofTop" class="new_tip" style="display:none;"></div>-->
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
-                            <td class="t">手机号码</td>
+                            <td class="t">账号</td>
                             <td class="z_index2">
                                 <input name="txt_username" id="txt_username" autocomplete="off" MaxLength="40"
-                                       tabindex="1" value="" placeholder="请输入您的手机号码"
-                                       type="text" class="text" /><span id="spn_username_ok" class="icon_yes" style="display: none;"></span>
+                                       tabindex="1" value="" placeholder="请输入您的账号"
+                                       type="text" class="text" />
                             </td>
                         </tr>
-
                         <tr>
                             <!-- 图形验证码 -->
-                            <td class="t j-vcode">验证码</td>
+                            <td class="t j-vcode">密码</td>
                             <td class="j-vcode">
-                                <input class="text pin" type="text" id="txt_vcode" name="txt_vcode" autocomplete="off" placeholder="请输入验证码" MaxLength="4" tabindex="5"/>
-                            </td>
-                            <!-- 短信验证码 -->
-                            <td class="t j-phoneVcode" style="display: none">短信验证码</td>
-                            <td class="j-phoneVcode" style="display: none">
-                                <input id="J_MobileCode" name="txt_pop_sms_vcode" autocomplete="off" MaxLength="6" tabindex="6" type="text" class="text pin" placeholder="请填写短信验证码" />
-                                <a class="get_pin get_pinUnClick" id="J_countDownTip" href="javascript:void(0);" style="display: none;" tabindex="5">2分钟后重新获取</a>
-                                <a class="get_pin" id="sendMobileCode" href="javascript:void(0);" tabindex="5">获取短信验证码</a>
-                                <span id="spn_mobileCode_ok" class="icon_yes" style="display: none;"></span>
-                                <span id="J_tipMobileCode" class="cue"></span>
+                                <input class="text pin" type="text" id="txt_vcode" name="txt_vcode" placeholder="请输入密码" />
                             </td>
                         </tr>
                         <tr>
@@ -66,8 +51,11 @@
                             <td class="t">&nbsp;</td>
                             <td><a id="J_submitRegister" class="btn_login" tabindex="10">立即登录</a><a id="J_submitRegisterUnclick" style="display: none;" class="btn_login">注册中...</a></td>
                         </tr>
-
                     </table>
+                </div>
+
+                <div class="reg-text">
+                    没有账号?<span><a href="register.html">立即注册</a></span>
                 </div>
             </div>
         </div>

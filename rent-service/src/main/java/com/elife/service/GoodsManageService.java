@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * author:zgy
  */
-@Service
 public interface GoodsManageService {
 
     /**
@@ -16,4 +15,10 @@ public interface GoodsManageService {
      * @return 返回商品集合
      */
     List<RentGoods> selectByRegId(Integer regId);
+
+    /**
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKey(RentGoods record);
 }
