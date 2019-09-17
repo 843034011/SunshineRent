@@ -34,8 +34,11 @@ public interface RentFieldMapper {
     int updateByPrimaryKey(RentField record);
 
 
-
-    //llb：根据id查询场地及场地图片
+    /**
+     * @author:llb
+     * @param id
+     * @return
+     */
     RentField selectFieldWithPictureById(@Param("id") Integer id);
 
     //根据价格排序

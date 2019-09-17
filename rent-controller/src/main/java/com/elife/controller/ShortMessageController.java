@@ -28,6 +28,8 @@ public class ShortMessageController {
     @ResponseBody
     public ResultData sendShortMessage(String telephone){
 
+        System.out.println(telephone);
+
         ResultData resultData = new ResultData();
 
         RentRegister rentRegister = registerService.selectRegisterByTelephone(telephone);
@@ -37,8 +39,6 @@ public class ShortMessageController {
             resultData.setMessage("当前用户已经存在");
             return resultData;
         }
-
-        System.out.println(telephone);
 
         //生成一个验证码
         setNewcode();
@@ -98,7 +98,7 @@ public class ShortMessageController {
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
 
-        //初始化acsClient,暂不支持region化
+        //初始化acsClient
         IClientProfile profile = (IClientProfile) DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
         IAcsClient acsClient = new DefaultAcsClient((com.aliyuncs.profile.IClientProfile) profile);
@@ -117,10 +117,6 @@ public class ShortMessageController {
         //模板中的变量替换JSON串
         request.setTemplateParam("{\"code\":\"" + code + "\"}");
 
-        //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
-        request.setOutId("yourOutId");
-
-        //hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
 
         if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
@@ -128,7 +124,7 @@ public class ShortMessageController {
         } else {
             System.out.println("短信发送失败！");
         }
+
         return sendSmsResponse;
     }
 }
-
