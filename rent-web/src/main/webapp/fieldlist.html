@@ -1847,7 +1847,7 @@ $.ajax({
             <div class="sale-stiker product-sticker">
                 <img src="img/product/sale1.png" alt="product sticker" />
             </div>
-            <a href="single-product.html" title=""><img src="${data.data[i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
+            <a href="fieldinfo.html" title=""><img src="${data.data[i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
             <div class="single-product-overlay">
                 <div class="rating-box">
                     <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
@@ -1866,7 +1866,7 @@ $.ajax({
             </div>
         </div>
         <div class="single-product-text">
-            <h2><a class="product-title" href="single-product.html" title="">${data.data[i].fieldName}</a></h2>
+            <h2><a class="product-title" href="fieldinfo.html?id=${data.data[i].id}" title="">${data.data[i].fieldName}</a></h2>
             <div class="product-price">
                 <span class="regular-price">¥${data.data[i].fieldDayprice}</span>
             </div>
@@ -1885,6 +1885,8 @@ $.ajax({
         })*/
     }
 })
+
+
 
 </script>
 

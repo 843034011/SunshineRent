@@ -346,4 +346,10 @@
   <select id="selectFieldWithPictureById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select * from rent_field where id = #{id}
   </select>
+
+  <!--根据价格排序-->
+  <select id="orderByPrice" resultMap="BaseResultMap">
+    select * from rent_field order by field_dayprice desc
+  </select>
+
 </mapper>
