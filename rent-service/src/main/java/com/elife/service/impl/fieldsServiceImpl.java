@@ -1,5 +1,6 @@
 package com.elife.service.impl;
 
+import com.elife.mapper.EvaluatePictureMapper;
 import com.elife.mapper.RentFieldMapper;
 import com.elife.pojo.RentField;
 import com.elife.service.fieldsService;
@@ -15,6 +16,7 @@ import java.util.List;
 public class fieldsServiceImpl implements fieldsService {
     @Autowired
     RentFieldMapper rentFieldMapper;
+
     @Override
     public List<RentField> selectAllFields() {
 

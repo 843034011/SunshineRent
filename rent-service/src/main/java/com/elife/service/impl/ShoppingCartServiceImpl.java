@@ -16,14 +16,16 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-    @Autowired
-    UserOrderMapper userOrderMapper;
+    private final UserOrderMapper userOrderMapper;
+    private final RentFieldMapper rentFieldMapper;
+    private final RentGoodsMapper rentGoodsMapper;
 
     @Autowired
-    RentFieldMapper rentFieldMapper;
-
-    @Autowired
-    RentGoodsMapper rentGoodsMapper;
+    public ShoppingCartServiceImpl(UserOrderMapper userOrderMapper, RentFieldMapper rentFieldMapper, RentGoodsMapper rentGoodsMapper) {
+        this.userOrderMapper = userOrderMapper;
+        this.rentFieldMapper = rentFieldMapper;
+        this.rentGoodsMapper = rentGoodsMapper;
+    }
 
     @Override
     public List<UserOrder> selectAllUserOrderUnpaid() {

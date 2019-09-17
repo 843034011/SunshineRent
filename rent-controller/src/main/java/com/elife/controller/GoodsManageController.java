@@ -17,26 +17,29 @@ import java.util.List;
 @Controller
 @RequestMapping("goodsManageCon")
 public class GoodsManageController {
+
     @Autowired
     GoodsManageServiceImpl goodsManageService;
 
-    @RequestMapping("regId")
+    @RequestMapping("selectRegId")
     @ResponseBody
     public ResultData selectRegId(Integer regId){
-        List<RentGoods> rentGoods = goodsManageService.selectByRegId(1);
+        List<RentGoods> rentGoods = goodsManageService.selectByRegId(regId);
         ResultData resultData = new ResultData();
         if(null == rentGoods || rentGoods.size() ==0) {
             resultData.setCode(3);
             resultData.setMessage("查无数据");
-//            System.out.println("===");
         } else {
             resultData.setCode(0);
             resultData.setData(rentGoods);
-//            System.out.println("===");
         }
-//        System.out.println(rentGoods.size()+"===");
-
         return resultData;
+    }
+
+    @RequestMapping("updateByPrimaryKey")
+//    @ResponseBody
+    public int updateByPrimaryKey(RentGoods record){
+        return goodsManageService.updateByPrimaryKey(record);
     }
 
 }

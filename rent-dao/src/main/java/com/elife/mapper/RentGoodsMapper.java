@@ -10,6 +10,11 @@ import java.util.List;
 @Repository
 public interface RentGoodsMapper {
 
+    /**
+     * @author:zgy
+     * @param regId 注册id
+     * @return 返回用户商品列表
+     */
     List<RentGoods> selectByRegId(Integer regId);
 
     int countByExample(RentGoodsExample example);
@@ -32,6 +37,11 @@ public interface RentGoodsMapper {
 
     int updateByPrimaryKeySelective(RentGoods record);
 
+    /**
+     * @author zgy
+     * @param record 要修改的商品
+     * @return 返回修改行数
+     */
     int updateByPrimaryKey(RentGoods record);
 
     /**

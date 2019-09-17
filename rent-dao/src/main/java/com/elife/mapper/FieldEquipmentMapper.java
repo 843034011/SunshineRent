@@ -3,9 +3,10 @@ package com.elife.mapper;
 import com.elife.pojo.FieldEquipment;
 import com.elife.pojo.FieldEquipmentExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface FieldEquipmentMapper {
     int countByExample(FieldEquipmentExample example);
 
