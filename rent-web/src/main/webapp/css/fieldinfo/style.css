@@ -2998,10 +2998,11 @@ a.remove-icon-btn{
 	display:block;
 }
 .zoomWrapper, .zoomContainer{
+
 }
 .zoomWrapper img{
-	width:93.4% !important;
-	height:auto;
+	width:94% !important;
+	height:74.5% !important;
 }
 .zoomWindow{
 	border:2px solid #e1e1e1 !important;
