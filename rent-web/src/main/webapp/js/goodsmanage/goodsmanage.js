@@ -1,27 +1,33 @@
-var $target1 = $('.items1').find('li').eq(0).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
-var $target2 = $('.items1').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
-var $target3 = $('.items2').find('li').eq(0).css({'color':'rgb(0,200,190)'});
-var $target4 = $('.items2').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
-$('.items1').find('li').click(function () {
-    if($(this).val() == 1){
-        // alert($(this).val())
-        $('#ul').css('display','block');
-        $('.items2').find('li').click(function () {
-            $target3.css('color', '#666');
-            $target4.css('color', '#666');
-            $target4 = $(this).find('span').css('color', 'rgb(0,200,190)');
-            $target3 = $(this).css({'color': 'rgb(0,200,190)'});
-        })
-    }else{
-        $('#ul').css('display','none');
-    }
-    $target1.css({'color':'#666','border-bottom':'0px solid #333'});
-    $target2.css('color','#666');
-    $target2 = $(this).find('span').css('color','rgb(0,200,190)');
-    $target1 = $(this).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
-})
+//点击效果
+function show() {
+    var $target1 = $('.items1').find('li').eq(0).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
+    var $target2 = $('.items1').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
+    var $target3 = $('.items2').find('li').eq(0).css({'color':'rgb(0,200,190)'});
+    var $target4 = $('.items2').find('li').eq(0).find('span').css('color','rgb(0,200,190)');
+    $('.items1').find('li').click(function () {
+        if($(this).val() == 1){
+            // alert($(this).val())
+            $('#ul').css('display','block');
+            $('.items2').find('li').click(function () {
+                $target3.css('color', '#666');
+                $target4.css('color', '#666');
+                $target4 = $(this).find('span').css('color', 'rgb(0,200,190)');
+                $target3 = $(this).css({'color': 'rgb(0,200,190)'});
+            })
+        }else{
+            $('#ul').css('display','none');
+        }
+        $target1.css({'color':'#666','border-bottom':'0px solid #333'});
+        $target2.css('color','#666');
+        $target2 = $(this).find('span').css('color','rgb(0,200,190)');
+        $target1 = $(this).css({'color':'rgb(0,200,190)','border-bottom':'2px solid rgb(0,200,190)'});
+    })
+}
+
+
 
 var myGoods;
+var len;
 $.post({
     url: "/goodsManageCon/selectRegId",
     dataType: "json",
@@ -29,6 +35,7 @@ $.post({
     success: function (data) {
         // alert(123)
         myGoods = data.data;
+        len = myGoods.length;
         $.each(myGoods, function (index, value) {
             $('.two').append(
                 `
@@ -55,8 +62,26 @@ $.post({
                 `
             )
         })
+        if (len != 0) {
+            // $('.items1').html('');
+            $('.items1').html(
+                ' <li class="item" value="0">\n' +
+                '                我的商品(<span>'+len+'</span>)\n' +
+                '            </li>\n' +
+                '            <li class="item" value="1">\n' +
+                '                再租商品(<span>0</span>)\n' +
+                '            </li>\n' +
+                '            <li class="item" value="2">\n' +
+                '                退租商品(<span>0</span>)\n' +
+                '            </li>');
+        }
+
+        show();
     }
 })
+
+
+
 
 //点击搜索
 $('.search').find('.search-btn').click(function () {
@@ -64,7 +89,7 @@ $('.search').find('.search-btn').click(function () {
     var putName = $('.search').find('.search-input').val();
     if(putName == 0){
         html = '';
-        console.log(123)
+        // console.log(123)
     }else{
         $.each(myGoods, function (index, value) {
             var inName = value.goodsName;
@@ -88,10 +113,20 @@ $('.search').find('.search-btn').click(function () {
                     '                </div>\n' +
                     '                <div class="div3">\n' +
                     '                <button>修改</button>\n' +
-                    '                <button>删除</button>\n' +
+                    '                <button type="button" data-toggle="modal" data-target="#deletemodel" id="delete">删除</button>\n' +
                     '                </div>'
             }
         })
     }
     $('.two').html(html);
 })
+show();
+
+// //操作模态框
+// $('#delete').click(function () {
+//     $('#deletemodel').modal('show');
+// })
+
+
+
+
