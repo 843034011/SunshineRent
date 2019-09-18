@@ -315,15 +315,15 @@
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                 <div class="single-product-image">
                     <div class="single-pro-main-image">
-                        <a href=""><img id="optima_zoom" src="img/fieldinfo/场地.jpg" data-zoom-image="img/fieldinfo/场地.jpg" alt="optima"/></a>
+                        <a href=""><img id="optima_zoom" src="" data-zoom-image="" alt="optima"  /></a>
                     </div>
                     <div class="single-pro-thumb">
                         <ul class="thubm-caro" id="optima_gallery">
-                            <li>
-                                <a href="#" data-image="img/fieldinfo/场地.jpg" data-zoom-image="img/fieldinfo/场地.jpg"> <img src="img/fieldinfo/场地.jpg" alt="optima" /> </a>
+                            <!--<li>
+                                <a href="#" data-image="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png" data-zoom-image="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png"> <img src="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png" alt="optima" /> </a>
                             </li>
                             <li>
-                                <a href="#" data-image="img/fieldinfo/场地1a.jpg" data-zoom-image="img/fieldinfo/场地1a.jpg"> <img src="img/fieldinfo/场地1a.jpg" alt="optima" /> </a>
+                                <a href="#" data-image="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png" data-zoom-image="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png"> <img src="http://pxm37tv32.bkt.clouddn.com/dayuanqiu.png" alt="optima" /> </a>
                             </li>
                             <li>
                                 <a href="#" data-image="img/fieldinfo/场地1b.jpg" data-zoom-image="img/fieldinfo/场地1b.jpg"> <img src="img/fieldinfo/场地1b.jpg" alt="optima" /> </a>
@@ -336,9 +336,9 @@
                             </li>
                             <li>
                                 <a href="#" data-image="img/fieldinfo/场地1c.jpg" data-zoom-image="img/fieldinfo/场地1c.jpg"> <img src="img/fieldinfo/场地1c.jpg" alt="optima" /> </a>
-                            </li>
+                            </li>&ndash;&gt;
 
-                            <!--  <li>
+                             <li>
                                   <a href="#" data-image="img/product/home1/9.jpg" data-zoom-image="img/product/large-image/9.jpg"> <img src="img/product/home1/9.jpg" alt="optima" /> </a>
                               </li>
                               <li>
@@ -1097,6 +1097,39 @@
 <!-- main content area end  -->
 
 <script type="text/javascript">
+
+    var url = String(window.document.URL);
+    var str = url.split("=");
+    var fieldid = str[1];
+    var fielddatas;
+    $.ajax({
+        url: "fields/showallfields",
+        dataType: "json",
+        success:function(data){
+            fielddatas=data;
+            console.log(data)
+            console.log(data.data[fieldid-1].fieldPictures[0].fieldPicture)
+
+            $('#optima_zoom').attr('src', data.data[fieldid-1].fieldPictures[0].fieldPicture);
+            $('#optima_zoom').attr('data-zoom-image',data.data[fieldid-1].fieldPictures[0].fieldPicture)
+            /* $('#optima_gallery').find("li").remove();*/
+            for(var i=0;i<data.data[fieldid-1].fieldPictures.length;i++){
+                console.log(data.data[fieldid-1].fieldPictures[i].fieldPicture)
+                $('#optima_gallery').append(`
+
+             <li>
+        <a href="#" data-image="${data.data[fieldid-1].fieldPictures[i].fieldPicture}" data-zoom-image="${data.data[fieldid-1].fieldPictures[i].fieldPicture}">
+         <img src="${data.data[fieldid-1].fieldPictures[i].fieldPicture}" alt="optima" style="width:119px;height:88.84px"/>
+          </a>
+        </li>
+
+
+               `)
+            }
+        }
+    })
+
+
     $('.ranges_1 ul').remove();
 
     $('#daterange-btn').daterangepicker({
@@ -1243,201 +1276,6 @@
         }
 
     });
-</script>
-<!--接受所有场地的信息-->
-<script>
-   /* var address
-    var x
-    var y
-    $.get({
-        url:"fields/showallfields",
-        dataType:"json",
-        success:function (data) {
-            var inputAddress=data.data[0].fieldAddress
-
-            // 创建XMLHttpRequest对象
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function () {
-                if (xhr.status == 200 && xhr.readyState == 4) {
-                    //解析json并将解析出的值传入html
-                    console.log(xhr)
-                    var obj = eval('(' + xhr.responseText + ')');
-                    console.log(obj)
-                    var geocodesArray = obj.geocodes;
-                    console.log(geocodesArray)
-                    var temp = geocodesArray[0];
-                    console.log(temp)
-                    var address = temp.location;
-                    console.log(address)
-                    var xy = address.split(",");
-
-                    // x y 代表 经纬度
-                     x = parseFloat(xy[0]);
-                     y = parseFloat(xy[1]);
-
-                    console.log(temp.location);
-                    console.log(x);
-                    console.log(y);
-
-
-                    map.panTo([x,y]);
-                    lnglat=[x,y];
-                    regeoCode();
-
-                }
-            }
-
-            // open的三个参数：请求的类型，请求的url 或者 file，async
-            xhr.open("GET", "https://restapi.amap.com/v3/geocode/geo?address=" + inputAddress + "&output=JSON&key=e6cb4bf508f2544958282e4aef7df450", true);
-            // 发送请求
-            xhr.send();
-
-
-            // 中心点坐标
-            var xyNumber = "xy";
-
-            // 创建XMLHttpRequest对象
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function () {
-                if (xhr.status == 200 && xhr.readyState == 4) {
-                    //解析json并将解析出的值传入html
-                    var obj = eval('(' + xhr.responseText + ')');
-
-                    var arounds = obj.pois;
-
-                    var eat = "餐饮服务类：" + "\n";
-                    var life = "生活服务类：" + "\n";
-                    var business = "商务住宅类：" + "\n";
-
-                    for (var i = 0; i < 5; i++){
-                        var typecode = arounds[i].typecode;
-                        if(typecode.startsWith("05")){
-                            eat += "\t" + arounds[i].name + "\n";
-                        } else if(typecode.startsWith("07")){
-                            life += "\t" +  arounds[i].name + "\n";
-                        } else if(typecode.startsWith("12")){
-                            business += "\t" +  arounds[i].name + "\n";
-                        }
-                    }
-
-                console.log(eat)
-                }
-            }
-
-            // open的三个参数：请求的类型，请求的url 或者 file，async
-            xhr.open("GET", "https://restapi.amap.com/v3/place/around?key=e6cb4bf508f2544958282e4aef7df450&output=JSON&location=" + xyNumber + "&radius=2000", true);
-            // 发送请求
-            xhr.send();
-
-
-
-        }
-    })*/
-
-   /*var address
-   var x
-   var y
-   var xy
-   var address
-   $.get({
-       url:"fields/showallfields",
-       async:false,
-       dataType:"json",
-       success:function (data) {
-           var inputAddress=data.data[0].fieldAddress
-
-           // 创建XMLHttpRequest对象
-           var xhr = new XMLHttpRequest();
-
-           xhr.onreadystatechange = function () {
-               if (xhr.status == 200 && xhr.readyState == 4) {
-                   //解析json并将解析出的值传入html
-                   console.log(xhr)
-                   var obj = eval('(' + xhr.responseText + ')');
-                   console.log(obj)
-                   var geocodesArray = obj.geocodes;
-                   console.log(geocodesArray)
-                   var temp = geocodesArray[0];
-                   console.log(temp)
-                   address = temp.location;
-                   console.log(address)
-                    xy = address.split(",");
-
-                   // x y 代表 经纬度
-                   x = parseFloat(xy[0]);
-                   y = parseFloat(xy[1]);
-
-                   console.log(temp.location);
-                   console.log(x);
-                   console.log(y);
-
-
-                   map.panTo([x,y]);
-                   lnglat=[x,y];
-                   regeoCode();
-
-               }
-           }
-
-           // open的三个参数：请求的类型，请求的url 或者 file，async
-           xhr.open("GET", "https://restapi.amap.com/v3/geocode/geo?address=" + inputAddress + "&output=JSON&key=e6cb4bf508f2544958282e4aef7df450", true);
-           // 发送请求
-           xhr.send();
-       }
-   })
-
-   $.ajax({
-       async:false,
-       success:function () {
-           // 中心点坐标
-           var xyNumber =address;
-
-           console.log(address)
-           // 创建XMLHttpRequest对象
-           var xhr = new XMLHttpRequest();
-
-           xhr.onreadystatechange = function () {
-               if (xhr.status == 200 && xhr.readyState == 4) {
-                   //解析json并将解析出的值传入html
-                   var obj = eval('(' + xhr.responseText + ')');
-                   console.log(obj)
-                   var arounds = obj.pois;
-                   console.log(arounds)
-                   var eat = "餐饮服务类：" + "\n";
-                   var life = "生活服务类：" + "\n";
-                   var business = "商务住宅类：" + "\n";
-
-                   for (var i = 0; i < arounds.length; i++) {
-                       var typecode = arounds[i].typecode;
-                       if (typecode.startsWith("05")) {
-                           eat += "\t" + arounds[i].name + "\n";
-
-                       } else if (typecode.startsWith("07")) {
-                           life += "\t" + arounds[i].name + "\n";
-                       } else if (typecode.startsWith("12")) {
-                           business += "\t" + arounds[i].name + "\n";
-                       }
-                   }
-
-                   console.log(eat)
-                   console.log(life)
-                  /!* document.getElementById("eat").innerText = eat;
-                   document.getElementById("life").innerText = life;
-                   document.getElementById("business").innerText = business;*!/
-               }
-           }
-
-           // open的三个参数：请求的类型，请求的url 或者 file，async
-           xhr.open("GET", "https://restapi.amap.com/v3/place/around?key=e6cb4bf508f2544958282e4aef7df450&output=JSON&location=" + xyNumber + "&radius=2000", true);
-           // 发送请求
-           xhr.send();
-       }
-
-   })
-*/
-
 
 
 </script>
@@ -1451,6 +1289,7 @@
 
 <!--   地图-->
 <script>
+
     //初始化地图
     var map = new AMap.Map('ditu', {
         resizeEnable: true, //是否监控地图容器尺寸变化
@@ -1489,41 +1328,7 @@
     })
 
 
-      // 获取输入提示信息
-      /*function autoInput(){
-          var keywords = address;/!*document.getElementById("input").value;*!/
-          AMap.plugin('AMap.Autocomplete', function(){
-              // 实例化Autocomplete
-              var autoOptions = {
-                  city: '全国'
-              }
 
-              var autoComplete = new AMap.Autocomplete(autoOptions);
-              autoComplete.search(keywords, function(status, result) {
-                  // 搜索成功时，result即是对应的匹配数据
-                  console.log(result);
-                  var tips = result.tips;
-                  var tishtml = "";
-                  tips.forEach((item)=>{
-                      tishtml+=`<span lat="${item.location.lat}" lng="${item.location.lng}">${item.name}</span>`
-                  })
-                  $("#ditua").html(tishtml);
-              })
-          })
-      }*/
-
-
-
-    /*  autoInput();
-
-      document.getElementById("input").oninput = autoInput;
-      $("#ditua").on("click",'span',function(){
-          let lat = $(this).attr("lat");
-          let lng = $(this).attr("lng");
-          map.panTo([lng, lat]);
-          lnglat=[lng, lat];
-          regeoCode();
-      })*/
 
 
    /* 获取列表里传来的id并且显示*/
@@ -1715,6 +1520,19 @@ console.log(address)
             $(".tabCon div").hide().eq($(this).index()).show();
         })
     });
+  /*  <ul class="thubm-caro" id="optima_gallery">*/
+     /*   <!--   <li>
+        <a href="#" data-image="img/fieldinfo/场地.jpg" data-zoom-image="img/fieldinfo/场地.jpg"> <img src="img/fieldinfo/场地.jpg" alt="optima" /> </a>
+        </li>
+        <li>
+        <a href="#" data-image="img/fieldinfo/场地1a.jpg" data-zoom-image="img/fieldinfo/场地1a.jpg"> <img src="img/fieldinfo/场地1a.jpg" alt="optima" /> </a>
+        </li>
+
+        </ul>*/
+/*从前台获取场地id并且进行显示*/
+
+
+
 </script>
 
 <!-- jquery js -->
