@@ -3,7 +3,7 @@ package com.elife.service;
 import com.elife.pojo.RentRegister;
 
 /**
- * @author:llb
+ * @author llb
  */
 public interface RegisterService {
 

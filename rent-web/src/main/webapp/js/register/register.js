@@ -46,8 +46,8 @@ $('#btn').click(function () {
 $("#submit").click(function () {
 
     var telephone = $("#telephone").val()
-    var password = $("#password").val()
-    var confirm = $("#confirm-repassword").val()
+    var password = $.md5($("#password").val())
+    var confirm = $.md5($("#confirm-repassword").val())
     var code = $("#code").val()
 
     console.log(telephone)
@@ -55,10 +55,17 @@ $("#submit").click(function () {
     console.log(confirm)
     console.log(code)
 
-    if(password.length >= 6 && password.length <=16 && confirm == password && code == telecode){
+    if(confirm == password && code == telecode){
         alert("成功了！！")
         $.post({
-            url:"/register/"
+            url:"/register/insertuser",
+            data:"telephone=" + telephone + "&password=" + password,
+            success:function () {
+                
+            },
+            error:function () {
+                
+            }
         })
     } else {
         $("#password").val("")
