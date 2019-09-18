@@ -1,13 +1,14 @@
 package com.elife.service;
 
-import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentGoods;
 import com.elife.pojo.UserOrder;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author llb
+ */
 public interface ShoppingCartService {
 
     /**
