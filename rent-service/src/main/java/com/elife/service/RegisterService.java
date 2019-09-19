@@ -22,4 +22,6 @@ public interface RegisterService {
      * @return
      */
     int insertRegister(String telephone, String password, String time);
+
+    RentRegister selectRegister(String telephone, String password);
 }

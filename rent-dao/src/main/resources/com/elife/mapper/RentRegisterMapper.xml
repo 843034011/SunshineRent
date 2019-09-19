@@ -200,7 +200,13 @@
     select * from rent_register where reg_username = #{telephone}
   </select>
 
+  <!--llb-->
   <insert id="insertRegister">
     insert into rent_register values(null,#{telephone},#{password},#{time})
   </insert>
+
+  <!--llb-->
+  <select id="selectRegister" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from rent_register where reg_username = #{telephone} and reg_password = #{password}
+  </select>
 </mapper>
