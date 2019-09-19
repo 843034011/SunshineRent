@@ -63,7 +63,7 @@
         this.locale = {
             format: 'YYYY/MM/DD',
             separator: ' - ',
-            applyLabel: '确定',
+            applyLabel: false,
             cancelLabel: '取消',
             weekLabel: 'W',
             customRangeLabel: '自定义',
@@ -123,7 +123,7 @@
                                     '</div>' +
                                     '<div class="ranges ranges_1">' +
                                         '<div class="range_inputs">' +
-                                            '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+                                           /* '<button class="applyBtn" disabled="disabled" type="button"></button> ' +*/
                                             '<button class="cancelBtn" type="button"></button>' +
                                         '</div>' +
                                     '</div>' +
@@ -155,8 +155,8 @@
             if (typeof options.locale.firstDay === 'number')
               this.locale.firstDay = options.locale.firstDay;
 
-            if (typeof options.locale.applyLabel === 'string')
-              this.locale.applyLabel = options.locale.applyLabel;
+           /* if (typeof options.locale.applyLabel === 'string')
+              this.locale.applyLabel = options.locale.applyLabel;*/
 
             if (typeof options.locale.cancelLabel === 'string')
               this.locale.cancelLabel = options.locale.cancelLabel;
@@ -394,7 +394,7 @@
             this.container.find('.applyBtn').addClass(this.applyClass);
         if (this.cancelClass.length)
             this.container.find('.cancelBtn').addClass(this.cancelClass);
-        this.container.find('.applyBtn').html(this.locale.applyLabel);
+       /* this.container.find('.applyBtn').html(this.locale.applyLabel);*/
         this.container.find('.cancelBtn').html(this.locale.cancelLabel);
 
         //
@@ -511,10 +511,14 @@
 
 
         isInvalidDate: function(date) {
+            /*console.log(date)*/
             if (date.format('YYYY-MM-DD') == '2019-09-12') {
                 return true;
             } else {
                 return false;
+            }
+            if(isValid!=true){
+                console.log("ok")
             }
         },
 
