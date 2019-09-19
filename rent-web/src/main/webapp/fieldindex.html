@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>场地页</title>
     <link rel="stylesheet" href="css/fieldindex/fieldindex.css">
+    <script src="jquery/jquery-3.4.1.js"></script>
+    <!--<link rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
+    <!--<script src="bootstrap/js/bootstrap.js"></script>-->
+
 
 </head>
 <body>
@@ -21,7 +25,7 @@
             </div>
             <div class="search fl">
                 <div class="search-box">
-                    <div class="search-icon fl"></div>
+                    <div class="search-icon fl"><i></i></div>
                     <input class="fl" type="text" placeholder="请输入搜索内容">
                     <submit class="search-btn fr f18"><a href="">搜索</a></submit>
                     <div class="navbottom fl">
@@ -51,7 +55,7 @@
                 </div>
                 <div class="nav-right fr">
                     <ul>
-                        <li>服务热线：159-8444-5209</li>
+                        <li>服务热线:159-8444-5209</li>
                         <li>发布需求</li>
                         <li>场地入驻</li>
                     </ul>
@@ -63,12 +67,43 @@
     <div class="banner">
         <img src="img/fieldindex/placebanner01.jpg"/>
         <div class="selectsearch">
-            <ul>
-                <li class="Triangle">城市</li>
-                <li class="Triangle">场地类型</li>
-                <li class="Triangle">容纳人数</li>
-                <li class="Triangle">面积</li>
-                <li><a href="">确认</a></li>
+            <ul class="ul-out">
+                <li class="li-city">
+                    <span>城市</span>
+                    <i class="Triangle"></i>
+                    <ul class="ul-in">
+                        <li>苏州</li>
+                    </ul>
+                </li>
+                <li class="li-type">
+                    <span>场地类型</span>
+                    <i class="Triangle"></i>
+                    <ul class="ul-in">
+                        <li>娱乐</li>
+                        <li>休闲</li>
+                        <li>办公</li>
+                    </ul>
+                </li>
+                <li class="li-num">
+                    <span>容纳人数</span>
+                    <i class="Triangle"></i>
+                    <ul class="ul-in">
+                        <li>50</li>
+                        <li>100</li>
+                        <li>500</li>
+                    </ul>
+                </li>
+                <li class="li-area">
+                    <span>面积</span>
+                    <i class="Triangle"></i>
+                    <ul class="ul-in">
+                        <li>200</li>
+                        <li>500</li>
+                        <li>1000</li>
+                        <li>5000</li>
+                    </ul>
+                </li>
+                <li class="fieldinfo-search">搜索</li>
             </ul>
         </div>
     </div>
@@ -361,5 +396,7 @@
     </div>
 
 </div>
+<script src="js/fieldindex/fieldindex.js"></script>
+
 </body>
 </html>
