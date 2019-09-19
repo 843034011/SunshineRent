@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户登陆</title>
+    <title>用户登录</title>
 
     <link rel="stylesheet" href="css/login/login.css">
 
 </head>
-
+<!--llb-->
 <body ddt-page="register_page">
 <form>
     <div id="bd">
@@ -20,9 +20,12 @@
                 <div class="body">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr>
+                            <td class="t"><span id="unlogin"></span></td>
+                        </tr>
+                        <tr>
                             <td class="t">账号</td>
                             <td>
-                                <input id="telephone" autocomplete="off" MaxLength="40" tabindex="1" value="" placeholder="请输入您的账号" type="text" class="text" />
+                                <input id="telephone" autocomplete="off" MaxLength="40" value="" placeholder="请输入您的账号" type="text" class="text" />
                             </td>
                         </tr>
                         <tr>
@@ -35,13 +38,13 @@
                             <td class="t">&nbsp;</td>
                             <td class="clause">
                                 <span class="float_l">
-                                    <input id="chb_agreement" name="chb_agreement" onmouseover="this.style.cursor='pointer';this.style.cursor='hand';" tabindex="7" type="checkbox" checked="checked"/>我已阅读并同意用户条例
+                                    <input id="chb_agreement" name="chb_agreement" onmouseover="this.style.cursor='pointer';this.style.cursor='hand';" type="checkbox" checked="checked"/>我已阅读并同意用户条例
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td class="t">&nbsp;</td>
-                            <td><a id="login" class="btn_login" tabindex="10">立即登录</a>
+                            <td><a id="login" class="btn_login">立即登录</a>
                         </tr>
                     </table>
                 </div>
@@ -49,7 +52,7 @@
                 <div class="reg-text">
                     没有账号?
                     <span>
-                        <a href="register.html">立即注册</a>
+                        <a href="/register/showregister">立即注册</a>
                     </span>
                 </div>
             </div>

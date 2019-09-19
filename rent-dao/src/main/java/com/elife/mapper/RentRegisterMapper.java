@@ -32,18 +32,26 @@ public interface RentRegisterMapper {
     int updateByPrimaryKey(RentRegister record);
 
     /**
-     * @author:llb
+     * @author llb
      * @param telephone
      * @return
      */
     RentRegister selectByTelephone(String telephone);
 
     /**
-     * @author:llb
+     * @author llb
      * @param telephone
      * @param password
      * @param time
      * @return
      */
     int insertRegister(@Param("telephone") String telephone,@Param("password") String password,@Param("time") String time);
+
+    /**
+     * @author llb
+     * @param telephone
+     * @param password
+     * @return
+     */
+    RentRegister selectRegister(@Param("telephone") String telephone,@Param("password") String password);
 }

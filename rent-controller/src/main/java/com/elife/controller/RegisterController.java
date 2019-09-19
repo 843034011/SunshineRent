@@ -1,5 +1,6 @@
 package com.elife.controller;
 
+import com.elife.annotation.Token;
 import com.elife.pojo.RentRegister;
 import com.elife.service.RegisterService;
 import com.elife.vo.ResultData;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,6 +24,7 @@ public class RegisterController {
     RegisterService registerService;
 
     @RequestMapping("insertuser")
+    @Token(remove = true)
     public String insertUser(String telephone,String password){
 
         System.out.println(telephone);
@@ -38,23 +41,32 @@ public class RegisterController {
         return "redirect:../register.html";
     }
 
-    @RequestMapping("selectregisterbytelephone")
+    @RequestMapping("selectregister")
     @ResponseBody
-    public ResultData selectRegisterByTelephone(String telephone){
+    public ResultData selectRegister(HttpSession session,String telephone,String password){
         System.out.println(telephone);
 
         ResultData resultData = new ResultData();
 
-        RentRegister rentRegister = registerService.selectRegisterByTelephone(telephone);
+        RentRegister rentRegister = registerService.selectRegister(telephone,password);
 
         if(rentRegister != null){
             resultData.setCode(0);
             resultData.setData(rentRegister);
+            session.setAttribute("rentRegister",rentRegister);
         }else {
             resultData.setCode(1);
             resultData.setMessage("查询无果！！");
         }
 
         return resultData;
+    }
+
+    // 跳转到register页面
+    // 改变annotation中save的状态，interceptor设置token
+    @RequestMapping("showregister")
+    @Token(save = true)
+    public String setSession(){
+        return "redirect:../register.html";
     }
 }

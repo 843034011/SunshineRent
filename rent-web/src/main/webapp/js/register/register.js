@@ -17,6 +17,9 @@ $('#btn').click(function () {
         return
     }
 
+    // 设置按钮失去点击功能
+    $('#btn').css("pointer-events","none")
+
     $.post({
         url:"/shortmessage/send",
         data:"telephone=" + telephone,
@@ -31,8 +34,6 @@ $('#btn').click(function () {
 
                 $('#btn').val("短信已发送。。")
 
-                // 设置按钮失去点击功能
-                $('#btn').css("pointer-events","none")
             } else {
                 alert(data.message)
             }
@@ -59,9 +60,9 @@ $("#submit").click(function () {
         alert("成功了！！")
         $.post({
             url:"/register/insertuser",
-            data:"telephone=" + telephone + "&password=" + password,
+            data:"telephone=" + telephone + "&password=" + password +"&token=liulanboyoudianshuaiya",
             success:function () {
-                
+                window.location.href="login.html"
             },
             error:function () {
                 
