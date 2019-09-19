@@ -23,22 +23,37 @@
 		'speedIn'		:	800, 
 		'speedOut'		:	200, 
 		'overlayShow'	:	false
-	});	
-				
+	});
+	var afterdata;
 /*-----价格滑动js -----*/
+	console.log(fielddatas)
 	$( "#price-range" ).slider({
 		range: true,
 		min: 1,
 		max: 10000,
 		values: [ 10, 9000 ],
 		slide: function( event, ui ) {
+
 			jQuery( "#slidevalue" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 			console.log(ui.values[1])
+			console.log(ui.values[0])
+
+
 		}
 	});
 	jQuery( "#slidevalue" ).val( "$" + $( "#price-range" ).slider( "values", 0 ) +
-		"      $" + $( "#price-range" ).slider( "values", 1 ) );	
+		"      $" + $( "#price-range" ).slider( "values", 1 ) );
 
+
+	for(var i=0;i<fielddatas.length;i++){
+		if(fielddatas[i].fieldDayprice>ui.values[0]&&fielddatas[i].fieldDayprice<ui.values[1])
+		{
+			console.log(fielddatas[i].fieldDayprice)
+			afterdata=fielddatas;
+			console.log(afterdata)
+		}
+		fenye(afterdata);
+	}
 /*----- scroll to top -----*/		
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 700) {

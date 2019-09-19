@@ -1657,9 +1657,9 @@ function fenye(data){
         last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
         page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
         onPageChange: function (num,type) {
-    console.log(data.length/6+1)
+    /*console.log(data.length/6+1)*/
 
-            console.log( Math.floor(data.length/6+1))
+            // console.log( Math.floor(data.length/6+1))
             /*  $('#p2').text(type + '：' + num);*/
           /*  $.jqPaginator('option', {
                 currentPage: num,
@@ -1667,13 +1667,13 @@ function fenye(data){
                 pageSize:6,
             });*/
             var n=num-1;
-            console.log(n)
+
             $('.all-grid-product').text("");
             if(data.length-n*6>=6)
             {
                 for (i = 0; i < 6; i++) {
                     fieldpictures = data[i].fieldPictures[0]
-                    console.log(fieldpictures = data[i].fieldPictures[0].fieldPicture)
+
                     $('.all-grid-product').append(
                         `<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href='fieldinfo.html?id=${data[6*n+i].id}' ">
     <div class="single-product-item">
@@ -1851,6 +1851,8 @@ function fenye(data){
 console.log(fielddatas)//全部数据
 console.log(alldata)//经过模糊搜索后的数据
 /*模糊查找并且排序*/
+
+
 function sortbymark() {
 
     if ($('#search').val() == '') {
@@ -1921,6 +1923,11 @@ function sortbymark() {
 
     }
 }
+
+
+
+
+
 
 </script>
 
