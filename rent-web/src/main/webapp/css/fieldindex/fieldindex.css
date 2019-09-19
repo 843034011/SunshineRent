@@ -79,12 +79,22 @@ img{vertical-align:top;}
     margin: auto;
     width:600px;
     height:50px;
-    background-color: #ddd;
+    background-color: #f5f5f5;
 }
 .search-box .search-icon{
     width:50px;
     height:50px;
-    background-color: #0f3230;
+    /*background-color: #0f3230;*/
+}
+.search-box .search-icon i{
+    display: inline-block;
+    border: 10px solid rgb(0,200,190);
+    width: 30px;
+    height:30px;
+    background-color: rgb(0,200,190);
+    background-image: url("../../img/index/much.png");
+    background-position: 3px -106px;
+
 }
 .search-box input{
     width:400px;
@@ -123,11 +133,11 @@ img{vertical-align:top;}
     display: flex;
 }
 .nav ul li{
-
     height:100%;
     padding:0 25px;
     text-align: center;
     line-height: 40px;
+    cursor: pointer;
 }
 .nav-left ul li:nth-child(1){
     background-color:#fff;
@@ -171,34 +181,54 @@ img{vertical-align:top;}
 }
 .banner .selectsearch{
     width:600px;
-    height:50px;
+    /*height:50px;*/
     margin: auto;
-    background-color: #fff;
+
     position: relative;
-    top:-100px;
+    top:-80px;
 }
-.selectsearch ul{
+.selectsearch .ul-out{
     display: flex;
     justify-content: space-between;
-    border-radius:5px;
+    /*border-radius:5px;*/
+    background-color: #fff;
 }
 .selectsearch ul li{
     width:120px;
     height:50px;
     line-height: 50px;
     text-align: center;
-    color:#333;
-    /*background-color: #0abfb6;*/
-    border-right:1px solid #aaa;
+    cursor: pointer;
 }
-.selectsearch ul li:last-child{
-    background-color: rgb(0,200,190);
-    border-right:none;
-    color:#fff;
-}
-.selectsearch ul li:last-child:hover{
+
+.selectsearch .ul-out li:last-child:hover{
     background-color: rgba(0,200,190,0.6);
 }
+.selectsearch .ul-out li:last-child{
+    background-color: rgb(0,200,190);
+    color:#fff;
+}
+.selectsearch ul ul{
+    display: none;
+    /*width: 100%;*/
+    /*visibility: hidden;*/
+    /*overflow:hidden;*/
+    /*height:0px;*/
+    /*transition:height 1s;*/
+}
+.selectsearch .ul-out .ul-in{
+    background-color: rgb(0,200,190);
+    color:#fff;
+    position: relative;
+    z-index: 10;
+}
+.selectsearch ul li:hover ul{
+    /*height:120px;*/
+    background-color: rgb(0,200,190);
+    color:#fff;
+}
+
+
 /*轮播结束*/
 
 /*分类开始*/
@@ -238,11 +268,14 @@ img{vertical-align:top;}
 }
 .variety .left ul li i{
     display: inline-block;
-    width: 30px;
-    height:100%;
+    width: 33px;
+    height:30px;
     text-align: center;
     vertical-align: middle;
-    background-color: greenyellow;
+    /*background-color: greenyellow;*/
+    background-image: url("../../img/index/much.png");
+    background-position: -27px -106px;
+
 }
 .variety .right{
     width:920px;

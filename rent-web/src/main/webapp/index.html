@@ -55,7 +55,7 @@
                     <ul class="show-image">
                         <li class="first">
                             <a class="show-pic">
-                                <img id="banImg" src="img/index/images/banner01.jpg" width="100%" height="450"/>
+                                <img id="banImg" src="img/index/images/banner01.jpg" width="100%" height="450" style="opacity:1"/>
                             </a>
                         </li>
                         <!--                        <li>-->
@@ -86,15 +86,47 @@
 
         <!--        搜索-->
         <div class="t-search">
-            <ul>
-                <li><i></i>全部</li>
-                <li><i></i>全部</li>
-                <li><i></i>全部</li>
-                <li><i></i>全部</li>
-                <li><i></i>全部</li>
+            <ul id="ul-search">
+                <li value="0"><i></i>全部</li>
+                <a href="#"><li value="1"><i></i>场地</li></a>
+                <a href="#"><li value="2"><i></i>商品</li></a>
+                <!--<li><i></i>全部</li>-->
+                <!--<li><i></i>全部</li>-->
             </ul>
-            <div class="search-text"></div>
-            <p>你要的我都提供，你不要的，我让他升值，让闲置不再闲置。</p>
+            <div id="search-box" class="search-text fl">
+                <!--<input type="radio" placeholder="选择类型" value="haha">-->
+                <!--<div> </div>-->
+                <input class="input-2" type="text" placeholder="选择类型" readonly ="readonly">
+                <i class="Triangle fr"></i>
+            </div>
+            <div class="div-btn fr">
+                <i class="i-search"></i>
+            </div>
+            <p class="fl">你要的我都提供，你不要的，我让他升值，让闲置不再闲置。</p>
+        </div>
+        <div class="div-show">
+           <table>
+                <tr>
+                    <td>场地</td>
+                    <td>
+                        <span>教育</span>
+                        <span>娱乐</span>
+                        <span>办公</span>
+                        <span>教育</span>
+                        <span>娱乐</span>
+                        <span>办公</span>
+                        <span>教育</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品</td>
+                    <td>
+                        <span>电脑</span>
+                        <span>打印机</span>
+                        <span>手机</span>
+                    </td>
+               </tr>
+          </table>
         </div>
 
         <!--        <div class="search-bottom">asfvdegqhab</div>-->
