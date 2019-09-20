@@ -6,137 +6,269 @@
 
 
     <link rel="stylesheet" href="../css/orderinfo/orderinfo.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <script src="../bootstrap/js/bootstrap.js"></script>
     <script src="../jquery/jquery-3.4.1.js"></script>
 
 
 </head>
 <body>
 
-    <div class="orderinfo clearfix">
-        <p>我的订单</p>
-        <div class="top clearfix">
+    <div class="main">
+
+        <!--    导航，轮播，搜索，-->
+        <div class="top">
+            <!--        导航栏-->
+            <div class="t-nav ">
+                <div class="nav-1200">
+                    <div class="navbar-left fl">
+                        <div class="logo fl">
+                            <a href="../index.html">
+                                <img src="../img/index/images/logo3.png" height="60"/>
+                            </a>
+                        </div>
+                        <div class="solid fl"></div>
+                        <div class="position Triangle">
+                            <a href="">苏州</a>
+                        </div>
+                    </div>
+                    <div class="navbar-right fr">
+                        <ul class="items">
+                            <li class="item"><a href="">购物车</a></li>
+                            <li class="item"><a href="">商家旺铺</a></li>
+                            <li class="item"><a href="">咨询中心</a></li>
+                            <!--<li class="item"><a href="">成为租赁商</a></li>-->
+                            <li class="item"><a href="login.html">登录</a></li>
+                            <li class="item">
+                                <a href="register.html">注册</a>
+                            </li>
+                            <li class="item">
+                            <span class="tel"><a href="">159-8444-5209</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主体部分 -->
+        <div class="main-con">
+            <!-- 左侧导航 -->
+            <div class="left-nav fl">
+                <ul>
+                    <li>个人中心</li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">信息认证</a></li>
+                    <li><a href="">地址管理</a></li>
+                </ul>
+                <ul>
+                    <li>订单管理</li>
+                    <li><a href="#">我的订单</a></li>
+                    <li><a href="#">订单详情</a></li>
+                </ul>
+                <ul>
+                    <li>商品管理</li>
+                    <li><a href="#">商品管理</a></li>
+                </ul>
+            </div>
+
+            <!-- 右侧内容 -->
+            <div class="right-con orderinfo clearfix fr">
+            <p>我的订单</p>
+            <div class="top clearfix">
             <ul class="ul1-items fl">
-                <li>全部订单</li>
-                <li>待付款</li>
-                <li>待收货</li>
-                <li>待评价</li>
+            <li>全部订单</li>
+            <li>待付款</li>
+            <li>待收货</li>
+            <li>待评价</li>
             </ul>
             <div class="search fr">
-                <input type="text" class="search-input" placeholder="请输入商品名称进行查询">
-                <button class="search-btn">搜索</button>
+            <input type="text" class="search-input" placeholder="请输入商品名称进行查询">
+            <button class="search-btn">搜索</button>
             </div>
-        </div>
+            </div>
 
-        <!--<div class="box">-->
+            <!--<div class="box">-->
             <!--<table>-->
-                <!--<tr class="tr-first">-->
-                    <!--<td class="td-first">近三个月订单</td>-->
-                    <!--<td>订单详情</td>-->
-                    <!--<td>收货人</td>-->
-                    <!--<td>金额</td>-->
-                    <!--<td>状态</td>-->
-                    <!--<td>操作</td>-->
-                <!--</tr>-->
+            <!--<tr class="tr-first">-->
+            <!--<td class="td-first">近三个月订单</td>-->
+            <!--<td>订单详情</td>-->
+            <!--<td>收货人</td>-->
+            <!--<td>金额</td>-->
+            <!--<td>状态</td>-->
+            <!--<td>操作</td>-->
+            <!--</tr>-->
 
-                <!--<tr>-->
-                    <!--<td colspan="2">-->
-                        <!--<span>创建时间:2019-8-18 20:07:18</span>-->
-                        <!--<span>订单号:101568518706</span>-->
-                    <!--</td>-->
-                    <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>-->
-                        <!--<img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">-->
-                    <!--</td>-->
-                    <!--<td>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</td>-->
-                    <!--<td>张光耀</td>-->
-                    <!--<td>2999</td>-->
-                    <!--<td>已支付</td>-->
-                    <!--<td>立即处理</td>-->
-                <!--</tr>-->
+            <!--<tr>-->
+            <!--<td colspan="2">-->
+            <!--<span>创建时间:2019-8-18 20:07:18</span>-->
+            <!--<span>订单号:101568518706</span>-->
+            <!--</td>-->
+            <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">-->
+            <!--</td>-->
+            <!--<td>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</td>-->
+            <!--<td>张光耀</td>-->
+            <!--<td>2999</td>-->
+            <!--<td>已支付</td>-->
+            <!--<td>立即处理</td>-->
+            <!--</tr>-->
             <!--</table>-->
-        <!--</div>-->
+            <!--</div>-->
 
-        <div class="title">
-            <span>近三个月订单</span>
-            <span>订单详情</span>
-            <span>收货人</span>
-            <span>金额</span>
-            <span>状态</span>
-            <span>操作</span>
+            <div class="title">
+                <span>近三个月订单</span>
+                <span>订单详情</span>
+                <span>收货人</span>
+                <span>金额</span>
+                <span>状态</span>
+                <span>操作</span>
             <!--<span>近三个月订单</span>-->
-        </div>
-        <div class="con-box clearfix">
-            <div class="box-title">
-                <span>创建时间:2019-8-18 20:07:18</span>
-                <span>订单号:101568518706</span>
-            </div>
-            <div class="box-text">
-                <ul class="box-items fl">
+                </div>
+                    <div class="con-box clearfix">
+                        <div class="box-title">
+                            <span>创建时间:2019-8-18 20:07:18</span>
+                            <span>订单号:101568518706</span>
+                        </div>
+                        <div class="box-text">
+                            <ul class="box-items fl">
+                                <li>
+                                    <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
+                                </li>
+                                <li>
+                                <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
+                                <p>数量:<span>1</span></p>
+                                </li>
+                                <li>张光耀</li>
+                                <li>2999</li>
+                                <li>已支付</li>
+                                <li>
+                                <button>立即购买</button>
+                                <p></p>
+                                <button>删除订单</button>
+                                </li>
+                            </ul>
+                            <ul class="box-items fl">
+                                <li>
+                                <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
+                                </li>
+                                <li>
+                                <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
+                                <p>数量:<span>1</span></p>
+                                </li>
+                                <li>张光耀</li>
+                                <li>2999</li>
+                                <li>已支付</li>
+                                <li>
+                                <button>立即购买</button>
+                                <p></p>
+                                <button>删除订单</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="con-box clearfix">
+                    <div class="box-title">
+                    <span>创建时间:2019-8-18 20:07:18</span>
+                    <span>订单号:101568518706</span>
+                    </div>
+                    <div class="box-text">
+                    <ul class="box-items fl">
                     <li>
-                        <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
+                    <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
                     </li>
                     <li>
-                        <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
-                        <p>数量:<span>1</span></p>
+                    <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
+                    <p>数量:<span>1</span></p>
                     </li>
                     <li>张光耀</li>
                     <li>2999</li>
                     <li>已支付</li>
                     <li>
-                        <button>立即购买</button>
-                        <p></p>
-                        <button>删除订单</button>
+                    <button>立即购买</button>
+                    <p></p>
+                    <button>删除订单</button>
                     </li>
-                </ul>
-                <ul class="box-items fl">
-                    <li>
-                        <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
-                    </li>
-                    <li>
-                        <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
-                        <p>数量:<span>1</span></p>
-                    </li>
-                    <li>张光耀</li>
-                    <li>2999</li>
-                    <li>已支付</li>
-                    <li>
-                        <button>立即购买</button>
-                        <p></p>
-                        <button>删除订单</button>
-                    </li>
-                </ul>
+                    </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="con-box clearfix">
-            <div class="box-title">
-                <span>创建时间:2019-8-18 20:07:18</span>
-                <span>订单号:101568518706</span>
-            </div>
-            <div class="box-text">
-                <ul class="box-items fl">
-                    <li>
-                        <img src="//img10.360buyimg.com/N6/s60x60_jfs/t1/40908/7/13716/119910/5d6d09d6E082d34a0/f114b632d2db71f6.jpg" alt="">
-                    </li>
-                    <li>
-                        <span>Apple Watch Series 4智能手表（GPS款 40毫米深空灰色铝金属表壳 黑色运动型表带 MU662CH/A )</span>
-                        <p>数量:<span>1</span></p>
-                    </li>
-                    <li>张光耀</li>
-                    <li>2999</li>
-                    <li>已支付</li>
-                    <li>
-                        <button>立即购买</button>
-                        <p></p>
-                        <button>删除订单</button>
-                    </li>
-                </ul>
+        <!-- 底部 -->
+        <div class="footer">
+            <div class="foot-container">
+                <div class="foot-child">
+                    <h4>租赁指南</h4>
+                    <div class="foot-grandchild">
+                        <ul>
+                            <li><a href="#" target="_blank">常见问题</a></li>
+                            <li><a href="#" target="_blank">租赁流程</a></li>
+                            <li><a href="#" target="_blank">租金支付</a></li>
+                            <li><a href="#" target="_blank">开票说明</a></li>
+                            <li><a href="#" target="_blank">开票说明</a></li>
+                            <li><a href="#" target="_blank">开票说明</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="foot-child">
+                    <h4>售后服务</h4>
+                    <div class="foot-grandchild">
+                        <ul>
+                            <li><a href="#" target="_blank">故障保修</a></li>
+                            <li><a href="#" target="_blank">退换货政策</a></li>
+                            <li><a href="#" target="_blank">售后政策</a></li>
+                            <li><a href="#" target="_blank">售后政策</a></li>
+                            <li><a href="#" target="_blank">售后政策</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="foot-child">
+                    <h4>特色服务</h4>
+                    <div class="foot-grandchild">
+                        <ul>
+                            <li><a href="#" target="_blank">故障保修</a></li>
+                            <li><a href="#" target="_blank">退换货政策</a></li>
+                            <li><a href="#" target="_blank">售后政策</a></li>
+                            <li><a href="#" target="_blank">售后政策</a></li>
+                        </ul>
+                    </div>
+                </div >
+                <div class="foot-child">
+                    <h4>关于我们</h4>
+                    <div class="foot-grandchild">
+                        <ul>
+                            <li><a href="#" target="_blank">企业概况</a></li>
+                            <li><a href="#" target="_blank">公司地址</a></li>
+                            <li><a href="#" target="_blank">企业资讯</a></li>
+                        </ul>
+                    </div>
+                </div >
+                <div class="foot-child">
+                    <div class="foot-bgimage">
+                        <img src="../img/index/images/two01.png"/>
+                    </div>
+                    <div class="text">
+                        <a href="#">
+                            <p>想了解更多资讯</p>
+                        </a>
+                        <a href="#">
+                            <p>请扫码关注我们的微信号</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        <!--        site-info -->
+        <div class="site-info">
+            <div class="copyright">
+                <span>Copyright &copy; <a href="#">优站精选</a></span> |
+                <span><a href="#" target="_blank">京ICP备11008151号</a></span>
+            </div>
+        </div>
+
     </div>
 </body>
 
