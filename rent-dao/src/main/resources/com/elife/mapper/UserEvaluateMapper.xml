@@ -240,4 +240,11 @@
       order_id = #{orderId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="insertUserEvaluate" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+      insert into user_evaluate (eva_grade, eva_content,
+      is_anonymous, create_time, reg_id,
+      order_id)
+    values (#{grade}, #{content},#{isAnonymous}, #{time}, #{regid},#{orderid})
+    </insert>
 </mapper>
