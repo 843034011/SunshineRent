@@ -1,6 +1,7 @@
 package com.elife.controller;
-
+import com.elife.pojo.RentRegister;
 import com.elife.pojo.RentField;
+import com.elife.pojo.UserShoppingcart;
 import com.elife.service.impl.fieldsServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ public class fieldsInfo {
 
     @RequestMapping("showallfields")
     @ResponseBody
-    public ResultData selectAllBook(){
+    public ResultData selectAllBook(HttpSession session){
         List<RentField> rentFieldList = fieldsService.selectAllFields();
         ResultData resultData = new ResultData();
         if(null == rentFieldList || rentFieldList.size() ==0) {
@@ -31,6 +33,7 @@ public class fieldsInfo {
         } else {
             resultData.setCode(0);
             resultData.setData(rentFieldList);
+
         }
         return resultData;
     }
@@ -65,6 +68,19 @@ public class fieldsInfo {
         }
         return resultData;
 
+    }
+
+  @RequestMapping("insertshoppingcart")
+    @ResponseBody
+    public int insertFields(Integer fieldid, HttpSession session){
+     UserShoppingcart userShoppingcart=new UserShoppingcart();
+      System.out.println(fieldid);
+        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        int id=rentRegister.getRegId();
+        System.out.println(id);
+        userShoppingcart.setFieldId(fieldid);
+        userShoppingcart.setRegId(id);
+        return 0;
     }
 
 }

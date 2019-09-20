@@ -1546,14 +1546,30 @@ console.log(address)
         </li>
 
         </ul>*/
-/*从前台获取场地id并且进行显示*/
+
+/*加入购物车*/
+
+    var url = String(window.document.URL);
+    var str = url.split("=");
+    var fieldid = str[1];
+    var fielddatas;
+function shop(){
+  $.post({
+      url:"fields/insertshoppingcart",
+      data:{"fieldid": fieldid},
+      success:function(data){
+          alert("jia")
+      }
+  })
+
+}
 
 
 
 </script>
 
 <!-- jquery js -->
-<script src="js/fieldinfo/vendor/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-3.4.1.js"></script>
 <!-- jqueryui js -->
 <script src="js/fieldinfo/jqueryui.js"></script>
 <!-- mobile menu js -->
