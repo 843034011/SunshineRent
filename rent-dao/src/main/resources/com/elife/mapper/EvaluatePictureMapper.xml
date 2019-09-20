@@ -178,4 +178,9 @@
       eva_id = #{evaId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="insertEvaluatePicture" parameterType="com.elife.pojo.EvaluatePicture">
+    insert into evaluate_picture (eva_picture, eva_id)
+    values (#{evaPicture,jdbcType=VARCHAR}, #{evaId,jdbcType=INTEGER})
+  </insert>
 </mapper>

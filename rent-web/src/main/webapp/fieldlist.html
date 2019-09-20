@@ -1772,19 +1772,30 @@ function fenye(data){
 
 
 <script>
+/*接受主页的name类型参数并且显示*/
     /* <div class="row all-grid-product">*/
     var fieldpictures;
     var fielddatas;
-    var i;
+
+var url = String(window.document.URL);
+var str = url.split("=");
+var name = str[1];
+var fielddatas;
+var databynames
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
         success: function (data) {
             fielddatas=data.data
-            console.log(data.data[0].fieldPictures[0])
+            console.log(data.data[0].fieldName)
             console.log(data.data.length)
 
-            fenye(fielddatas);
+            for(var j=0;j<data.data.length;j++){
+                if(data.data[j].fieldName==name){
+                    databynames=data.data[i];
+                }
+                fenye(databynames)
+            }
 
 
             /*$.each(fieldpictures, function (i, value) {
@@ -1792,6 +1803,10 @@ function fenye(data){
             })*/
         }
     })
+
+
+
+
 /*模糊查找*/
     var alldata
     function find() {

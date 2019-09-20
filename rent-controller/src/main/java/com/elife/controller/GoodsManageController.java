@@ -18,6 +18,11 @@ import java.util.List;
 @RequestMapping("goodsManageCon")
 public class GoodsManageController {
 
+    @RequestMapping("showManage")
+    public String showManage(){
+        return "goodsmanage";
+    }
+
     @Autowired
     GoodsManageServiceImpl goodsManageService;
 

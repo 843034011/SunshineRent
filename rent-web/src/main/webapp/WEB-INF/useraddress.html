@@ -2,98 +2,188 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户地址管理</title>
+    <title>地址管理</title>
 
+
+    <!--<link rel="stylesheet" href="../css/orderinfo/orderinfo.css">-->
     <script src="../jquery/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <script src="../bootstrap/js/bootstrap.js"></script>
+
     <link rel="stylesheet" href="../css/useraddress/useraddress.css">
-
-
 
 </head>
 <body>
-<!-- 模态框 -->
-    <div class="modal fade" id="new">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"> 新建订单 </div>
-                <form class="form-horizontal">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input id="inputEmail" type="text" class="form-control list-inline" placeholder="Email"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputpwd" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input id="inputpwd" type="text" class="form-control list-inline" placeholder="Password"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-                            <div class="col-sm-10">
-                                <input id="inputUsername" type="text" class="form-control list-inline" placeholder="Username"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputBirthday" class="col-sm-2 control-label">Birthday</label>
-                            <div class="col-sm-10">
-                                <input id="inputBirthday" type="text" class="form-control list-inline" placeholder="Birthday"/>
-                            </div>
-                        </div>
+
+<div class="main">
+
+    <!--    导航，轮播，搜索，-->
+    <div class="top">
+        <!--        导航栏-->
+        <div class="t-nav ">
+            <div class="nav-1200">
+                <div class="navbar-left fl">
+                    <div class="logo fl">
+                        <a href="../index.html">
+                            <img src="../img/index/images/logo3.png" height="60"/>
+                        </a>
                     </div>
-                </form>
-                <div class="modal-footer">
-                    <button class="btn btn-success" type="submit">保存</button>
-                    <!--<button class="btn btn-warning" type="reset">Reset</button>-->
-                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <div class="solid fl"></div>
+                    <div class="position Triangle">
+                        <a href="">苏州</a>
+                    </div>
+                </div>
+                <div class="navbar-right fr">
+                    <ul class="items">
+                        <li class="item"><a href="">购物车</a></li>
+                        <li class="item"><a href="">商家旺铺</a></li>
+                        <li class="item"><a href="">咨询中心</a></li>
+                        <!--<li class="item"><a href="">成为租赁商</a></li>-->
+                        <li class="item"><a href="login.html">登录</a></li>
+                        <li class="item">
+                            <a href="register.html">注册</a>
+                        </li>
+                        <li class="item">
+                            <span class="tel"><a href="">159-8444-5209</a></span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 主体部分 -->
+    <div class="main-con">
+        <!-- 左侧导航 -->
+        <div class="left-nav fl">
+            <ul>
+                <li>个人中心</li>
+                <li><a href="#">个人信息</a></li>
+                <li><a href="#">信息认证</a></li>
+                <li><a href="#">地址管理</a></li>
+            </ul>
+            <ul>
+                <li>订单管理</li>
+                <li><a href="orderinfo.html">我的订单</a></li>
+                <li><a href="#">订单详情</a></li>
+            </ul>
+            <ul>
+                <li>商品管理</li>
+                <li><a href="goodsmanage.html">商品管理</a></li>
+            </ul>
+        </div>
 
-<div class="address clearfix">
-    <p>地址管理</p>
-    <div class="add-box">
-        <ul>
-            <li class="clearfix">
-                <div class="div-out">
-                    <div class="div-in1">
-                        <p>收货人：<span>张光耀</span></p>
-                        <p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>
-                        <p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>
-                        <p>手机号码：<span>18806202635</span></p>
-                    </div>
-                    <div class="div-in2">
-                        <span>默认地址</span>
-                        <span>修改</span>
-                    </div>
-                </div>
-            </li>
-            <li class="clearfix">
-                <div class="div-out">
-                    <div class="div-in1">
-                        <p>收货人：<span>张光耀</span></p>
-                        <p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>
-                        <p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>
-                        <p>手机号码：<span>18806202635</span></p>
-                    </div>
-                    <div class="div-in2">
-                        <span>默认地址</span>
-                        <span>修改</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <button class="add-address btn btn-success" data-toggle="modal" id="Mymodal">新增收货地址</button>
+        <!-- 右侧内容 -->
+        <!--<div class="right-con orderinfo clearfix fr">-->
+            <div class="address clearfix fr">
+                <p>地址管理</p>
+                <div class="add-box">
+                    <ul id="myaddress">
+                        <li class="clearfix">
+                            <div class="div-out">
+                                <div class="div-in1">
+                                    <p>收货人：<span>张光耀</span></p>
+                                    <p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>
+                                    <p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>
+                                    <p>手机号码：<span>18806202635</span></p>
+                                </div>
+                                <div class="div-in2">
+                                    <div class="fl delete">
+                                        <span>默认地址</span>
+                                        <span>修改</span>
+                                    </div>
+                                    <span class="span-last">×</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="add-address btn btn-success" data-toggle="modal" id="Mymodal">新增收货地址</button>
 
+                </div>
+            </div>
+        <!--</div>-->
     </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <!--<div style="width:1500px; height:200px; background-color: #00A9E0"></div>-->
+        <div class="foot-container">
+            <div class="foot-child">
+                <h4>租赁指南</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">常见问题</a></li>
+                        <li><a href="#" target="_blank">租赁流程</a></li>
+                        <li><a href="#" target="_blank">租金支付</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-child">
+                <h4>售后服务</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">故障保修</a></li>
+                        <li><a href="#" target="_blank">退换货政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-child">
+                <h4>特色服务</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">故障保修</a></li>
+                        <li><a href="#" target="_blank">退换货政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                    </ul>
+                </div>
+            </div >
+            <div class="foot-child">
+                <h4>关于我们</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">企业概况</a></li>
+                        <li><a href="#" target="_blank">公司地址</a></li>
+                        <li><a href="#" target="_blank">企业资讯</a></li>
+                    </ul>
+                </div>
+            </div >
+            <div class="foot-child">
+                <div class="foot-bgimage">
+                    <img src="../img/index/images/two01.png"/>
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <p>想了解更多资讯</p>
+                    </a>
+                    <a href="#">
+                        <p>请扫码关注我们的微信号</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--        site-info -->
+        <div class="site-info">
+            <div class="copyright">
+                <span>Copyright &copy; <a href="#">优站精选</a></span> |
+                <span><a href="#" target="_blank">京ICP备11008151号</a></span>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 
+
 <script src="../js/useraddress/useraddress.js"></script>
+
 </html>
+
+

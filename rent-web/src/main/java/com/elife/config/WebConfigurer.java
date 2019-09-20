@@ -1,3 +1,4 @@
+/*
 package com.elife.config;
 
 import com.elife.config.Interceptor.LoginInterceptor;
@@ -10,9 +11,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * @author llb
- */
+ *//*
+
 @Configuration
 public class WebConfigurer implements WebMvcConfigurer {
 
@@ -42,3 +45,4 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     }
 }
+*/

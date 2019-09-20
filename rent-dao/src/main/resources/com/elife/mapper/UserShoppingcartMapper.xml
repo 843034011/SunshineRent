@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.UserShoppingcartMapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.UserShoppingcart" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="field_id" property="fieldId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="reg_id" property="regId" jdbcType="INTEGER" />
+    <result column="extra_int1" property="extraInt1" jdbcType="INTEGER" />
+    <result column="extra_int2" property="extraInt2" jdbcType="INTEGER" />
+    <result column="extra_decimal1" property="extraDecimal1" jdbcType="DECIMAL" />
+    <result column="extra_decimal2" property="extraDecimal2" jdbcType="DECIMAL" />
+    <result column="extra_varchar1" property="extraVarchar1" jdbcType="VARCHAR" />
+    <result column="extra_varchar2" property="extraVarchar2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, start_time, end_time, field_id, goods_id, reg_id, extra_int1, extra_int2, extra_decimal1, 
+    extra_decimal2, extra_varchar1, extra_varchar2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.UserShoppingcartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_shoppingcart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_shoppingcart
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_shoppingcart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.UserShoppingcartExample" >
+    delete from user_shoppingcart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.UserShoppingcart" >
+    insert into user_shoppingcart (id, start_time, end_time, 
+      field_id, goods_id, reg_id, 
+      extra_int1, extra_int2, extra_decimal1, 
+      extra_decimal2, extra_varchar1, extra_varchar2
+      )
+    values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
+      #{fieldId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER}, 
+      #{extraInt1,jdbcType=INTEGER}, #{extraInt2,jdbcType=INTEGER}, #{extraDecimal1,jdbcType=DECIMAL}, 
+      #{extraDecimal2,jdbcType=DECIMAL}, #{extraVarchar1,jdbcType=VARCHAR}, #{extraVarchar2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.UserShoppingcart" >
+    insert into user_shoppingcart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="fieldId != null" >
+        field_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="regId != null" >
+        reg_id,
+      </if>
+      <if test="extraInt1 != null" >
+        extra_int1,
+      </if>
+      <if test="extraInt2 != null" >
+        extra_int2,
+      </if>
+      <if test="extraDecimal1 != null" >
+        extra_decimal1,
+      </if>
+      <if test="extraDecimal2 != null" >
+        extra_decimal2,
+      </if>
+      <if test="extraVarchar1 != null" >
+        extra_varchar1,
+      </if>
+      <if test="extraVarchar2 != null" >
+        extra_varchar2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="fieldId != null" >
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt1 != null" >
+        #{extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt2 != null" >
+        #{extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="extraDecimal1 != null" >
+        #{extraDecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extraDecimal2 != null" >
+        #{extraDecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extraVarchar1 != null" >
+        #{extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar2 != null" >
+        #{extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.UserShoppingcartExample" resultType="java.lang.Integer" >
+    select count(*) from user_shoppingcart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_shoppingcart
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=DATE},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.fieldId != null" >
+        field_id = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.regId != null" >
+        reg_id = #{record.regId,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraInt1 != null" >
+        extra_int1 = #{record.extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraInt2 != null" >
+        extra_int2 = #{record.extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraDecimal1 != null" >
+        extra_decimal1 = #{record.extraDecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extraDecimal2 != null" >
+        extra_decimal2 = #{record.extraDecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extraVarchar1 != null" >
+        extra_varchar1 = #{record.extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraVarchar2 != null" >
+        extra_varchar2 = #{record.extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_shoppingcart
+    set id = #{record.id,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      field_id = #{record.fieldId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      reg_id = #{record.regId,jdbcType=INTEGER},
+      extra_int1 = #{record.extraInt1,jdbcType=INTEGER},
+      extra_int2 = #{record.extraInt2,jdbcType=INTEGER},
+      extra_decimal1 = #{record.extraDecimal1,jdbcType=DECIMAL},
+      extra_decimal2 = #{record.extraDecimal2,jdbcType=DECIMAL},
+      extra_varchar1 = #{record.extraVarchar1,jdbcType=VARCHAR},
+      extra_varchar2 = #{record.extraVarchar2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.UserShoppingcart" >
+    update user_shoppingcart
+    <set >
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="fieldId != null" >
+        field_id = #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        reg_id = #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt1 != null" >
+        extra_int1 = #{extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt2 != null" >
+        extra_int2 = #{extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="extraDecimal1 != null" >
+        extra_decimal1 = #{extraDecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extraDecimal2 != null" >
+        extra_decimal2 = #{extraDecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extraVarchar1 != null" >
+        extra_varchar1 = #{extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar2 != null" >
+        extra_varchar2 = #{extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elife.pojo.UserShoppingcart" >
+    update user_shoppingcart
+    set start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      field_id = #{fieldId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      reg_id = #{regId,jdbcType=INTEGER},
+      extra_int1 = #{extraInt1,jdbcType=INTEGER},
+      extra_int2 = #{extraInt2,jdbcType=INTEGER},
+      extra_decimal1 = #{extraDecimal1,jdbcType=DECIMAL},
+      extra_decimal2 = #{extraDecimal2,jdbcType=DECIMAL},
+      extra_varchar1 = #{extraVarchar1,jdbcType=VARCHAR},
+      extra_varchar2 = #{extraVarchar2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
