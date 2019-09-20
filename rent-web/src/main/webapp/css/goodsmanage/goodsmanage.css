@@ -131,7 +131,7 @@ li{cursor: pointer;}
 /* 主体部分 */
 .main-con{
     width:1200px;
-    height:500px;
+    /*height:500px;*/
     /*border: 2px solid #0f3230;*/
     margin: auto;
     margin-top: 100px;
@@ -388,12 +388,12 @@ li{cursor: pointer;}
 
 
 /* 底部 */
-/*.footer{*/
+.footer{
     /*margin-top:150px;*/
-    /*width:100%;*/
-    /*height:300px;*/
-    /*background-color: #f2f1f0;*/
-/*}*/
+    width:100%;
+    height:300px;
+    background-color: #f2f1f0;
+}
 .foot-container{
     width:1200px;
     height:300px;

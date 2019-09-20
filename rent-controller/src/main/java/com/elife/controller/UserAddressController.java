@@ -51,32 +51,38 @@ public class UserAddressController {
             resultData.setMessage("增加失败");
         } else {
             resultData.setCode(0);
+            resultData.setData(insertNum);
         }
         return resultData;
     }
 
     // 修改地址
+    @RequestMapping("updataAddress")
     public ResultData updataAddress(@RequestBody UserAddress userAddress){
-        int insertNum = userAddressService.insertAddress(userAddress);
+        int updataNum = userAddressService.insertAddress(userAddress);
         ResultData resultData = new ResultData();
-        if (insertNum == 0) {
+        if (updataNum == 0) {
             resultData.setCode(5);
             resultData.setMessage("修改失败");
         } else {
             resultData.setCode(0);
+            resultData.setData(updataNum);
         }
         return resultData;
     }
 
     // 删除地址
+    @RequestMapping("deleteById")
     public ResultData deleteById(Integer id){
-        int insertNum = userAddressService.deleteById(id);
+        int deleteNum = userAddressService.deleteById(id);
+//        System.out.println("受影响行数："+insertNum);
         ResultData resultData = new ResultData();
-        if (insertNum == 0) {
+        if (deleteNum == 0) {
             resultData.setCode(4);
             resultData.setMessage("删除失败");
         } else {
             resultData.setCode(0);
+            resultData.setData(deleteNum);
         }
         return resultData;
     }

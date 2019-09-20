@@ -42,7 +42,6 @@ public class GoodsManageController {
     }
 
     @RequestMapping("updateByPrimaryKey")
-//    @ResponseBody
     public int updateByPrimaryKey(RentGoods record){
         return goodsManageService.updateByPrimaryKey(record);
     }
