@@ -45,7 +45,7 @@
 		"      $" + $( "#price-range" ).slider( "values", 1 ) );
 
 
-	for(var i=0;i<fielddatas.length;i++){
+	/*for(var i=0;i<fielddatas.length;i++){
 		if(fielddatas[i].fieldDayprice>ui.values[0]&&fielddatas[i].fieldDayprice<ui.values[1])
 		{
 			console.log(fielddatas[i].fieldDayprice)
@@ -53,7 +53,7 @@
 			console.log(afterdata)
 		}
 		fenye(afterdata);
-	}
+	}*/
 /*----- scroll to top -----*/		
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 700) {

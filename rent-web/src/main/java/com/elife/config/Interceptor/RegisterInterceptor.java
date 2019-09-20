@@ -1,3 +1,4 @@
+/*
 package com.elife.config.Interceptor;
 
 import com.elife.annotation.Token;
@@ -68,3 +69,4 @@ public class RegisterInterceptor implements HandlerInterceptor {
         return false;
     }
 }
+*/

@@ -1070,6 +1070,30 @@
 
 <script type="text/javascript">
 
+
+    var dates
+$.ajax({
+    url: "orders/showallorders",
+    async:false,
+    dataType: "json",
+    success:function(data){
+        dates=data;
+    }
+})
+console.log(dates)
+
+ /*
+    function (date){
+        dates=data;
+        start_time="2019-09-22"
+        end_time="2019-09-25"
+        date.format('YYYY-MM-DD') == '2019-09-12'
+    }*/
+
+
+
+
+
     var url = String(window.document.URL);
     var str = url.split("=");
     var fieldid = str[1];
@@ -1129,7 +1153,18 @@ var time;
             endDate: moment()
         },
 
-
+        function isInvalidDate(date) {
+        console.log(dates)
+        console.log(date)
+        if (date.format('YYYY-MM-DD') == '2019-09-13'||date.format('YYYY-MM-DD')=='2019-09-22') {
+            return true;
+        } else {
+            return false;
+        }
+        if(isValid!=true){
+            console.log("ok")
+        }
+    },
 
     function(start, end,label) {
             /*alert(start.)*/
