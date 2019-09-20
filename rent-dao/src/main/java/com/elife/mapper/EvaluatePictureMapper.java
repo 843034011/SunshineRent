@@ -31,5 +31,9 @@ public interface EvaluatePictureMapper {
 
     int updateByPrimaryKey(EvaluatePicture record);
 
+    //插入一条数据
     int insertEvaluatePicture(EvaluatePicture evaluatePicture);
+
+    //根据评价id查询相关的评价图片路径
+    List<String> selectAllByEvaId(int evaId);
 }

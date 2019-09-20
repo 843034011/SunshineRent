@@ -183,4 +183,8 @@
     insert into evaluate_picture (eva_picture, eva_id)
     values (#{evaPicture,jdbcType=VARCHAR}, #{evaId,jdbcType=INTEGER})
   </insert>
+
+  <select id="selectAllByEvaId" parameterType="java.lang.Integer" resultType="java.lang.String">
+      select eva_picture from evaluate_picture where eva_id = #{evaId};
+  </select>
 </mapper>

@@ -8,6 +8,6 @@ import com.elife.pojo.UserEvaluate;
 public interface UserEvaluateService {
 
 
-    int insertUserEvaluate(int grade,String content,int isAnonymous,String time,int regid,int orderid);
+    int insertUserEvaluate(UserEvaluate userEvaluate);
 
 }

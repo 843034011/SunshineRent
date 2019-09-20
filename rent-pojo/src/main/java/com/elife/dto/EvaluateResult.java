@@ -2,19 +2,22 @@ package com.elife.dto;
 
 import com.elife.pojo.EvaluatePicture;
 
+import java.util.Date;
 import java.util.List;
 
+/**
+ * author byf
+ */
 public class EvaluateResult {
 
-    private int regId;
-    private String userPicture;
-    private String userName;
-    private String createTime;
-    private int grade;
-    private String content;
-    private List<EvaluatePicture> pictureList;
-    private int fieldId;
-    private int master;
+    private int regId;              //当前登录用户id     用户信息表
+    private String userPicture;     //当前登录用户头像   用户信息表
+    private String userName;        //当前登录用户昵称   用户信息表
+    private Date createTime;      //评价时间           评价表
+    private int grade;              //评分               评价表
+    private String content;         //评价内容           评价表
+    private List<String> pictureList;//评价图片路径      评价图片表
+    private int fieldId;            //评价的场地id        场地表
 
     public int getRegId() {
         return regId;
@@ -40,11 +43,11 @@ public class EvaluateResult {
         this.userName = userName;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
@@ -64,11 +67,11 @@ public class EvaluateResult {
         this.content = content;
     }
 
-    public List<EvaluatePicture> getPictureList() {
+    public List<String> getPictureList() {
         return pictureList;
     }
 
-    public void setPictureList(List<EvaluatePicture> pictureList) {
+    public void setPictureList(List<String> pictureList) {
         this.pictureList = pictureList;
     }
 
@@ -80,11 +83,17 @@ public class EvaluateResult {
         this.fieldId = fieldId;
     }
 
-    public int getMaster() {
-        return master;
-    }
-
-    public void setMaster(int master) {
-        this.master = master;
+    @Override
+    public String toString() {
+        return "EvaluateResult{" +
+                "regId=" + regId +
+                ", userPicture='" + userPicture + '\'' +
+                ", userName='" + userName + '\'' +
+                ", createTime=" + createTime +
+                ", grade=" + grade +
+                ", content='" + content + '\'' +
+                ", pictureList=" + pictureList +
+                ", fieldId=" + fieldId +
+                '}';
     }
 }
