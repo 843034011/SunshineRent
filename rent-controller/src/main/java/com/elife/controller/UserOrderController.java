@@ -1,7 +1,7 @@
 package com.elife.controller;
 
 import com.elife.pojo.UserOrder;
-import com.elife.service.UserOrderService;
+import com.elife.service.UserOrderServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UserOrderController {
 
     @Autowired
-    UserOrderService userOrderService;
+    UserOrderServiceImpl userOrderService;
 
     @RequestMapping("showallorders")
     @ResponseBody
