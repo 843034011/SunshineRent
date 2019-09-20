@@ -31,13 +31,14 @@ setInterval(function(){
 
 //顶部导航栏
 $('.items').html(
-    ' <li class="item"><a href="">购物车</a></li>\n' +
+    ' <li class="item"><a href="/shoppingcart/showcart">购物车</a></li>\n' +
     '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
     '                        <li class="item"><a href="">咨询中心</a></li>\n' +
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
     '                        <li class="item"><a href="login.html">登录</a></li>\n' +
     '                        <li class="item">\n' +
-    '                            <a href="register.html">注册</a>\n' +
+                                 // llb 2019-9-20 修改首页到注册页面的跳转方式
+    '                            <a href="/register/showregister">注册</a>\n' +
     '                        </li>\n' +
     '                        <li class="item">\n' +
     '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
@@ -144,8 +145,9 @@ $('.div-btn').click(function () {
     type_value = $('#search-box').find('.input-2').val()
     // alert(type_value)
     if(type == '场地'){
-        $(location).attr('href','../../SunshineRent/rent-web/fieldindex.html?name='+type_value);
+        // yy
+        $(location).attr('href','fieldlist.html?name='+type_value);
     }else if(type == '商品'){
-        $(location).attr('href','../../SunshineRent/rent-web/productlist.html?name='+type_value);
+        $(location).attr('href','productlist.html?name='+type_value);
     }
 })

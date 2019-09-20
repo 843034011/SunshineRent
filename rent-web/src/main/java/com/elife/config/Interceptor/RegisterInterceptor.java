@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
+/**
+ * @author llb
+ */
 @Component
 public class RegisterInterceptor implements HandlerInterceptor {
 

@@ -3,8 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>用户个人信息认证</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/identification/indentification.css">
+
 </head>
 <body>
-用户个人信息认证
+
+<div class="container-fluid">
+    <form>
+
+        <div class="form-group">
+            <label for="idcard">身份证号</label>
+            <input type="text" class="form-control" id="idcard" placeholder="身份证号">
+        </div>
+
+        <div class="form-group">
+            <label for="name">用户昵称</label>
+            <input type="text" class="form-control" id="name" placeholder="用户昵称">
+        </div>
+
+        <!-- 分列式按钮下拉框 完成用户选择默认头像的功能 -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">红色头像</button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <div id="img-content">
+                    <img class="img-head" src="images/headred.png" alt="红色头像">
+                    <img class="img-head" src="images/headyellow.png" alt="黄色头像">
+                    <img class="img-head" src="images/headgreen.png" alt="绿色头像">
+                    <img class="img-head" src="images/headstarred.png" alt="红色星星"/>
+                    <img class="img-head" src="images/headstaryellow.png" alt="黄色星星"/>
+                </div>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <img id="headimage" src="images/headred.png" alt="请先选择图片">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">联系电话</label>
+            <input type="text" class="form-control" id="phone" placeholder="联系电话">
+        </div>
+
+        <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" class="form-control" id="email" placeholder="邮箱">
+        </div>
+
+        <div class="form-group form-sunmit">
+            <button type="submit" class="btn btn-default btn-submit">提交</button>
+        </div>
+    </form>
+</div>
+
+<script src="../jquery/jquery-3.4.1.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../js/identification/identification.js"></script>
+
 </body>
+
 </html>

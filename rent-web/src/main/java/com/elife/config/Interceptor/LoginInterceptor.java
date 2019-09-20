@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author llb
+ */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
@@ -21,7 +24,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
 
-        System.out.println(rentRegister.toString());
         if (rentRegister == null) {
             response.sendRedirect("../login.html?info=unlogin");
             return false;
