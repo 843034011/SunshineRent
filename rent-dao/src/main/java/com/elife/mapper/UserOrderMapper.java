@@ -37,4 +37,6 @@ public interface UserOrderMapper {
     //订单中心中显示的数据，查询订单表中除了未支付意外的所有数据
     List<UserOrder> selectAllUserOrder();
 
+    //根据订单id查询数据
+    UserOrder selectById(Integer id);
 }

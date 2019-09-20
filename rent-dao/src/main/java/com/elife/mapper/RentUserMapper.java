@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.RentUser;
 import com.elife.pojo.RentUserExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RentUserMapper {
     int countByExample(RentUserExample example);
 
@@ -20,4 +22,11 @@ public interface RentUserMapper {
     int updateByExampleSelective(@Param("record") RentUser record, @Param("example") RentUserExample example);
 
     int updateByExample(@Param("record") RentUser record, @Param("example") RentUserExample example);
+
+    /**
+     * 根据id查询数据
+     * @param id
+     * @return
+     */
+    RentUser selectById(Integer id);
 }

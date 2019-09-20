@@ -31,5 +31,9 @@ public interface UserEvaluateMapper {
 
     int updateByPrimaryKey(UserEvaluate record);
 
-    int insertUserEvaluate(int grade, String content, int isAnonymous, String time, int regid, int orderid);
+    //插入一条数据
+    int insertUserEvaluate(UserEvaluate userEvaluate);
+
+    //根据id查询评价内容
+    UserEvaluate selectAllById(Integer id);
 }

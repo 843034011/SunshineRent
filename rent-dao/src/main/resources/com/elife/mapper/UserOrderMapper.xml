@@ -312,4 +312,8 @@
   <select id="selectAllUserOrder" resultMap="BaseResultMap">
     select * from user_order
   </select>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select * from user_order where id = #{id}
+  </select>
 </mapper>
