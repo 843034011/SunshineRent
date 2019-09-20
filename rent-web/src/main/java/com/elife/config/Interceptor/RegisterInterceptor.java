@@ -1,4 +1,3 @@
-/*
 package com.elife.config.Interceptor;
 
 import com.elife.annotation.Token;
@@ -10,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
+/**
+ * @author llb
+ */
 @Component
 public class RegisterInterceptor implements HandlerInterceptor {
 
@@ -69,4 +71,4 @@ public class RegisterInterceptor implements HandlerInterceptor {
         return false;
     }
 }
-*/
+

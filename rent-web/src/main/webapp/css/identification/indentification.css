@@ -1,0 +1,26 @@
+.container-fluid {
+    margin-top: 50px;
+    width: 60%;
+}
+.img-head {
+    height: 40px;
+    width: 40px;
+}
+.btn-group{
+    float: left;
+}
+.form-sunmit{
+    text-align: center;
+}
+.btn-submit{
+    width: 200px;
+    text-align: center;
+}
+#headimage{
+    height: 40px;
+    width: 40px;
+}
+#img-content{
+    width: 180px;
+    border: black 1px solid;
+}
