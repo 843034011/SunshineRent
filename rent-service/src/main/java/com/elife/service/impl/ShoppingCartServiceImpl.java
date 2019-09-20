@@ -3,6 +3,7 @@ package com.elife.service.impl;
 import com.elife.mapper.RentFieldMapper;
 import com.elife.mapper.RentGoodsMapper;
 import com.elife.mapper.UserOrderMapper;
+import com.elife.mapper.UserShoppingcartMapper;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentGoods;
 import com.elife.pojo.UserOrder;
@@ -18,20 +19,18 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-    private final UserOrderMapper userOrderMapper;
-    private final RentFieldMapper rentFieldMapper;
-    private final RentGoodsMapper rentGoodsMapper;
-
     @Autowired
-    public ShoppingCartServiceImpl(UserOrderMapper userOrderMapper, RentFieldMapper rentFieldMapper, RentGoodsMapper rentGoodsMapper) {
-        this.userOrderMapper = userOrderMapper;
-        this.rentFieldMapper = rentFieldMapper;
-        this.rentGoodsMapper = rentGoodsMapper;
-    }
+    private UserShoppingcartMapper userShoppingcartMapper;
+    @Autowired
+    private RentFieldMapper rentFieldMapper;
+    @Autowired
+    private RentGoodsMapper rentGoodsMapper;
+
+
 
     @Override
-    public List<UserOrder> selectAllUserOrderUnpaid() {
-        List<UserOrder> userOrders =  userOrderMapper.selectAllUserOrderUnpaid();
+    public List<UserOrder> selectAllUserOrderUnpaidById(Integer regId) {
+        List<UserOrder> userOrders =  userShoppingcartMapper.selectAllUserOrderUnpaidById(regId);
         return userOrders;
     }
 

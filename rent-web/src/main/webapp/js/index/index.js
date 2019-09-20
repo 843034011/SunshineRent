@@ -31,7 +31,8 @@ setInterval(function(){
 
 //顶部导航栏
 $('.items').html(
-    ' <li class="item"><a href="/shoppingcart/showcart">购物车</a></li>\n' +
+    ' <li class="item"><a href="/shoppingcart/showcart?regId='+$.cookie("id")+
+    '                        ">购物车</a></li>\n' +
     '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
     '                        <li class="item"><a href="">咨询中心</a></li>\n' +
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +

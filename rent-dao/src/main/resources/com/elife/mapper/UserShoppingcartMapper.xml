@@ -320,4 +320,9 @@
       extra_varchar2 = #{extraVarchar2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--llb-->
+  <select id="selectAllUserOrderUnpaidById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List" /> from user_shoppingcart where reg_id = #{regId}
+  </select>
 </mapper>

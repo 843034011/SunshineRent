@@ -27,6 +27,10 @@ $("#login").click(function () {
         dataType: "json",
         success: function (data) {
             if(data.code == 0){
+
+                $.cookie("id",data.data.regId)
+                $.cookie("key",data.data.regUsername)
+
                 window.location.href = "index.html"
             } else {
                 $("#telephone").val("")

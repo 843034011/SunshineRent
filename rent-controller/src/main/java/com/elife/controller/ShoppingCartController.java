@@ -33,14 +33,14 @@ public class ShoppingCartController {
     }
 
     /**
-     * 查询所有未支付的订单
+     * 根据regId查询所有未支付的订单
      * @return
      */
-    @RequestMapping("selectall")
+    @RequestMapping("selectallbyid")
     @ResponseBody
-    public ResultData selectAll(){
+    public ResultData selectAll(Integer regId){
         ResultData resultData = new ResultData();
-        List<UserOrder> orders = shoppingCartService.selectAllUserOrderUnpaid();
+        List<UserOrder> orders = shoppingCartService.selectAllUserOrderUnpaidById(regId);
         System.out.println(orders.size());
 
         if(null == orders){

@@ -57,7 +57,6 @@ $("#submit").click(function () {
     console.log(code)
 
     if(confirm == password && code == telecode){
-        alert("成功了！！")
         $.post({
             url:"/register/insertuser",
             data:"telephone=" + telephone + "&password=" + password +"&token=liulanboyoudianshuaiya",
@@ -65,7 +64,7 @@ $("#submit").click(function () {
                 window.location.href="login.html"
             },
             error:function () {
-                
+                alert("真的失败了！！！")
             }
         })
     } else {

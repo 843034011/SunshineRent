@@ -457,7 +457,7 @@
                 //大封禁之术
                 //大封禁之术会调用84次，对应每个页面的日期数量
                 isInvalidDate: function (date) {
-                    if (date.format('YYYY-MM-DD') == '2019-09-12') {
+                    if (date < new Date()) {
                         return true;
                     } else {
                         return false;
@@ -804,6 +804,7 @@
 
                             //highlight the currently selected start date
                             if (calendar[row][col].format('YYYY/MM/DD') == this.startDate.format('YYYY/MM/DD'))
+                                // alert(this.startDate.format('YYYY/MM/DD'))
                                 classes.push('active', 'start-date');
 
                             //highlight the currently selected end date
