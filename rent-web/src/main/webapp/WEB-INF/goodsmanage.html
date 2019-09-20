@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>地址管理</title>
+    <title>商品管理</title>
 
 
     <!--<link rel="stylesheet" href="../css/orderinfo/orderinfo.css">-->
     <script src="../jquery/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <script src="../bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/goodsmanage/goodsmanage.css">
 
-    <link rel="stylesheet" href="../css/useraddress/useraddress.css">
 
 </head>
 <body>
@@ -39,9 +37,9 @@
                         <li class="item"><a href="">商家旺铺</a></li>
                         <li class="item"><a href="">咨询中心</a></li>
                         <!--<li class="item"><a href="">成为租赁商</a></li>-->
-                        <li class="item"><a href="login.html">登录</a></li>
+                        <li class="item"><a href="../login.html">登录</a></li>
                         <li class="item">
-                            <a href="register.html">注册</a>
+                            <a href="../register.html">注册</a>
                         </li>
                         <li class="item">
                             <span class="tel"><a href="">159-8444-5209</a></span>
@@ -60,7 +58,7 @@
                 <li>个人中心</li>
                 <li><a href="#">个人信息</a></li>
                 <li><a href="#">信息认证</a></li>
-                <li><a href="#">地址管理</a></li>
+                <li><a href="useraddress.html">地址管理</a></li>
             </ul>
             <ul>
                 <li>订单管理</li>
@@ -69,44 +67,97 @@
             </ul>
             <ul>
                 <li>商品管理</li>
-                <li><a href="goodsmanage.html">商品管理</a></li>
+                <li><a href="showManage">商品管理</a></li>
             </ul>
         </div>
 
         <!-- 右侧内容 -->
         <!--<div class="right-con orderinfo clearfix fr">-->
-            <div class="address clearfix fr">
-                <p>地址管理</p>
-                <div class="add-box">
-                    <ul id="myaddress">
-                        <li class="clearfix">
-                            <div class="div-out">
-                                <div class="div-in1">
-                                    <p>收货人：<span>张光耀</span></p>
-                                    <p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>
-                                    <p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>
-                                    <p>手机号码：<span>18806202635</span></p>
-                                </div>
-                                <div class="div-in2">
-                                    <div class="fl delete">
-                                        <span>默认地址</span>
-                                        <span>修改</span>
-                                    </div>
-                                    <span class="span-last">×</span>
-                                </div>
-                            </div>
+            <div class="manage clearfix fr">
+                <p>商品管理</p>
+                <ul class="items items1">
+                    <li class="item" value="0">
+                        我的商品(<span>0</span>)
+                    </li>
+                    <li class="item" value="1">
+                        再租商品(<span>0</span>)
+                    </li>
+                    <li class="item" value="2">
+                        退租商品(<span>0</span>)
+                    </li>
+                </ul>
+                <ul id="ul" class="items items2">
+                    <li class="item">
+                        未到期在租商品(<span>0</span>)
+                    </li>
+                    <li class="item">
+                        已到期未归还商品(<span>0</span>)
+                    </li>
+                </ul>
+                <div class="search fl">
+                    <input type="text" class="search-input" placeholder="请输入商品名称进行查询">
+                    <button class="search-btn">搜索</button>
+                </div>
+                <div class="content">
+                    <ul class="con-ul">
+                        <li class="one">商品信息</li>
+                        <li class="one">操作</li>
+
+                        <li class="two">
+                            <!--<div class="div1">-->
+                            <!--<img src="img/goodsmanage/goods01.jpg" height="88" width="88"/>-->
+                            <!--</div>-->
+                            <!--<div class="div2">-->
+                            <!--<div class="div2-con">-->
+                            <!--<span>ThinkPad T440 14英寸笔记本电脑租赁</span>-->
+                            <!--<span>CPU:i5 4代/内存:8G/机械硬盘:500G/显卡:核显/尺寸:14</span>-->
+
+                            <!--</div>-->
+                            <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
+
+                            <!--<div class="div2-input">-->
+                            <!--数量：<input type="number" min="1" step="1" value="1">-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+                            <!--<div class="div3">-->
+                            <!--<button>修改</button>-->
+                            <!--<button>删除</button>-->
+                            <!--</div>-->
                         </li>
                     </ul>
-                    <button class="add-address btn btn-success" data-toggle="modal" id="Mymodal">新增收货地址</button>
-
                 </div>
-            </div>
-        <!--</div>-->
+
+
+
+                <div class="manage-page">
+                    <button>添加</button>
+                    <!--<nav aria-label="Page navigation">-->
+                        <!--<ul class="pagination">-->
+                            <!--<li class="disabled">-->
+                                <!--<a href="#" aria-label="Previous">-->
+                                    <!--<span aria-hidden="true">&laquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="#">1</a></li>-->
+                            <!--<li><a href="#">2</a></li>-->
+                            <!--<li><a href="#">3</a></li>-->
+                            <!--<li><a href="#">4</a></li>-->
+                            <!--<li><a href="#">5</a></li>-->
+                            <!--<li class="disabled">-->
+                                <!--<a href="#" aria-label="Next">-->
+                                    <!--<span aria-hidden="true">&raquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
+                </div>
+            <!--</div>-->
+        </div>
     </div>
 
     <!-- 底部 -->
     <div class="footer">
-        <!--<div style="width:1500px; height:200px; background-color: #00A9E0"></div>-->
         <div class="foot-container">
             <div class="foot-child">
                 <h4>租赁指南</h4>
@@ -168,6 +219,7 @@
                 </div>
             </div>
         </div>
+
         <!--        site-info -->
         <div class="site-info">
             <div class="copyright">
@@ -177,13 +229,9 @@
         </div>
     </div>
 
-
 </div>
 </body>
 
 
-<script src="../js/useraddress/useraddress.js"></script>
-
+<script src="../js/goodsmanage/goodsmanage.js"></script>
 </html>
-
-
