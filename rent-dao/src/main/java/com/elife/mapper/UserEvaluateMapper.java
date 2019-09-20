@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.UserEvaluate;
 import com.elife.pojo.UserEvaluateExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserEvaluateMapper {
     int countByExample(UserEvaluateExample example);
 
@@ -28,4 +30,6 @@ public interface UserEvaluateMapper {
     int updateByPrimaryKeySelective(UserEvaluate record);
 
     int updateByPrimaryKey(UserEvaluate record);
+
+    int insertUserEvaluate(int grade, String content, int isAnonymous, String time, int regid, int orderid);
 }

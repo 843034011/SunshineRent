@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.RentField1Mapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.RentField1" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="field_type" property="fieldType" jdbcType="VARCHAR" />
+    <result column="field_area" property="fieldArea" jdbcType="INTEGER" />
+    <result column="field_people" property="fieldPeople" jdbcType="INTEGER" />
+    <result column="field_info" property="fieldInfo" jdbcType="VARCHAR" />
+    <result column="field_deposit" property="fieldDeposit" jdbcType="DECIMAL" />
+    <result column="field_hourprice" property="fieldHourprice" jdbcType="DECIMAL" />
+    <result column="field_dayprice" property="fieldDayprice" jdbcType="DECIMAL" />
+    <result column="field_weekprice" property="fieldWeekprice" jdbcType="DECIMAL" />
+    <result column="field_monthprice" property="fieldMonthprice" jdbcType="DECIMAL" />
+    <result column="field_address" property="fieldAddress" jdbcType="VARCHAR" />
+    <result column="field_grade" property="fieldGrade" jdbcType="DECIMAL" />
+    <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
+    <result column="reg_id" property="regId" jdbcType="INTEGER" />
+    <result column="extra_int1" property="extraInt1" jdbcType="INTEGER" />
+    <result column="extra_int2" property="extraInt2" jdbcType="INTEGER" />
+    <result column="extra_varchar1" property="extraVarchar1" jdbcType="VARCHAR" />
+    <result column="extra_varchar2" property="extraVarchar2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, field_name, field_type, field_area, field_people, field_info, field_deposit, 
+    field_hourprice, field_dayprice, field_weekprice, field_monthprice, field_address, 
+    field_grade, rent_count, reg_id, extra_int1, extra_int2, extra_varchar1, extra_varchar2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentField1Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rent_field1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rent_field1
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rent_field1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.RentField1Example" >
+    delete from rent_field1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.RentField1" >
+    insert into rent_field1 (id, field_name, field_type, 
+      field_area, field_people, field_info, 
+      field_deposit, field_hourprice, field_dayprice, 
+      field_weekprice, field_monthprice, field_address, 
+      field_grade, rent_count, reg_id, 
+      extra_int1, extra_int2, extra_varchar1, 
+      extra_varchar2)
+    values (#{id,jdbcType=INTEGER}, #{fieldName,jdbcType=VARCHAR}, #{fieldType,jdbcType=VARCHAR}, 
+      #{fieldArea,jdbcType=INTEGER}, #{fieldPeople,jdbcType=INTEGER}, #{fieldInfo,jdbcType=VARCHAR}, 
+      #{fieldDeposit,jdbcType=DECIMAL}, #{fieldHourprice,jdbcType=DECIMAL}, #{fieldDayprice,jdbcType=DECIMAL}, 
+      #{fieldWeekprice,jdbcType=DECIMAL}, #{fieldMonthprice,jdbcType=DECIMAL}, #{fieldAddress,jdbcType=VARCHAR}, 
+      #{fieldGrade,jdbcType=DECIMAL}, #{rentCount,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER}, 
+      #{extraInt1,jdbcType=INTEGER}, #{extraInt2,jdbcType=INTEGER}, #{extraVarchar1,jdbcType=VARCHAR}, 
+      #{extraVarchar2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.RentField1" >
+    insert into rent_field1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fieldName != null" >
+        field_name,
+      </if>
+      <if test="fieldType != null" >
+        field_type,
+      </if>
+      <if test="fieldArea != null" >
+        field_area,
+      </if>
+      <if test="fieldPeople != null" >
+        field_people,
+      </if>
+      <if test="fieldInfo != null" >
+        field_info,
+      </if>
+      <if test="fieldDeposit != null" >
+        field_deposit,
+      </if>
+      <if test="fieldHourprice != null" >
+        field_hourprice,
+      </if>
+      <if test="fieldDayprice != null" >
+        field_dayprice,
+      </if>
+      <if test="fieldWeekprice != null" >
+        field_weekprice,
+      </if>
+      <if test="fieldMonthprice != null" >
+        field_monthprice,
+      </if>
+      <if test="fieldAddress != null" >
+        field_address,
+      </if>
+      <if test="fieldGrade != null" >
+        field_grade,
+      </if>
+      <if test="rentCount != null" >
+        rent_count,
+      </if>
+      <if test="regId != null" >
+        reg_id,
+      </if>
+      <if test="extraInt1 != null" >
+        extra_int1,
+      </if>
+      <if test="extraInt2 != null" >
+        extra_int2,
+      </if>
+      <if test="extraVarchar1 != null" >
+        extra_varchar1,
+      </if>
+      <if test="extraVarchar2 != null" >
+        extra_varchar2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        #{fieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldArea != null" >
+        #{fieldArea,jdbcType=INTEGER},
+      </if>
+      <if test="fieldPeople != null" >
+        #{fieldPeople,jdbcType=INTEGER},
+      </if>
+      <if test="fieldInfo != null" >
+        #{fieldInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldDeposit != null" >
+        #{fieldDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldHourprice != null" >
+        #{fieldHourprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldDayprice != null" >
+        #{fieldDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldWeekprice != null" >
+        #{fieldWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldMonthprice != null" >
+        #{fieldMonthprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldAddress != null" >
+        #{fieldAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldGrade != null" >
+        #{fieldGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="rentCount != null" >
+        #{rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt1 != null" >
+        #{extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt2 != null" >
+        #{extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="extraVarchar1 != null" >
+        #{extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar2 != null" >
+        #{extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.RentField1Example" resultType="java.lang.Integer" >
+    select count(*) from rent_field1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rent_field1
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldName != null" >
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldType != null" >
+        field_type = #{record.fieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldArea != null" >
+        field_area = #{record.fieldArea,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldPeople != null" >
+        field_people = #{record.fieldPeople,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldInfo != null" >
+        field_info = #{record.fieldInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldDeposit != null" >
+        field_deposit = #{record.fieldDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fieldHourprice != null" >
+        field_hourprice = #{record.fieldHourprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fieldDayprice != null" >
+        field_dayprice = #{record.fieldDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fieldWeekprice != null" >
+        field_weekprice = #{record.fieldWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fieldMonthprice != null" >
+        field_monthprice = #{record.fieldMonthprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fieldAddress != null" >
+        field_address = #{record.fieldAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldGrade != null" >
+        field_grade = #{record.fieldGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rentCount != null" >
+        rent_count = #{record.rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.regId != null" >
+        reg_id = #{record.regId,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraInt1 != null" >
+        extra_int1 = #{record.extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraInt2 != null" >
+        extra_int2 = #{record.extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraVarchar1 != null" >
+        extra_varchar1 = #{record.extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraVarchar2 != null" >
+        extra_varchar2 = #{record.extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rent_field1
+    set id = #{record.id,jdbcType=INTEGER},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      field_type = #{record.fieldType,jdbcType=VARCHAR},
+      field_area = #{record.fieldArea,jdbcType=INTEGER},
+      field_people = #{record.fieldPeople,jdbcType=INTEGER},
+      field_info = #{record.fieldInfo,jdbcType=VARCHAR},
+      field_deposit = #{record.fieldDeposit,jdbcType=DECIMAL},
+      field_hourprice = #{record.fieldHourprice,jdbcType=DECIMAL},
+      field_dayprice = #{record.fieldDayprice,jdbcType=DECIMAL},
+      field_weekprice = #{record.fieldWeekprice,jdbcType=DECIMAL},
+      field_monthprice = #{record.fieldMonthprice,jdbcType=DECIMAL},
+      field_address = #{record.fieldAddress,jdbcType=VARCHAR},
+      field_grade = #{record.fieldGrade,jdbcType=DECIMAL},
+      rent_count = #{record.rentCount,jdbcType=INTEGER},
+      reg_id = #{record.regId,jdbcType=INTEGER},
+      extra_int1 = #{record.extraInt1,jdbcType=INTEGER},
+      extra_int2 = #{record.extraInt2,jdbcType=INTEGER},
+      extra_varchar1 = #{record.extraVarchar1,jdbcType=VARCHAR},
+      extra_varchar2 = #{record.extraVarchar2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.RentField1" >
+    update rent_field1
+    <set >
+      <if test="fieldName != null" >
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        field_type = #{fieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldArea != null" >
+        field_area = #{fieldArea,jdbcType=INTEGER},
+      </if>
+      <if test="fieldPeople != null" >
+        field_people = #{fieldPeople,jdbcType=INTEGER},
+      </if>
+      <if test="fieldInfo != null" >
+        field_info = #{fieldInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldDeposit != null" >
+        field_deposit = #{fieldDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldHourprice != null" >
+        field_hourprice = #{fieldHourprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldDayprice != null" >
+        field_dayprice = #{fieldDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldWeekprice != null" >
+        field_weekprice = #{fieldWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldMonthprice != null" >
+        field_monthprice = #{fieldMonthprice,jdbcType=DECIMAL},
+      </if>
+      <if test="fieldAddress != null" >
+        field_address = #{fieldAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldGrade != null" >
+        field_grade = #{fieldGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="rentCount != null" >
+        rent_count = #{rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        reg_id = #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt1 != null" >
+        extra_int1 = #{extraInt1,jdbcType=INTEGER},
+      </if>
+      <if test="extraInt2 != null" >
+        extra_int2 = #{extraInt2,jdbcType=INTEGER},
+      </if>
+      <if test="extraVarchar1 != null" >
+        extra_varchar1 = #{extraVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar2 != null" >
+        extra_varchar2 = #{extraVarchar2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elife.pojo.RentField1" >
+    update rent_field1
+    set field_name = #{fieldName,jdbcType=VARCHAR},
+      field_type = #{fieldType,jdbcType=VARCHAR},
+      field_area = #{fieldArea,jdbcType=INTEGER},
+      field_people = #{fieldPeople,jdbcType=INTEGER},
+      field_info = #{fieldInfo,jdbcType=VARCHAR},
+      field_deposit = #{fieldDeposit,jdbcType=DECIMAL},
+      field_hourprice = #{fieldHourprice,jdbcType=DECIMAL},
+      field_dayprice = #{fieldDayprice,jdbcType=DECIMAL},
+      field_weekprice = #{fieldWeekprice,jdbcType=DECIMAL},
+      field_monthprice = #{fieldMonthprice,jdbcType=DECIMAL},
+      field_address = #{fieldAddress,jdbcType=VARCHAR},
+      field_grade = #{fieldGrade,jdbcType=DECIMAL},
+      rent_count = #{rentCount,jdbcType=INTEGER},
+      reg_id = #{regId,jdbcType=INTEGER},
+      extra_int1 = #{extraInt1,jdbcType=INTEGER},
+      extra_int2 = #{extraInt2,jdbcType=INTEGER},
+      extra_varchar1 = #{extraVarchar1,jdbcType=VARCHAR},
+      extra_varchar2 = #{extraVarchar2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

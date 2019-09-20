@@ -5,11 +5,14 @@ import com.elife.pojo.UserOrder;
 import com.elife.service.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-@Repository
+/**
+ * @author byf
+ */
+@Service
 public class UserOrderServiceImpl  implements UserOrderService {
     @Autowired
     UserOrderMapper userOrderMapper;

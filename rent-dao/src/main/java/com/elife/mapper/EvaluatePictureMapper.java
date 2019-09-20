@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.EvaluatePicture;
 import com.elife.pojo.EvaluatePictureExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface EvaluatePictureMapper {
     int countByExample(EvaluatePictureExample example);
 
@@ -28,4 +30,6 @@ public interface EvaluatePictureMapper {
     int updateByPrimaryKeySelective(EvaluatePicture record);
 
     int updateByPrimaryKey(EvaluatePicture record);
+
+    int insertEvaluatePicture(EvaluatePicture evaluatePicture);
 }
