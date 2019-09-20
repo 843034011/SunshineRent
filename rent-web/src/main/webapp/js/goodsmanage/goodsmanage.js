@@ -25,7 +25,6 @@ function show() {
 }
 
 
-
 var myGoods;
 var len;
 $.post({
@@ -37,8 +36,9 @@ $.post({
         myGoods = data.data;
         len = myGoods.length;
         $.each(myGoods, function (index, value) {
-            $('.two').append(
+            $('.con-ul').append(
                 `
+                <li class="two">
                 <div class="div1">
                 <img src="${value.goodsPictures[0].goodsPicture}" height="88" width="88"/>
                 </div>
@@ -59,6 +59,7 @@ $.post({
                 <button>修改</button>
                 <button>删除</button>
                 </div>
+                </li>
                 `
             )
         })
@@ -75,7 +76,6 @@ $.post({
                 '                退租商品(<span>0</span>)\n' +
                 '            </li>');
         }
-
         show();
     }
 })
@@ -95,7 +95,10 @@ $('.search').find('.search-btn').click(function () {
             var inName = value.goodsName;
             console.log(inName)
             if(inName.indexOf(putName)>=0){
-                html += '                <div class="div1">\n' +
+                html+='<li class="one">'+商品信息+'</li>\n' +
+                    '  <li class="one">'+操作+'</li>\n'+
+                    '<li class="two">\n'+
+                    '                <div class="div1">\n' +
                     '                <img src="'+value.goodsPictures[0].goodsPicture+'" height="88" width="88"/>\n' +
                     '                </div>\n' +
                     '                <div class="div2">\n' +
@@ -114,11 +117,12 @@ $('.search').find('.search-btn').click(function () {
                     '                <div class="div3">\n' +
                     '                <button>修改</button>\n' +
                     '                <button type="button" data-toggle="modal" data-target="#deletemodel" id="delete">删除</button>\n' +
-                    '                </div>'
+                    '                </div>\n' +
+                    '</li>'
             }
         })
     }
-    $('.two').html(html);
+    $('.con-ul').html(html);
 })
 show();
 

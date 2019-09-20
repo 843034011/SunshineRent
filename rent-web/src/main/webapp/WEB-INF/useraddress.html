@@ -17,6 +17,47 @@
 
 <div class="main">
 
+    <!-- 模态框 -->
+    <div class="modal fade" id="new">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"> 添加新地址 </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputUserName" class="col-sm-2 control-label">收件人</label>
+                            <div class="col-sm-10">
+                                <input id="inputUserName" type="text" class="form-control list-inline" placeholder="输入收件人姓名"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputScope" class="col-sm-2 control-label">所在地区</label>
+                            <div class="col-sm-10">
+                                <input id="inputScope" type="text" class="form-control list-inline" placeholder="输入所在地区"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress" class="col-sm-2 control-label">详细地址</label>
+                            <div class="col-sm-10">
+                                <input id="inputAddress" type="text" class="form-control list-inline" placeholder="输入详细地址"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPhone" class="col-sm-2 control-label">手机号码</label>
+                            <div class="col-sm-10">
+                                <input id="inputPhone" type="text" class="form-control list-inline" placeholder="输入电话号码"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <input class="btn btn-success btn-sub" type="button" value="保存">
+                    <input class="btn btn-success btn-updata" type="button" value="修改">
+                    <input class="btn btn-danger btn-cal" data-dismiss="modal" type="button" value="取消">
+                </div>
+            </div>
+        </div>
+    </div>
     <!--    导航，轮播，搜索，-->
     <div class="top">
         <!--        导航栏-->
@@ -39,10 +80,6 @@
                         <li class="item"><a href="">商家旺铺</a></li>
                         <li class="item"><a href="">咨询中心</a></li>
                         <!--<li class="item"><a href="">成为租赁商</a></li>-->
-                        <li class="item"><a href="login.html">登录</a></li>
-                        <li class="item">
-                            <a href="register.html">注册</a>
-                        </li>
                         <li class="item">
                             <span class="tel"><a href="">159-8444-5209</a></span>
                         </li>
@@ -53,7 +90,7 @@
     </div>
 
     <!-- 主体部分 -->
-    <div class="main-con">
+    <div class="main-con clearfix">
         <!-- 左侧导航 -->
         <div class="left-nav fl">
             <ul>
@@ -79,23 +116,24 @@
                 <p>地址管理</p>
                 <div class="add-box">
                     <ul id="myaddress">
-                        <li class="clearfix">
-                            <div class="div-out">
-                                <div class="div-in1">
-                                    <p>收货人：<span>张光耀</span></p>
-                                    <p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>
-                                    <p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>
-                                    <p>手机号码：<span>18806202635</span></p>
-                                </div>
-                                <div class="div-in2">
-                                    <div class="fl delete">
-                                        <span>默认地址</span>
-                                        <span>修改</span>
-                                    </div>
-                                    <span class="span-last">×</span>
-                                </div>
-                            </div>
-                        </li>
+                        <!--<li class="clearfix">-->
+                            <!--<div class="div-out">-->
+                                <!--<div class="div-in1">-->
+                                    <!--<p>收货人：<span>张光耀</span></p>-->
+                                    <!--<p>所在地区：<span>江苏苏州市工业园区工业园区直属地区 </span></p>-->
+                                    <!--<p>详细地址：<span>星湖街328号创意产业园A1区负一楼 </span></p>-->
+                                    <!--<p>手机号码：<span>18806202635</span></p>-->
+                                    <!--<p class="last-p" style="display:none;">编号：<span>1</span></p>-->
+                                <!--</div>-->
+                                <!--<div class="div-in2">-->
+                                    <!--<div class="fl delete">-->
+                                        <!--<span>默认地址</span>-->
+                                        <!--<span>修改</span>-->
+                                    <!--</div>-->
+                                    <!--<span class="span-last">×</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
                     </ul>
                     <button class="add-address btn btn-success" data-toggle="modal" id="Mymodal">新增收货地址</button>
 
