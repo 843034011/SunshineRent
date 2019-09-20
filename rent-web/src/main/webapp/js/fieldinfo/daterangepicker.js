@@ -1,3 +1,5 @@
+
+
 (function(root, factory) {
   	if(typeof define === 'function' && define.amd) {
 		    define(['moment', 'jquery', 'exports'], function(momentjs, $, exports) {
@@ -123,7 +125,7 @@
                                     '</div>' +
                                     '<div class="ranges ranges_1">' +
                                         '<div class="range_inputs">' +
-                                           /* '<button class="applyBtn" disabled="disabled" type="button"></button> ' +*/
+                                            '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
                                             '<button class="cancelBtn" type="button"></button>' +
                                         '</div>' +
                                     '</div>' +
@@ -510,8 +512,18 @@
         },
 
 
-        isInvalidDate: function(date) {
-            /*console.log(date)*/
+
+
+
+        /*isInvalidDate: function(date) {
+            /!*console.log(date)*!/
+            console.log(dates)
+            starttime=dates.data.startTime;
+            var str = url.split("T");
+            var startTime1 = str[1];
+            console.log(dates.data[0].startTime)
+          console.log(startTime1)
+
             if (date.format('YYYY-MM-DD') == '2019-09-12') {
                 return true;
             } else {
@@ -520,7 +532,7 @@
             if(isValid!=true){
                 console.log("ok")
             }
-        },
+        },*/
 
         updateView: function() {
         		//页面点击显示日历后的第三个方法，
@@ -1669,3 +1681,4 @@
     return DateRangePicker;
 
 }));
+

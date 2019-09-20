@@ -1,5 +1,6 @@
+/*
 
-/*package com.elife.controller;
+package com.elife.controller;
 
 import com.elife.dao.MongoTestDao;
 import com.elife.pojo.Pictures;
@@ -11,31 +12,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.peer.PanelPeer;
 import java.util.ArrayList;
-import java.util.List;*/
+import java.util.List;
 
-//@RestController
-//public class MongoTestC {
+@RestController
+public class MongoTestC {
 
-   /* @Autowired
+    @Autowired
     private MongoTestDao mtdao;
 
     @GetMapping(value = "/test1")
     public void saveTest() throws Exception {
         remarks mgtest = new remarks();
-        mgtest.setId(2);
-        mgtest.setOrder_id(9);
+        mgtest.setId(3);
+        mgtest.setOrder_id(10);
         List<Pictures> pictures=new ArrayList<Pictures>();
         Pictures p=new Pictures();
         Pictures p1=new Pictures();
         p.setPicture("http://pxm37tv32.bkt.clouddn.com/%E5%9C%BA%E5%9C%B01b.jpg");
         p1.setPicture("http://pxm37tv32.bkt.clouddn.com/%E5%9C%BA%E5%9C%B01c.jpg");
+        pictures.add(p);
+        pictures.add(p1);
         mgtest.setPicture(pictures);
         mtdao.saveTest(mgtest);
     }
 
     @GetMapping(value = "/test2")
-    public remarks findTestByName() {
-       remarks mgtest = mtdao.findTestByName("ceshi");
+    public remarks findTestByRegId() {
+       remarks mgtest = mtdao.findTestByRegId(4);
         System.out.println("mgtest is " + mgtest);
         return mgtest;
     }
