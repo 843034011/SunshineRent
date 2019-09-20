@@ -1657,9 +1657,9 @@ function fenye(data){
         last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
         page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
         onPageChange: function (num,type) {
-    /*console.log(data.length/6+1)*/
+    console.log(data.length/6+1)
 
-            // console.log( Math.floor(data.length/6+1))
+             console.log( Math.floor(data.length/6+1))
             /*  $('#p2').text(type + '：' + num);*/
           /*  $.jqPaginator('option', {
                 currentPage: num,
@@ -1777,30 +1777,33 @@ function fenye(data){
     var fieldpictures;
     var fielddatas;
 
-var url = String(window.document.URL);
+var url=decodeURI(location.href);
 var str = url.split("=");
 var name = str[1];
+console.log(name);
 var fielddatas;
-var databynames
+var databynames=new Array();
+var i=0
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
         success: function (data) {
             fielddatas=data.data
-            console.log(data.data[0].fieldName)
+            console.log(data)
             console.log(data.data.length)
-
+             console.log(data.data[0].fieldType)
             for(var j=0;j<data.data.length;j++){
-                if(data.data[j].fieldName==name){
-                    databynames=data.data[i];
+                if(data.data[j].fieldType==name){
+                    databynames.push(data.data[j])
+                    console.log(databynames);
+
                 }
-                fenye(databynames)
+
             }
+            console.log(databynames)
+            console.log(databynames.length)
+            fenye(databynames)
 
-
-            /*$.each(fieldpictures, function (i, value) {
-
-            })*/
         }
     })
 

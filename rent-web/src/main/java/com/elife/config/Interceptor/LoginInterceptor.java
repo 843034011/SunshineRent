@@ -1,12 +1,12 @@
 package com.elife.config.Interceptor;
 
-import com.elife.pojo.RentRegister;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
+        import com.elife.pojo.RentRegister;
+        import org.springframework.stereotype.Component;
+        import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
+        import javax.servlet.http.HttpSession;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
