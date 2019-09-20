@@ -1,11 +1,14 @@
 package com.elife.mapper;
 
+import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserShoppingcart;
 import com.elife.pojo.UserShoppingcartExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserShoppingcartMapper {
     int countByExample(UserShoppingcartExample example);
 
@@ -28,4 +31,6 @@ public interface UserShoppingcartMapper {
     int updateByPrimaryKeySelective(UserShoppingcart record);
 
     int updateByPrimaryKey(UserShoppingcart record);
+
+    List<UserOrder> selectAllUserOrderUnpaidById(Integer regId);
 }

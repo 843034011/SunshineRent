@@ -12,10 +12,10 @@ import java.util.List;
 public interface ShoppingCartService {
 
     /**
-     * 查询所有未支付的订单
+     * 根据regId查询所有未支付的订单
      * @return
      */
-    List<UserOrder> selectAllUserOrderUnpaid();
+    List<UserOrder> selectAllUserOrderUnpaidById(Integer regId);
 
     /**
      * 根据id查找场地及场地图片的信息
