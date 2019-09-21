@@ -259,8 +259,14 @@
                 if (typeof options.linkedCalendars === 'boolean')
                     this.linkedCalendars = options.linkedCalendars;
 
+
+                // llb 获取需要被封禁的日期
+                if (typeof options.getInvalidDate === 'function')
+                    this.getInvalidDate = options.getInvalidDate;
+                // yy 大封禁之术
                 if (typeof options.isInvalidDate === 'function')
                     this.isInvalidDate = options.isInvalidDate;
+
 
                 if (typeof options.alwaysShowCalendars === 'boolean')
                     this.alwaysShowCalendars = options.alwaysShowCalendars;
@@ -449,15 +455,52 @@
 
             };
 
+            var jsonInvalidDate = new Array();
 
             DateRangePicker.prototype = {
 
                 constructor: DateRangePicker,
 
+                //小封禁之术
+                getInvalidDate: function () {
+
+                    // console.log(num)
+                    // console.log(kind)
+
+                    $.post({
+                        url: "/orders/selectorderdate",
+                        data: "num=" + num + "&kind=" + kind,
+                        dataType: "json",
+                        success: function (data) {
+                            for (var i = 0; i < data.data.length; i++) {
+
+                                var start = data.data[i].startTime.split("T")[0]
+                                var end = data.data[i].endTime.split("T")[0]
+
+                                do{
+                                    jsonInvalidDate.push(start)
+                                    start = getNewDay(start,1)
+                                }while(start != end);
+
+                                jsonInvalidDate.push(end)
+
+                            }
+                        }
+                    })
+                },
+
                 //大封禁之术
                 //大封禁之术会调用84次，对应每个页面的日期数量
                 isInvalidDate: function (date) {
-                    if (date < new Date()) {
+                    var InvalidDateArray = unique(jsonInvalidDate)
+
+                    for (var j = 0; j < InvalidDateArray.length; j++) {
+                        console.log(jsonInvalidDate[j])
+                        console.log(j)
+                    }
+                    now = new Date()
+                    now.setTime(now.getTime() - 24 * 60 * 60 * 1000)
+                    if (date < now) {
                         return true;
                     } else {
                         return false;
@@ -621,7 +664,7 @@
                 renderCalendar: function (side) {
                     //页面初始怎么显示，显示选择哪个日期
                     //console.log('我是第6个方法');
-
+                    this.getInvalidDate();
                     //
                     // Build the matrix of dates that will populate the calendar
                     //
@@ -804,7 +847,7 @@
 
                             //highlight the currently selected start date
                             if (calendar[row][col].format('YYYY/MM/DD') == this.startDate.format('YYYY/MM/DD'))
-                                // alert(this.startDate.format('YYYY/MM/DD'))
+                            // alert(this.startDate.format('YYYY/MM/DD'))
                                 classes.push('active', 'start-date');
 
                             //highlight the currently selected end date
@@ -1662,3 +1705,21 @@
         }
     )
 );
+
+//日期加上天数得到新的日期
+//dateTemp 需要参加计算的日期，days要添加的天数，返回新的日期，日期格式：YYYY-MM-DD
+function getNewDay(dateTemp, days) {
+    var dateTemp = dateTemp.split("-");
+    var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0]); //转换为MM-DD-YYYY格式
+    var millSeconds = Math.abs(nDate) + (days * 24 * 60 * 60 * 1000);
+    var rDate = new Date(millSeconds);
+    var year = rDate.getFullYear();
+    var month = rDate.getMonth() + 1;
+    if (month < 10) month = "0" + month;
+    var date = rDate.getDate();
+    if (date < 10) date = "0" + date;
+    return (year + "-" + month + "-" + date);
+}
+function unique (arr) {
+    return Array.from(new Set(arr))
+}
