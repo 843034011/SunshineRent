@@ -80,7 +80,9 @@ public class fieldsInfo {
         System.out.println(id);
         userShoppingcart.setFieldId(fieldid);
         userShoppingcart.setRegId(id);
+      fieldsService.insertFields(userShoppingcart);
         return 0;
     }
+
 
 }

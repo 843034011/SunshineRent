@@ -5,27 +5,29 @@ import java.util.List;
 
 public class remarks {
     private Integer id;
-    private Integer eva_grade;
-    private String eva_content;
-    private Date create_time;
-    private Integer reg_id;
-    private Integer order_id;
-    private Integer zan;
+    private String userImg;
+    private String userName;
+    private Date createTime;
+    private Integer remark;
+    private String remarkContent;
+    private Integer fieldId;
+    private Integer masterId;
+    private String reply_content;
     List<Pictures> picture;
-    List<reply> replys;
 
     @Override
     public String toString() {
-        return "Remarks{" +
+        return "remarks{" +
                 "id=" + id +
-                ", eva_grade=" + eva_grade +
-                ", eva_content='" + eva_content + '\'' +
-                ", create_time=" + create_time +
-                ", reg_id=" + reg_id +
-                ", order_id=" + order_id +
-                ", zan=" + zan +
+                ", userImg='" + userImg + '\'' +
+                ", userName='" + userName + '\'' +
+                ", createTime=" + createTime +
+                ", remark=" + remark +
+                ", remarkContent='" + remarkContent + '\'' +
+                ", fieldId=" + fieldId +
+                ", masterId=" + masterId +
+                ", reply_content='" + reply_content + '\'' +
                 ", picture=" + picture +
-                ", replys=" + replys +
                 '}';
     }
 
@@ -37,52 +39,68 @@ public class remarks {
         this.id = id;
     }
 
-    public Integer getEva_grade() {
-        return eva_grade;
+    public String getUserImg() {
+        return userImg;
     }
 
-    public void setEva_grade(Integer eva_grade) {
-        this.eva_grade = eva_grade;
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
     }
 
-    public String getEva_content() {
-        return eva_content;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEva_content(String eva_content) {
-        this.eva_content = eva_content;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Integer getReg_id() {
-        return reg_id;
+    public Integer getRemark() {
+        return remark;
     }
 
-    public void setReg_id(Integer reg_id) {
-        this.reg_id = reg_id;
+    public void setRemark(Integer remark) {
+        this.remark = remark;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public String getRemarkContent() {
+        return remarkContent;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setRemarkContent(String remarkContent) {
+        this.remarkContent = remarkContent;
     }
 
-    public Integer getZan() {
-        return zan;
+    public Integer getFieldId() {
+        return fieldId;
     }
 
-    public void setZan(Integer zan) {
-        this.zan = zan;
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public Integer getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(Integer masterId) {
+        this.masterId = masterId;
+    }
+
+    public String getReply_content() {
+        return reply_content;
+    }
+
+    public void setReply_content(String reply_content) {
+        this.reply_content = reply_content;
     }
 
     public List<Pictures> getPicture() {
@@ -91,13 +109,5 @@ public class remarks {
 
     public void setPicture(List<Pictures> picture) {
         this.picture = picture;
-    }
-
-    public List<reply> getReplys() {
-        return replys;
-    }
-
-    public void setReplys(List<reply> replys) {
-        this.replys = replys;
     }
 }

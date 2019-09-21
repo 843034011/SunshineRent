@@ -93,7 +93,7 @@ $("#bbt").click(function(){
         dataType:'json',
         data:formData2,
         cache: false, //上传文件不需要缓存
-        url:'/evaluate/evaluateData',
+        url:'/test1',
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
