@@ -13,7 +13,8 @@ import java.util.List;
  * @author byf
  */
 @Service
-public class UserOrderServiceImpl  implements UserOrderService {
+public class UserOrderServiceImpl implements UserOrderService {
+
     @Autowired
     UserOrderMapper userOrderMapper;
 
@@ -21,6 +22,18 @@ public class UserOrderServiceImpl  implements UserOrderService {
     public List<UserOrder> selectAllUserOrder() {
         List<UserOrder> userOrders = userOrderMapper.selectAllUserOrder();
         System.out.println(userOrders.size());
+        return userOrders;
+    }
+
+    @Override
+    public List<UserOrder> selectFieldOrderDateUnEvaluate(Integer num) {
+        List<UserOrder> userOrders = userOrderMapper.selectFieldOrderDateUnEvaluate(num);
+        return userOrders;
+    }
+
+    @Override
+    public List<UserOrder> selectGoodsOrderDateUnEvaluate(Integer num) {
+        List<UserOrder> userOrders = userOrderMapper.selectGoodsOrderDateUnEvaluate(num);
         return userOrders;
     }
 }

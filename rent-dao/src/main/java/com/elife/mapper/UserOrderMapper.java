@@ -39,4 +39,10 @@ public interface UserOrderMapper {
 
     //根据订单id查询数据
     UserOrder selectById(Integer id);
+
+    //根据id查询待评价的场地起止日期
+    List<UserOrder> selectFieldOrderDateUnEvaluate(Integer num);
+
+    //根据id查询待评价的商品起止日期
+    List<UserOrder> selectGoodsOrderDateUnEvaluate(Integer num);
 }

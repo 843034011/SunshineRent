@@ -1,6 +1,9 @@
 var url = window.location.href;
 var regId = url.split("=")[1]
 
+var kind;
+var num;
+
 $(".choose-list").html("")
 
 $(".choose-all").html("")
@@ -63,7 +66,7 @@ $.post({
                                     <div class="col-md-1 text-center">${data.data.fieldDeposit}</div>
                                     <div class="col-md-1 text-center"><input class="order-number" type="number" value="1" min="1" max="1" step="1"></div>
                                     <div class="col-md-2 text-center">                             
-                                        <button type="button" class="btn btn-default daterange-btn" id="${orderid}">
+                                        <button type="button" class="btn btn-default daterange-btn" id="${orderid}" kind="field" num="${value.fieldId}">
                                             <span>
                                                 <i class="icon iconfont icon-calendar1"></i>日期选择
                                             </span>
@@ -81,6 +84,11 @@ $.post({
                         // 调用单选功能
                         onechoose()
 
+                        $('#' + orderid + ' button').click(function () {
+                            num = $('#' + orderid + ' button').attr("num")
+                            kind = $('#' + orderid + ' button').attr("kind")
+                        })
+
                         // 每个li的日历选择
                         $('#' + orderid + ' button').daterangepicker({
                                 startDate: moment(),
@@ -97,9 +105,7 @@ $.post({
                         alert("没取到数据！")
                     }
                 })
-            }
-
-            else if ((value.fieldId == null) && (value.goodsId != null)) {
+            } else if ((value.fieldId == null) && (value.goodsId != null)) {
                 // 按Id查找商品图片、信息、押金、租金
                 $.post({
                     url: "/shoppingcart/selectgoodsbyid",
@@ -132,7 +138,7 @@ $.post({
                                     <div class="col-md-1 text-center">${data.data.goodsDeposit}</div>
                                     <div class="col-md-1 text-center"><input class="order-number" type="number" value="1" min="1" max="${data.data.goodsSurplus}" step="1"></div>
                                     <div class="col-md-2 text-center">                             
-                                        <button type="button" class="btn btn-default daterange-btn" id="${orderid}">
+                                        <button type="button" class="btn btn-default daterange-btn" id="${orderid}" kind="goods" num="${value.goodsId}">
                                             <span>
                                                 <i class="icon iconfont icon-calendar1"></i>日期选择
                                             </span>
@@ -150,10 +156,15 @@ $.post({
                         // 调用单选功能
                         onechoose()
 
+                        $('#' + orderid + ' button').click(function () {
+                            num = $('#' + orderid + ' button').attr("num")
+                            kind = $('#' + orderid + ' button').attr("kind")
+                        })
+
                         // 每个li的日历选择
                         $('#' + orderid + ' button').daterangepicker({
                                 startDate: moment(),
-                                endDate: moment()
+                                endDate: moment(),
                             },
                             function (start, end) {
                                 console.log(start.format('YYYY/MM/DD'))

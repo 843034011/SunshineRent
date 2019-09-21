@@ -305,15 +305,19 @@
   </update>
 
 
-  <select id="selectAllUserOrderUnpaid" resultMap="BaseResultMap">
-    select * from user_order where order_status = '未支付'
-  </select>
-
   <select id="selectAllUserOrder" resultMap="BaseResultMap">
     select * from user_order
   </select>
 
   <select id="selectById" resultMap="BaseResultMap">
     select * from user_order where id = #{id}
+  </select>
+
+  <select id="selectFieldOrderDateUnEvaluate" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List" /> from user_order where field_id = #{num} and order_status = '待评价'
+  </select>
+
+  <select id="selectGoodsOrderDateUnEvaluate" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List" /> from user_order where goods_id = #{num} and order_status = '待评价'
   </select>
 </mapper>
