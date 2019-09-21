@@ -8,18 +8,13 @@ $(document).ready(function(){
 })
 
 // 数据库读取数据
-var myAddress;
-$.post({
-    url:"/userAddressCon/selectRegId",
-    dataType:"json",
-    data:"regId="+4,
-    success:function (data) {
-        // alert("hahaha")
-        myAddress = data.data;
-        $.each(myAddress,function (index,value) {
-            var addresses = value.address.split('-');
-            $('#myaddress').append(`
-                <li class="clearfix">
+function each_fun() {
+    $.each(myAddress,function (index,value) {
+        var addresses = value.address.split('-');
+        $('#myaddress').html()
+
+        $('#myaddress').append(`
+                <li class="clearfix li-num">
                     <div class="div-out">
                         <div class="div-in1">
                             <p class="p-name">收货人：<span>${value.pickerName}</span></p>
@@ -38,7 +33,19 @@ $.post({
                     </div>
                 </li>
             `)
-        })
+    })
+}
+
+
+var myAddress;
+$.post({
+    url:"/userAddressCon/selectRegId",
+    dataType:"json",
+    data:"regId="+4,
+    success:function (data) {
+        // alert("hahaha")
+        myAddress = data.data;
+        each_fun()
 
         //删除数据
         $('.div-in2').find('.span-last').click(function () {
@@ -49,20 +56,23 @@ $.post({
                 // data:"id="+3,
                 dataType:"json",
                 success:function (data) {
-                    alert("删除成功")
-                    console.log("删除成功")
-                    // if(data.code == 0) {
-                    //
-                    //     // $("#new").modal("hide")
-                    // } else {
-                    //     alert("增加失败")
-                    // }
+                    // alert(data.code)
+                    if(data.code == 0) {
+                        alert("删除成功");
+                        // $('#myaddress').html(' ');
+                        // $('#myaddress').html(each_fun());
+                    } else {
+                        alert("删除失败")
+                    }
                 }
             })
         })
 
         //修改地址
+        var get_updata_id;
         $('.span-updata').click(function () {
+            get_updata_id = $(this).parent().parent().prev().find('.last-p').find('span').text();
+            // alert("需要修改的id:"+get_updata_id);
             $('.btn-updata').attr('type','button');
             $('.btn-sub').attr('type','hidden')
             $('.modal-header').text('修改地址');
@@ -77,26 +87,29 @@ $.post({
         //修改数据到数据库
         $('.btn-updata').click(function () {
             var updatainfo = JSON.stringify(
-                {pickerName:$('#inputUserName').val(),
-                    address:$('#inputScope').val()+'-'+$('#inputAddress').val(),
-                    pickerPhone:$('#inputPhone').val(),
-                    regId:myAddress[0].regId
+                {
+                    "id":get_updata_id,
+                    "pickerName":$('#inputUserName').val(),
+                    "address":$('#inputScope').val()+'-'+$('#inputAddress').val(),
+                    "pickerPhone":$('#inputPhone').val(),
+                    "regId":myAddress[0].regId
                 });
-            console.log(updatainfo);
+            // console.log(updatainfo);
             $.post({
                 url:"/userAddressCon/updataAddress",
-                data:{
-                    "userAddress":updatainfo
-                },
+                data:updatainfo,
+                // data:"id="+get_updata_id,
                 dataType:"json",
                 // processData: false,//发送异步请求必须设置
-                // contentType: false,
+                contentType: "application/json",
                 success:function (data) {
                     if(data.code == 0) {
-                        console.log("修改成功")
-                        $("#new").modal("hide")
+                        alert("修改成功");
+                        $("#new").modal("hide");
                     } else {
-                        alert("修改失败")
+                        // alert("传到这的id:"+get_updata_id);
+                        alert("修改失败");
+                        // alert(data.code);
                     }
                 }
             })
@@ -109,29 +122,28 @@ $.post({
 $('.btn-sub').click(function () {
     // alert(123);
     // var addressinfo = new FormData();
+    // let pickerName = $('#inputUserName').val();
     var addressinfo = JSON.stringify(
-        {pickerName:$('#inputUserName').val(),
-        address:$('#inputScope').val()+'-'+$('#inputAddress').val(),
-        pickerPhone:$('#inputPhone').val(),
-        regId:myAddress[0].regId
-        // pickerName:$('#inputUsernamer').val()
+        {"pickerName":$('#inputUserName').val(),
+            "address":$('#inputScope').val()+'-'+$('#inputAddress').val(),
+            "pickerPhone":$('#inputPhone').val(),
+            "regId":myAddress[0].regId
         });
     // addressinfo.append('pickerName',$('#inputUsernamer').val());
-    // addressinfo.append('address',$('#inputAddress').val()-$('#inputAddresses').val());
+    // addressinfo.append('address',$('#inputAddress').val()+'-'+$('#inputAddresses').val());
     // addressinfo.append('pickerPhone',$('#inputPhone').val());
     // addressinfo.append('regId',$(myAddress[0].regId));
-    console.log(addressinfo);
+    // console.log(addressinfo);
     $.post({
         url:"/userAddressCon/insertAddress",
-        data:{
-            "userAddress":addressinfo
-        },
+        data:addressinfo,
+        contentType:"application/json",
         dataType:"json",
         // processData: false,//发送异步请求必须设置
         // contentType: false,
         success:function (data) {
             if(data.code == 0) {
-                console.log("添加成功")
+               alert("添加成功")
                 $("#new").modal("hide")
             } else {
                 alert("增加失败")

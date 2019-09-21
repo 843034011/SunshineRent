@@ -39,30 +39,32 @@ $.post({
             $('.con-ul').append(
                 `
                 <li class="two">
-                <div class="div1">
-                <img src="${value.goodsPictures[0].goodsPicture}" height="88" width="88"/>
-                </div>
-                <div class="div2">
-                <div class="div2-con">
-                <span>${value.goodsName}</span>
-                <span>${value.goodsInfo}</span><br/>
-                <span>押金:${value.goodsDeposit}</span>
-                <span>天租金:${value.goodsDayprice}</span>
-                <span>月租金:${value.goodsWeekprice}</span>
-            </div>
-            <div class="div2-input">
-                数量：<input type="number" min="1" step="1" value="${value.goodsNumber}">
-                </div>
-
-                </div>
-                <div class="div3">
-                <button>修改</button>
-                <button>删除</button>
-                </div>
+                    <div class="div1">
+                    <img src="${value.goodsPictures[0].goodsPicture}" height="88" width="88"/>
+                    </div>
+                    <div class="div2">
+                        <div class="div2-con">
+                            <span>${value.goodsName}</span>
+                            <span>${value.goodsInfo}</span><br/>
+                            <span>押金:${value.goodsDeposit}</span>
+                            <span>天租金:${value.goodsDayprice}</span>
+                            <span>月租金:${value.goodsWeekprice}</span>
+                            <span class="span-id" style="display:none;">${value.id}</span>
+                        </div>
+                        <div class="div2-input">
+                        数量：<input type="number" min="1" step="1" value="${value.goodsNumber}">
+                        </div>
+                    </div>
+                    <div class="div3">
+                        <button class="good-updata">修改</button>
+                        <button class="good-delete">删除</button>
+                    </div>
                 </li>
                 `
             )
-        })
+        });
+
+
         if (len != 0) {
             // $('.items1').html('');
             $('.items1').html(
@@ -75,8 +77,36 @@ $.post({
                 '            <li class="item" value="2">\n' +
                 '                退租商品(<span>0</span>)\n' +
                 '            </li>');
-        }
+        };
         show();
+
+        // 删除商品
+        $('.good-delete').click(function () {
+            // alert($(this).parent().prev('.div2').find('.div2-con').find('.span-id').text());
+            // alert(123)
+            $.post({
+                url:"/goodsManageCon/deleteGood",
+                // 实际使用 data:"id="+$(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
+                data:"id="+5,//测试
+                dataType:"json",
+                success:function (data) {
+                    // alert(123)
+                    // alert(data.code)
+                    if(data.code == 0) {
+                        alert("删除成功");
+                        // $('#myaddress').html(' ');
+                        // $('#myaddress').html(each_fun());
+                    } else {
+                        alert("删除失败")
+                    }
+                }
+            })
+        })
+        
+        //修改商品信息
+        $('.good-updata').click(function () {
+            
+        })
     }
 })
 
@@ -115,8 +145,8 @@ $('.search').find('.search-btn').click(function () {
                     '\n' +
                     '                </div>\n' +
                     '                <div class="div3">\n' +
-                    '                <button>修改</button>\n' +
-                    '                <button type="button" data-toggle="modal" data-target="#deletemodel" id="delete">删除</button>\n' +
+                    '                <button class="good-updata">修改</button>\n' +
+                    '                <button class="good-delete">删除</button>\n' +
                     '                </div>\n' +
                     '</li>'
             }
@@ -126,11 +156,33 @@ $('.search').find('.search-btn').click(function () {
 })
 show();
 
-// //操作模态框
-// $('#delete').click(function () {
-//     $('#deletemodel').modal('show');
+
+
+//添加地址到数据库
+// $('.btn-sub').click(function () {
+//     // alert(123);
+//     var addressinfo = new FormData();
+//     addressinfo.append('pickerName',$('#inputUsernamer').val());
+//     addressinfo.append('address',$('#inputAddress').val()+'-'+$('#inputAddresses').val());
+//     addressinfo.append('pickerPhone',$('#inputPhone').val());
+//     addressinfo.append('regId',$(myAddress[0].regId));
+//     console.log(addressinfo);
+//     $.post({
+//         url:"/userAddressCon/insertAddress",
+//         data:addressinfo,
+//         contentType:"application/json",
+//         dataType:"json",
+//         // processData: false,//发送异步请求必须设置
+//         // contentType: false,
+//         success:function (data) {
+//             if(data.code == 0) {
+//                 alert("添加成功")
+//                 $("#new").modal("hide")
+//             } else {
+//                 alert("增加失败")
+//             }
+//         }
+//     })
+//
 // })
-
-
-// $(){}
 

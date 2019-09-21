@@ -41,9 +41,49 @@ public class GoodsManageController {
         return resultData;
     }
 
-    @RequestMapping("updateByPrimaryKey")
-    public int updateByPrimaryKey(RentGoods record){
-        return goodsManageService.updateByPrimaryKey(record);
+    @RequestMapping("updataGood")
+    @ResponseBody
+    public ResultData updataGood(RentGoods rentGood){
+        int updateNum = goodsManageService.updataGood(rentGood);
+        ResultData resultData = new ResultData();
+        if (updateNum == 0) {
+            resultData.setCode(5);
+            resultData.setMessage("修改失败");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(updateNum);
+        }
+        return resultData;
     }
 
+
+    @RequestMapping("deleteGood")
+    @ResponseBody
+    public ResultData deleteGood(Integer id){
+        int deleteNum = goodsManageService.deleteById(id);
+        ResultData resultData = new ResultData();
+        if (deleteNum == 0) {
+            resultData.setCode(4);
+            resultData.setMessage("删除失败");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(deleteNum);
+        }
+        return resultData;
+    }
+
+    @RequestMapping("insertGood")
+    @ResponseBody
+    public ResultData insertGood(RentGoods rentGood){
+        int insertNum = goodsManageService.insertGood(rentGood);
+        ResultData resultData = new ResultData();
+        if (insertNum == 0) {
+            resultData.setCode(6);
+            resultData.setMessage("增加失败");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(insertNum);
+        }
+        return resultData;
+    }
 }

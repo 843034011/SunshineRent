@@ -84,9 +84,87 @@
     reg_id
   </sql>
 
+  <!--
+    zgy
+    查询商品打印到页面
+  -->
   <select id="selectByRegId" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoods">
       select * from rent_goods where reg_id = #{regId,jdbcType=INTEGER}
   </select>
+  <!--
+    zgy
+    修改商品信息
+  -->
+  <update id="updateGood" parameterType="com.elife.pojo.RentGoods" >
+    update rent_goods
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsModel != null" >
+        goods_model = #{goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfo != null" >
+        goods_info = #{goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number = #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSurplus != null" >
+        goods_surplus = #{goodsSurplus,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDeposit != null" >
+        goods_deposit = #{goodsDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDayprice != null" >
+        goods_dayprice = #{goodsDayprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWeekprice != null" >
+        goods_weekprice = #{goodsWeekprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsGrade != null" >
+        goods_grade = #{goodsGrade,jdbcType=INTEGER},
+      </if>
+      <if test="rentCount != null" >
+        rent_count = #{rentCount,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        reg_id = #{regId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--
+    zgy
+    添加商品
+  -->
+  <insert id="insertGood" parameterType="com.elife.pojo.RentGoods" >
+    insert into rent_goods (id, goods_name, goods_type,
+      goods_model, goods_info, goods_number,
+      goods_surplus, goods_deposit, goods_dayprice,
+      goods_weekprice, create_time, goods_grade,
+      rent_count, reg_id)
+    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR},
+      #{goodsModel,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR}, #{goodsNumber,jdbcType=INTEGER},
+      #{goodsSurplus,jdbcType=INTEGER}, #{goodsDeposit,jdbcType=DECIMAL}, #{goodsDayprice,jdbcType=DECIMAL},
+      #{goodsWeekprice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{goodsGrade,jdbcType=INTEGER},
+      #{rentCount,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER})
+  </insert>
+  <!--
+   zgy
+   删除商品
+ -->
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from rent_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample" >
     select
@@ -110,28 +188,14 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from rent_goods
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+
   <delete id="deleteByExample" parameterType="com.elife.pojo.RentGoodsExample" >
     delete from rent_goods
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.elife.pojo.RentGoods" >
-    insert into rent_goods (id, goods_name, goods_type, 
-      goods_model, goods_info, goods_number, 
-      goods_surplus, goods_deposit, goods_dayprice, 
-      goods_weekprice, create_time, goods_grade, 
-      rent_count, reg_id)
-    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, 
-      #{goodsModel,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR}, #{goodsNumber,jdbcType=INTEGER}, 
-      #{goodsSurplus,jdbcType=INTEGER}, #{goodsDeposit,jdbcType=DECIMAL}, #{goodsDayprice,jdbcType=DECIMAL}, 
-      #{goodsWeekprice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{goodsGrade,jdbcType=INTEGER}, 
-      #{rentCount,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER})
-  </insert>
+
   <insert id="insertSelective" parameterType="com.elife.pojo.RentGoods" >
     insert into rent_goods
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -301,51 +365,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.RentGoods" >
-    update rent_goods
-    <set >
-      <if test="goodsName != null" >
-        goods_name = #{goodsName,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsType != null" >
-        goods_type = #{goodsType,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsModel != null" >
-        goods_model = #{goodsModel,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsInfo != null" >
-        goods_info = #{goodsInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsNumber != null" >
-        goods_number = #{goodsNumber,jdbcType=INTEGER},
-      </if>
-      <if test="goodsSurplus != null" >
-        goods_surplus = #{goodsSurplus,jdbcType=INTEGER},
-      </if>
-      <if test="goodsDeposit != null" >
-        goods_deposit = #{goodsDeposit,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsDayprice != null" >
-        goods_dayprice = #{goodsDayprice,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsWeekprice != null" >
-        goods_weekprice = #{goodsWeekprice,jdbcType=DECIMAL},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="goodsGrade != null" >
-        goods_grade = #{goodsGrade,jdbcType=INTEGER},
-      </if>
-      <if test="rentCount != null" >
-        rent_count = #{rentCount,jdbcType=INTEGER},
-      </if>
-      <if test="regId != null" >
-        reg_id = #{regId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.elife.pojo.RentGoods" >
     update rent_goods
     set goods_name = #{goodsName,jdbcType=VARCHAR},
