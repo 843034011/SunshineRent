@@ -1,13 +1,14 @@
 package com.elife.service;
 
 import com.elife.pojo.RentGoods;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * author:zgy
  */
+@Repository
 public interface GoodsManageService {
 
     /**
@@ -20,5 +21,19 @@ public interface GoodsManageService {
      * @param record
      * @return
      */
-    int updateByPrimaryKey(RentGoods record);
+    int updataGood(RentGoods record);
+
+    /**
+     * @author zgy
+     * @param rentGood 要删除的商品
+     * @return 返回修改行数
+     */
+    int insertGood(RentGoods rentGood);
+
+    /**
+     * @author zgy
+     * @param id 商品编号
+     * @return
+     */
+    int deleteById(Integer id);
 }

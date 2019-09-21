@@ -16,14 +16,30 @@ public interface RentGoodsMapper {
      * @return 返回用户商品列表
      */
     List<RentGoods> selectByRegId(Integer regId);
+    /**
+     * @author zgy
+     * @param rentGood 要修改的商品
+     * @return 返回修改行数
+     */
+    int updataGood(RentGoods rentGood);
+    /**
+     * @author zgy
+     * @param rentGood 要删除的商品
+     * @return 返回修改行数
+     */
+    int insertGood(RentGoods rentGood);
+
+    /**
+     * @author zgy
+     * @param id 商品编号
+     * @return
+     */
+    int deleteById(Integer id);
+
 
     int countByExample(RentGoodsExample example);
 
     int deleteByExample(RentGoodsExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(RentGoods record);
 
     int insertSelective(RentGoods record);
 
@@ -36,13 +52,6 @@ public interface RentGoodsMapper {
     int updateByExample(@Param("record") RentGoods record, @Param("example") RentGoodsExample example);
 
     int updateByPrimaryKeySelective(RentGoods record);
-
-    /**
-     * @author zgy
-     * @param record 要修改的商品
-     * @return 返回修改行数
-     */
-    int updateByPrimaryKey(RentGoods record);
 
     /**
      * @author llb

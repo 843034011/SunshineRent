@@ -19,7 +19,18 @@ public class GoodsManageServiceImpl implements GoodsManageService {
     }
 
     @Override
-    public int updateByPrimaryKey(RentGoods record) {
-        return rentGoodsMapper.updateByPrimaryKey(record);
+    public int updataGood(RentGoods rentGood) {
+        return rentGoodsMapper.updataGood(rentGood);
+    }
+
+
+    @Override
+    public int insertGood(RentGoods rentGood) {
+        return rentGoodsMapper.insertGood(rentGood);
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        return rentGoodsMapper.deleteById(id);
     }
 }

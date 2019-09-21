@@ -223,20 +223,10 @@
   <!-- 修改地址 -->
   <update id="updataAddress" parameterType="com.elife.pojo.UserAddress" >
     update user_address
-    <set >
-      <if test="pickerName != null" >
-        picker_name = #{pickerName,jdbcType=VARCHAR},
-      </if>
-      <if test="pickerPhone != null" >
-        picker_phone = #{pickerPhone,jdbcType=CHAR},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="regId != null" >
-        reg_id = #{regId,jdbcType=INTEGER},
-      </if>
-    </set>
+    set picker_name = #{pickerName,jdbcType=VARCHAR},
+      picker_phone = #{pickerPhone,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      reg_id = #{regId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!-- 删除地址 -->

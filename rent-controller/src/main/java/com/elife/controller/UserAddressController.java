@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * author:zgy
  */
@@ -43,6 +45,7 @@ public class UserAddressController {
 
     // 添加地址
     @RequestMapping("insertAddress")
+    @ResponseBody
     public ResultData insertAddress(@RequestBody UserAddress userAddress){
         int insertNum = userAddressService.insertAddress(userAddress);
         ResultData resultData = new ResultData();
@@ -58,8 +61,9 @@ public class UserAddressController {
 
     // 修改地址
     @RequestMapping("updataAddress")
+    @ResponseBody
     public ResultData updataAddress(@RequestBody UserAddress userAddress){
-        int updataNum = userAddressService.insertAddress(userAddress);
+        int updataNum = userAddressService.updataAddress(userAddress);
         ResultData resultData = new ResultData();
         if (updataNum == 0) {
             resultData.setCode(5);
@@ -73,6 +77,7 @@ public class UserAddressController {
 
     // 删除地址
     @RequestMapping("deleteById")
+    @ResponseBody
     public ResultData deleteById(Integer id){
         int deleteNum = userAddressService.deleteById(id);
 //        System.out.println("受影响行数："+insertNum);

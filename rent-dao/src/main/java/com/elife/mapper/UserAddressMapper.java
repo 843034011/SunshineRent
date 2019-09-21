@@ -29,6 +29,9 @@ public interface UserAddressMapper {
 
     int updateByPrimaryKey(UserAddress record);
 
+    /**
+     * @author zgy
+     */
     //根据用户注册id查地址
     List<UserAddress> selectByRegId(Integer regId);
     //添加地址
