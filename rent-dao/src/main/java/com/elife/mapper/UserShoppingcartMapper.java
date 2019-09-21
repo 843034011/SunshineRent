@@ -33,4 +33,6 @@ public interface UserShoppingcartMapper {
     int updateByPrimaryKey(UserShoppingcart record);
 
     List<UserOrder> selectAllUserOrderUnpaidById(Integer regId);
+
+    int insertFields(UserShoppingcart userShoppingcart);
 }

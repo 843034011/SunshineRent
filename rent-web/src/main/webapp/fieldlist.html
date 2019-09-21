@@ -1658,14 +1658,9 @@ function fenye(data){
         page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
         onPageChange: function (num,type) {
     console.log(data.length/6+1)
-
              console.log( Math.floor(data.length/6+1))
             /*  $('#p2').text(type + '：' + num);*/
-          /*  $.jqPaginator('option', {
-                currentPage: num,
-                totalPages:11,
-                pageSize:6,
-            });*/
+
             var n=num-1;
 
             $('.all-grid-product').text("");
@@ -1727,6 +1722,7 @@ function fenye(data){
             <a href="fieldinfo.html" title=""><img src="${data[6*n+i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
             <div class="single-product-overlay">
                 <div class="rating-box">
+
                     <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
                     <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
                     <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>

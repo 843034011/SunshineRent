@@ -325,4 +325,9 @@
   <select id="selectAllUserOrderUnpaidById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select <include refid="Base_Column_List" /> from user_shoppingcart where reg_id = #{regId}
   </select>
+
+  <!--新增商品yy，逐渐回填-->
+  <insert id="insertFields" parameterType="usershoppingcart" useGeneratedKeys="true" keyProperty="id">
+        insert into user_shoppingcart(field_id,reg_id) values (#{fieldId},#{regId})
+    </insert>
 </mapper>
