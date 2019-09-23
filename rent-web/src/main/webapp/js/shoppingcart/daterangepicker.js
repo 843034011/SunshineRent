@@ -259,14 +259,9 @@
                 if (typeof options.linkedCalendars === 'boolean')
                     this.linkedCalendars = options.linkedCalendars;
 
-
-                // llb 获取需要被封禁的日期
-                if (typeof options.getInvalidDate === 'function')
-                    this.getInvalidDate = options.getInvalidDate;
                 // yy 大封禁之术
                 if (typeof options.isInvalidDate === 'function')
                     this.isInvalidDate = options.isInvalidDate;
-
 
                 if (typeof options.alwaysShowCalendars === 'boolean')
                     this.alwaysShowCalendars = options.alwaysShowCalendars;
@@ -455,51 +450,16 @@
 
             };
 
-            var jsonInvalidDate = new Array();
-
             DateRangePicker.prototype = {
 
                 constructor: DateRangePicker,
 
-                //小封禁之术
-                getInvalidDate: function () {
-
-                    // console.log(num)
-                    // console.log(kind)
-
-                    $.post({
-                        url: "/orders/selectorderdate",
-                        data: "num=" + num + "&kind=" + kind,
-                        dataType: "json",
-                        success: function (data) {
-                            for (var i = 0; i < data.data.length; i++) {
-
-                                var start = data.data[i].startTime.split("T")[0]
-                                var end = data.data[i].endTime.split("T")[0]
-
-                                do{
-                                    jsonInvalidDate.push(start)
-                                    start = getNewDay(start,1)
-                                }while(start != end);
-
-                                jsonInvalidDate.push(end)
-
-                            }
-                        }
-                    })
-                },
-
                 //大封禁之术
                 //大封禁之术会调用84次，对应每个页面的日期数量
                 isInvalidDate: function (date) {
-                    var InvalidDateArray = unique(jsonInvalidDate)
-
-                    for (var j = 0; j < InvalidDateArray.length; j++) {
-                        console.log(jsonInvalidDate[j])
-                        console.log(j)
-                    }
                     now = new Date()
                     now.setTime(now.getTime() - 24 * 60 * 60 * 1000)
+
                     if (date < now) {
                         return true;
                     } else {
@@ -508,6 +468,7 @@
                 },
 
                 setStartDate: function (startDate) {
+
                     //console.log('我是第1个方法');
                     if (typeof startDate === 'string')
                         this.startDate = moment(startDate, this.locale.format);
@@ -541,6 +502,19 @@
                     if (typeof endDate === 'object')
                         this.endDate = moment(endDate);
 
+                    var s = this.startDate.format('YYYY-MM-DD')
+                    var e = this.endDate.format('YYYY-MM-DD')
+
+                    while (s != e){
+                        if($.inArray(s,jsonInvalidDate) >= 0 ){
+                            alert("这个区间不行，请您重新选择！")
+                            this.endDate = ""
+                            break
+                        } else {
+                            s = getNewDay(s,1)
+                        }
+                    }
+
                     if (!this.timePicker)
                         this.endDate = this.endDate.endOf('day');
 
@@ -565,6 +539,7 @@
                 },
 
                 updateView: function () {
+
                     //页面点击显示日历后的第三个方法，
                     //console.log('我是第3个方法');
                     if (this.timePicker) {
@@ -589,6 +564,7 @@
                 },
 
                 updateMonthsInView: function () {
+
                     //页面点击显示日历后的第四个方法，如果有结束日期，或者没有结束日期
                     //console.log('我是第4个方法');
                     if (this.endDate) {
@@ -664,7 +640,34 @@
                 renderCalendar: function (side) {
                     //页面初始怎么显示，显示选择哪个日期
                     //console.log('我是第6个方法');
-                    this.getInvalidDate();
+                    console.log(num)
+                    console.log(kind)
+
+                    $.post({
+                        url: "/orders/selectorderdate",
+                        async: false,
+                        data: "num=" + num + "&kind=" + kind,
+                        dataType: "json",
+                        success: function (data) {
+                            for (var i = 0; i < data.data.length; i++) {
+
+                                var start = data.data[i].startTime.split("T")[0]
+                                var end = data.data[i].endTime.split("T")[0]
+
+                                do {
+                                    jsonInvalidDate.push(start)
+                                    start = getNewDay(start, 1)
+                                } while (start != end);
+                                jsonInvalidDate.push(end)
+                            }
+                            console.log(unique(jsonInvalidDate).length)
+                            for (var i = 0; i < unique(jsonInvalidDate).length; i++) {
+                                console.log(unique(jsonInvalidDate)[i])
+                            }
+
+                            console.log("=================================")
+                        }
+                    })
                     //
                     // Build the matrix of dates that will populate the calendar
                     //
@@ -818,12 +821,27 @@
                             html += '<td class="week">' + calendar[row][0].isoWeek() + '</td>';
 
                         for (var col = 0; col < 7; col++) {
+                            // console.log($.inArray(calendar[row][col].format('YYYY-MM-DD'), unique(jsonInvalidDate)))
+                            // console.log(calendar[row][col].format('YYYY-MM-DD'))
 
                             var classes = [];
 
-                            //highlight today's date
-                            if (calendar[row][col].isSame(new Date(), "day"))
+                            if ($.inArray(calendar[row][col].format('YYYY-MM-DD'),unique(jsonInvalidDate)) >= 0){
+                                classes.push('off','disabled');
+                            } else {
                                 classes.push('today');
+                            }
+
+                            //don't allow selection of date if a custom function decides it's invalid
+                            if (this.isInvalidDate(calendar[row][col])) {
+                                // console.log(calendar[row][col].format('YYYY-MM-DD'))
+                                classes.push('off', 'disabled');
+                            }
+
+                            //highlight today's date
+                            if (calendar[row][col].isSame(new Date(), "day")) {
+                                classes.push('today');
+                            }
 
                             //highlight weekends
                             if (calendar[row][col].isoWeekday() > 5)
@@ -839,10 +857,6 @@
 
                             //don't allow selection of dates after the maximum date
                             if (maxDate && calendar[row][col].isAfter(maxDate, 'day'))
-                                classes.push('off', 'disabled');
-
-                            //don't allow selection of date if a custom function decides it's invalid
-                            if (this.isInvalidDate(calendar[row][col]))
                                 classes.push('off', 'disabled');
 
                             //highlight the currently selected start date
@@ -877,7 +891,6 @@
                     html += '</table>';
 
                     this.container.find('.calendar.' + side + ' .calendar-table').html(html);
-
                 },
 
                 renderTimePicker: function (side) {
@@ -1045,9 +1058,12 @@
                     //  return;
 
                     this.container.find('input[name=daterangepicker_start]').val(this.startDate.format(this.locale.format));
+                    // this.container.find('input[name=daterangepicker_start]').val();
                     this.container.find('input[name=daterangepicker_end]').val(this.startDate.format(this.locale.format));
+                    // this.container.find('input[name=daterangepicker_end]').val();
                     if (this.endDate)
                         this.container.find('input[name=daterangepicker_end]').val(this.endDate.format(this.locale.format));
+                        // this.container.find('input[name=daterangepicker_end]').val();
 
                     if (this.singleDatePicker || (this.endDate && (this.startDate.isBefore(this.endDate) || this.startDate.isSame(this.endDate)))) {
                         this.container.find('button.applyBtn').removeAttr('disabled');
@@ -1165,24 +1181,23 @@
                     //console.log('我是第11个方法');
                     if (!this.isShowing) {
                         return
-                    }
-                    ;
+                    };
                     //incomplete date selection, revert to last values
                     //这个判断是只选择了一个日子
-                    if (this.startDate && !this.endDate) {
-                        //console.log('现在是单日子')
-                        $('#daterange-btn span').html(this.container.find('input[name=daterangepicker_start]').val());
-                        //this.startDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_start]').val()))
-                        //this.endDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_end]').val()));
-                        //this.callback(this.startDate, this.endDate, this.chosenLabel);
-                        this.updateElement();
-                        $(document).off('.daterangepicker');
-                        $(window).off('.daterangepicker');
-                        this.container.hide();
-                        this.element.trigger('hide.daterangepicker', this);
-                        this.isShowing = false;
-
-                    } else {
+                    // if (this.startDate && !this.endDate) {
+                    //     //console.log('现在是单日子')
+                    //     $('#daterange-btn span').html(this.container.find('input[name=daterangepicker_start]').val());
+                    //     //this.startDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_start]').val()))
+                    //     //this.endDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_end]').val()));
+                    //     //this.callback(this.startDate, this.endDate, this.chosenLabel);
+                    //     this.updateElement();
+                    //     $(document).off('.daterangepicker');
+                    //     $(window).off('.daterangepicker');
+                    //     this.container.hide();
+                    //     this.element.trigger('hide.daterangepicker', this);
+                    //     this.isShowing = false;
+                    //
+                    // } else {
                         //console.log('现在是我自己选择的')
                         //if a new date range was selected, invoke the user callback function
                         if (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate)) {
@@ -1198,7 +1213,7 @@
                         this.container.hide();
                         this.element.trigger('hide.daterangepicker', this);
                         this.isShowing = false;
-                    }
+                    //}
                 },
 
                 toggle: function (e) {
@@ -1212,18 +1227,18 @@
                 },
 
                 outsideClick: function (e) {
-                    //console.log('我是第13个方法');
-                    var target = $(e.target);
-                    // if the page is clicked anywhere except within the daterangerpicker/button
-                    // itself then call this.hide()
-                    if (
-                        // ie modal dialog fix
-                        e.type == "focusin" ||
-                        target.closest(this.element).length ||
-                        target.closest(this.container).length ||
-                        target.closest('.calendar-table').length
-                    ) return;
-                    this.hide();
+                //     //console.log('我是第13个方法');
+                //     var target = $(e.target);
+                //     // if the page is clicked anywhere except within the daterangerpicker/button
+                //     // itself then call this.hide()
+                //     if (
+                //         // ie modal dialog fix
+                //         e.type == "focusin" ||
+                //         target.closest(this.element).length ||
+                //         target.closest(this.container).length ||
+                //         target.closest('.calendar-table').length
+                //     ) return;
+                //     this.hide();
                 },
 
                 showCalendars: function () {
@@ -1501,6 +1516,20 @@
                 clickApply: function (e) {
                     //console.log('我是第23个方法');
                     this.element.trigger('apply.daterangepicker', this);
+                    var s = this.startDate.format('YYYY-MM-DD')
+                    var e = this.endDate.format('YYYY-MM-DD')
+
+                    do{
+                        if($.inArray(s,jsonInvalidDate) >= 0 ){
+                            alert("这个区间不行，请您重新选择！")
+                            this.startDate = ""
+                            this.endDate = ""
+                            break
+                        } else {
+                            s = getNewDay(s,1)
+                        }
+                    } while (s != e);
+
                     this.hide();
                 },
 
@@ -1615,7 +1644,9 @@
                     //console.log('我是第27个方法');
                     var isRight = $(e.target).closest('.calendar').hasClass('right');
                     var start = moment(this.container.find('input[name="daterangepicker_start"]').val(), this.locale.format);
+                    // var start = moment(this.container.find('input[name="daterangepicker_start"]').val());
                     var end = moment(this.container.find('input[name="daterangepicker_end"]').val(), this.locale.format);
+                    // var end = moment(this.container.find('input[name="daterangepicker_end"]').val());
 
                     if (start.isValid() && end.isValid()) {
 
@@ -1720,6 +1751,7 @@ function getNewDay(dateTemp, days) {
     if (date < 10) date = "0" + date;
     return (year + "-" + month + "-" + date);
 }
-function unique (arr) {
+
+function unique(arr) {
     return Array.from(new Set(arr))
 }
