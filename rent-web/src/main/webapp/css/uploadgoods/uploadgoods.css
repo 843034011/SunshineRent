@@ -61,6 +61,13 @@ body{
     width:80px;
     color:rgb(0,200,190);
 }
+.header .return{
+    background-color:rgb(0,200,190) ;
+    color:#fff;
+}
+.header .return:hover{
+    background-color: rgba(0,200,190,0.8);
+}
 #shoppingcart-btn{
     height:38px;
     width:100px;
@@ -78,10 +85,14 @@ body{
     height:40px;
     width:80px;
     color:#ffffff;
-    color:rgb(0,200,190);
+    background-color:rgb(0,200,190);
     margin-left:0px;
     margin-right:150px;
     margin-top:10px;
+
+}
+#search:hover{
+    background-color: rgba(0,200,190,0.8);
 }
 #header-search-form{
     width:400px;
@@ -94,7 +105,10 @@ body{
     height:40px;
     width:320px;
     color:rgb(0,200,190);
-    background-color:#ffffff;
+    background-color:#fff;
+    padding-left:5px;
+    border-color:rgb(0,200,190) ;
+    border-right:0px solid #fff ;
 }
 
 /* container */
@@ -152,7 +166,7 @@ body{
 
 
 .container-right{
-    width:900px;
+    width:800px;
     background-color:#ffffff;
     box-shadow: 10px 10px 10px #f1f1f1;
     margin: auto;
@@ -178,23 +192,23 @@ body{
     width:50%;
 }
 .input-number{
-    width:60px;
+    width:15%;
 }
 .input-deposit{
     width:15%;
 }
 .input-rentprice{
-    width:10%;
+    width:13%;
 }
 .input-textarea{
-    width:80%;
+    width:88%;
 }
 
 .picture-upload-div{
     width:562px;
     min-height:172px;
     padding-top:20px;
-    border:1px solid rgb(0,200,190);
+    border:1px solid rgb(204,204,204);
 }
 .imageDiv {
     display:inline-block;
@@ -203,7 +217,7 @@ body{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
-    border:1px dashed rgb(0,200,190);
+    border:1px dashed rgb(204,204,204);
     background:#f8f8f8;
     position:relative;
     overflow:hidden;
@@ -223,7 +237,7 @@ body{
     cursor:pointer;
 }
 .image-cover .delbtn {
-    color:red;
+    color:rgb(0,200,190);
     font-size:20px;
 }
 .imageDiv:hover .image-cover {
@@ -279,4 +293,20 @@ body{
 }
 #goodsinfo-span{
     color:rgb(0,200,190);
+    display:block;
+    margin-left: 435px;
 }
+
+.container-right .div-btn{
+    width:88%;
+    height:50px;
+    margin: auto;
+    /*background-color: #00aced;*/
+}
+
+.container-right .div-btn .goods-btn{
+    float: right;
+    height:100%;
+    width:120px;
+}
+

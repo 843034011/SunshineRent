@@ -56,7 +56,7 @@ $.post({
                         </div>
                     </div>
                     <div class="div3">
-                        <button class="good-updata">修改</button>
+                        <button class="good-updata"><a href="addGoods?id=${value.id}">修改</a></button>
                         <button class="good-delete">删除</button>
                     </div>
                 </li>
@@ -82,8 +82,6 @@ $.post({
 
         // 删除商品
         $('.good-delete').click(function () {
-            // alert($(this).parent().prev('.div2').find('.div2-con').find('.span-id').text());
-            // alert(123)
             $.post({
                 url:"/goodsManageCon/deleteGood",
                 // 实际使用 data:"id="+$(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
@@ -102,10 +100,10 @@ $.post({
                 }
             })
         })
-        
+
         //修改商品信息
         $('.good-updata').click(function () {
-            
+            window.location.href = "http://localhost:8080/goodsManageCon/addGoods";
         })
     }
 })
@@ -156,33 +154,4 @@ $('.search').find('.search-btn').click(function () {
 })
 show();
 
-
-
-//添加地址到数据库
-// $('.btn-sub').click(function () {
-//     // alert(123);
-//     var addressinfo = new FormData();
-//     addressinfo.append('pickerName',$('#inputUsernamer').val());
-//     addressinfo.append('address',$('#inputAddress').val()+'-'+$('#inputAddresses').val());
-//     addressinfo.append('pickerPhone',$('#inputPhone').val());
-//     addressinfo.append('regId',$(myAddress[0].regId));
-//     console.log(addressinfo);
-//     $.post({
-//         url:"/userAddressCon/insertAddress",
-//         data:addressinfo,
-//         contentType:"application/json",
-//         dataType:"json",
-//         // processData: false,//发送异步请求必须设置
-//         // contentType: false,
-//         success:function (data) {
-//             if(data.code == 0) {
-//                 alert("添加成功")
-//                 $("#new").modal("hide")
-//             } else {
-//                 alert("增加失败")
-//             }
-//         }
-//     })
-//
-// })
 

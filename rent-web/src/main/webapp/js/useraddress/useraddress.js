@@ -120,20 +120,12 @@ $.post({
 
 //添加地址到数据库
 $('.btn-sub').click(function () {
-    // alert(123);
-    // var addressinfo = new FormData();
-    // let pickerName = $('#inputUserName').val();
-    var addressinfo = JSON.stringify(
-        {"pickerName":$('#inputUserName').val(),
+    var addressinfo = JSON.stringify({
+            "pickerName":$('#inputUserName').val(),
             "address":$('#inputScope').val()+'-'+$('#inputAddress').val(),
             "pickerPhone":$('#inputPhone').val(),
             "regId":myAddress[0].regId
         });
-    // addressinfo.append('pickerName',$('#inputUsernamer').val());
-    // addressinfo.append('address',$('#inputAddress').val()+'-'+$('#inputAddresses').val());
-    // addressinfo.append('pickerPhone',$('#inputPhone').val());
-    // addressinfo.append('regId',$(myAddress[0].regId));
-    // console.log(addressinfo);
     $.post({
         url:"/userAddressCon/insertAddress",
         data:addressinfo,
@@ -143,10 +135,10 @@ $('.btn-sub').click(function () {
         // contentType: false,
         success:function (data) {
             if(data.code == 0) {
-               alert("添加成功")
+               alert("添加成功");
                 $("#new").modal("hide")
             } else {
-                alert("增加失败")
+                alert("添加失败")
             }
         }
     })

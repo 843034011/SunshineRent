@@ -1,5 +1,6 @@
 package com.elife.service;
 
+import com.elife.pojo.GoodsPicture;
 import com.elife.pojo.RentGoods;
 import org.springframework.stereotype.Repository;
 
@@ -18,14 +19,25 @@ public interface GoodsManageService {
     List<RentGoods> selectByRegId(Integer regId);
 
     /**
+     * 通过商品id查找商品
+     * @return 返回商品
+     */
+    RentGoods selectById(Integer id);
+
+    /**
      * @param record
      * @return
      */
     int updataGood(RentGoods record);
+    /**
+     * @param goodsPicture
+     * @return
+     */
+    int updataPic(GoodsPicture goodsPicture);
 
     /**
      * @author zgy
-     * @param rentGood 要删除的商品
+     * @param rentGood
      * @return 返回修改行数
      */
     int insertGood(RentGoods rentGood);

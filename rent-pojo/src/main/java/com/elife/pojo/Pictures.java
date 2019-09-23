@@ -1,7 +1,7 @@
 package com.elife.pojo;
 
 public class Pictures {
-     private String picture;
+    private String picture;
 
     public String getPicture() {
         return picture;
