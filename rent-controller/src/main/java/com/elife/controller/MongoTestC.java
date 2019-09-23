@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.peer.PanelPeer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,11 +39,19 @@ public class MongoTestC {
         evaluateResult.setFieldId(fieldId);*/
     @PostMapping(value = "/test1")
     public void saveTest(MultipartFile[] file, int grade, String content) throws Exception {
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HHmmss");
+        String date1=simpleDateFormat.format(date);
+
+
+
+
         System.out.println(file);
         System.out.println(content);
         EvaluateResult evaluateResult=evaluateResultService.saveEvaluateResult( file,grade,content,9);
         remarks mgtest = new remarks();
-        mgtest.setId(evaluateResult.getRegId());
+        mgtest.setId( Integer.parseInt(date1));
+        mgtest.setReg_id(evaluateResult.getRegId());
         mgtest.setUserImg(evaluateResult.getUserPicture());
         mgtest.setUserName(evaluateResult.getUserName());
         mgtest.setCreateTime(evaluateResult.getCreateTime());

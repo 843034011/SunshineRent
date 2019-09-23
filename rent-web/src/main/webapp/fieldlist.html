@@ -1644,7 +1644,12 @@
 
 <script>
 function fenye(data){
-
+    var totalPages;
+    if(data.length%6==0){
+        totalPages=data.length/6
+    }else{
+        totalPages=data.length/6+1
+    }
     $.jqPaginator('#pagination2', {
 
         totalPages:Math.floor(data.length/6+1),
@@ -1667,6 +1672,7 @@ function fenye(data){
             if(data.length-n*6>=6)
             {
                 for (i = 0; i < 6; i++) {
+                    console.log(data[i].picture.length)
                     fieldpictures = data[i].fieldPictures[0]
 
                     $('.all-grid-product').append(
