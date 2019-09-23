@@ -31,7 +31,6 @@ public class EvaluateResultService {
         EvaluateResult evaluateResult = new EvaluateResult();
 
         UserOrder  userOrder = userOrderMapper.selectById(orderId);
-        int fieldId = userOrder.getFieldId();
         int regId = userOrder.getRentId();
 
         RentUser rentUser = rentUserMapper.selectById(regId);
@@ -60,7 +59,16 @@ public class EvaluateResultService {
         evaluateResult.setGrade(grade);
         evaluateResult.setContent(content);
         evaluateResult.setPictureList(pictureList);
-        evaluateResult.setFieldId(fieldId);
+        Integer fieldId;
+        if( userOrder.getFieldId() != null){
+            fieldId = userOrder.getFieldId();
+            evaluateResult.setFieldId(fieldId);
+        }
+        Integer goodsId;
+        if( userOrder.getGoodsId() != null){
+            goodsId = userOrder.getGoodsId();
+            evaluateResult.setGoodsId(goodsId);
+        }
 
         return evaluateResult;
     }

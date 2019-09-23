@@ -17,7 +17,8 @@ public class EvaluateResult {
     private int grade;              //评分               评价表
     private String content;         //评价内容           评价表
     private List<String> pictureList;//评价图片路径      评价图片表
-    private int fieldId;            //评价的场地id        场地表
+    private Integer fieldId;            //评价的场地id        场地表
+    private Integer goodsId;            //评价的商品id        商品表
 
     public int getRegId() {
         return regId;
@@ -83,6 +84,14 @@ public class EvaluateResult {
         this.fieldId = fieldId;
     }
 
+    public int getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
+
     @Override
     public String toString() {
         return "EvaluateResult{" +
@@ -94,6 +103,7 @@ public class EvaluateResult {
                 ", content='" + content + '\'' +
                 ", pictureList=" + pictureList +
                 ", fieldId=" + fieldId +
+                ", goodsId=" + goodsId +
                 '}';
     }
 }
