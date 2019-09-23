@@ -123,6 +123,18 @@
     height: 100px;
     line-height: 20px;
     margin-top: 16px;
-    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.delete-this{
+    cursor: pointer;
+}
+.three-line{
+    line-height: 40px;
+}
+.two-line{
+    line-height: 60px;
+}
+#total-money{
+    cursor: pointer;
 }
