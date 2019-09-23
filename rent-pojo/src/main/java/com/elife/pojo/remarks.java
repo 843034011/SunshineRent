@@ -5,6 +5,7 @@ import java.util.List;
 
 public class remarks {
     private Integer id;
+    private Integer reg_id;
     private String userImg;
     private String userName;
     private Date createTime;
@@ -14,6 +15,15 @@ public class remarks {
     private Integer masterId;
     private String reply_content;
     List<Pictures> picture;
+
+
+    public Integer getReg_id() {
+        return reg_id;
+    }
+
+    public void setReg_id(Integer reg_id) {
+        this.reg_id = reg_id;
+    }
 
     @Override
     public String toString() {
