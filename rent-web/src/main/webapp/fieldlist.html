@@ -51,6 +51,8 @@
     <link rel="stylesheet" href="css/fieldinfo/responsive.css">
 
     <link rel="stylesheet" type="text/css" href="css/fieldinfo/htmleaf-demo.css">
+    <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+
 
     <!-- modernizr js -->
     <script src="js/fieldinfo/vendor/modernizr-2.6.2.min.js"></script>
@@ -654,12 +656,12 @@
                         <div class="color-list sidebar-list">
                             <h3>可容纳人数:</h3>
                             <ul>
-                                <li><a href="#">0~10人</a></li>
-                                <li><a href="#">10~20人</a></li>
-                                <li><a href="#">20~30人</a></li>
-                                <li><a href="#">30~40人</a></li>
-                                <li><a href="#">40~100人</a></li>
-                                <li><a href="#">100人以上</a></li>
+                                <li><a href="#" onclick="number1()">0~10人</a></li>
+                                <li><a href="#" onclick="number2()">10~20人</a></li>
+                                <li><a href="#" onclick="number3()">20~30人</a></li>
+                                <li><a href="#" onclick="number4()">30~40人</a></li>
+                                <li><a href="#" onclick="number5()">40~100人</a></li>
+                                <li><a href="#" onclick="number6()">100人以上</a></li>
                             </ul>
                         </div>
                         <!-- people-list end -->
@@ -757,18 +759,29 @@
                         <div class="short-select-option">
                             <select onchange="sortbymark()" id="choose">
                                 <option value="">排序方式</option>
-                                <option value="remark" >评分</option>
+                                <option value="remark">评分</option>
                                 <option value="number">人数</option>
                                 <option value="price">价格</option>
                             </select>
+
                         </div>
                         <!--圣墟-->
                         <!--<a title="Set Descending Direction" href=""><i class="fa fa-long-arrow-up"></i></a>-->
                     </div>
+
                     <!--	&lt;!&ndash; shoort-by end &ndash;&gt;-->
                 </div>
+
                 <br>
                 <br>
+                <label style="color: darkgrey;"> 租用日期：</label>
+                <button type="button" class="btn btn-default" id="daterange-btn">
+
+                                                        <span>
+                                                          <i class="icon iconfont icon-calendar1"></i> 日期选择
+                                                        </span>
+                    <i class="icon iconfont icon-danxian-youjiantou-copy" ></i>
+                </button>
                 <!--	&lt;!&ndash; product-sgorting end &ndash;&gt;
                     &lt;!&ndash; all-product start &ndash;&gt;-->
                 <div class="row all-grid-product">
@@ -1652,8 +1665,8 @@ function fenye(data){
     }
     $.jqPaginator('#pagination2', {
 
-        totalPages:Math.floor(data.length/6+1),
-        visiblePages: Math.floor(data.length/6+1),
+        totalPages:Math.floor(totalPages),
+        visiblePages: Math.floor(totalPages),
         currentPage:1,
         pageSize:6,
         first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
@@ -1672,7 +1685,7 @@ function fenye(data){
             if(data.length-n*6>=6)
             {
                 for (i = 0; i < 6; i++) {
-                    console.log(data[i].picture.length)
+                   /* console.log(data[i].picture.length)*/
                     fieldpictures = data[i].fieldPictures[0]
 
                     $('.all-grid-product').append(
@@ -1685,11 +1698,9 @@ function fenye(data){
             <a href="fieldinfo.html" title=""><img src="${data[6*n+i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
             <div class="single-product-overlay">
                 <div class="rating-box">
-                    <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
-                    <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
-                    <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
-                    <a title="4 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
-                    <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
+
+                                            <span class="regular-price">${data[6*n+i].fieldGrade}分  </span>
+
                 </div>
                 <div class="product-quick-view">
                     <ul>
@@ -1845,32 +1856,114 @@ var i=0
 <script>
 
 
-
-
-/*<div class="shoort-by">
-    <label>排序方式</label>
-    <div class="short-select-option">
-    <select onchange="sortbymark()" id="choose">
-    <option value="">排序方式</option>
-    <option value="remark" >评分</option>
-    <option value="number">人数</option>
-    <option value="price">价格</option>
-    </select>
-    </div>
-    var nametype = $('#search').val();
-
-     <div class="short-select-option">
-                            <select onchange="sortbymark()" id="choose">
-                                <option value="">排序方式</option>
-                                <option value="remark" >评分</option>
-                                <option value="number">人数</option>
-                                <option value="price">价格</option>
-                            </select>
-                        </div>
-    */
 console.log(fielddatas)//全部数据
 console.log(alldata)//经过模糊搜索后的数据
+var fielddates1=new Array();
+var alldatas=new Array();
+var input=$('#search').val()
+console.log(input)
+var order=$("#choose").val()
+console.log(order)
+
+/*$.post({
+    url: "fields/showallfields",
+    dataType: "json",
+
+
+})*/
+
+
 /*模糊查找并且排序*/
+function number1(){
+     console.log(fielddatas);
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume<=10&&fielddatas[i].fieldVolume>0){
+            fielddates1.push(fielddatas[i]);
+
+
+        }
+
+    }
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+
+
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for(var i=0;i<alldata.length;i++){
+                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
+                    alldatas.push(fielddatas[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            }
+            else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            }
+            else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            }else{
+                fenye(alldatas)
+            }
+        }
+
+    }
+
+
+}
+
+
+
+
 
 
 function sortbymark() {
@@ -1889,7 +1982,7 @@ function sortbymark() {
 
 
         }
-        if ($("#choose").val() == "remark") {
+        else if ($("#choose").val() == "remark") {
 
             remarks = fielddatas.sort(function (a, b) {
                 return a.fieldGrade < b.fieldGrade ? 1 : -1;
@@ -1897,13 +1990,14 @@ function sortbymark() {
             fenye(remarks)
 
         }
-        if ($("#choose").val() == "number") {
+        else if ($("#choose").val() == "number") {
 
             console.log(fielddatas.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                return a.rentCount < b.rentCount ? -1 : 1;
             }))
             fenye(number)
         }
+
 
 
     } else {
@@ -1950,6 +2044,183 @@ function sortbymark() {
 
 
 </script>
+<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+<link href="css/fieldinfo/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/fieldinfo/daterangepicker.css"/>
+<script type="text/javascript" src="js/fieldinfo/moment.js"></script>
+<script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
+<script>
+var datearr=new Array();
+var datearr1=new Array();
+
+var choosestart;//选择的开始日期
+var chooseend;//选择的结束日期
+    function dw(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+
+        return y + '/' + m + '/' + d ;
+    };
+
+
+
+    $('.ranges_1 ul').remove();
+
+    $('#daterange-btn').daterangepicker({
+
+            ranges: {
+                '全部': [moment(), moment().subtract(-1, 'days')],
+
+                '今天': [moment(), moment()],
+                '明天': [moment().subtract(-1, 'days'), moment().subtract(-1, 'days')],
+                '未来七天': [moment(),moment().subtract(-6, 'days')],
+                '未来30天': [moment(),moment().subtract(-29, 'days')],
+                '未来60天': [moment(),moment().subtract(-59, 'days'), ],
+
+
+            },
+            startDate: moment(),
+            endDate: moment()
+        },
+
+        /*function isInvalidDate(date) {
+
+            console.log(date)
+            if (date.format('YYYY-MM-DD') == '2019-09-13'||date.format('YYYY-MM-DD')=='2019-09-22') {
+                return true;
+            } else {
+                return false;
+            }
+            if(isValid!=true){
+                console.log("ok")
+            }
+        },*/
+
+
+        function(start, end,label) {
+            /*alert(start.)*/
+            /* var valid = !(start.getDay() == 0 || start.getDay() == 6);  // 禁用 星期六 和 星期日
+             var _class = '';
+             var _tooltip = valid ? '' : 'weekends are disabled';
+             return [valid,_class,_tooltip];*/
+            //label:通过它来知道用户选择的是什么，传给后台进行相应的展示
+            if(label=='全部'){
+
+                $('#daterange-btn span').html('全部');
+                time=start.format('YYYY/MM/DD') + " " + end.format('YYYY/MM/DD');
+                console.log(time)
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+
+            }else if(label=='今天'){
+
+                $('#daterange-btn span').html(end.format('YYYY/MM/DD'));
+                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+            }else if(label=='明天'){
+
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD'));
+                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                console.log(time)
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+            }else if(label=='未来七天'){
+
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                console.log(time)
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+            }else if(label=='未来30天'){
+
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                console.log(start)
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+            }else if(label=='未来60天'){
+
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
+                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                console.log(start)
+                choosestart=start.format('YYYY/MM/DD');
+                chooseend=end.format('YYYY/MM/DD');
+            }
+
+            $.get({
+                url:"orders/showallorders",
+                dataType:"json",
+                success:function(data){
+
+
+
+                    choosestart=new Date(choosestart);
+                    chooseend=new Date(chooseend);
+
+                    for(var i=0;i<data.data.length;i++){
+
+                        var date = new Date(data.data[i].startTime);
+                        var basestart = dw(date);
+
+                        var date1 = new Date(data.data[i].endTime);
+                        var baseend= dw(date1);
+
+
+                        baseend=new Date(baseend);
+                        basestart=new Date(basestart);
+
+
+                        if(baseend<choosestart||basestart>chooseend){
+                            datearr.push(data.data[i])
+                        }
+                        console.log(datearr)
+                    }
+                    console.log(datearr)
+                    console.log(fielddatas)
+
+                    for(var j=0;j<fielddatas.length;j++)
+                        for(var m=0;m<datearr.length;m++){
+                            if(fielddatas[j].id==datearr[m].fieldId)
+                            {
+                                datearr1.push(fielddatas[j])
+
+                            }
+                        }
+                    var result = [];
+                    var obj = {};
+                    console.log(result)
+                    for(var n =0; n<datearr1.length; n++){
+                        if(!obj[datearr1[n].id]){
+                            result.push(datearr1[n]);
+                            obj[datearr1[n].id] = true;
+                       }
+                    }
+                    console.log(result);
+
+                        console.log(datearr1);
+                        if(result.length==0){
+                            swal("暂时没有该时间段的场地 ")
+                        }
+                        fenye(result);
+                    datearr1=[];
+                    datearr=[];
+                }
+
+            })
+            console.log(choosestart)
+
+        }
+
+    );
+    console.log(choosestart)
+
+console.log(datearr)
+
+</script>
 
 
 <!-- jquery js -->
@@ -1977,5 +2248,6 @@ function sortbymark() {
 </script>
 <!-- main js -->
 <script src="js/fieldinfo/main.js"></script>
+<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 </body>
 </html>

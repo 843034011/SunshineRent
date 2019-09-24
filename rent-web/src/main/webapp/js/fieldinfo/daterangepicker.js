@@ -1,28 +1,26 @@
-
-
 (function(root, factory) {
-  	if(typeof define === 'function' && define.amd) {
-		    define(['moment', 'jquery', 'exports'], function(momentjs, $, exports) {
-		      root.daterangepicker = factory(root, exports, momentjs, $);
-		    });
-		}else if(typeof exports !== 'undefined'){
-      	var momentjs = require('moment');
-      	var jQuery = (typeof window != 'undefined') ? window.jQuery : undefined;  //isomorphic issue
-      	if(!jQuery){
-          try {
-              jQuery = require('jquery');
-              if (!jQuery.fn) jQuery.fn = {}; //isomorphic issue
-          } catch (err) {
-              if (!jQuery) throw new Error('jQuery dependency not found');
-          }
-      }
+    if(typeof define === 'function' && define.amd) {
+        define(['moment', 'jquery', 'exports'], function(momentjs, $, exports) {
+            root.daterangepicker = factory(root, exports, momentjs, $);
+        });
+    }else if(typeof exports !== 'undefined'){
+        var momentjs = require('moment');
+        var jQuery = (typeof window != 'undefined') ? window.jQuery : undefined;  //isomorphic issue
+        if(!jQuery){
+            try {
+                jQuery = require('jquery');
+                if (!jQuery.fn) jQuery.fn = {}; //isomorphic issue
+            } catch (err) {
+                if (!jQuery) throw new Error('jQuery dependency not found');
+            }
+        }
 
-    factory(root, exports, momentjs, jQuery);
+        factory(root, exports, momentjs, jQuery);
 
-  // Finally, as a browser global.
-  } else {
-    root.daterangepicker = factory(root, {}, root.moment || moment, (root.jQuery || root.Zepto || root.ender || root.$));
-  }
+        // Finally, as a browser global.
+    } else {
+        root.daterangepicker = factory(root, {}, root.moment || moment, (root.jQuery || root.Zepto || root.ender || root.$));
+    }
 
 }(this || {}, function(root, daterangepicker, moment, $) { // 'this' doesn't exist on a server
 
@@ -65,7 +63,7 @@
         this.locale = {
             format: 'YYYY/MM/DD',
             separator: ' - ',
-            applyLabel: false,
+            applyLabel: '确定',
             cancelLabel: '取消',
             weekLabel: 'W',
             customRangeLabel: '自定义',
@@ -94,45 +92,45 @@
         //html template for the picker UI
         if (typeof options.template !== 'string' && !(options.template instanceof $))
             options.template  = '<div class="daterangepicker dropdown-menu">' +
-                                    '<div class="ranges">' +
-                                    '</div>' +
-                                    '<div class="calendar left">' +
-                                    		'<div class="prev_year"><i class="icon iconfont icon-shuangxian-zuojiantou"></i></div>'+
-                                        '<div class="calendar-table">'+
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="calendar right">' +
-                                    		'<div class="prev_month"><i class="icon iconfont icon-shuangxian-youjiantou"></i></div>'+
-                                        '<div class="calendar-table"></div>' +
-                                    '</div>' +
-                                    '<div class="calendar calendar_1">' +
-                                        '<div class="daterangepicker_input">' +
-                                            '<input class="input-mini" type="text" name="daterangepicker_start" value="" />' +
-                                            '<div class="calendar-time">' +
-                                                '<div></div>'+
-                                                '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="calendar calendar_2">' +
-                                        '<div class="daterangepicker_input">' +
-                                            '<input class="input-mini" type="text" name="daterangepicker_end" value="" />' +
-                                            '<div class="calendar-time">' +
-                                                '<div></div>' +
-                                                '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="ranges ranges_1">' +
-                                        '<div class="range_inputs">' +
-                                            '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
-                                            '<button class="cancelBtn" type="button"></button>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="line_date"></div>'+
-                                    '<div class="line_date_2"></div>'+
-                                    '<div class="all">全部日期</div>'+
-                                '</div>';
+                '<div class="ranges">' +
+                '</div>' +
+                '<div class="calendar left">' +
+                '<div class="prev_year"><i class="icon iconfont icon-shuangxian-zuojiantou"></i></div>'+
+                '<div class="calendar-table">'+
+                '</div>' +
+                '</div>' +
+                '<div class="calendar right">' +
+                '<div class="prev_month"><i class="icon iconfont icon-shuangxian-youjiantou"></i></div>'+
+                '<div class="calendar-table"></div>' +
+                '</div>' +
+                '<div class="calendar calendar_1">' +
+                '<div class="daterangepicker_input">' +
+                '<input class="input-mini" type="text" name="daterangepicker_start" value="" />' +
+                '<div class="calendar-time">' +
+                '<div></div>'+
+                '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="calendar calendar_2">' +
+                '<div class="daterangepicker_input">' +
+                '<input class="input-mini" type="text" name="daterangepicker_end" value="" />' +
+                '<div class="calendar-time">' +
+                '<div></div>' +
+                '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="ranges ranges_1">' +
+                '<div class="range_inputs">' +
+                '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+                '<button class="cancelBtn" type="button"></button>' +
+                '</div>' +
+                '</div>' +
+                '<div class="line_date"></div>'+
+                '<div class="line_date_2"></div>'+
+                '<div class="all">全部日期</div>'+
+                '</div>';
         this.parentEl = (options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);
         this.container = $(options.template).appendTo(this.parentEl);
 
@@ -152,22 +150,22 @@
                 this.locale.daysOfWeek = options.locale.daysOfWeek.slice();
 
             if (typeof options.locale.monthNames === 'object')
-              this.locale.monthNames = options.locale.monthNames.slice();
+                this.locale.monthNames = options.locale.monthNames.slice();
 
             if (typeof options.locale.firstDay === 'number')
-              this.locale.firstDay = options.locale.firstDay;
+                this.locale.firstDay = options.locale.firstDay;
 
-           /* if (typeof options.locale.applyLabel === 'string')
-              this.locale.applyLabel = options.locale.applyLabel;*/
+            if (typeof options.locale.applyLabel === 'string')
+                this.locale.applyLabel = options.locale.applyLabel;
 
             if (typeof options.locale.cancelLabel === 'string')
-              this.locale.cancelLabel = options.locale.cancelLabel;
+                this.locale.cancelLabel = options.locale.cancelLabel;
 
             if (typeof options.locale.weekLabel === 'string')
-              this.locale.weekLabel = options.locale.weekLabel;
+                this.locale.weekLabel = options.locale.weekLabel;
 
             if (typeof options.locale.customRangeLabel === 'string')
-              this.locale.customRangeLabel = options.locale.customRangeLabel;
+                this.locale.customRangeLabel = options.locale.customRangeLabel;
 
         }
 
@@ -327,7 +325,7 @@
                 // after the maximum, don't display this range option at all.
                 if ((this.minDate && end.isBefore(this.minDate)) || (maxDate && start.isAfter(maxDate)))
                     continue;
-                
+
                 //Support unicode chars in the range names.
                 var elem = document.createElement('textarea');
                 elem.innerHTML = range;
@@ -396,7 +394,7 @@
             this.container.find('.applyBtn').addClass(this.applyClass);
         if (this.cancelClass.length)
             this.container.find('.cancelBtn').addClass(this.cancelClass);
-       /* this.container.find('.applyBtn').html(this.locale.applyLabel);*/
+        this.container.find('.applyBtn').html(this.locale.applyLabel);
         this.container.find('.cancelBtn').html(this.locale.cancelLabel);
 
         //
@@ -512,30 +510,31 @@
         },
 
 
-
-
-
-        /*isInvalidDate: function(date) {
-            /!*console.log(date)*!/
-            console.log(dates)
-            starttime=dates.data.startTime;
-            var str = url.split("T");
-            var startTime1 = str[1];
-            console.log(dates.data[0].startTime)
-          console.log(startTime1)
-
-            if (date.format('YYYY-MM-DD') == '2019-09-12') {
+        isInvalidDate: function(date) {
+           /* console.log(fielddatas)*/
+            var start=new Array();
+            var end=new Array();
+            console.log(orders)
+            console.log(fieldid);
+            for(var i=0;i<orders.data.length;i++){
+                if(orders.data[i].fieldId==fieldid){
+                    start.push(orders.data[i].startTime)
+                    end.push(orders.data[i].endTime)
+                }
+            }
+            console.log(start)
+            now = new Date()
+            now.setTime(now.getTime() - 24 * 60 * 60 * 1000)
+          console.log(now)
+            if (date < now) {
                 return true;
             } else {
                 return false;
             }
-            if(isValid!=true){
-                console.log("ok")
-            }
-        },*/
+        },
 
         updateView: function() {
-        		//页面点击显示日历后的第三个方法，
+            //页面点击显示日历后的第三个方法，
 //      		//console.log('我是第3个方法');
             if (this.timePicker) {
                 this.renderTimePicker('left');
@@ -559,7 +558,7 @@
         },
 
         updateMonthsInView: function() {
-        	//页面点击显示日历后的第四个方法，如果有结束日期，或者没有结束日期
+            //页面点击显示日历后的第四个方法，如果有结束日期，或者没有结束日期
 //      		//console.log('我是第4个方法');
             if (this.endDate) {
 
@@ -568,7 +567,7 @@
                     (this.startDate.format('YYYY-MM') == this.leftCalendar.month.format('YYYY-MM') || this.startDate.format('YYYY-MM') == this.rightCalendar.month.format('YYYY-MM'))
                     &&
                     (this.endDate.format('YYYY-MM') == this.leftCalendar.month.format('YYYY-MM') || this.endDate.format('YYYY-MM') == this.rightCalendar.month.format('YYYY-MM'))
-                    ) {
+                ) {
                     return;
                 }
 
@@ -578,7 +577,7 @@
                 } else {
                     this.rightCalendar.month = this.startDate.clone().date(2).add(1, 'month');
                 }
-                
+
             } else {
                 if (this.leftCalendar.month.format('YYYY-MM') != this.startDate.format('YYYY-MM') && this.rightCalendar.month.format('YYYY-MM') != this.startDate.format('YYYY-MM')) {
                     this.leftCalendar.month = this.startDate.clone().date(2);
@@ -589,7 +588,7 @@
 
 
         updateCalendars: function() {
-        	//是否显示小时
+            //是否显示小时
 //      	//console.log('我是第5个方法');
 
             if (this.timePicker) {
@@ -632,7 +631,7 @@
         },
 
         renderCalendar: function(side) {
-        	//页面初始怎么显示，显示选择哪个日期
+            //页面初始怎么显示，显示选择哪个日期
 //      	//console.log('我是第6个方法');
 
             //
@@ -671,7 +670,7 @@
                 startDay = daysInLastMonth - 6;
 
             var curDate = moment([lastYear, lastMonth, startDay, 12, minute, second]);
-/*天数*/
+            /*天数*/
             var col, row;
             for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
                 if (i > 0 && col % 7 === 0) {
@@ -714,9 +713,9 @@
             } else {
                 html += '<th></th>';
             }
-						
-			var dateHtml = calendar[1][1].format("YYYY") +'年' +calendar[1][1].format("MM")+'月';
-						
+
+            var dateHtml = calendar[1][1].format("YYYY") +'年' +calendar[1][1].format("MM")+'月';
+
             if (this.showDropdowns) {
                 var currentMonth = calendar[1][1].month();
                 var currentYear = calendar[1][1].year();
@@ -844,7 +843,7 @@
 
             html += '</tbody>';
             html += '</table>';
-						
+
             this.container.find('.calendar.' + side + ' .calendar-table').html(html);
 
         },
@@ -1007,7 +1006,7 @@
 
         updateFormInputs: function() {
 //      	//console.log('我是第8个方法');
-						//ignore mouse movements while an above-calendar text input has focus
+            //ignore mouse movements while an above-calendar text input has focus
 //          if (this.container.find('input[name=daterangepicker_start]').is(":focus") || this.container.find('input[name=daterangepicker_end]').is(":focus"))
 //              return;
 
@@ -1020,7 +1019,7 @@
                 this.container.find('button.applyBtn').removeAttr('disabled');
             } else {
 //          		//console.log(255555555)
-            		this.container.find('button.applyBtn').removeAttr('disabled');
+                this.container.find('button.applyBtn').removeAttr('disabled');
 //              this.container.find('button.applyBtn').attr('disabled', 'disabled');
             }
 
@@ -1061,7 +1060,7 @@
                 this.container.css({
                     top: containerTop,
                     left: this.element.offset().left - parentOffset.left + this.element.outerWidth() / 2
-                            - this.container.outerWidth() / 2,
+                        - this.container.outerWidth() / 2,
                     right: 'auto'
                 });
                 if (this.container.offset().left < 0) {
@@ -1087,7 +1086,7 @@
 
         show: function(e) {
 //      	//console.log('我是第10个方法');
-        		//第二个，如果页面没有显示，第二个方法进这，让日历显示
+            //第二个，如果页面没有显示，第二个方法进这，让日历显示
             if (this.isShowing) return;
 
             // Create a click proxy that is private to this instance of datepicker, for unbinding
@@ -1095,13 +1094,13 @@
 
             // Bind global datepicker mousedown for hiding and
             $(document)
-              .on('mousedown.daterangepicker', this._outsideClickProxy)
-              // also support mobile devices
-              .on('touchend.daterangepicker', this._outsideClickProxy)
-              // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
-              .on('click.daterangepicker', '[data-toggle=dropdown]', this._outsideClickProxy)
-              // and also close when focus changes to outside the picker (eg. tabbing between controls)
-              .on('focusin.daterangepicker', this._outsideClickProxy);
+                .on('mousedown.daterangepicker', this._outsideClickProxy)
+                // also support mobile devices
+                .on('touchend.daterangepicker', this._outsideClickProxy)
+                // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
+                .on('click.daterangepicker', '[data-toggle=dropdown]', this._outsideClickProxy)
+                // and also close when focus changes to outside the picker (eg. tabbing between controls)
+                .on('focusin.daterangepicker', this._outsideClickProxy);
 
             // Reposition the picker if the window is resized while it's open
             $(window).on('resize.daterangepicker', $.proxy(function(e) { this.move(e); }, this));
@@ -1126,45 +1125,45 @@
         hide: function(e) {
 //      	//console.log('我是第11个方法');
             if (!this.isShowing){
-            	return
+                return
             };
             //incomplete date selection, revert to last values
             //这个判断是只选择了一个日子
             if (this.startDate&&!this.endDate) {
 //          	//console.log('现在是单日子')
-            	$('#daterange-btn span').html(this.container.find('input[name=daterangepicker_start]').val());
+                $('#daterange-btn span').html(this.container.find('input[name=daterangepicker_start]').val());
 //          	this.startDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_start]').val()))
 //          	this.endDate = Date.parse(new Date(this.container.find('input[name=daterangepicker_end]').val()));
 //          	this.callback(this.startDate, this.endDate, this.chosenLabel);
-            	this.updateElement();
-	            $(document).off('.daterangepicker');
-	            $(window).off('.daterangepicker');
-	            this.container.hide();
-	            this.element.trigger('hide.daterangepicker', this);
-	            this.isShowing = false;
-	            
+                this.updateElement();
+                $(document).off('.daterangepicker');
+                $(window).off('.daterangepicker');
+                this.container.hide();
+                this.element.trigger('hide.daterangepicker', this);
+                this.isShowing = false;
+
             }else{
 //          	//console.log('现在是我自己选择的')
-	            //if a new date range was selected, invoke the user callback function
-	            if (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate)){
+                //if a new date range was selected, invoke the user callback function
+                if (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate)){
 //	            		//console.log('这时候的开始'+this.startDate);
 //	            		//console.log(this.endDate)
-	                this.callback(this.startDate, this.endDate, this.chosenLabel);
-	            }
-	            //if picker is attached to a text input, update it
-	            this.updateElement();
+                    this.callback(this.startDate, this.endDate, this.chosenLabel);
+                }
+                //if picker is attached to a text input, update it
+                this.updateElement();
 
-	            $(document).off('.daterangepicker');
-	            $(window).off('.daterangepicker');
-	            this.container.hide();
-	            this.element.trigger('hide.daterangepicker', this);
-	            this.isShowing = false;
+                $(document).off('.daterangepicker');
+                $(window).off('.daterangepicker');
+                this.container.hide();
+                this.element.trigger('hide.daterangepicker', this);
+                this.isShowing = false;
             }
         },
 
         toggle: function(e) {
-        	//点击后先进这个方法，判断是否显示，显示则隐藏，隐藏则显示
-        	//console.log('我是第12个方法');
+            //点击后先进这个方法，判断是否显示，显示则隐藏，隐藏则显示
+            //console.log('我是第12个方法');
             if (this.isShowing) {
                 this.hide();
             } else {
@@ -1173,7 +1172,7 @@
         },
 
         outsideClick: function(e) {
-        	//console.log('我是第13个方法');
+            //console.log('我是第13个方法');
             var target = $(e.target);
             // if the page is clicked anywhere except within the daterangerpicker/button
             // itself then call this.hide()
@@ -1183,27 +1182,27 @@
                 target.closest(this.element).length ||
                 target.closest(this.container).length ||
                 target.closest('.calendar-table').length
-                ) return;
+            ) return;
             this.hide();
         },
 
         showCalendars: function() {
-        	
-        	//console.log('我是第14个方法');
+
+            //console.log('我是第14个方法');
             this.container.addClass('show-calendar');
             this.move();
             this.element.trigger('showCalendar.daterangepicker', this);
         },
 
         hideCalendars: function() {
-        	//console.log('我是第15个方法');
+            //console.log('我是第15个方法');
             this.container.removeClass('show-calendar');
             this.element.trigger('hideCalendar.daterangepicker', this);
         },
 
         hoverRange: function(e) {
-        	//console.log('我是第16个方法');
-        		//鼠标滑过每个td
+            //console.log('我是第16个方法');
+            //鼠标滑过每个td
             //ignore mouse movements while an above-calendar text input has focus
             if (this.container.find('input[name=daterangepicker_start]').is(":focus") || this.container.find('input[name=daterangepicker_end]').is(":focus"))
                 return;
@@ -1218,11 +1217,11 @@
 //              this.container.find('input[name=daterangepicker_start]').val(dates[0].format(this.locale.format));
 //              this.container.find('input[name=daterangepicker_end]').val(dates[1].format(this.locale.format));
             }
-            
+
         },
 
         clickRange: function(e) {
-        	//console.log('我是第17个方法');
+            //console.log('我是第17个方法');
             var label = e.target.innerHTML;
             this.chosenLabel = label;
             if(label == this.locale.customRangeLabel) {
@@ -1232,8 +1231,8 @@
                 this.startDate = dates[0];
                 this.endDate = dates[1];
                 if (!this.timePicker) {
-                  this.startDate.startOf('day');
-                  this.endDate.endOf('day');
+                    this.startDate.startOf('day');
+                    this.endDate.endOf('day');
                 }
                 if(!this.alwaysShowCalendars){
 //                	点击的时候不隐藏日历
@@ -1254,32 +1253,32 @@
                         $('.daterangepicker .all').css('display','none');
                     }
                     this.updateFormInputs();
-				}
+                }
             }
-            
+
         },
 
         clickPrev: function(e) {
-        	//console.log(this.leftCalendar)
-        	//console.log(this.rightCalendar)
-        	//console.log('我是第18个方法');
+            //console.log(this.leftCalendar)
+            //console.log(this.rightCalendar)
+            //console.log('我是第18个方法');
             var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
-            	//console.log(1)
+                //console.log(1)
                 this.leftCalendar.month.subtract(1, 'month');
                 if (this.linkedCalendars){
                     this.rightCalendar.month.subtract(1, 'month');
                     //console.log(3)
-                 }
+                }
             } else {
-            	//console.log(2)
+                //console.log(2)
                 this.rightCalendar.month.subtract(1, 'month');
             }
             this.updateCalendars();
         },
 
         clickNext: function(e) {
-        	//console.log('我是第19个方法');
+            //console.log('我是第19个方法');
             var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.add(1, 'month');
@@ -1291,23 +1290,23 @@
             this.updateCalendars();
         },
         clickPrevYear:function(e){
-        	//点击显示上一年的当前月份
-        		var cal = $(e.target).parents('.calendar');
+            //点击显示上一年的当前月份
+            var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.subtract(1, 'year');
                 if (this.linkedCalendars){
                     this.rightCalendar.month.subtract(1, 'year');
-                 }
+                }
             } else {
                 this.rightCalendar.month.subtract(1, 'year');
             }
             this.updateCalendars();
-            
-            
+
+
         },
-				clickNextYear:function(e){
-					//点击显示下一年的当前月份
-					var cal = $(e.target).parents('.calendar');
+        clickNextYear:function(e){
+            //点击显示下一年的当前月份
+            var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.add(1, 'year');
             }else{
@@ -1316,7 +1315,7 @@
                     this.leftCalendar.month.add(1, 'year');
             }
             this.updateCalendars();
-				},
+        },
         hoverDate: function(e) {
 //      	//console.log('我是第20个方法');
 
@@ -1402,7 +1401,7 @@
                 this.endDate = null;
                 this.setStartDate(date.clone());
             } else if (!this.endDate && date.isBefore(this.startDate)) {
-                //special case: clicking the same date for start/end, 
+                //special case: clicking the same date for start/end,
                 //but the time of the end date is before the start date
                 this.setEndDate(this.startDate.clone());
             } else {
@@ -1421,8 +1420,8 @@
                 }
                 this.setEndDate(date.clone());
                 if (this.autoApply) {
-                  this.calculateChosenLabel();
-                  this.clickApply();
+                    this.calculateChosenLabel();
+                    this.clickApply();
                 }
             }
 
@@ -1438,35 +1437,35 @@
 
         calculateChosenLabel: function() {
 //      	//console.log('我是第22个方法');
-        	//判断页面显示自定义哪个
-          var customRange = true;
-          var i = 0;
-          for (var range in this.ranges) {
-              if (this.timePicker) {
-                  if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
-                      customRange = false;
-                      this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
-                      break;
-                  }
-              } else {
-                  //ignore times when comparing dates if time picker is not enabled
-                  if (this.startDate.format('YYYY/MM/DD') == this.ranges[range][0].format('YYYY/MM/DD') && this.endDate.format('YYYY/MM/DD') == this.ranges[range][1].format('YYYY/MM/DD')) {
-                      customRange = false;
-                      this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
-                      break;
-                  }
-              }
-              i++;
-          }
-          if (customRange) {
-              this.chosenLabel = this.container.find('.ranges li:last').addClass('active').html();
-              this.showCalendars();
-          }
+            //判断页面显示自定义哪个
+            var customRange = true;
+            var i = 0;
+            for (var range in this.ranges) {
+                if (this.timePicker) {
+                    if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
+                        customRange = false;
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
+                        break;
+                    }
+                } else {
+                    //ignore times when comparing dates if time picker is not enabled
+                    if (this.startDate.format('YYYY/MM/DD') == this.ranges[range][0].format('YYYY/MM/DD') && this.endDate.format('YYYY/MM/DD') == this.ranges[range][1].format('YYYY/MM/DD')) {
+                        customRange = false;
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
+                        break;
+                    }
+                }
+                i++;
+            }
+            if (customRange) {
+                this.chosenLabel = this.container.find('.ranges li:last').addClass('active').html();
+                this.showCalendars();
+            }
         },
 
         clickApply: function(e) {
 //      	//console.log('我是第23个方法');
-            
+
             this.element.trigger('apply.daterangepicker', this);
             this.hide();
         },
@@ -1677,8 +1676,7 @@
         });
         return this;
     };
-    
+
     return DateRangePicker;
 
 }));
-
