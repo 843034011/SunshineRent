@@ -110,16 +110,16 @@ public class GoodsManageController {
 //        if (file != null && file.length > 0) {
 //            for (int i = 0; i < file.length; i++) {
 //                MultipartFile filex = file[i];
-                // 保存文件
+        // 保存文件
         if(file != null){
-                String fileUrl = qiniuService.saveImage(file);
-                System.out.println(fileUrl);
-                goodsPicture.setId(id);
-                goodsPicture.setGoodsPicture(fileUrl);
-                goodsPicture.setGoodsId(goodsId);
-                System.out.println("==============");
-                System.out.println(goodsPicture.toString());
-                picNum = goodsManageService.updataPic(goodsPicture);
+            String fileUrl = qiniuService.saveImage(file);
+            System.out.println(fileUrl);
+            goodsPicture.setId(id);
+            goodsPicture.setGoodsPicture(fileUrl);
+            goodsPicture.setGoodsId(goodsId);
+            System.out.println("==============");
+            System.out.println(goodsPicture.toString());
+            picNum = goodsManageService.updataPic(goodsPicture);
         } else {
             System.out.println("没有上传图片！");
         }

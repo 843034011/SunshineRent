@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="css/fieldinfo/responsive.css">
     <!-- modernizr js -->
 
+    <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
 
 
     <!--  ditu-->
@@ -366,15 +367,15 @@
                             <!-- </div>-->
 
                             <div >
-                                <label style="color: darkgrey;"> 租用日期：</label>
-                                <button type="button" class="btn btn-default" id="daterange-btn">
+                            <label style="color: darkgrey;"> 可租用日期：</label>
+                            <button type="button" class="btn btn-default" id="daterange-btn">
 
                                                         <span>
                                                           <i class="icon iconfont icon-calendar1"></i> 日期选择
                                                         </span>
-                                    <i class="icon iconfont icon-danxian-youjiantou-copy" ></i>
-                                </button>
-                            </div>
+                                <i class="icon iconfont icon-danxian-youjiantou-copy" ></i>
+                            </button>
+                        </div>
 
                         </div>
                     </div>
@@ -492,12 +493,12 @@
 
                         <div class="tab-pane" id="proReview">
                             <div class="pro-add-to-cart" style="float:left; " >
-                                <p ><a href="#" onclick="quanbu()" style="background-color: #00a9e0;color: white">全部评价评价</a></p>
+                                <p ><a href="#" onclick="quanbu()" id="all" style="background-color: #00a9e0;color: white">全部评价评价</a></p>
                             </div>
 
 
                             <div class="pro-add-to-cart" style="float:left; " >
-                                <p ><a href="#" onclick="youtu()">有图评价</a></p>
+                                <p ><a href="#" onclick="youtu()" id="some" >有图评价</a></p>
                             </div>
 
 
@@ -972,11 +973,23 @@
         </div>
     </div>
     </div>
+
 </section>	&ndash;&gt;
 </div>-->
 <!-- main content area end  -->
+<script src="jquery/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="js/fieldinfo/jqPaginator.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="js/fieldinfo/moment.js"></script>
+<script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
+<script>
+    var orders
+    $.get({
+        url:"orders/showallorders",
+        dataType:"json",
+        success:function(data){
+            orders=data;
+        }
+    })
     function dw(date) {
         var y = date.getFullYear();
         var m = date.getMonth() + 1;
@@ -992,6 +1005,9 @@
     };
 
 
+
+
+/*全部   */
 
     function fenye(data){
 
@@ -1248,6 +1264,7 @@ console.log(dates)
     var str1 = url1.split("=");
     var fieldid1 = str1[1];
     var comments;
+    var fielddatas;
         /* 评论*/
     $.ajax({
         url:"test2",
@@ -1261,6 +1278,7 @@ console.log(dates)
                     datas.push(data[i]);
                 console.log(datas);
             }
+            fielddatas=datas
             console.log(datas);
             fenye(datas)
         }
@@ -1268,13 +1286,36 @@ console.log(dates)
     })
 
 
-
+   /* style="background-color: #00a9e0;color: white"*/
    /* 全部评价*/
     function quanbu(){
+      $('#all').css({"background-color":"#00a9e0" ,"color":"white"})
 
+
+        $('#some').css({"background-color":"white" ,"color":"#00a9e0"})
+        console.log(fielddatas)
+      fenye(fielddatas)
 
     }
 
+    var fieldyoutu=new Array();
+    function youtu(){
+        $('#some').css({"background-color":"#00a9e0" ,"color":"white"})
+        $('#all').css({"background-color":"white" ,"color":"#00a9e0"})
+        console.log(fielddatas)
+        for(var i=0;i<fielddatas.length;i++){
+           console.log(fielddatas[i].picture.length)
+            if(fielddatas[i].picture.length!=0)
+            {
+                console.log(fielddatas[i])
+                fieldyoutu.push(fielddatas[i])
+            }
+
+        }
+        console.log(fieldyoutu)
+        fenye(fieldyoutu)
+
+    }
 
 
 var time;
@@ -1297,7 +1338,18 @@ var time;
             startDate: moment(),
             endDate: moment()
         },
+        function isInvalidDate(date) {
 
+                  console.log(date)
+                  if (date.format('YYYY-MM-DD') == '2019-09-13'||date.format('YYYY-MM-DD')=='2019-09-22') {
+                      return true;
+                  } else {
+                      return false;
+                  }
+                  if(isValid!=true){
+                      console.log("ok")
+                  }
+              },
         function isInvalidDate(date) {
         console.log(dates)
         console.log(date)
@@ -1697,7 +1749,7 @@ function shop(){
       url:"fields/insertshoppingcart",
       data:{"fieldid": fieldid},
       success:function(data){
-          alert("加入购物车成功")
+          swal("加入购物车成功","","success")
       }
   })
 
@@ -1707,12 +1759,13 @@ function shop(){
 
 </script>
 
-<!-- jquery js -->
-<script type="text/javascript" src="jquery/jquery-3.4.1.js"></script>
 <!-- jqueryui js -->
 <script src="js/fieldinfo/jqueryui.js"></script>
 <!-- mobile menu js -->
 <script src="js/fieldinfo/jquery.meanmenu.js"></script>
+<script type="text/javascript" src="js/fieldinfo/moment.js"></script>
+<script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
+<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 <!-- fancybox js -->
 <script src="js/fieldinfo//jquery.fancybox.js"></script>
 <!-- elevatezoom js -->

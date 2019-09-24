@@ -5,6 +5,7 @@ import com.elife.service.impl.UserOrderServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,6 +46,12 @@ public class UserOrderController {
         return resultData;
     }
 
+    /**
+     * @author llb
+     * @param num
+     * @param kind
+     * @return
+     */
     @RequestMapping("selectorderdate")
     @ResponseBody
     public ResultData selectOrderDateUnEvaluate(Integer num, String kind) {
@@ -56,27 +63,34 @@ public class UserOrderController {
 
         if (kind.equals("field")) {
             userOrders = userOrderService.selectFieldOrderDateUnEvaluate(num);
-            System.out.println(userOrders.size());
-            if (userOrders.size() != 0) {
-                resultData.setCode(0);
-                resultData.setData(userOrders);
-            } else {
-                resultData.setCode(1);
-                resultData.setMessage("查询无果！！！！");
-            }
+
+            resultData.setCode(0);
+            resultData.setData(userOrders);
+
             return resultData;
         } else if (kind.equals("goods")) {
             userOrders = userOrderService.selectGoodsOrderDateUnEvaluate(num);
-            System.out.println(userOrders.size());
-            if (userOrders.size() != 0) {
-                resultData.setCode(0);
-                resultData.setData(userOrders);
-            } else {
-                resultData.setCode(1);
-                resultData.setMessage("查询无果！！！！");
-            }
+
+            resultData.setCode(0);
+            resultData.setData(userOrders);
+
             return resultData;
         }
+        return null;
+    }
+
+    /**
+     * @author llb
+     * @return
+     */
+    @RequestMapping("ensureorder")
+    public String ensureOrder(){
+        return "ensureorder";
+    }
+
+    @RequestMapping("insertorder")
+    public ResultData insertOrder(@RequestBody String json){
+
         return null;
     }
 }
