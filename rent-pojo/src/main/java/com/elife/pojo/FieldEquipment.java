@@ -1,5 +1,7 @@
 package com.elife.pojo;
 
+import java.math.BigDecimal;
+
 public class FieldEquipment {
     private Integer id;
 
@@ -9,7 +11,7 @@ public class FieldEquipment {
 
     private String equipPicture;
 
-    private Long equipPrice;
+    private BigDecimal equipPrice;
 
     private Integer equipNumber;
 
@@ -49,11 +51,11 @@ public class FieldEquipment {
         this.equipPicture = equipPicture == null ? null : equipPicture.trim();
     }
 
-    public Long getEquipPrice() {
+    public BigDecimal getEquipPrice() {
         return equipPrice;
     }
 
-    public void setEquipPrice(Long equipPrice) {
+    public void setEquipPrice(BigDecimal equipPrice) {
         this.equipPrice = equipPrice;
     }
 
