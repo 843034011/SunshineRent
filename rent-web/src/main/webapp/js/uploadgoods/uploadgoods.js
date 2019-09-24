@@ -1,13 +1,88 @@
-/* 返回首页 */
-// document.getElementById("return-aa").onmouseover=function(){
-//
-//     document.getElementById("return-aaa").style="color:#fff;background-color:#3a81fd;";
-// }
-//
-// document.getElementById("return-aa").onmouseout=function(){
-//
-//     document.getElementById("return-aaa").style="color:#3a81fd;background-color:#fff;";
-// }
+//图片上传预览功能
+var userAgent = navigator.userAgent;
+//用于判断浏览器类型
+// 使用formData完成多图片上传
+var formData = new FormData();
+var formData2 = new FormData();
+var count = 0;
+$(".file").change(function() {
+    //获取选择图片的对象
+    var docObj = $(this)[0];
+    var picDiv = $(this).parents(".picDiv");
+    //得到所有的图片文件
+    var fileList = docObj.files;
+    //将图片数据放到formData中传递后台
+    if($(this)[0].files.length==1){
+        formData.append("file",docObj.files[0]);
+        formData2.append("file",docObj.files[0]);
+        count = count+1;
+    }else{
+        for(var i=0; i<$(this)[0].files.length;i++){
+            formData.append("file",$(this)[0].files[i]);
+            formData2.append("file",$(this)[0].files[i]);
+        }
+    }
+
+    if( count > 5 ){
+        console.log("超过五张！");
+    }else{
+        //循环遍历
+        for (var i = 0; i < fileList.length; i++) {
+            //动态添加html元素
+            var picHtml = "<div class='imageDiv' nm='"+fileList[i].name+"'> <img id='img"
+                + fileList[i].name + "' /> <div class='image-cover'><i class='delbtn'>删除</i></div></div>";
+            console.log(picHtml);
+            picDiv.prepend(picHtml);
+            //获取图片imgi的对象
+            var imgObjPreview = document.getElementById("img" + fileList[i].name);
+            if (fileList && fileList[i]) {
+                //图片属性
+                imgObjPreview.style.display = 'block';
+                imgObjPreview.style.width = '160px';
+                imgObjPreview.style.height = '130px';
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                // 火狐7以上版本不能用上面的getAsDataURL()方式获取，需要以下方式
+                if (userAgent.indexOf('MSIE') == -1) {
+                    //IE以外浏览器
+                    imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);
+                    //获取上传图片文件的物理路径;
+                    console.log(imgObjPreview.src);
+                } else {
+                    //IE浏览器
+                    if (docObj.value.indexOf(",") != -1) {
+                        var srcArr = docObj.value.split(",");
+                        imgObjPreview.src = srcArr[i];
+                    } else {
+                        imgObjPreview.src = docObj.value;
+                    }
+                }
+            }
+        }
+    }
+    /*删除功能*/
+    $(".delbtn").click(function() {
+        if(formData.getAll("file").length==0){
+            formData=formData2;
+        }else{
+            formData2.delete("file");
+            for(var i=0;i<formData.getAll("file").length;i++){
+                if(formData.getAll("file")[i].name==$(this).parents(".imageDiv").attr("nm")){
+
+                }else{
+                    formData2.append("file",formData.getAll("file")[i]);
+                }
+            }
+        }
+        formData.delete("file");
+        for(var i=0;i<formData2.getAll("file").length;i++){
+            formData.append("file",formData2.getAll("file")[i]);
+        }
+        var _this = $(this);
+        _this.parents(".imageDiv").remove();
+    });
+});
+
+
 
 //获取系统当前时间
 function getNowData() {
@@ -78,30 +153,49 @@ $("#goodstype-ul").find("li").click(function(){
 
 //添加商品到数据库
 $('#submit-btn-add').click(function () {
-    var addgoods = JSON.stringify(
-        {
-            // "id":data.data.id,
-            "goodsName":$('#goodsname').val(),
-            "goodsType":$('#goodstype').val(),
-            "goodsModel":$('#goodsmodel').val(),
-            "goodsInfo":$('#goodsinfo').val(),
-            "goodsNumber":$('#goodsnumber').val(),
-            "goodsDeposit":$('#goodsdeposit').val(),
-            "goodsSurplus":0,
-            "goodsDayprice":$('#goodsdayprice').val(),
-            "goodsWeekprice":$('#goodsweekprice').val(),
-            "createTime":getNowData(),
-            "goodsGrade":0,
-            "rentCount":0,
-            // 另一个页面传过来
-            "regId":4
-        });
-    console.log(addgoods);
+
+    formData2.append("goodsName",$('#goodsname').val());
+    formData2.append("goodsType", $('#goodstype').val());
+    formData2.append("goodsModel",$('#goodsmodel').val());
+    formData2.append("goodsInfo",$('#goodsinfo').val());
+    formData2.append("goodsNumber",$('#goodsnumber').val());
+    formData2.append("goodsDeposit",$('#goodsdeposit').val());
+    formData2.append("goodsSurplus",0);
+    formData2.append("goodsDayprice",$('#goodsdayprice').val());
+    formData2.append("goodsWeekprice",$('#goodsweekprice').val());
+    formData2.append("createTime",getNowData());
+    formData2.append("goodsGrade",0);
+    formData2.append("rentCount",0);
+    formData2.append("regId",datas.regId);
+    // formData2.append("id",datas.goodsPictures[0].id);
+    formData2.append("goodsId",datas.id);
+
+
+    // var postData = {
+    //     "goodsName":$('#goodsname').val(),
+    //     "goodsType":$('#goodstype').val(),
+    //     "goodsModel":$('#goodsmodel').val(),
+    //     "goodsInfo":$('#goodsinfo').val(),
+    //     "goodsNumber":$('#goodsnumber').val(),
+    //     "goodsDeposit":$('#goodsdeposit').val(),
+    //     "goodsSurplus":0,
+    //     "goodsDayprice":$('#goodsdayprice').val(),
+    //     "goodsWeekprice":$('#goodsweekprice').val(),
+    //     "createTime":getNowData(),
+    //     "goodsGrade":0,
+    //     "rentCount":0,
+    //     // 另一个页面传过来
+    //     "regId":4
+    // }
+
     $.post({
         url:"/goodsManageCon/insertGood",
-        data:addgoods,
-        contentType:"application/json",
+        data:formData2,
         dataType:"json",
+        contentType:"application/json",
+        cache: false, //上传文件不需要缓存
+        processData: false,
+        contentType: false,
         success:function (data) {
             if(data.code == 0) {
                 alert("添加成功")
@@ -110,6 +204,19 @@ $('#submit-btn-add').click(function () {
             }
         }
     })
+    // $.post({
+    //     url:"/goodsManageCon/insertPic",
+    //     data:formData2,
+    //     dataType:"json",
+    //     success:function (data) {
+    //         if(data.code == 0) {
+    //             alert("添加成功")
+    //         } else {
+    //             alert("添加失败")
+    //         }
+    //     }
+    //
+    // })
 })
 
 //修改商品信息
@@ -126,183 +233,99 @@ function getId(){
     }else{
         return 0;
     }
-
 };
-$.post({
-    url: "/goodsManageCon/selectById",
-    dataType: "json",
-    data: "id=" + getId(),
-    success: function (data) {
-        $('h4').text('修改商品信息')
-        $('#submit-btn-add').css('display','none');
-        $('#submit-btn-updata').css('display','block');
-        $('#goodsname').val(data.data.goodsName)
-        $('#goodstype').val(data.data.goodsType)
-        $('#goodsmodel').val(data.data.goodsModel)
-        $('#goodsinfo').val(data.data.goodsInfo)
-        $('#goodsnumber').val(data.data.goodsNumber)
-        $('#goodsdeposit').val(data.data.goodsDeposit)
-        $('#goodssurplus').val(data.data.goodsSurplus)
-        $('#goodsdayprice').val(data.data.goodsDayprice)
-        $('#goodsweekprice').val(data.data.goodsWeekprice)
-        $('#goodsgrade').val(data.data.goodsGrade)
-        $('#rentcount').val(data.data.rentCount)
-
-        $('#submit-btn-updata').click(function () {
-            // 修改商品
-            var updatagood = JSON.stringify(
-                {
-                    "id":data.data.id,
-                    "goodsName":$('#goodsname').val(),
-                    "goodsType":$('#goodstype').val(),
-                    "goodsModel":$('#goodsmodel').val(),
-                    "goodsInfo":$('#goodsinfo').val(),
-                    "goodsNumber":$('#goodsnumber').val(),
-                    "goodsDeposit":$('#goodsdeposit').val(),
-                    "goodsSurplus":data.data.goodsSurplus,
-                    "goodsDayprice":$('#goodsdayprice').val(),
-                    "goodsWeekprice":$('#goodsweekprice').val(),
-                    "createTime":data.data.createTime,
-                    "goodsGrade":data.data.goodsGrade,
-                    "rentCount":data.data.rentCount,
-                    "regId":data.data.regId
-                });
-            // console.log(updatagood)
-            $.post({
-                url:"/goodsManageCon/updataGood",
-                data:updatagood,
-                contentType:"application/json",
-                dataType:"json",
-                success:function (data) {
-                    if(data.code == 0) {
-                        alert("基本信息修改成功")
-                    } else {
-                        alert("基本信息修改失败")
+var datas;
+if(getId()!=0){
+    $.post({
+        url: "/goodsManageCon/selectById",
+        dataType: "json",
+        data: "id=" + getId(),
+        success: function (data) {
+            datas = data.data;
+            $('h4').text('修改商品信息')
+            $('#submit-btn-add').css('display','none');
+            $('#submit-btn-updata').css('display','block');
+            $('#goodsname').val(datas.goodsName)
+            $('#goodstype').val(datas.goodsType)
+            $('#goodsmodel').val(datas.goodsModel)
+            $('#goodsinfo').val(datas.goodsInfo)
+            $('#goodsnumber').val(datas.goodsNumber)
+            $('#goodsdeposit').val(datas.goodsDeposit)
+            $('#goodssurplus').val(datas.goodsSurplus)
+            $('#goodsdayprice').val(datas.goodsDayprice)
+            $('#goodsweekprice').val(datas.goodsWeekprice)
+            $('#goodsgrade').val(datas.goodsGrade)
+            $('#rentcount').val(datas.rentCount)
+            $('#submit-btn-updata').click(function () {
+                // 修改商品
+                // formData2.append("id",datas.id);
+                formData2.append("goodsName",$('#goodsname').val());
+                formData2.append("goodsType", $('#goodstype').val());
+                formData2.append("goodsModel",$('#goodsmodel').val());
+                formData2.append("goodsInfo",$('#goodsinfo').val());
+                formData2.append("goodsNumber",$('#goodsnumber').val());
+                formData2.append("goodsDeposit",$('#goodsdeposit').val());
+                // formData2.append("goodsSurplus",$('#goodssurplus').val());
+                formData2.append("goodsDayprice",$('#goodsdayprice').val());
+                formData2.append("goodsWeekprice",$('#goodsweekprice').val());
+                // formData2.append("createTime",datas.createTime);
+                formData2.append("goodsGrade",datas.goodsGrade);
+                formData2.append("rentCount",datas.rentCount);
+                formData2.append("regId",datas.regId);
+                formData2.append("id",datas.goodsPictures[0].id);
+                formData2.append("goodsId",datas.id);
+                // var updatagood = JSON.stringify(
+                //     {
+                //         "id":datas.id,
+                //         "goodsName":$('#goodsname').val(),
+                //         "goodsType":$('#goodstype').val(),
+                //         "goodsModel":$('#goodsmodel').val(),
+                //         "goodsInfo":$('#goodsinfo').val(),
+                //         "goodsNumber":$('#goodsnumber').val(),
+                //         "goodsDeposit":$('#goodsdeposit').val(),
+                //         "goodsSurplus":datas.goodsSurplus,
+                //         "goodsDayprice":$('#goodsdayprice').val(),
+                //         "goodsWeekprice":$('#goodsweekprice').val(),
+                //         "createTime":datas.createTime,
+                //         "goodsGrade":datas.goodsGrade,
+                //         "rentCount":datas.rentCount,
+                //         "regId":datas.regId,
+                //         "picId":datas.goodsPictures[0].id
+                //     });
+                // console.log(updatagood)
+                $.ajax({
+                    type:"post",
+                    url:"/goodsManageCon/updataGood",
+                    data:formData2,
+                    contentType:"application/json",
+                    dataType:"json",
+                    processData: false, // 告诉jQuery不要去处理发送的数据
+                    contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+                    cache: false, //上传文件不需要缓存
+                    success:function (data) {
+                        if(data.code == 0) {
+                            alert("修改成功")
+                        } else {
+                            alert("修改失败")
+                        }
                     }
-                }
-            })
-            var updatapic = JSON.stringify(
-                {
-                    "id":data.data.goodsPictures[0].id,
-                    "goodsId":data.data.id,
-                    "goodsPicture":data.data.goodsPictures[0].goodsPicture
                 })
-            $.post({
-                url:"/goodsManageCon/updataPic",
-                data:updatapic,
-                contentType:"application/json",
-                dataType:"json",
-                success:function (data) {
-                    if(data.code == 0) {
-                        alert("图片修改成功")
-                    } else {
-                        alert("图片修改失败")
-                    }
-                }
+                // alert("datas.id:"+datas.id);
+                // alert("id:"+datas.goodsPictures[0].id);
+                // $.post({
+                //     url:"/goodsManageCon/updataPic",
+                //     data:{"id":datas.goodsPictures[0].id},
+                //     // contentType:"application/json",
+                //     dataType:"json",
+                //     success:function (data) {
+                //         if(data.code == 0) {
+                //             alert("图片修改成功")
+                //         } else {
+                //             alert("图片修改失败")
+                //         }
+                //     }
+                // })
             })
-        })
-    }
-})
-
-
-//图片上传预览功能
-// var userAgent = navigator.userAgent;
-//用于判断浏览器类型
-// 使用formData完成多图片上传
-// var formData = new FormData();
-// var formData2 = new FormData();
-// var count = 0;
-// $(".file").change(function() {
-//     //获取选择图片的对象
-//     var docObj = $(this)[0];
-//     var picDiv = $(this).parents(".picDiv");
-//     //得到所有的图片文件
-//     var fileList = docObj.files;
-//     //将图片数据放到formData中传递后台
-//     if(fileList.length==1){
-//         formData.append("file",docObj.files[0]);
-//         formData2.append("file",docObj.files[0]);
-//         count = count+1;
-//     }else{
-//         for(var i = 0; i < fileList.length; i++){
-//             formData.append("file",$(this)[0].files[i]);
-//             formData2.append("file",$(this)[0].files[i]);
-//         }
-//     }
-//     if( count > 5 ){
-//         console.log("超过五张！");
-//     }else{
-//         //循环遍历
-//         for (var i = 0; i < fileList.length; i++) {
-//             //动态添加html元素
-//             var picHtml = "<div class='imageDiv' nm='"+fileList[i].name+"'><img id='img"
-//                 + fileList[i].name + "' /> <div class='image-cover'><i class='delbtn'>删除</i></div></div>";
-//             console.log(picHtml);
-//             picDiv.prepend(picHtml);
-//             //获取图片imgi的对象
-//             var imgObjPreview = document.getElementById("img" + fileList[i].name);
-//             if (fileList && fileList[i]) {
-//                 //图片属性
-//                 imgObjPreview.style.display = 'block';
-//                 imgObjPreview.style.width = '160px';
-//                 imgObjPreview.style.height = '130px';
-//                 //imgObjPreview.src = docObj.files[0].getAsDataURL();
-//                 // 火狐7以上版本不能用上面的getAsDataURL()方式获取，需要以下方式
-//                 if (userAgent.indexOf('MSIE') == -1) {
-//                     //IE以外浏览器
-//                     imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);
-//                     //获取上传图片文件的物理路径;
-//                     console.log(imgObjPreview.src);
-//                 } else {
-//                     //IE浏览器
-//                     if (docObj.value.indexOf(",") != -1) {
-//                         var srcArr = docObj.value.split(",");
-//                         imgObjPreview.src = srcArr[i];
-//                     } else {
-//                         imgObjPreview.src = docObj.value;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     /*删除功能*/
-//     $(".delbtn").click(function() {
-//         if(formData.getAll("file").length==0){
-//             formData=formData2;
-//         }else{
-//             formData2.delete("file");
-//             for(var i=0;i<formData.getAll("file").length;i++){
-//                 if(formData.getAll("file")[i].name==$(this).parents(".imageDiv").attr("nm")){
-//
-//                 }else{
-//                     formData2.append("file",formData.getAll("file")[i]);
-//                 }
-//             }
-//         }
-//         formData.delete("file");
-//         for(var i=0;i<formData2.getAll("file").length;i++){
-//             formData.append("file",formData2.getAll("file")[i]);
-//         }
-//         var _this = $(this);
-//         _this.parents(".imageDiv").remove();
-//     });
-// });
-// $("#submit-btn-add").click(function(){
-//     $.ajax({
-//         type:'post',
-//         dataType:'json',
-//         data:formData2,
-//         cache: false, //上传文件不需要缓存
-//         url:'/MultiPictareaddData',
-//         processData: false, // 告诉jQuery不要去处理发送的数据
-//         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-//         success:function(data){
-//             if(data.success=='ok'){
-//                 console.log("====success====");
-//             }else{
-//                 console.log("====fail====");
-//             }
-//         }
-//     })
-// })
-
+        }
+    })
+}

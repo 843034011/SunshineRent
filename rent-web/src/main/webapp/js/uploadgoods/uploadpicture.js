@@ -81,17 +81,18 @@ $(".file").change(function() {
         _this.parents(".imageDiv").remove();
     });
 });
-$("#submit-btn").click(function(){
+$("#submit-btn-updata").click(function(){
     $.ajax({
         type:'post',
         dataType:'json',
         data:formData2,
         cache: false, //上传文件不需要缓存
-        url:'/evaluate/evaluateData',
+        url:'/goodsManageCon/updataPic',
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
-            if(data.success=='ok'){
+            // alert(data.code)
+            if(data.code == 0){
                 console.log("====success====");
             }else{
                 console.log("====fail====");
