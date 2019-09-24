@@ -1,9 +1,11 @@
 package com.elife.pojo;
 
-import java.util.Date;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class RentGoods {
+import java.util.Date;
+
+public class GoodsAndPicture {
+
     private Integer id;
 
     private String goodsName;
@@ -24,6 +26,7 @@ public class RentGoods {
 
     private Long goodsWeekprice;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private Integer goodsGrade;
@@ -31,6 +34,10 @@ public class RentGoods {
     private Integer rentCount;
 
     private Integer regId;
+
+    private String goodsPicture;
+
+    private Integer picId;
 
     public Integer getId() {
         return id;
@@ -45,7 +52,7 @@ public class RentGoods {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+        this.goodsName = goodsName;
     }
 
     public String getGoodsType() {
@@ -53,7 +60,7 @@ public class RentGoods {
     }
 
     public void setGoodsType(String goodsType) {
-        this.goodsType = goodsType == null ? null : goodsType.trim();
+        this.goodsType = goodsType;
     }
 
     public String getGoodsModel() {
@@ -61,7 +68,7 @@ public class RentGoods {
     }
 
     public void setGoodsModel(String goodsModel) {
-        this.goodsModel = goodsModel == null ? null : goodsModel.trim();
+        this.goodsModel = goodsModel;
     }
 
     public String getGoodsInfo() {
@@ -69,7 +76,7 @@ public class RentGoods {
     }
 
     public void setGoodsInfo(String goodsInfo) {
-        this.goodsInfo = goodsInfo == null ? null : goodsInfo.trim();
+        this.goodsInfo = goodsInfo;
     }
 
     public Integer getGoodsNumber() {
@@ -144,13 +151,41 @@ public class RentGoods {
         this.regId = regId;
     }
 
-    private List<GoodsPicture> goodsPictures;
-
-    public List<GoodsPicture> getGoodsPictures() {
-        return goodsPictures;
+    public String getGoodsPicture() {
+        return goodsPicture;
     }
 
-    public void setGoodsPictures(List<GoodsPicture> goodsPictures) {
-        this.goodsPictures = goodsPictures;
+    public void setGoodsPicture(String goodsPicture) {
+        this.goodsPicture = goodsPicture;
+    }
+
+    public Integer getPicId() {
+        return picId;
+    }
+
+    public void setPicId(Integer picId) {
+        this.picId = picId;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsAndPicture{" +
+                "id=" + id +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsType='" + goodsType + '\'' +
+                ", goodsModel='" + goodsModel + '\'' +
+                ", goodsInfo='" + goodsInfo + '\'' +
+                ", goodsNumber=" + goodsNumber +
+                ", goodsSurplus=" + goodsSurplus +
+                ", goodsDeposit=" + goodsDeposit +
+                ", goodsDayprice=" + goodsDayprice +
+                ", goodsWeekprice=" + goodsWeekprice +
+                ", createTime=" + createTime +
+                ", goodsGrade=" + goodsGrade +
+                ", rentCount=" + rentCount +
+                ", regId=" + regId +
+                ", goodsPicture='" + goodsPicture + '\'' +
+                ", picId=" + picId +
+                '}';
     }
 }

@@ -30,4 +30,13 @@ public class GoodsPicture {
     public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
+
+    @Override
+    public String toString() {
+        return "GoodsPicture{" +
+                "id=" + id +
+                ", goodsPicture='" + goodsPicture + '\'' +
+                ", goodsId=" + goodsId +
+                '}';
+    }
 }

@@ -24,13 +24,12 @@ function show() {
     })
 }
 
-
 var myGoods;
 var len;
 $.post({
     url: "/goodsManageCon/selectRegId",
     dataType: "json",
-    data: "regId=" + 4,
+    data: "regId=" + 4,//页面获取
     success: function (data) {
         // alert(123)
         myGoods = data.data;
@@ -63,7 +62,6 @@ $.post({
                 `
             )
         });
-
 
         if (len != 0) {
             // $('.items1').html('');
