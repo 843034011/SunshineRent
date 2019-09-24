@@ -1,5 +1,6 @@
 package com.elife.pojo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class RentField {
@@ -11,23 +12,33 @@ public class RentField {
 
     private String fieldInfo;
 
-    private Long fieldDeposit;
+    private BigDecimal fieldDeposit;
 
-    private Long fieldHourprice;
+    private BigDecimal fieldHourprice;
 
-    private Long fieldDayprice;
+    private BigDecimal fieldDayprice;
 
-    private Long fieldWeekprice;
+    private BigDecimal fieldWeekprice;
 
-    private Long fieldMonthprice;
+    private BigDecimal fieldMonthprice;
 
     private String fieldAddress;
 
-    private Integer fieldGrade;
+    private BigDecimal fieldGrade;
 
     private Integer rentCount;
 
     private Integer regId;
+
+    private Integer fieldVolume;
+
+    public Integer getFieldVolume() {
+        return fieldVolume;
+    }
+
+    public void setFieldVolume(Integer fieldVolume) {
+        this.fieldVolume = fieldVolume;
+    }
 
     public Integer getId() {
         return id;
@@ -61,45 +72,7 @@ public class RentField {
         this.fieldInfo = fieldInfo == null ? null : fieldInfo.trim();
     }
 
-    public Long getFieldDeposit() {
-        return fieldDeposit;
-    }
 
-    public void setFieldDeposit(Long fieldDeposit) {
-        this.fieldDeposit = fieldDeposit;
-    }
-
-    public Long getFieldHourprice() {
-        return fieldHourprice;
-    }
-
-    public void setFieldHourprice(Long fieldHourprice) {
-        this.fieldHourprice = fieldHourprice;
-    }
-
-    public Long getFieldDayprice() {
-        return fieldDayprice;
-    }
-
-    public void setFieldDayprice(Long fieldDayprice) {
-        this.fieldDayprice = fieldDayprice;
-    }
-
-    public Long getFieldWeekprice() {
-        return fieldWeekprice;
-    }
-
-    public void setFieldWeekprice(Long fieldWeekprice) {
-        this.fieldWeekprice = fieldWeekprice;
-    }
-
-    public Long getFieldMonthprice() {
-        return fieldMonthprice;
-    }
-
-    public void setFieldMonthprice(Long fieldMonthprice) {
-        this.fieldMonthprice = fieldMonthprice;
-    }
 
     public String getFieldAddress() {
         return fieldAddress;
@@ -109,11 +82,51 @@ public class RentField {
         this.fieldAddress = fieldAddress == null ? null : fieldAddress.trim();
     }
 
-    public Integer getFieldGrade() {
+    public BigDecimal getFieldDeposit() {
+        return fieldDeposit;
+    }
+
+    public void setFieldDeposit(BigDecimal fieldDeposit) {
+        this.fieldDeposit = fieldDeposit;
+    }
+
+    public BigDecimal getFieldHourprice() {
+        return fieldHourprice;
+    }
+
+    public void setFieldHourprice(BigDecimal fieldHourprice) {
+        this.fieldHourprice = fieldHourprice;
+    }
+
+    public BigDecimal getFieldDayprice() {
+        return fieldDayprice;
+    }
+
+    public void setFieldDayprice(BigDecimal fieldDayprice) {
+        this.fieldDayprice = fieldDayprice;
+    }
+
+    public BigDecimal getFieldWeekprice() {
+        return fieldWeekprice;
+    }
+
+    public void setFieldWeekprice(BigDecimal fieldWeekprice) {
+        this.fieldWeekprice = fieldWeekprice;
+    }
+
+    public BigDecimal getFieldMonthprice() {
+        return fieldMonthprice;
+    }
+
+    public void setFieldMonthprice(BigDecimal fieldMonthprice) {
+        this.fieldMonthprice = fieldMonthprice;
+    }
+
+    public BigDecimal getFieldGrade() {
         return fieldGrade;
     }
 
-    public void setFieldGrade(Integer fieldGrade) {
+    public void setFieldGrade(BigDecimal fieldGrade) {
         this.fieldGrade = fieldGrade;
     }
 

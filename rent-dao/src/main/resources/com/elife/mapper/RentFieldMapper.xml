@@ -15,6 +15,7 @@
     <result column="field_grade" property="fieldGrade" jdbcType="INTEGER" />
     <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
     <result column="reg_id" property="regId" jdbcType="INTEGER" />
+    <result column="field_volume" property="fieldVolume" jdbcType="INTEGER"/>
 
     <!--一对多关系———场地对场地图片-->
     <collection property="fieldPictures" column="id" select="com.elife.mapper.FieldPictureMapper.selectByFieldId"></collection>
