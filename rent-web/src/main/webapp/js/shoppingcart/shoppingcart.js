@@ -10,30 +10,15 @@ var num;
 var jsonInvalidDate = new Array();
 
 // 计算页面信息
-var totalNumber;
-var totalDeposit;
-var totalRent;
-var totalMoney;
+var totalNumber = 0;
+var totalDeposit = 0;
+var totalRent = 0;
+var totalMoney = 0;
+var sedate = '';
 
 // 设定全选、单选的html为null
 $(".choose-list").html("")
 $(".choose-all").html("")
-
-// 全选的click事件
-$(".choose-all").click(function () {
-    if ($(".choose-all").html() == "") {
-        $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-        $(".choose-one-box").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-        $(".list").attr("choosed", "1")
-        $(".list").addClass("curr")
-    } else {
-        $(".choose-all").html("")
-        $(".choose-one-box").html("")
-        $(".list").attr("choosed", "0")
-        $(".list").removeClass("curr")
-    }
-    total();
-})
 
 // 页面的动态加载
 $.post({
@@ -52,20 +37,17 @@ $.post({
                 // 按Id查找场地图片、信息、押金、租金
                 $.post({
                     url: "/shoppingcart/selectfieldbyid",
+                    async: false,
                     data: "id=" + value.fieldId,
                     dataType: "json",
                     success: function (data) {
-
-                        // 调用单选功能
-                        onechoose()
 
                         // 拼接html元素
                         $(".choose-list").append(
                             `
                                 <li class="list" choosed="0" kind="field" id="${orderid}">
                                     <div class="col-md-2">
-                                        <div class="choose-one-box text-left">
-                   
+                                        <div class="choose-one-box text-left" onclick="oneclick(this)">
                                         </div>
                                         <div style="margin-left: 30px">
                                             <a href="../fieldinfo.html?id=${value.fieldId}">
@@ -79,7 +61,10 @@ $.post({
                                             <a href="../fieldinfo.html?id=${value.fieldId}">【${data.data.fieldName}】${data.data.fieldInfo}</a> 
                                         </div>                                      
                                     </div>
-                                    <div class="col-md-2 text-center three-line">>1天&nbsp&nbsp${data.data.fieldDayprice}/天<br>>1周&nbsp&nbsp${data.data.fieldWeekprice}/天<br>>1月&nbsp&nbsp${data.data.fieldMonthprice}/天</div>
+                                    <div class="col-md-2 text-center three-line">
+                                        >=1天&nbsp&nbsp<span class="day-price">${data.data.fieldDayprice}</span>/天<br>
+                                        >=7天&nbsp&nbsp<span class="week-price">${data.data.fieldWeekprice}</span>/天<br>
+                                        >=30天&nbsp&nbsp<span class="month-price">${data.data.fieldMonthprice}</span>/天</div>
                                     <div class="col-md-1 text-center deposit">${data.data.fieldDeposit}</div>
                                     <div class="col-md-2 text-center">                             
                                         <button type="button" class="btn btn-default daterange-btn" id="${orderid}" kind="field" num="${value.fieldId}">
@@ -89,16 +74,13 @@ $.post({
                                             <i class="icon iconfont icon-danxian-youjiantou-copy"></i>
                                         </button>
                                     </div>
-                                    <div class="col-md-1 text-center">金额</div>
+                                    <div class="col-md-1 text-center onetotalmoney">金额</div>
                                     <div class="col-md-2 text-center">
                                         <span class="delete-this" onclick="deletethis()">删除</span>
                                     </div>
                                 </li>
                             `
                         )
-
-                        // 调用单选功能
-                        onechoose()
 
                         // 向下一个js中准备参数
                         $('#' + orderid + ' button').click(function () {
@@ -127,18 +109,16 @@ $.post({
             } else if ((value.fieldId == null) && (value.goodsId != null)) {
                 $.post({
                     url: "/shoppingcart/selectgoodsbyid",
+                    async: false,
                     data: "id=" + value.goodsId,
                     dataType: "json",
                     success: function (data) {
-
-                        onechoose()
 
                         $(".choose-list").append(
                             `
                                 <li class="list" choosed="0" kind="goods" id="${orderid}">
                                     <div class="col-md-2">
-                                        <div class="choose-one-box text-left">
-                   
+                                        <div class="choose-one-box text-left" onclick="oneclick(this)">
                                         </div>
                                         <div style="margin-left: 30px">
                                             <a href="../productinfo.html?id=${value.goodsId}">
@@ -152,7 +132,10 @@ $.post({
                                             <a href="../productinfo.html?id=${value.goodsId}">【${data.data.goodsName}】${data.data.goodsInfo}</a> 
                                         </div>                                      
                                     </div>
-                                    <div class="col-md-2 text-center two-line">>1天&nbsp&nbsp${data.data.goodsDayprice}/天<br>>1周&nbsp&nbsp${data.data.goodsWeekprice}/天<br></div>
+                                    <div class="col-md-2 text-center two-line">
+                                        >=1天&nbsp&nbsp<span class="day-price">${data.data.goodsDayprice}<span>/天<br>
+                                        >=7天&nbsp&nbsp<span class="week-price">${data.data.goodsWeekprice}<span>/天<br>
+                                    </div>
                                     <div class="col-md-1 text-center deposit">${data.data.goodsDeposit}</div>
                                     <div class="col-md-2 text-center">                             
                                         <button type="button" class="btn btn-default daterange-btn" id="${orderid}" kind="goods" num="${value.goodsId}">
@@ -162,7 +145,7 @@ $.post({
                                             <i class="icon iconfont icon-danxian-youjiantou-copy"></i>
                                         </button>
                                     </div>
-                                    <div class="col-md-1 text-center">金额</div>
+                                    <div class="col-md-1 text-center onetotalmoney">金额</div>
                                     <div class="col-md-2 text-center">
                                         <span onclick="deletethis()">删除</span>
                                     </div>
@@ -170,7 +153,12 @@ $.post({
                             `
                         )
 
-                        onechoose()
+                        $('#' + orderid + ' button').click(function () {
+                            num = $('#' + orderid + ' button').attr("num")
+                            kind = $('#' + orderid + ' button').attr("kind")
+
+                            jsonInvalidDate.length = 0
+                        })
 
                         $('#' + orderid + ' button').daterangepicker({
                                 startDate: moment(),
@@ -182,13 +170,6 @@ $.post({
                                 $('#' + orderid + ' button span').html(start.format('YYYY/MM/DD') + '-' + end.format('YYYY/MM/DD'));
                             }
                         );
-
-                        $('#' + orderid + ' button').click(function () {
-                            num = $('#' + orderid + ' button').attr("num")
-                            kind = $('#' + orderid + ' button').attr("kind")
-
-                            jsonInvalidDate.length = 0
-                        })
                     },
                     error: function () {
                         alert("没取到数据！")
@@ -202,62 +183,280 @@ $.post({
     }
 })
 
+// 单个购物车数据删除函数
 function deletethis() {
     alert("删除这个")
 }
-function total() {
+
+// 单选
+function oneclick(obj) {
+
+    // 如果当前choose-one-box没有选中，将其置为''
+    if ($(obj).html() != '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>') {
+        $(obj).html("")
+    }
+
+    if ($(obj).html() == "") {
+
+        sedate = $(obj).parent().parent().find("button span").text().trim()
+        // 判断当前商品是否选中了日期
+        if (sedate == '日期选择') {
+            alert('请先选择日期！！！')
+        }
+
+        if (sedate != '日期选择') {
+            // 设置当前li处于选中状态
+            $(obj).html('<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>')
+            $(obj).parent().parent().addClass("curr")
+            $(obj).parent().parent().attr("choosed", "1")
+
+            sdate = sedate.split("-")[0];
+            edate = sedate.split("-")[1];
+            var days = Math.abs(new Date(edate).getTime() - new Date(sdate).getTime()) / (1000 * 60 * 60 * 24) + 1
+
+            var onetotalmoney;
+
+            if ($(obj).parent().parent().attr("kind") == 'field') {
+                // 场地租金分 日、周、月
+                if (days >= 7) {
+                    totalRent += parseInt($(obj).parent().parent().find(".week-price").html()) * days
+                    onetotalmoney = parseInt($(obj).parent().parent().find(".week-price").html()) * days + parseInt($(obj).parent().parent().find(".deposit").html())
+                } else if (days >= 30) {
+                    totalRent += parseInt($(obj).parent().parent().find(".month-price").html()) * days
+                    onetotalmoney = parseInt($(obj).parent().parent().find(".month-price").html()) * days + parseInt($(obj).parent().parent().find(".deposit").html())
+                } else {
+                    totalRent += parseInt($(obj).parent().parent().find(".day-price").html()) * days
+                    onetotalmoney = parseInt($(obj).parent().parent().find(".day-price").html()) * days + parseInt($(obj).parent().parent().find(".deposit").html())
+                }
+            } else if ($(obj).parent().parent().attr("kind") == 'goods') {
+                // 商品租金分 日、周
+                if (days >= 7) {
+                    totalRent += parseInt($(obj).parent().parent().find(".week-price").html()) * days
+                    onetotalmoney = parseInt($(obj).parent().parent().find(".week-price").html()) * days + parseInt($(obj).parent().parent().find(".deposit").html())
+                } else {
+                    totalRent += parseInt($(obj).parent().parent().find(".day-price").html()) * days
+                    onetotalmoney = parseInt($(obj).parent().parent().find(".day-price").html()) * days + parseInt($(obj).parent().parent().find(".deposit").html())
+                }
+            }
+
+            totalDeposit += parseInt($(obj).parent().parent().find(".deposit").html())
+            totalMoney = totalDeposit + totalRent;
+            totalNumber++;
+
+            $(obj).parent().parent().find(".onetotalmoney").html(onetotalmoney)
+
+            $(".number").html(totalNumber)
+            $(".rent-money").html(totalRent)
+            $(".deposit-money").html(totalDeposit)
+            $(".total-money").html(totalMoney)
+        }
+
+        for (var i = 0; i < $(".choose-one-box").length; i++) {
+            if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>') {
+                if (i == $(".choose-one-box").length - 1) {
+                    $(".choose-all").html('<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>')
+                }
+                continue
+            } else {
+                break
+            }
+        }
+    } else {
+        sedate = $(obj).parent().parent().find("button span").text().trim()
+
+        sdate = sedate.split("-")[0];
+        edate = sedate.split("-")[1];
+        var days = Math.abs(new Date(edate).getTime() - new Date(sdate).getTime()) / (1000 * 60 * 60 * 24) + 1
+
+        if ($(obj).parent().parent().attr("kind") == 'field') {
+            // 场地租金分 日、周、月
+            if (days >= 7) {
+                totalRent -= parseInt($(obj).parent().parent().find(".week-price").html()) * days
+            } else if (days >= 30) {
+                totalRent -= parseInt($(obj).parent().parent().find(".month-price").html()) * days
+            } else {
+                totalRent -= parseInt($(obj).parent().parent().find(".day-price").html()) * days
+            }
+        } else if ($(obj).parent().parent().attr("kind") == 'goods') {
+            // 商品租金分 日、周
+            if (days >= 7) {
+                totalRent -= parseInt($(obj).parent().parent().find(".week-price").html()) * days
+            } else {
+                totalRent -= parseInt($(obj).parent().parent().find(".day-price").html()) * days
+            }
+        }
+
+        totalDeposit -= parseInt($(obj).parent().parent().find(".deposit").html())
+        totalMoney = totalDeposit + totalRent;
+        totalNumber--;
+
+        $(obj).parent().parent().find(".onetotalmoney").html("金额")
+
+        $(".number").html(totalNumber)
+        $(".rent-money").html(totalRent)
+        $(".deposit-money").html(totalDeposit)
+        $(".total-money").html(totalMoney)
+
+        $(obj).html("")
+        $(".choose-all").html("")
+        $(obj).parent().parent().removeClass("curr")
+        $(obj).parent().parent().attr("choosed", "0")
+    }
+}
+
+// 全选的click事件
+$(".choose-all").click(function () {
 
     totalNumber = 0;
     totalDeposit = 0;
     totalRent = 0;
     totalMoney = 0;
-    var sedate;
+
+    if ($(".choose-all").html() == "") {
+        for (var i = 0; i < $(".choose-one-box").length; i++) {
+
+            if ($(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim() == '日期选择') {
+                alert("请先为全部商品选择日期！！")
+                break;
+            }
+            if(i == ($(".choose-one-box").length - 1)){
+                $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
+                $(".choose-one-box").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
+                $(".list").attr("choosed", "1")
+                $(".list").addClass("curr")
+
+                for (var i = 0; i < $(".choose-one-box").length; i++) {
+                    totalNumber = i + 1;
+
+                    sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
+                    sdate = sedate.split("-")[0];
+                    edate = sedate.split("-")[1];
+                    var days = Math.abs(new Date(edate).getTime() - new Date(sdate).getTime()) / (1000 * 60 * 60 * 24) + 1
+
+                    var oneRentMoney;
+
+                    if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'field') {
+                        // 场地租金分 日、周、月
+                        if (days >= 7) {
+                            oneRentMoney = parseInt($(".choose-one-box")[i].parentNode.parentNode.children[2].children[2].innerText) * days
+                            totalRent += oneRentMoney
+                            $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText = oneRentMoney + parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+                        } else if (days >= 30) {
+                            oneRentMoney = parseInt($(".choose-one-box")[i].parentNode.parentNode.children[2].children[4].innerText) * days
+                            totalRent += oneRentMoney
+                            $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText = oneRentMoney + parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+                        } else {
+                            oneRentMoney = parseInt($(".choose-one-box")[i].parentNode.parentNode.children[2].children[0].innerText) * days
+                            totalRent += oneRentMoney
+                            $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText = oneRentMoney + parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+                        }
+                    } else if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'goods') {
+                        // 商品租金分 日、周
+                        if (days >= 7) {
+                            oneRentMoney = parseInt($(".choose-one-box")[i].parentNode.parentNode.children[2].children[2].innerText) * days
+                            totalRent += oneRentMoney
+                            $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText = oneRentMoney + parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+                        } else {
+                            oneRentMoney = parseInt($(".choose-one-box")[i].parentNode.parentNode.children[2].children[0].innerText) * days
+                            totalRent += oneRentMoney
+                            $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText = oneRentMoney + parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+                        }
+                    }
+
+                    totalDeposit += parseInt($(".choose-one-box")[i].parentNode.parentNode.children[3].innerText)
+
+                    totalMoney = totalRent + totalDeposit
+                }
+            }
+        }
+
+        $(".number").html(totalNumber)
+        $(".rent-money").html(totalRent)
+        $(".deposit-money").html(totalDeposit)
+        $(".total-money").html(totalMoney)
+
+    } else {
+        $(".choose-all").html("")
+        $(".choose-one-box").html("")
+        $(".list").attr("choosed", "0")
+        $(".list").removeClass("curr")
+
+        totalNumber = 0;
+        totalDeposit = 0.00;
+        totalRent = 0.00;
+        totalMoney = 0.00;
+
+        $(".onetotalmoney").html("金额")
+
+        $(".number").html(totalNumber)
+        $(".rent-money").html(totalRent)
+        $(".deposit-money").html(totalDeposit)
+        $(".total-money").html(totalMoney)
+    }
+})
+
+// 结算函数
+function totalmoney() {
 
     for (var i = 0; i < $(".choose-one-box").length; i++) {
-        if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>') {
-            totalNumber++;
-            totalDeposit += $(".choose-one-box").parent().parent().find(".deposit")[i].innerText
-            sedate = $(".choose-one-box").parent().parent().find("button span")[i].innerText
 
-            if(sedate == '日期选择 '){
-                alert('请先选择日期！！！')
+        if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>'){
+            var json = [];
+            var order = {};
+
+            sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
+            sdate = sedate.split("-")[0].replace(/\//g,"-");
+            edate = sedate.split("-")[1].replace(/\//g,"-");
+
+            order.startTime = sdate;
+            order.endTime = edate;
+
+            order.orderPrice = $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText;
+
+            order.rid = regId;
+
+            var fid = null;
+            var gid = null;
+
+            if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'field') {
+                fid =  $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+            } else if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'goods') {
+                gid =  $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
             }
-            sdate = sedate.split("-")[0];
-            edate = sedate.split("-")[1];
-            var days = Math.abs( new Date(edate).getTime()- new Date(sdate).getTime())/ (1000 * 60 * 60 * 24)
 
+            order.fieldId = fid;
+            order.goodsId = gid
+
+            json.push(order)
+
+            $.post({
+                // 向订单表里添加数据
+                url: "orders/insertorder",
+                dateType: "json",
+                contentType:'application/json;charset=UTF-8',
+                data:JSON.stringify(json),
+                success: function () {
+                    $.cookie("waiting",json)
+                    $.post({
+                        url: "orders/ensureorder",
+                        success: function () {
+                            alert("应该是显示不了")
+                        },
+                        error: function () {
+                            alert("应该也显示不了")
+                        }
+                    })
+                }
+            })
+            console.log(order.orderPrice)
+            console.log(order.startTime)
+            console.log(order.endTime)
+            console.log(order.rid)
+            console.log(order.fieldId)
+            console.log(order.goodsId)
+            console.log("===============")
 
         }
     }
 }
-// 单选的封装
-function onechoose() {
-    // 将选择的html设置为 ""
-    $(".choose-one-box").html("")
-
-    // 选择的click事件
-    $(".choose-one-box").click(function () {
-        if ($(this).html() == "") {
-            $(this).html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-            $(this).parent().parent().addClass("curr")
-            $(this).parent().parent().attr("choosed", "1")
-            for (var i = 0; i < $(".choose-one-box").length; i++) {
-                if ($(".choose-one-box")[i].innerHTML == "<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>") {
-                    if (i == $(".choose-one-box").length - 1) {
-                        $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
-                    }
-                    continue
-                } else {
-                    break
-                }
-            }
-        } else {
-            $(this).html("")
-            $(".choose-all").html("")
-            $(this).parent().parent().removeClass("curr")
-            $(this).parent().parent().attr("choosed", "0")
-        }
-    })
-}
-
 
