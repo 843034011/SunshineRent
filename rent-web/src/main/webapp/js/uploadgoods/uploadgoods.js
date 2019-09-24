@@ -169,8 +169,6 @@ $('#submit-btn-add').click(function () {
     formData2.append("regId",datas.regId);
     // formData2.append("id",datas.goodsPictures[0].id);
     formData2.append("goodsId",datas.id);
-
-
     // var postData = {
     //     "goodsName":$('#goodsname').val(),
     //     "goodsType":$('#goodstype').val(),
@@ -187,7 +185,6 @@ $('#submit-btn-add').click(function () {
     //     // 另一个页面传过来
     //     "regId":4
     // }
-
     $.post({
         url:"/goodsManageCon/insertGood",
         data:formData2,
