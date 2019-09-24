@@ -1,5 +1,6 @@
 package com.elife.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class UserOrder {
@@ -7,7 +8,7 @@ public class UserOrder {
 
     private Integer orderNumber;
 
-    private Long orderPrice;
+    private BigDecimal orderPrice;
 
     private Date startTime;
 
@@ -41,11 +42,11 @@ public class UserOrder {
         this.orderNumber = orderNumber;
     }
 
-    public Long getOrderPrice() {
+    public BigDecimal getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(Long orderPrice) {
+    public void setOrderPrice(BigDecimal orderPrice) {
         this.orderPrice = orderPrice;
     }
 

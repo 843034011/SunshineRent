@@ -1,5 +1,6 @@
 package com.elife.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,15 +19,15 @@ public class RentGoods {
 
     private Integer goodsSurplus;
 
-    private Long goodsDeposit;
+    private BigDecimal goodsDeposit;
 
-    private Long goodsDayprice;
+    private BigDecimal goodsDayprice;
 
-    private Long goodsWeekprice;
+    private BigDecimal goodsWeekprice;
 
     private Date createTime;
 
-    private Integer goodsGrade;
+    private BigDecimal goodsGrade;
 
     private Integer rentCount;
 
@@ -88,27 +89,27 @@ public class RentGoods {
         this.goodsSurplus = goodsSurplus;
     }
 
-    public Long getGoodsDeposit() {
+    public BigDecimal getGoodsDeposit() {
         return goodsDeposit;
     }
 
-    public void setGoodsDeposit(Long goodsDeposit) {
+    public void setGoodsDeposit(BigDecimal goodsDeposit) {
         this.goodsDeposit = goodsDeposit;
     }
 
-    public Long getGoodsDayprice() {
+    public BigDecimal getGoodsDayprice() {
         return goodsDayprice;
     }
 
-    public void setGoodsDayprice(Long goodsDayprice) {
+    public void setGoodsDayprice(BigDecimal goodsDayprice) {
         this.goodsDayprice = goodsDayprice;
     }
 
-    public Long getGoodsWeekprice() {
+    public BigDecimal getGoodsWeekprice() {
         return goodsWeekprice;
     }
 
-    public void setGoodsWeekprice(Long goodsWeekprice) {
+    public void setGoodsWeekprice(BigDecimal goodsWeekprice) {
         this.goodsWeekprice = goodsWeekprice;
     }
 
@@ -120,11 +121,11 @@ public class RentGoods {
         this.createTime = createTime;
     }
 
-    public Integer getGoodsGrade() {
+    public BigDecimal getGoodsGrade() {
         return goodsGrade;
     }
 
-    public void setGoodsGrade(Integer goodsGrade) {
+    public void setGoodsGrade(BigDecimal goodsGrade) {
         this.goodsGrade = goodsGrade;
     }
 

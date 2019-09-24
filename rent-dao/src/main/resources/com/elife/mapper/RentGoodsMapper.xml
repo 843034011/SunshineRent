@@ -13,7 +13,7 @@
     <result column="goods_dayprice" property="goodsDayprice" jdbcType="DECIMAL" />
     <result column="goods_weekprice" property="goodsWeekprice" jdbcType="DECIMAL" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="goods_grade" property="goodsGrade" jdbcType="INTEGER" />
+    <result column="goods_grade" property="goodsGrade" jdbcType="DECIMAL" />
     <result column="rent_count" property="rentCount" jdbcType="INTEGER" />
     <result column="reg_id" property="regId" jdbcType="INTEGER" />
 
@@ -138,7 +138,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="goodsGrade != null" >
-        goods_grade = #{goodsGrade,jdbcType=INTEGER},
+        goods_grade = #{goodsGrade,jdbcType=DECIMAL},
       </if>
       <if test="rentCount != null" >
         rent_count = #{rentCount,jdbcType=INTEGER},
@@ -181,7 +181,7 @@
     values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR},
       #{goodsModel,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR}, #{goodsNumber,jdbcType=INTEGER},
       #{goodsSurplus,jdbcType=INTEGER}, #{goodsDeposit,jdbcType=DECIMAL}, #{goodsDayprice,jdbcType=DECIMAL},
-      #{goodsWeekprice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{goodsGrade,jdbcType=INTEGER},
+      #{goodsWeekprice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{goodsGrade,jdbcType=DECIMAL},
       #{rentCount,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER})
   </insert>
   <!--
@@ -305,7 +305,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="goodsGrade != null" >
-        #{goodsGrade,jdbcType=INTEGER},
+        #{goodsGrade,jdbcType=DECIMAL},
       </if>
       <if test="rentCount != null" >
         #{rentCount,jdbcType=INTEGER},
@@ -360,7 +360,7 @@
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.goodsGrade != null" >
-        goods_grade = #{record.goodsGrade,jdbcType=INTEGER},
+        goods_grade = #{record.goodsGrade,jdbcType=DECIMAL},
       </if>
       <if test="record.rentCount != null" >
         rent_count = #{record.rentCount,jdbcType=INTEGER},
@@ -386,7 +386,7 @@
       goods_dayprice = #{record.goodsDayprice,jdbcType=DECIMAL},
       goods_weekprice = #{record.goodsWeekprice,jdbcType=DECIMAL},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      goods_grade = #{record.goodsGrade,jdbcType=INTEGER},
+      goods_grade = #{record.goodsGrade,jdbcType=DECIMAL},
       rent_count = #{record.rentCount,jdbcType=INTEGER},
       reg_id = #{record.regId,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -406,7 +406,7 @@
       goods_dayprice = #{goodsDayprice,jdbcType=DECIMAL},
       goods_weekprice = #{goodsWeekprice,jdbcType=DECIMAL},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      goods_grade = #{goodsGrade,jdbcType=INTEGER},
+      goods_grade = #{goodsGrade,jdbcType=DECIMAL},
       rent_count = #{rentCount,jdbcType=INTEGER},
       reg_id = #{regId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
