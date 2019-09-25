@@ -83,7 +83,6 @@ $(".file").change(function() {
 });
 
 
-
 //获取系统当前时间
 function getNowData() {
     function getNow(s) {//判断是否在前面加0
@@ -146,100 +145,104 @@ function words_deal() {
     }
 }
 
+
 //选择商品类型
 $("#goodstype-ul").find("li").click(function(){
     $("#goodstype").val($(this).text());
 });
 
-
+var reg_id = $.cookie("id");
 var datas;
-
+alert(reg_id)
 //添加商品到数据库
-$('#submit-btn-add').click(function () {
-
-    formData2.append("goodsName",$('#goodsname').val());
-    formData2.append("goodsType", $('#goodstype').val());
-    formData2.append("goodsModel",$('#goodsmodel').val());
-    formData2.append("goodsInfo",$('#goodsinfo').val());
-    formData2.append("goodsNumber",$('#goodsnumber').val());
-    formData2.append("goodsDeposit",$('#goodsdeposit').val());
-    formData2.append("goodsSurplus",0);
-    formData2.append("goodsDayprice",$('#goodsdayprice').val());
-    formData2.append("goodsWeekprice",$('#goodsweekprice').val());
-    formData2.append("createTime",getNowData());
-    formData2.append("goodsGrade",0);
-    formData2.append("rentCount",0);
-    formData2.append("regId",4);
-    // formData2.append("id",datas.goodsPictures[0].id);
-    // formData2.append("goodsId",datas.id);
-    // var postData = {
-    //     "goodsName":$('#goodsname').val(),
-    //     "goodsType":$('#goodstype').val(),
-    //     "goodsModel":$('#goodsmodel').val(),
-    //     "goodsInfo":$('#goodsinfo').val(),
-    //     "goodsNumber":$('#goodsnumber').val(),
-    //     "goodsDeposit":$('#goodsdeposit').val(),
-    //     "goodsSurplus":0,
-    //     "goodsDayprice":$('#goodsdayprice').val(),
-    //     "goodsWeekprice":$('#goodsweekprice').val(),
-    //     "createTime":getNowData(),
-    //     "goodsGrade":0,
-    //     "rentCount":0,
-    //     // 另一个页面传过来
-    //     "regId":4
-    // }
-    $.post({
-        url:"/goodsManageCon/insertGood",
-        data:formData2,
-        dataType:"json",
-        contentType:"application/json",
-        cache: false, //上传文件不需要缓存
-        processData: false,
-        contentType: false,
-        success:function (data) {
-            if(data.code == 0) {
-                alert("添加成功")
-            } else {
-                alert("添加失败")
+if(reg_id !=0 || reg_id != null){
+    $('#submit-btn-add').click(function () {
+        formData2.append("goodsName",$('#goodsname').val());
+        formData2.append("goodsType", $('#goodstype').val());
+        formData2.append("goodsModel",$('#goodsmodel').val());
+        formData2.append("goodsInfo",$('#goodsinfo').val());
+        formData2.append("goodsNumber",$('#goodsnumber').val());
+        formData2.append("goodsDeposit",$('#goodsdeposit').val());
+        formData2.append("goodsSurplus",1);
+        formData2.append("goodsDayprice",$('#goodsdayprice').val());
+        formData2.append("goodsWeekprice",$('#goodsweekprice').val());
+        formData2.append("createTime",getNowData());
+        formData2.append("goodsGrade",1);
+        formData2.append("rentCount",1);
+        formData2.append("regId",reg_id);
+        // formData2.append("id",datas.goodsPictures[0].id);
+        // formData2.append("goodsId",datas.id);
+        // var postData = {
+        //     "goodsName":$('#goodsname').val(),
+        //     "goodsType":$('#goodstype').val(),
+        //     "goodsModel":$('#goodsmodel').val(),
+        //     "goodsInfo":$('#goodsinfo').val(),
+        //     "goodsNumber":$('#goodsnumber').val(),
+        //     "goodsDeposit":$('#goodsdeposit').val(),
+        //     "goodsSurplus":0,
+        //     "goodsDayprice":$('#goodsdayprice').val(),
+        //     "goodsWeekprice":$('#goodsweekprice').val(),
+        //     "createTime":getNowData(),
+        //     "goodsGrade":0,
+        //     "rentCount":0,
+        //     // 另一个页面传过来
+        //     "regId":4
+        // }
+        $.post({
+            url:"/goodsManageCon/insertGood",
+            data:formData2,
+            dataType:"json",
+            contentType:"application/json",
+            cache: false, //上传文件不需要缓存
+            processData: false,
+            contentType: false,
+            success:function (data) {
+                if(data.code == 0) {
+                    alert("添加成功")
+                } else {
+                    alert("添加失败")
+                }
             }
-        }
+        })
+        // $.post({
+        //     url:"/goodsManageCon/insertPic",
+        //     data:formData2,
+        //     dataType:"json",
+        //     success:function (data) {
+        //         if(data.code == 0) {
+        //             alert("添加成功")
+        //         } else {
+        //             alert("添加失败")
+        //         }
+        //     }
+        //
+        // })
     })
-    // $.post({
-    //     url:"/goodsManageCon/insertPic",
-    //     data:formData2,
-    //     dataType:"json",
-    //     success:function (data) {
-    //         if(data.code == 0) {
-    //             alert("添加成功")
-    //         } else {
-    //             alert("添加失败")
-    //         }
-    //     }
-    //
-    // })
-})
+}
 
 //修改商品信息
 //接收商品页的id值
-function getId(){
-    var result;
-    var url=window.location.search;
-    //获取url中"?"符后的字串
-    // if(url.indexOf("?")!=-1){
-    result = url.substr(url.indexOf("=")+1);
-    // }
-    if(result != null){
-        return result;
-    }else{
-        return 0;
-    }
-};
-
-if(getId()!=0){
+// function getId(){
+//     var result;
+//     var url=window.location.search;
+//     //获取url中"?"符后的字串
+//     // if(url.indexOf("?")!=-1){
+//     result = url.substr(url.indexOf("=")+1);
+//     // }
+//     if(result != null){
+//         return result;
+//     }else{
+//         return 0;
+//     }
+// };
+var url = window.location.href;
+var id = url.split("=")[1];
+// alert(id);
+if(id != 0){
     $.post({
         url: "/goodsManageCon/selectById",
         dataType: "json",
-        data: "id=" + getId(),
+        data: "id=" + id,
         success: function (data) {
             datas = data.data;
             $('h4').text('修改商品信息')
@@ -304,7 +307,7 @@ if(getId()!=0){
                     cache: false, //上传文件不需要缓存
                     success:function (data) {
                         if(data.code == 0) {
-                            alert("修改成功")
+                            window.location.reload()
                         } else {
                             alert("修改失败")
                         }
