@@ -151,6 +151,9 @@ $("#goodstype-ul").find("li").click(function(){
     $("#goodstype").val($(this).text());
 });
 
+
+var datas;
+
 //添加商品到数据库
 $('#submit-btn-add').click(function () {
 
@@ -166,9 +169,9 @@ $('#submit-btn-add').click(function () {
     formData2.append("createTime",getNowData());
     formData2.append("goodsGrade",0);
     formData2.append("rentCount",0);
-    formData2.append("regId",datas.regId);
+    formData2.append("regId",4);
     // formData2.append("id",datas.goodsPictures[0].id);
-    formData2.append("goodsId",datas.id);
+    // formData2.append("goodsId",datas.id);
     // var postData = {
     //     "goodsName":$('#goodsname').val(),
     //     "goodsType":$('#goodstype').val(),
@@ -231,7 +234,7 @@ function getId(){
         return 0;
     }
 };
-var datas;
+
 if(getId()!=0){
     $.post({
         url: "/goodsManageCon/selectById",

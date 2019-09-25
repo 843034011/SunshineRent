@@ -26,17 +26,20 @@ function show() {
 
 var myGoods;
 var len;
-$.post({
-    url: "/goodsManageCon/selectRegId",
-    dataType: "json",
-    data: "regId=" + 4,//页面获取
-    success: function (data) {
-        // alert(123)
-        myGoods = data.data;
-        len = myGoods.length;
-        $.each(myGoods, function (index, value) {
-            $('.con-ul').append(
-                `
+
+var reg_id = $.cookie("id");
+if(reg_id != null || reg_id != 0) {
+    $.post({
+        url: "/goodsManageCon/selectRegId",
+        dataType: "json",
+        data: "regId=" + reg_id,//页面获取
+        success: function (data) {
+            // alert(123)
+            myGoods = data.data;
+            len = myGoods.length;
+            $.each(myGoods, function (index, value) {
+                $('.con-ul').append(
+                    `
                 <li class="two">
                     <div class="div1">
                     <img src="${value.goodsPictures[0].goodsPicture}" height="88" width="88"/>
@@ -60,53 +63,55 @@ $.post({
                     </div>
                 </li>
                 `
-            )
-        });
+                )
+            });
 
-        if (len != 0) {
-            // $('.items1').html('');
-            $('.items1').html(
-                ' <li class="item" value="0">\n' +
-                '                我的商品(<span>'+len+'</span>)\n' +
-                '            </li>\n' +
-                '            <li class="item" value="1">\n' +
-                '                再租商品(<span>0</span>)\n' +
-                '            </li>\n' +
-                '            <li class="item" value="2">\n' +
-                '                退租商品(<span>0</span>)\n' +
-                '            </li>');
-        };
-        show();
+            if (len != 0) {
+                // $('.items1').html('');
+                $('.items1').html(
+                    ' <li class="item" value="0">\n' +
+                    '                我的商品(<span>' + len + '</span>)\n' +
+                    '            </li>\n' +
+                    '            <li class="item" value="1">\n' +
+                    '                再租商品(<span>0</span>)\n' +
+                    '            </li>\n' +
+                    '            <li class="item" value="2">\n' +
+                    '                退租商品(<span>0</span>)\n' +
+                    '            </li>');
+            }
+            ;
+            show();
 
-        // 删除商品
-        $('.good-delete').click(function () {
-            $.post({
-                url:"/goodsManageCon/deleteGood",
-                // 实际使用 data:"id="+$(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
-                data:"id="+5,//测试
-                dataType:"json",
-                success:function (data) {
-                    // alert(123)
-                    // alert(data.code)
-                    if(data.code == 0) {
-                        alert("删除成功");
-                        // $('#myaddress').html(' ');
-                        // $('#myaddress').html(each_fun());
-                    } else {
-                        alert("删除失败")
+            // 删除商品
+            $('.good-delete').click(function () {
+                $.post({
+                    url: "/goodsManageCon/deleteGood",
+                    //实际使用
+                    data:"id="+$(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
+                    //测试
+                    // data: "id=" + 5,
+                    dataType: "json",
+                    success: function (data) {
+                        // alert(123)
+                        // alert(data.code)
+                        if (data.code == 0) {
+                            alert("删除成功");
+                            // $('#myaddress').html(' ');
+                            // $('#myaddress').html(each_fun());
+                        } else {
+                            alert("删除失败")
+                        }
                     }
-                }
+                })
             })
-        })
 
-        //修改商品信息
-        $('.good-updata').click(function () {
-            window.location.href = "http://localhost:8080/goodsManageCon/addGoods";
-        })
-    }
-})
-
-
+            //修改商品信息
+            $('.good-updata').click(function () {
+                window.location.href = "../goodsManageCon/addGoods";
+            })
+        }
+    })
+}
 
 
 //点击搜索

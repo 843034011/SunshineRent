@@ -44,6 +44,13 @@ public interface GoodsManageService {
 
     /**
      * @author zgy
+     * @param
+     * @return 返回修改行数
+     */
+    int insertPic(GoodsPicture goodsPicture);
+
+    /**
+     * @author zgy
      * @param id 商品编号
      * @return
      */

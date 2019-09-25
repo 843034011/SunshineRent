@@ -14,6 +14,8 @@ public class GoodsManageServiceImpl implements GoodsManageService {
 
     @Autowired
     RentGoodsMapper rentGoodsMapper;
+
+
     @Override
     public List<RentGoods> selectByRegId(Integer regId) {
         return rentGoodsMapper.selectByRegId(regId);
@@ -38,6 +40,12 @@ public class GoodsManageServiceImpl implements GoodsManageService {
     public int insertGood(RentGoods rentGood) {
         return rentGoodsMapper.insertGood(rentGood);
     }
+
+    @Override
+    public int insertPic(GoodsPicture goodsPicture) {
+        return rentGoodsMapper.insertPic(goodsPicture);
+    }
+
 
     @Override
     public int deleteById(Integer id) {

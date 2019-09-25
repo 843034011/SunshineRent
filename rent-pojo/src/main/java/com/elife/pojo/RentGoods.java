@@ -1,5 +1,8 @@
 package com.elife.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class RentGoods {
 
     private Long goodsWeekprice;
 
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private Integer goodsGrade;
@@ -152,5 +157,26 @@ public class RentGoods {
 
     public void setGoodsPictures(List<GoodsPicture> goodsPictures) {
         this.goodsPictures = goodsPictures;
+    }
+
+    @Override
+    public String toString() {
+        return "RentGoods{" +
+                "id=" + id +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsType='" + goodsType + '\'' +
+                ", goodsModel='" + goodsModel + '\'' +
+                ", goodsInfo='" + goodsInfo + '\'' +
+                ", goodsNumber=" + goodsNumber +
+                ", goodsSurplus=" + goodsSurplus +
+                ", goodsDeposit=" + goodsDeposit +
+                ", goodsDayprice=" + goodsDayprice +
+                ", goodsWeekprice=" + goodsWeekprice +
+                ", createTime=" + createTime +
+                ", goodsGrade=" + goodsGrade +
+                ", rentCount=" + rentCount +
+                ", regId=" + regId +
+                ", goodsPictures=" + goodsPictures +
+                '}';
     }
 }
