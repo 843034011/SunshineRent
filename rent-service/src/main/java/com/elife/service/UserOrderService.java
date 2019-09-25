@@ -31,4 +31,9 @@ public interface UserOrderService {
      * @return
      */
     List<UserOrder> selectGoodsOrderDateUnEvaluate(Integer num);
+
+
+    List<UserOrder>  selectAllByRentId(int rentId);
+
+    UserOrder selectByOrderId(int orderId);
 }

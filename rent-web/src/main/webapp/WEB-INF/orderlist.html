@@ -3,8 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <title>订单中心</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/common/user_frame.css">
+    <link rel="stylesheet" href="../css/orderlist/user_order.css">
+    <link rel="stylesheet" href="../css/common/footer.css">
+    <style>
+        .select-option{
+            text-align: center;
+            height:34px;
+            border-radius: 4px;
+            border:1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-订单中心
+
+<!-- top-nav -->
+<div align="center">
+    <div class="top-nav">
+        <ul>
+            <li>售后热线：<span>18862616327</span></li>
+            <li>售前热线：<span>18862613970</span></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">帮助中心</a></li>
+            <li><a href="#">我的订单</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- header -->
+<div style="width:100%;height:125px;background-color:#ffffff;">
+    <div align="center">
+        <div class="header">
+            <!-- 向左浮动 -->
+            <div><a href="#"><img src="../img/common/logo3.jpg" ></a></div>
+            <div>
+                <h3>个人中心</h3>
+                <a href="#" id="return-aa"><div id="return-aaa">返回首页</div></a>
+            </div>
+
+            <!-- 向右浮动 -->
+            <div id="shoppingcart-btn"><img src="#">购物车</div>
+            <div id="search">搜索</div>
+            <form action="" id="header-search-form">
+                <input type="text" name="keywords" id="header-search-form-child">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div align="center">
+    <div id="container-nav">
+        <ol class="breadcrumb">
+            <li><a href="#">个人中心</a></li>
+            <li class="active">我的订单</li>
+        </ol>
+    </div>
+</div>
+
+<!-- container-->
+<div align="center">
+    <div class="container">
+        <div class="container-left">
+            <div>
+                <ul>
+                    <li><h4>个人中心</h4></li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">信息认证</a></li>
+                    <li><a href="#">地址管理</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><h4>个人中心</h4></li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">信息认证</a></li>
+                    <li><a href="#">地址管理</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><h4>个人中心</h4></li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">信息认证</a></li>
+                    <li><a href="#">地址管理</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><h4>个人中心</h4></li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">信息认证</a></li>
+                    <li><a href="#">地址管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-right">
+            <h3>我的订单</h3>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-location" role="tablist">
+                <li role="presentation" class="active"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab" class="no-active" onclick="findallorder()">全部订单</a></li>
+                <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findfieldorder()">场地订单</a></li>
+                <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findgoodsorder()">商品订单</a></li>
+            </ul>
+
+            <div class="drop-form">
+                <!-- Single button -->
+
+                <div class="btn-group">
+                    <div class="short-select-option">
+                        <select onchange="findorderbytime()" id="choose" class="select-option">
+                            <option value="all">全部订单</option>
+                            <option value="week" >近一周内订单</option>
+                            <option value="month">近一月内订单</option>
+                            <option value="halfyear">近半年内订单</option>
+                            <option value="year">近一年内订单</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="请输入订单号" id="order-id-input" value="">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="findorderbyid()">搜索</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="MyOrderOpt">
+                <div><span>订单编号</span></div>
+                <div><span>创建时间</span></div>
+                <div><span>订单金额</span></div>
+                <div><span>订单押金</span></div>
+                <div><span>订单状态</span></div>
+                <div><span>查看详情</span></div>
+            </div>
+
+            <div class="MyOrderPersonalList">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="field-goods-order">
+                    </div>
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id="pagination2">
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div class="footer">
+    <div class="foot-container">
+        <div class="foot-child">
+            <h4>租赁指南</h4>
+            <div class="foot-grandchild">
+                <ul>
+                    <li><a href="#" target="_blank">常见问题</a></li>
+                    <li><a href="#" target="_blank">租赁流程</a></li>
+                    <li><a href="#" target="_blank">租金支付</a></li>
+                    <li><a href="#" target="_blank">开票说明</a></li>
+                    <li><a href="#" target="_blank">开票说明</a></li>
+                    <li><a href="#" target="_blank">开票说明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-child">
+            <h4>售后服务</h4>
+            <div class="foot-grandchild">
+                <ul>
+                    <li><a href="#" target="_blank">故障保修</a></li>
+                    <li><a href="#" target="_blank">退换货政策</a></li>
+                    <li><a href="#" target="_blank">售后政策</a></li>
+                    <li><a href="#" target="_blank">售后政策</a></li>
+                    <li><a href="#" target="_blank">售后政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-child">
+            <h4>特色服务</h4>
+            <div class="foot-grandchild">
+                <ul>
+                    <li><a href="#" target="_blank">故障保修</a></li>
+                    <li><a href="#" target="_blank">退换货政策</a></li>
+                    <li><a href="#" target="_blank">售后政策</a></li>
+                    <li><a href="#" target="_blank">售后政策</a></li>
+                </ul>
+            </div>
+        </div >
+        <div class="foot-child">
+            <h4>关于我们</h4>
+            <div class="foot-grandchild">
+                <ul>
+                    <li><a href="#" target="_blank">企业概况</a></li>
+                    <li><a href="#" target="_blank">公司地址</a></li>
+                    <li><a href="#" target="_blank">企业资讯</a></li>
+                </ul>
+            </div>
+        </div >
+        <div class="foot-child">
+            <div class="foot-bgimage"></div>
+            <div style="text-align: center">
+                <span>想了解更多资讯</span><br>
+                <span>请扫码关注我们的微信号</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- site-info -->
+<div class="site-info">
+    <div class="copyright">
+        <span>Copyright &copy; <a href="http://www.youzhan.org">优站精选</a></span> |
+        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span>
+    </div>
+</div>
+
 </body>
+<script src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/orderlist/jqPaginator.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../js/orderlist/user_frame.js"></script>
+<script>
+
+    var orderdatas;
+    var databyrentID = new Array();
+    var i=0;
+    $.ajax({
+        url:"userorder/showallorders",
+        dataType:"json",   //text -》 data(string)    json ->(js中的json对象)
+        success:function(data){
+            orderdatas=data.data;
+            console.log(data);
+            console.log(data.data.length);
+            for(var j=0;j<data.data.length;j++){
+                if(data.data[j].rentId == 3 ){
+                    databyrentID.push(data.data[j]);
+                    /*console.log(databyrentID);*/
+                }
+            }
+            console.log(databyrentID);
+            console.log(databyrentID.length);
+            findresultdata = databyrentID;
+            orderpaging(databyrentID);
+        }
+    })
+
+</script>
+
+<!--查找订单-->
+<script>
+    var findresultdata;
+    <!--查找全部订单-->
+    function findallorder(){
+        var allorderdata = new Array();
+        for(var j=0;j<orderdatas.length;j++){
+            if(orderdatas[j].rentId == 3 ){
+                allorderdata.push(orderdatas[j]);
+                /*console.log(allorderdata);*/
+            }
+        }
+        /*console.log(allorderdata);
+        console.log(allorderdata.length);*/
+        orderpaging(allorderdata);
+        findresultdata = allorderdata;
+        /*console.log(findresultdata);*/
+    }
+    <!--查找场地订单-->
+    function findfieldorder(){
+        var fieldorderdata = new Array();
+        for(var j=0;j<orderdatas.length;j++){
+            if(orderdatas[j].rentId == 3 ){
+                if(orderdatas[j].fieldId != null && orderdatas[j].goodsId == null){
+                    fieldorderdata.push(orderdatas[j]);
+                    /*console.log(fieldorderdata);*/
+                }
+            }
+        }
+        /*console.log(fieldorderdata);
+        console.log(fieldorderdata.length);*/
+        orderpaging(fieldorderdata);
+        findresultdata = fieldorderdata;
+        /*console.log(findresultdata);*/
+    }
+    <!--查找商品订单-->
+    function findgoodsorder(){
+        var goodsorderdata = new Array();
+        for(var j=0;j<orderdatas.length;j++){
+            if(orderdatas[j].rentId == 3 ){
+                if(orderdatas[j].fieldId == null && orderdatas[j].goodsId != null){
+                    goodsorderdata.push(orderdatas[j]);
+                    /*console.log(goodsorderdata);*/
+                }
+            }
+        }
+        /*console.log(goodsorderdata);
+        console.log(goodsorderdata.length);*/
+        orderpaging(goodsorderdata);
+        findresultdata = goodsorderdata;
+        /*console.log(findresultdata);
+        console.log("length = " + findresultdata.length);*/
+    }
+
+    function findorderbytime(){
+        var findresultdata2 = findresultdata;
+        var findtimeorderdata = new Array();
+
+        /* console.log(findresultdata);*/
+
+        if($("#choose").val() == "all"){
+            for(var j=0;j<findresultdata.length;j++){
+                findtimeorderdata.push(findresultdata[j]);
+            }
+            /*console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);*/
+            orderpaging(findtimeorderdata);
+        }
+        if($("#choose").val() == "week"){
+            var date1 = new Date();
+            var date2 = new Date();
+            date1.setDate(date1.getDate() - 7);
+
+            for(var j=0;j<findresultdata.length;j++){
+                var createTime = new Date(findresultdata[j].createTime);
+                /*console.log("createTime = " + createTime);*/
+                if(createTime > date1 &&  createTime < date2){
+                    findtimeorderdata.push(findresultdata[j]);
+                }
+            }
+            /*console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);*/
+            orderpaging(findtimeorderdata);
+        }
+        if($("#choose").val() == "month"){
+            var date1 = new Date();
+            var date2 = new Date();
+            date1.setDate(date1.getDate() - 30);
+
+            for(var j=0;j<findresultdata.length;j++){
+                var createTime = new Date(findresultdata[j].createTime);
+                /*console.log("createTime = " + createTime);*/
+                if(createTime > date1 &&  createTime < date2){
+                    findtimeorderdata.push(findresultdata[j]);
+                }
+            }
+            /*console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);*/
+            orderpaging(findtimeorderdata);
+        }
+        if($("#choose").val() == "halfyear"){
+            var date1 = new Date();
+            var date2 = new Date();
+            date1.setDate(date1.getDate() - 180);
+
+            for(var j=0;j<findresultdata.length;j++){
+                var createTime = new Date(findresultdata[j].createTime);
+                /*console.log("createTime = " + createTime);*/
+                if(createTime > date1 &&  createTime < date2){
+                    findtimeorderdata.push(findresultdata[j]);
+                }
+            }
+            /*console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);*/
+            orderpaging(findtimeorderdata);
+        }
+        if($("#choose").val() == "year"){
+            var date1 = new Date();
+            var date2 = new Date();
+            date1.setDate(date1.getDate() - 365);
+
+            for(var j=0;j<findresultdata.length;j++){
+                var createTime = new Date(findresultdata[j].createTime);
+                /*console.log("createTime = " + createTime);*/
+                if(createTime > date1 &&  createTime < date2){
+                    findtimeorderdata.push(findresultdata[j]);
+                }
+            }
+            /*console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);*/
+            orderpaging(findtimeorderdata);
+        }
+    }
+
+    function findorderbyid(){
+        var data = new Array();
+
+        var orderID = document.getElementById("order-id-input").value;
+        console.log("orderID = " + orderID);
+
+        for(var j=0;j<databyrentID.length;j++){
+            if(databyrentID[j].id == orderID ){
+                data.push(databyrentID[j])
+            }
+        }
+        if(data != null && data.length>0){
+            orderpaging(data);
+        }else{
+            alert("没有找到该订单！请重新输入！")
+        }
+    }
+</script>
+
+<!--订单分页显示-->
+<script>
+    function orderpaging(data){
+        var totalPages;
+        if(data.length%8 == 0 ){
+            totalPages = data.length/8;
+        }else{
+            totalPages = data.length/8+1
+        }
+
+        $.jqPaginator('#pagination2',{
+
+            totalPages:Math.floor(totalPages),
+            visiblePages:Math.floor(totalPages),
+            currentPage:1,
+            pageSize:8,
+            first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+            next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
+            last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            onPageChange:function(num,type){
+                console.log(data.length/8+1);
+                console.log(Math.floor(data.length/8+1));
+                var n=num-1;
+                $('#field-goods-order').text("");
+                if(data.length-n*8>=8){
+                    for(i=0;i<8;i++) {
+                        if (i % 2 == 0) {
+                            $('#field-goods-order').append(
+                                `<div class="OrderListShowdiv odd-column">
+                                    <div><span>${data[8 * n + i].id}</span></div>
+                                    <div><span>${data[8 * n + i].createTime}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
+                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
+                                 </div>`
+                            )
+                        } else {
+                            $('#field-goods-order').append(
+                                `<div class="OrderListShowdiv even-column">
+                                    <div><span>${data[8 * n + i].id}</span></div>
+                                    <div><span>${data[8 * n + i].createTime}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
+                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
+                                 </div>`
+                            )
+                        }
+                    }
+                }else if(data.length-n*8>0){
+                    console.log(data.length-8*(n-1));
+                    for(i=0;i<data.length-8*n;i++){
+                        if (i % 2 == 0) {
+                            $('#field-goods-order').append(
+                                `<div class="OrderListShowdiv odd-column">
+                                    <div><span>${data[8 * n + i].id}</span></div>
+                                    <div><span>${data[8 * n + i].createTime}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
+                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
+                                 </div>`
+                            )
+                        } else {
+                            $('#field-goods-order').append(
+                                `<div class="OrderListShowdiv even-column">
+                                    <div><span>${data[8 * n + i].id}</span></div>
+                                    <div><span>${data[8 * n + i].createTime}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
+                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
+                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
+                                 </div>`
+                            )
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+</script>
+
 </html>

@@ -45,4 +45,7 @@ public interface UserOrderMapper {
 
     //根据id查询待评价的商品起止日期
     List<UserOrder> selectGoodsOrderDateUnEvaluate(Integer num);
+
+    //根据用户id查询用户的所有的id
+    List<UserOrder> selectAllByRentId(int rentId);
 }

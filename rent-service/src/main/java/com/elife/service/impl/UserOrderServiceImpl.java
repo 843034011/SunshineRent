@@ -36,4 +36,14 @@ public class UserOrderServiceImpl implements UserOrderService {
         List<UserOrder> userOrders = userOrderMapper.selectGoodsOrderDateUnEvaluate(num);
         return userOrders;
     }
+
+    @Override
+    public List<UserOrder> selectAllByRentId(int rentId) {
+        return userOrderMapper.selectAllByRentId(rentId);
+    }
+
+    @Override
+    public UserOrder selectByOrderId(int orderId) {
+        return userOrderMapper.selectById(orderId);
+    }
 }
