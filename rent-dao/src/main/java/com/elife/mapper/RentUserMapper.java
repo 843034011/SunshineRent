@@ -29,4 +29,11 @@ public interface RentUserMapper {
      * @return
      */
     RentUser selectById(Integer id);
+
+    /**
+     * 注册时插入未认证的标识
+     * @param id
+     * @return
+     */
+    int insertFirst(Integer id);
 }

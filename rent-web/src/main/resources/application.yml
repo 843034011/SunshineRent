@@ -12,12 +12,9 @@ spring:
   #    cache: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://192.168.1.110:3306/rent?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
-#    url: jdbc:mysql://localhost:3306/sunshine?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://49.235.97.129:3306/rent?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: root
-    password: 123456
-#    password: liulanbo
-    # password: 1234
+    password: Llb_980820
     driverClassName: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 5

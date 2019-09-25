@@ -2,7 +2,9 @@ package com.elife.controller;
 
 import com.elife.annotation.Token;
 import com.elife.pojo.RentRegister;
+import com.elife.pojo.RentUser;
 import com.elife.service.RegisterService;
+import com.elife.service.UserService;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping("insertuser")
     @Token(remove = true)
     public String insertUser(String telephone,String password){
@@ -36,7 +41,13 @@ public class RegisterController {
         int i = registerService.insertRegister(telephone,password,timeStr);
 
         if(i > 0){
-            return "redirect:../login.html";
+
+            RentRegister rentRegister = registerService.selectRegister(telephone,password);
+
+            int j = userService.insertFirst(rentRegister.getRegId());
+            if(j > 0 ){
+                return "redirect:../login.html";
+            }
         }
         return "redirect:../register.html";
     }
