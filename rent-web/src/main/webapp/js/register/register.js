@@ -51,11 +51,6 @@ $("#submit").click(function () {
     var confirm = $.md5($("#confirm-repassword").val())
     var code = $("#code").val()
 
-    console.log(telephone)
-    console.log(password)
-    console.log(confirm)
-    console.log(code)
-
     if(confirm == password && code == telecode){
         $.post({
             url:"/register/insertuser",
