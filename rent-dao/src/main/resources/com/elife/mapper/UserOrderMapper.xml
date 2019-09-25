@@ -321,7 +321,7 @@
     select <include refid="Base_Column_List" /> from user_order where goods_id = #{num} and order_status = '待评价'
   </select>
 
-  <select id="selectAllByRentId" parameterType="java.lang.Integer" resultMap="order">
+  <select id="selectAllByRentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       select * from user_order where rent_id = #{rentId}
   </select>
 </mapper>
