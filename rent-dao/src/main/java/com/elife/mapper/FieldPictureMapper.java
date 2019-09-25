@@ -3,9 +3,11 @@ package com.elife.mapper;
 import com.elife.pojo.FieldPicture;
 import com.elife.pojo.FieldPictureExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface FieldPictureMapper {
 
     int countByExample(FieldPictureExample example);
