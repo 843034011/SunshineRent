@@ -355,6 +355,10 @@
 
  <!-- yy模糊查找-->
   <select id="selectByNameType" resultMap="BaseResultMap" parameterType="String">
-    select * from rent_field where field_name LIKE '%${value}%' or field_type LIKE '%${value}%';
+    select * from rent_field where field_name LIKE '%${value}%' or field_type LIKE '%${value}%'or field_address LIKE '%${value}%';
   </select>
+
+
+  <!--yy-->
+
 </mapper>

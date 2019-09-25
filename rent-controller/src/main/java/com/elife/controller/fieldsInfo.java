@@ -80,9 +80,24 @@ public class fieldsInfo {
         System.out.println(id);
         userShoppingcart.setFieldId(fieldid);
         userShoppingcart.setRegId(id);
-      fieldsService.insertFields(userShoppingcart);
+        fieldsService.insertFields(userShoppingcart);
         return 0;
     }
 
+
+    @RequestMapping("shoppingcart")
+    @ResponseBody
+    public int shoppingCart(HttpSession session){
+        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        int id=rentRegister.getRegId();
+        return id;
+    }
+
+
+   /* @RequestMapping("toshoppingcart")
+    public String toShoppingCart(int fieldid){
+
+        return "shoppingcart";
+    }*/
 
 }
