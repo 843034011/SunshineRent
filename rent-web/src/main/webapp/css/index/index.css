@@ -143,9 +143,10 @@ img{vertical-align:top;}
 .show-slider .show-nav {
     position: relative;
     right: -88%;
-    top: -80%;
+    /*top: -442%;*/
+    top:-80%;
     width: 110px;
-    z-index: 2
+    z-index: 6
 }
 
 .show-slider .show-nav li {
@@ -155,6 +156,40 @@ img{vertical-align:top;}
     position: relative;
     border:2px solid transparent;
     /*overflow: hidden*/
+}
+.show-slider .show-image li:nth-child(1){
+    position: relative;
+    top:0;
+    right:0;
+    z-index: 5;
+}
+.show-slider .show-image li:nth-child(2){
+    position: relative;
+    top:-450px;
+    z-index: 4;
+    right:0;
+    /*z-index: 1;*/
+}
+.show-slider .show-image li:nth-child(3){
+    position: relative;
+    z-index: 3;
+    top:-900px;
+    right:0;
+    /*z-index: 1;*/
+}
+.show-slider .show-image li:nth-child(4){
+    position: relative;
+    top:-1350px;
+    z-index: 2;
+    right:0;
+    /*z-index: 1;*/
+}
+.show-slider .show-image li:nth-child(5){
+    position: relative;
+    top:-1800px;
+    /*top:-2250px*/
+    right:0;
+    z-index: 1;
 }
 .show-nav li img{
     height:62px;
@@ -193,6 +228,8 @@ img{vertical-align:top;}
     color:#fff;
 }
 .div-show tr td span{
+    width:20px;
+    background-color: #00aced;
     cursor: pointer;
     margin:0 10px;
 }

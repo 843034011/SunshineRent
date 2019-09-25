@@ -169,10 +169,11 @@
     zgy
     添加商品
   -->
-  <insert id="insertPic" useGeneratedKeys="true" keyProperty="id">
-    insert into goods_picture(goods_picture) values (#{goods_picture});
+  <insert id="insertPic" parameterType="com.elife.pojo.GoodsPicture">
+      insert into goods_picture (id, goods_picture, goods_id)
+      values (#{id,jdbcType=INTEGER}, #{goodsPicture,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertGood" parameterType="com.elife.pojo.RentGoods" >
+  <insert id="insertGood" parameterType="com.elife.pojo.RentGoods" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
     insert into rent_goods (id, goods_name, goods_type,
       goods_model, goods_info, goods_number,
       goods_surplus, goods_deposit, goods_dayprice,

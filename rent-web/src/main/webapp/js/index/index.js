@@ -27,14 +27,13 @@ setInterval(function(){
     target = $(".show-nav").find("li").eq(index-1).css("border","2px solid rgb(0,200,190)");
 },4000);
 
-
-
 //顶部导航栏
 $('.items').html(
     ' <li class="item"><a href="/shoppingcart/showcart?regId='+$.cookie("id")+
     '                        ">购物车</a></li>\n' +
     '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
     '                        <li class="item"><a href="">咨询中心</a></li>\n' +
+    '                        <li class="item"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
     '                        <li class="item"><a href="login.html">登录</a></li>\n' +
     '                        <li class="item">\n' +

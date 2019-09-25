@@ -19,6 +19,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -221,55 +223,63 @@ public class GoodsManageController {
 
     @RequestMapping("insertGood")
     @ResponseBody
-    public ResultData insertGood(MultipartFile file,String goodsName,
+    public ResultData insertGood(MultipartFile[] file,String goodsName,
                                  String goodsType,String goodsModel,
                                  String goodsInfo,Integer goodsNumber,
-                                 Long goodsDeposit,
+                                 Long goodsDeposit,Integer goodsSurplus,
                                  Long goodsDayprice,Long goodsWeekprice,
-                                 Integer goodsGrade,
-                                 Integer rentCount,Integer regId,
-                                 Integer id,Integer goodsId) throws IOException {
+                                 Integer goodsGrade,String createTime,
+                                 Integer rentCount,Integer regId) throws IOException, ParseException {
 
         ResultData resultData = new ResultData();
         RentGoods rentGoods = new RentGoods();
         GoodsPicture goodsPicture = new GoodsPicture();
 
-
-        rentGoods.setId(goodsId);
         rentGoods.setGoodsName(goodsName);
         rentGoods.setGoodsType(goodsType);
         rentGoods.setGoodsModel(goodsModel);
         rentGoods.setGoodsInfo(goodsInfo);
         rentGoods.setGoodsNumber(goodsNumber);
         rentGoods.setGoodsDeposit(goodsDeposit);
+        rentGoods.setGoodsSurplus(goodsSurplus);
         rentGoods.setGoodsDayprice(goodsDayprice);
         rentGoods.setGoodsWeekprice(goodsWeekprice);
         rentGoods.setGoodsGrade(goodsGrade);
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(createTime);
+//        System.out.println(createTime.toString());
+        rentGoods.setCreateTime(date);
         rentGoods.setRentCount(rentCount);
         rentGoods.setRegId(regId);
         System.out.println("==========="+rentGoods.toString()+"================");
         int picNum = 0;
-        int goodsNum = goodsManageService.updataGood(rentGoods);
-
+        int goodsNum = goodsManageService.insertGood(rentGoods);
+        Integer goodsId = rentGoods.getId();
 //        if (file != null && file.length > 0) {
 //            for (int i = 0; i < file.length; i++) {
 //                MultipartFile filex = file[i];
         // 保存文件
-        if(file != null){
-            String fileUrl = qiniuService.saveImage(file);
-            System.out.println(fileUrl);
-            goodsPicture.setId(id);
-            goodsPicture.setGoodsPicture(fileUrl);
-            goodsPicture.setGoodsId(goodsId);
-            System.out.println("==============");
-            System.out.println(goodsPicture.toString());
-            picNum = goodsManageService.updataPic(goodsPicture);
+        int filelength = 0;
+        if (file != null && file.length > 0) {
+            filelength = file.length;
+            for (int i = 0; i < file.length; i++) {
+                MultipartFile filex = file[i];
+                String fileUrl = qiniuService.saveImage(filex);
+//            System.out.println(fileUrl);
+//            goodsPicture.setId(id);
+                goodsPicture.setGoodsPicture(fileUrl);
+                goodsPicture.setGoodsId(goodsId);
+                System.out.println("========================");
+                System.out.println(goodsPicture.toString());
+                System.out.println("========================");
+                picNum = goodsManageService.insertPic(goodsPicture);
+                picNum++;
+            }
         } else {
             System.out.println("没有上传图片！");
         }
-        if (goodsNum == 0||picNum == 0) {
+        if (goodsNum == 0||picNum != filelength) {
             resultData.setCode(5);
-            resultData.setMessage("修改失败");
+            resultData.setMessage("添加失败");
         } else {
             resultData.setCode(0);
             resultData.setData(goodsNum);

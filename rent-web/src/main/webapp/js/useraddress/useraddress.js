@@ -37,86 +37,92 @@ function each_fun() {
 }
 
 
+
+
 var myAddress;
-$.post({
-    url:"/userAddressCon/selectRegId",
-    dataType:"json",
-    data:"regId="+4,
-    success:function (data) {
-        // alert("hahaha")
-        myAddress = data.data;
-        each_fun()
+var reg_id = $.cookie("id");
+if(reg_id != null || reg_id != 0){
+    $.post({
+        url:"/userAddressCon/selectRegId",
+        dataType:"json",
+        data:"regId="+reg_id,
+        success:function (data) {
+            // alert("hahaha")
+            myAddress = data.data;
+            each_fun()
 
-        //删除数据
-        $('.div-in2').find('.span-last').click(function () {
-            // alert($(this).parent().prev().find('.last-p').find('span').text());
-            $.post({
-                url:"/userAddressCon/deleteById",
-                data:"id="+$(this).parent().prev().find('.last-p').find('span').text(),
-                // data:"id="+3,
-                dataType:"json",
-                success:function (data) {
-                    // alert(data.code)
-                    if(data.code == 0) {
-                        alert("删除成功");
-                        // $('#myaddress').html(' ');
-                        // $('#myaddress').html(each_fun());
-                    } else {
-                        alert("删除失败")
+            //删除数据
+            $('.div-in2').find('.span-last').click(function () {
+                // alert($(this).parent().prev().find('.last-p').find('span').text());
+                $.post({
+                    url:"/userAddressCon/deleteById",
+                    data:"id="+$(this).parent().prev().find('.last-p').find('span').text(),
+                    // data:"id="+3,
+                    dataType:"json",
+                    success:function (data) {
+                        // alert(data.code)
+                        if(data.code == 0) {
+                            alert("删除成功");
+                            // $('#myaddress').html(' ');
+                            // $('#myaddress').html(each_fun());
+                        } else {
+                            alert("删除失败")
+                        }
                     }
-                }
-            })
-        })
-
-        //修改地址
-        var get_updata_id;
-        $('.span-updata').click(function () {
-            get_updata_id = $(this).parent().parent().prev().find('.last-p').find('span').text();
-            // alert("需要修改的id:"+get_updata_id);
-            $('.btn-updata').attr('type','button');
-            $('.btn-sub').attr('type','hidden')
-            $('.modal-header').text('修改地址');
-            $("#new").modal("show");
-
-            $('#inputUserName').val($(this).parent().parent().prev().find('.p-name').find('span').text());
-            $('#inputScope').val($(this).parent().parent().prev().find('.p-scope').find('span').text());
-            $('#inputAddress').val($(this).parent().parent().prev().find('.p-address').find('span').text());
-            $('#inputPhone').val($(this).parent().parent().prev().find('.p-phone').find('span').text());
-        })
-
-        //修改数据到数据库
-        $('.btn-updata').click(function () {
-            var updatainfo = JSON.stringify(
-                {
-                    "id":get_updata_id,
-                    "pickerName":$('#inputUserName').val(),
-                    "address":$('#inputScope').val()+'-'+$('#inputAddress').val(),
-                    "pickerPhone":$('#inputPhone').val(),
-                    "regId":myAddress[0].regId
-                });
-            // console.log(updatainfo);
-            $.post({
-                url:"/userAddressCon/updataAddress",
-                data:updatainfo,
-                // data:"id="+get_updata_id,
-                dataType:"json",
-                // processData: false,//发送异步请求必须设置
-                contentType: "application/json",
-                success:function (data) {
-                    if(data.code == 0) {
-                        alert("修改成功");
-                        $("#new").modal("hide");
-                    } else {
-                        // alert("传到这的id:"+get_updata_id);
-                        alert("修改失败");
-                        // alert(data.code);
-                    }
-                }
+                })
             })
 
-        })
-    }
-})
+            //修改地址
+            var get_updata_id;
+            $('.span-updata').click(function () {
+                get_updata_id = $(this).parent().parent().prev().find('.last-p').find('span').text();
+                // alert("需要修改的id:"+get_updata_id);
+                $('.btn-updata').attr('type','button');
+                $('.btn-sub').attr('type','hidden')
+                $('.modal-header').text('修改地址');
+                $("#new").modal("show");
+
+                $('#inputUserName').val($(this).parent().parent().prev().find('.p-name').find('span').text());
+                $('#inputScope').val($(this).parent().parent().prev().find('.p-scope').find('span').text());
+                $('#inputAddress').val($(this).parent().parent().prev().find('.p-address').find('span').text());
+                $('#inputPhone').val($(this).parent().parent().prev().find('.p-phone').find('span').text());
+            })
+
+            //修改数据到数据库
+            $('.btn-updata').click(function () {
+                var updatainfo = JSON.stringify(
+                    {
+                        "id":get_updata_id,
+                        "pickerName":$('#inputUserName').val(),
+                        "address":$('#inputScope').val()+'-'+$('#inputAddress').val(),
+                        "pickerPhone":$('#inputPhone').val(),
+                        "regId":myAddress[0].regId
+                    });
+                // console.log(updatainfo);
+                $.post({
+                    url:"/userAddressCon/updataAddress",
+                    data:updatainfo,
+                    // data:"id="+get_updata_id,
+                    dataType:"json",
+                    // processData: false,//发送异步请求必须设置
+                    contentType: "application/json",
+                    success:function (data) {
+                        if(data.code == 0) {
+                            alert("修改成功");
+                            $("#new").modal("hide");
+                        } else {
+                            // alert("传到这的id:"+get_updata_id);
+                            alert("修改失败");
+                            // alert(data.code);
+                        }
+                    }
+                })
+
+            })
+        }
+    })
+}
+
 
 //添加地址到数据库
 $('.btn-sub').click(function () {
