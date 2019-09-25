@@ -30,4 +30,11 @@ public interface ShoppingCartService {
      * @return
      */
     RentGoods selectGoodsById(Integer id);
+
+    /**
+     * 根据id删除购物车表内信息
+     * @param shoppingId
+     * @return
+     */
+    int deleteByShoppingId(Integer shoppingId);
 }

@@ -76,7 +76,7 @@ $.post({
                                     </div>
                                     <div class="col-md-1 text-center onetotalmoney">金额</div>
                                     <div class="col-md-2 text-center">
-                                        <span class="delete-this" onclick="deletethis()">删除</span>
+                                        <span class="delete-this" onclick="deletethis(this)">删除</span>
                                     </div>
                                 </li>
                             `
@@ -147,7 +147,7 @@ $.post({
                                     </div>
                                     <div class="col-md-1 text-center onetotalmoney">金额</div>
                                     <div class="col-md-2 text-center">
-                                        <span onclick="deletethis()">删除</span>
+                                        <span class="delete-this" onclick="deletethis(this)">删除</span>
                                     </div>
                                 </li>
                             `
@@ -184,8 +184,25 @@ $.post({
 })
 
 // 单个购物车数据删除函数
-function deletethis() {
-    alert("删除这个")
+function deletethis(obj) {
+    var result = confirm("您确定要把这天数据从购物车里删除么？")
+    if(result){
+        var shoppingId = parseInt($(obj).parent().parent().attr("id"))
+        if(shoppingId > 0){
+            $.post({
+                url: "/shoppingcart/deletebyshoppingid",
+                data: "shoppingId=" + shoppingId,
+                dataType: "json",
+                success: function (data) {
+                    if(data.data != null){
+                        window.location.href="/shoppingcart/showcart?regId=" + regId;
+                    }
+                }
+            })
+        }
+    }else{
+
+    }
 }
 
 // 单选
@@ -398,10 +415,12 @@ $(".choose-all").click(function () {
 // 结算函数
 function totalmoney() {
 
+    var json = [];
+
     for (var i = 0; i < $(".choose-one-box").length; i++) {
 
         if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>'){
-            var json = [];
+
             var order = {};
 
             sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
@@ -428,35 +447,13 @@ function totalmoney() {
             order.goodsId = gid
 
             json.push(order)
-
-            $.post({
-                // 向订单表里添加数据
-                url: "orders/insertorder",
-                dateType: "json",
-                contentType:'application/json;charset=UTF-8',
-                data:JSON.stringify(json),
-                success: function () {
-                    $.cookie("waiting",json)
-                    $.post({
-                        url: "orders/ensureorder",
-                        success: function () {
-                            alert("应该是显示不了")
-                        },
-                        error: function () {
-                            alert("应该也显示不了")
-                        }
-                    })
-                }
-            })
-            console.log(order.orderPrice)
-            console.log(order.startTime)
-            console.log(order.endTime)
-            console.log(order.rid)
-            console.log(order.fieldId)
-            console.log(order.goodsId)
-            console.log("===============")
-
         }
     }
+
+    var fifteen = new Date()
+    fifteen.setTime(fifteen.getTime() + 15 * 60 * 1000)
+    $.cookie("waitting",json,{ path: "/",expires: fifteen,sucue:true})
+
+    window.location.href = "/orders/ensureorder"
 }
 
