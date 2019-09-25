@@ -1836,8 +1836,44 @@ var i=0
                 console.log(data)
                 alldata=data.data;
 
+                console.log($("#choose").val())
 
-                fenye(alldata);
+              console.log(pricedatas)
+
+                if($("#choose").val()==''){
+                    fenye(alldata);
+                }
+                else if($("#choose").val()!=''){
+                    if($("#choose").val()=="price"){
+                        pricedatas1 = alldata.sort(function (a, b) {
+                            return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                        })
+                       console.log(pricedatas1)
+                        fenye(pricedatas1);
+                    }
+                    if($("#choose").val()=="remark"){
+                        remarks1 = alldata.sort(function (a, b) {
+                            return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                        })
+
+
+
+                        fenye(remarks1)
+                    }
+                    if($("#choose").val()=="number"){
+                        numbers1 = alldata.sort(function (a, b) {
+                            return a.rentCount < b.rentCount ? -1 : 1;
+                        })
+
+
+
+                        fenye(numbers1)
+                    }
+
+                }
+
+
+
                 /*data.data[i].fieldDayprice*/
                 console.log(data.data)
             }/*success结束*/
@@ -2240,7 +2276,7 @@ function number6(){
         }
     }
 
-
+console.log(fielddates1)
     if ($('#search').val() == '') {
         /*alert("bbb")*/
 
@@ -2276,7 +2312,7 @@ function number6(){
 
     }else {
         if ($('#search').val() != '') {
-
+console.log(alldata)
             for(var i=0;i<alldata.length;i++){
                 if(alldata[i].fieldVolume>=100){
                     alldatas.push(alldata[i]);
@@ -2596,8 +2632,12 @@ var chooseend;//选择的结束日期
                 choosestart=start.format('YYYY/MM/DD');
                 chooseend=end.format('YYYY/MM/DD');
             }
-
-            $.get({
+            console.log(toString.call(choosestart));
+            $.post({
+                url:"fields/jieshoudate",
+                data:{"startTime":choosestart,"endTime":chooseend},
+            })
+           /* $.get({
                 url:"orders/showallorders",
                 dataType:"json",
                 success:function(data){
@@ -2607,11 +2647,14 @@ var chooseend;//选择的结束日期
                     choosestart=new Date(choosestart);
                     chooseend=new Date(chooseend);
 
+
+
+                    console.log(data.data)
                     for(var i=0;i<data.data.length;i++){
+
 
                         var date = new Date(data.data[i].startTime);
                         var basestart = dw(date);
-
                         var date1 = new Date(data.data[i].endTime);
                         var baseend= dw(date1);
 
@@ -2658,7 +2701,7 @@ var chooseend;//选择的结束日期
                     datearr=[];
                 }
 
-            })
+            })*/
             console.log(choosestart)
 
         }
