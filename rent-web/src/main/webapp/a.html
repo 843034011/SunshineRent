@@ -6,11 +6,21 @@
 </head>
 <body>
 
+<button onclick="deletethismessage()"></button>
 <script src="jquery/jquery-3.4.1.js"></script>
 <script src="jquery/jquery.cookie.js"></script>
 
 <script>
     $.cookie("username","zhangguangyao")
+    function deletethismessage(){
+        var result = confirm("您确定要把这天数据从购物车里删除么？")
+        if(result){
+            alert("删除成功！！！")
+        }else{
+
+        }
+    }
+
 </script>
 
 </body>

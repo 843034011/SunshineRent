@@ -26,8 +26,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private RentGoodsMapper rentGoodsMapper;
 
-
-
     @Override
     public List<UserOrder> selectAllUserOrderUnpaidById(Integer regId) {
         List<UserOrder> userOrders =  userShoppingcartMapper.selectAllUserOrderUnpaidById(regId);
@@ -44,5 +42,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public RentGoods selectGoodsById(Integer id) {
         RentGoods rentGoods = rentGoodsMapper.selectGoodsWithPictureById(id);
         return rentGoods;
+    }
+
+    @Override
+    public int deleteByShoppingId(Integer shoppingId) {
+        int i = userShoppingcartMapper.deleteByPrimaryKey(shoppingId);
+        return i;
     }
 }

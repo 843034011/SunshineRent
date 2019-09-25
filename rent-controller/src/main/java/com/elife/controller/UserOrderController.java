@@ -1,5 +1,6 @@
 package com.elife.controller;
 
+import com.elife.dto.ShoppingCartResult;
 import com.elife.pojo.UserOrder;
 import com.elife.service.impl.UserOrderServiceImpl;
 import com.elife.vo.ResultData;
@@ -89,8 +90,9 @@ public class UserOrderController {
     }
 
     @RequestMapping("insertorder")
-    public ResultData insertOrder(@RequestBody String json){
-
-        return null;
+    @ResponseBody
+    public int insertOrder(@RequestBody List<ShoppingCartResult> shoppingCartResults){
+        System.out.println(shoppingCartResults.size());
+        return 0;
     }
 }

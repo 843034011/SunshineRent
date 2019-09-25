@@ -2,6 +2,7 @@ package com.elife.controller;
 
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentGoods;
+import com.elife.pojo.RentRegister;
 import com.elife.pojo.UserOrder;
 import com.elife.service.ShoppingCartService;
 import com.elife.vo.ResultData;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /**
@@ -96,4 +98,29 @@ public class ShoppingCartController {
         }
         return resultData;
     }
+
+    @RequestMapping("deletebyshoppingid")
+    @ResponseBody
+    public ResultData deleteByShoppingId(Integer shoppingId, HttpSession session){
+
+        ResultData resultdata = new ResultData();
+
+        System.out.println("============");
+        System.out.println(shoppingId);
+
+        RentRegister register = (RentRegister) session.getAttribute("rentRegister");
+        System.out.println(register.toString());
+
+        int i = shoppingCartService.deleteByShoppingId(shoppingId);
+
+        if(i > 0){
+            resultdata.setCode(0);
+            resultdata.setData(i);
+        } else {
+            resultdata.setCode(1);
+            resultdata.setData("删除失败");
+        }
+        return resultdata;
+    }
+
 }
