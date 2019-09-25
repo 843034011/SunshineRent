@@ -33,7 +33,7 @@ $('.items').html(
     '                        ">购物车</a></li>\n' +
     '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
     '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-    '                        <li class="item"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
+    '                        <li class="item"><a href="/goodsManageCon/showManage?regId='+$.cookie("id")+'">个人中心</a></li>\n' +
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
     '                        <li class="item"><a href="login.html">登录</a></li>\n' +
     '                        <li class="item">\n' +
@@ -55,18 +55,16 @@ $('#ul-search').find('li').click(function () {
     $li_i.css('background-color','#fff');
     $li_i = $(this).find('i').css('background-color','#0abfb6');
     if($(this).val() == 0){
-        $('.div-show').html(
-            '           <table>\n' +
+        $('.div-show').html('<table>\n' +
             '                <tr>\n' +
             '                    <td>场地</td>\n' +
             '                    <td>\n' +
-            '                        <span>教育</span>\n' +
-            '                        <span>娱乐</span>\n' +
-            '                        <span>办公</span>\n' +
-            '                        <span>教育</span>\n' +
-            '                        <span>娱乐</span>\n' +
-            '                        <span>办公</span>\n' +
-            '                        <span>教育</span>\n' +
+            '                        <span>办公场地</span>\n' +
+            '                        <span>运动场地</span>\n' +
+            '                        <span>体育电竞</span>\n' +
+            '                        <span>展览展示</span>\n' +
+            '                        <!--<hr>-->\n' +
+            '                        <span>派对沙龙</span>\n' +
             '                    </td>\n' +
             '                </tr>\n' +
             '                <tr>\n' +
@@ -76,29 +74,28 @@ $('#ul-search').find('li').click(function () {
             '                        <span>打印机</span>\n' +
             '                        <span>手机</span>\n' +
             '                    </td>\n' +
-            '                </tr>\n' +
-            '            </table>')
+            '               </tr>\n' +
+            '          </table>')
         getValue()
     }else if($(this).val() == 1){
         $('.div-show').html(
-            '           <table>\n' +
+            '<table>\n' +
             '                <tr>\n' +
             '                    <td>场地</td>\n' +
             '                    <td>\n' +
-            '                        <span>教育</span>\n' +
-            '                        <span>娱乐</span>\n' +
-            '                        <span>办公</span>\n' +
-            '                        <span>教育</span>\n' +
-            '                        <span>娱乐</span>\n' +
-            '                        <span>办公</span>\n' +
-            '                        <span>教育</span>\n' +
+            '                        <span>办公场地</span>\n' +
+            '                        <span>运动场地</span>\n' +
+            '                        <span>体育电竞</span>\n' +
+            '                        <span>展览展示</span>\n' +
+            '                        <!--<hr>-->\n' +
+            '                        <span>派对沙龙</span>\n' +
             '                    </td>\n' +
             '                </tr>\n' +
-            '            </table>');
+            '          </table>');
         getValue()
     }else if($(this).val() == 2){
         $('.div-show').html(
-            '           <table>\n' +
+            '<table>\n' +
             '                <tr>\n' +
             '                    <td>商品</td>\n' +
             '                    <td>\n' +
@@ -106,8 +103,8 @@ $('#ul-search').find('li').click(function () {
             '                        <span>打印机</span>\n' +
             '                        <span>手机</span>\n' +
             '                    </td>\n' +
-            '                </tr>\n' +
-            '            </table>');
+            '               </tr>\n' +
+            '          </table>');
         getValue()
     }
 

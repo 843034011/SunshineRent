@@ -258,9 +258,9 @@ public class GoodsManageController {
 //            for (int i = 0; i < file.length; i++) {
 //                MultipartFile filex = file[i];
         // 保存文件
-        int filelength = 0;
+//        int filelength = 0;
         if (file != null && file.length > 0) {
-            filelength = file.length;
+//            filelength = file.length;
             for (int i = 0; i < file.length; i++) {
                 MultipartFile filex = file[i];
                 String fileUrl = qiniuService.saveImage(filex);
@@ -272,12 +272,12 @@ public class GoodsManageController {
                 System.out.println(goodsPicture.toString());
                 System.out.println("========================");
                 picNum = goodsManageService.insertPic(goodsPicture);
-                picNum++;
+//                picNum++;
             }
         } else {
             System.out.println("没有上传图片！");
         }
-        if (goodsNum == 0||picNum != filelength) {
+        if (goodsNum == 0 ) {
             resultData.setCode(5);
             resultData.setMessage("添加失败");
         } else {

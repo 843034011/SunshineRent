@@ -37,12 +37,10 @@ function each_fun() {
 }
 
 
-
-
 var myAddress;
 var reg_id = $.cookie("id");
 if(reg_id != null || reg_id != 0){
-    $.post({
+$.post({
         url:"/userAddressCon/selectRegId",
         dataType:"json",
         data:"regId="+reg_id,
@@ -62,6 +60,7 @@ if(reg_id != null || reg_id != 0){
                     success:function (data) {
                         // alert(data.code)
                         if(data.code == 0) {
+                            location.reload();
                             alert("删除成功");
                             // $('#myaddress').html(' ');
                             // $('#myaddress').html(each_fun());
@@ -108,7 +107,8 @@ if(reg_id != null || reg_id != 0){
                     contentType: "application/json",
                     success:function (data) {
                         if(data.code == 0) {
-                            alert("修改成功");
+                            window.location.reload();
+                            // alert("修改成功");
                             $("#new").modal("hide");
                         } else {
                             // alert("传到这的id:"+get_updata_id);
@@ -141,7 +141,8 @@ $('.btn-sub').click(function () {
         // contentType: false,
         success:function (data) {
             if(data.code == 0) {
-               alert("添加成功");
+                location.reload();
+               // alert("添加成功");
                 $("#new").modal("hide")
             } else {
                 alert("添加失败")

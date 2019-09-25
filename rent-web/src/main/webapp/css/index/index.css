@@ -229,7 +229,9 @@ img{vertical-align:top;}
 }
 .div-show tr td span{
     width:20px;
-    background-color: #00aced;
+    /*background-color: #00aced;*/
+    /*white-space: pre-line;*/
+    white-space: nowrap;
     cursor: pointer;
     margin:0 10px;
 }

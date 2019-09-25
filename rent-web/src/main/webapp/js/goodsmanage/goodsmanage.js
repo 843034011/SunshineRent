@@ -24,12 +24,19 @@ function show() {
     })
 }
 
+$('#ul-good').html(
+    '<li>商品管理</li>\n' +
+    '<li><a href="/goodsManageCon/showManage?regId='+$.cookie("id")+'">商品管理</a></li>');
+
+// 截取当前用户的id
+var url = window.location.href;
+var reg_id = url.split("=")[1];
+// alert(reg_id);
+
 var myGoods;
 var len;
-
-var reg_id = $.cookie("id");
 if(reg_id != null || reg_id != 0) {
-    $.post({
+$.post({
         url: "/goodsManageCon/selectRegId",
         dataType: "json",
         data: "regId=" + reg_id,//页面获取
@@ -78,8 +85,7 @@ if(reg_id != null || reg_id != 0) {
                     '            <li class="item" value="2">\n' +
                     '                退租商品(<span>0</span>)\n' +
                     '            </li>');
-            }
-            ;
+            };
             show();
 
             // 删除商品
@@ -92,25 +98,25 @@ if(reg_id != null || reg_id != 0) {
                     // data: "id=" + 5,
                     dataType: "json",
                     success: function (data) {
-                        // alert(123)
-                        // alert(data.code)
                         if (data.code == 0) {
-                            alert("删除成功");
-                            // $('#myaddress').html(' ');
-                            // $('#myaddress').html(each_fun());
+                            // alert("删除成功");
+                            window.location.reload();
                         } else {
                             alert("删除失败")
                         }
                     }
                 })
             })
-
             //修改商品信息
             $('.good-updata').click(function () {
                 window.location.href = "../goodsManageCon/addGoods";
             })
         }
     })
+}else{
+    // alert("请登录");
+    window.location.href = "../login.html";
+    alert("请登录");
 }
 
 
