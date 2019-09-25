@@ -234,7 +234,7 @@
     var databyrentID = new Array();
     var i=0;
     $.ajax({
-        url:"userorder/showallorders",
+        url:"/showallorders",
         dataType:"json",   //text -》 data(string)    json ->(js中的json对象)
         success:function(data){
             orderdatas=data.data;

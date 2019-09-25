@@ -22,6 +22,11 @@ public class OrderController {
     @Autowired
     private ShowOrderInfoService showOrderInfoService;
 
+    @RequestMapping("showorderlist")
+    public String showOrderList(){
+        return "orderlist";
+    }
+
     @RequestMapping("showallorders")
     @ResponseBody
     public ResultData selectAllBook(HttpSession session){
