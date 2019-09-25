@@ -5,6 +5,7 @@ import com.elife.pojo.UserOrderExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -48,4 +49,7 @@ public interface UserOrderMapper {
 
     //根据用户id查询用户的所有的id
     List<UserOrder> selectAllByRentId(int rentId);
+
+    // yy 前台获取起止日期查询不能租的
+    List<UserOrder> selectCannotOrder(Date startTime,Date endTime);
 }

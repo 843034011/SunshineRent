@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -93,11 +94,24 @@ public class fieldsInfo {
         return id;
     }
 
+    @RequestMapping("jieshoudate")
+    @ResponseBody
+    public ResultData jieshouDate(String startTime,String endTime){
+        System.out.println("+++++++++++++++++++++++++++++++++++++++"+startTime);
+         Date startTime1 = new Date(startTime);
+        System.out.println(startTime1);
 
-   /* @RequestMapping("toshoppingcart")
-    public String toShoppingCart(int fieldid){
+      /*  List<RentField> orderlist = fieldsService.selectByNameType(nametype);
 
-        return "shoppingcart";
-    }*/
+        if(null == orderlist || orderlist.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(orderlist);
+        }*/ResultData resultData = new ResultData();
+        return resultData;
+
+    }
 
 }
