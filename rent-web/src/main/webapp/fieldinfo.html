@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Single Product | GreenTech</title>
+    <title>场地</title>
     <meta name="description" content="add your site description here">
     <!-- mobile meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -173,7 +173,7 @@
                             <ul>
                                 <li><a href="">账户</a><i class="fa fa-angle-down"></i>
                                     <ul>
-                                        <li><a href="my-account.html">个人中心</a></li>
+                                        <li><a onclick="peoplecenter()">个人中心</a></li>
                                         <!--<li><a href="wishlist.html">收藏夹</a></li>-->
                                         <!--<li><a href="cart.html">购物车</a></li>-->
                                         <li><a href="cart.html">订单</a></li>
@@ -283,7 +283,7 @@
                     </div>
 -->                        <!--我的购物车页面-->
                         <div class="top-mycart">
-                            <a class="top-mycart-link" href="shoppingcart.html"></a>
+                            <a class="top-mycart-link" id="myshop" onclick="shopping()"></a>
                         </div>
 
                     </div>
@@ -1225,6 +1225,7 @@ console.log(dates)
     var fieldid = str[1];
     var fielddatas;
 
+
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
@@ -1743,6 +1744,7 @@ console.log(address)
     var url = String(window.document.URL);
     var str = url.split("=");
     var fieldid = str[1];
+    console.log(fieldid)
     var fielddatas;
 function shop(){
   $.post({
@@ -1754,6 +1756,38 @@ function shop(){
   })
 
 }
+
+/*跳转到购物车页面*/
+
+var regid;
+        $.get({
+            url:"fields/shoppingcart",
+            dataType:"json",
+            success:function(data){
+                console.log(data)
+                regid=data;
+               /* document.getElementById("myshop").src="shoppingcart.html";*/
+            }
+
+        })
+
+    function shopping(){
+            window.location.href="/shoppingcart/showcart?regId="+ regid;
+        // $.post({
+        //     url:"/shoppingcart/showcart?regId="+ fieldid,
+        //
+        //     success:function(data){
+        //         swal("success")
+        //
+        //         /* document.getElementById("myshop").src="shoppingcart.html";*/
+        //     }
+        //
+        // })
+    }
+
+
+
+
 
 
 

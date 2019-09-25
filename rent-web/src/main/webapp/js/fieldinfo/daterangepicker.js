@@ -512,6 +512,7 @@
 
         isInvalidDate: function(date) {
            /* console.log(fielddatas)*/
+            /*console.log(date)
             var start=new Array();
             var end=new Array();
             console.log(orders)
@@ -521,8 +522,8 @@
                     start.push(orders.data[i].startTime)
                     end.push(orders.data[i].endTime)
                 }
-            }
-            console.log(start)
+            }*/
+
             now = new Date()
             now.setTime(now.getTime() - 24 * 60 * 60 * 1000)
           console.log(now)

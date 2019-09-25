@@ -140,7 +140,7 @@
                         </div>
                         <div class="search-form">
                             <form action="#" method="post">
-                                <input class="cat-search-box" type="text" placeholder="搜索你想要的场地商品"/>
+                                <input class="cat-search-box" type="text" placeholder="搜索你想要的场地/区域"/>
                                 <a href="" class="cat-search-btn"><i class="fa fa-search"></i></a>
                             </form>
                         </div>
@@ -617,11 +617,11 @@
                         <div class="category-list-pro sidebar-list">
                             <h3>场地类别</h3>
                             <ul>
-                                <li><a href="#">办公场地</a><span>数量</span></li>
+                                <li><a href="#" onclick="bangong()">办公场地</a><span>数量</span></li>
                                 <li><a href="#">运动场地</a><span>3</span></li>
                                 <li><a href="#">体育电竞</a><span>4</span></li>
                                 <li><a href="#">展览展示</a><span>8</span></li>
-                                <li><a href="#">派对沙龙</a><span>3</span></li>
+                                <li><a href="#" onclick="paidui()">派对沙龙</a><span>3</span></li>
                                 <li><a href="#">展览展示</a><span>4</span></li>
                                 <li><a href="#">其他</a><span>7</span></li>
                             </ul>
@@ -668,7 +668,7 @@
                     </div>
                     <!-- shop-by-area end -->
                     <!-- Compare Products start -->
-                    <div class="compare-products single-sidebar">
+               <!--     <div class="compare-products single-sidebar">
                         <h2>Compare Products (3)</h2>
                         <div class="all-compare-product">
                             <ul>
@@ -684,7 +684,7 @@
                                 <a href="#" class="compare-btn">Compare</a>
                             </div>
                         </div>
-                    </div>
+                    </div-->>
                     <!--&lt;!&ndash; Compare Products end &ndash;&gt;
                     &lt;!&ndash; single-img-add start &ndash;&gt;-->
                     <!--<div class="single-img-add single-sidebar">
@@ -1625,7 +1625,7 @@
             </div>
             <a href="single-product.html" title=""><img src="img/product/home1/4.jpg" alt="product image" /></a>
             <div class="single-product-overlay">
-                <div class="rating-box">
+               <div class="rating-box">
                     <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
                     <a title="2 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
                     <a title="3 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
@@ -1835,6 +1835,8 @@ var i=0
             success: function (data) {
                 console.log(data)
                 alldata=data.data;
+
+
                 fenye(alldata);
                 /*data.data[i].fieldDayprice*/
                 console.log(data.data)
@@ -1872,12 +1874,191 @@ console.log(order)
 
 })*/
 
+/*根据类型搜索*/
+function bangong(){
 
+}
 /*模糊查找并且排序*/
 function number1(){
      console.log(fielddatas);
     for(var i=0;i<fielddatas.length;i++){
         if(fielddatas[i].fieldVolume<=10&&fielddatas[i].fieldVolume>0){
+            fielddates1.push(fielddatas[i]);
+
+        }
+
+    }
+    if(fielddates1.length==0){
+        swal("暂无可容纳0~10人场地")
+    }else{
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for (var i = 0; i < alldata.length; i++) {
+                if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
+                    alldatas.push(alldata[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            } else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            } else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            } else {
+                fenye(alldatas)
+            }
+        }
+    }
+    }
+    fielddates1=[];
+
+}
+
+
+function number2(){
+    console.log(fielddatas);
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume<=20&&fielddatas[i].fieldVolume>10){
+            fielddates1.push(fielddatas[i]);
+
+        }
+
+    }
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+
+
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for(var i=0;i<alldata.length;i++){
+                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
+                    alldatas.push(alldata[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            }
+            else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            }
+            else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            }else{
+                fenye(alldatas)
+            }
+        }
+
+    }
+
+    fielddates1=[];
+    alldatas=[];
+}
+
+
+
+
+function number3(){
+    console.log(fielddatas);
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume<=30&&fielddatas[i].fieldVolume>20){
             fielddates1.push(fielddatas[i]);
 
 
@@ -1924,6 +2105,268 @@ function number1(){
 
             for(var i=0;i<alldata.length;i++){
                 if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
+                    alldatas.push(alldata[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            }
+            else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            }
+            else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            }else{
+                fenye(alldatas)
+            }
+        }
+
+    }
+    fielddates1=[];
+    alldatas=[];
+}
+
+function number4(){
+    console.log(fielddatas);
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume<=40&&fielddatas[i].fieldVolume>30){
+            fielddates1.push(fielddatas[i]);
+
+
+        }
+
+    }
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+
+
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for(var i=0;i<alldata.length;i++){
+                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
+                    alldatas.push(alldata[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            }
+            else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            }
+            else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            }else{
+                fenye(alldatas)
+            }
+        }
+
+    }
+    fielddates1=[];
+    alldatas=[];
+}
+
+
+
+function number6(){
+    console.log(fielddatas);
+    console.log(alldata)
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume>=100){
+            fielddates1.push(fielddatas[i]);
+        }
+    }
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+
+
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for(var i=0;i<alldata.length;i++){
+                if(alldata[i].fieldVolume>=100){
+                    alldatas.push(alldata[i]);
+                }
+
+            }
+            if ($("#choose").val() == "price") {
+                pricedatas = alldatas.sort(function (a, b) {
+                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                })
+
+                fenye(pricedatas);
+
+            }
+            else if ($("#choose").val() == "remark") {
+                remarks = alldatas.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                })
+
+                fenye(remarks);
+
+
+            }
+            else if ($("#choose").val() == "number") {
+                numbers = alldatas.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                })
+
+                fenye(numbers);
+            }else{
+                fenye(alldatas)
+            }
+        }
+
+    }
+    fielddates1=[];
+    alldatas=[];
+}
+
+
+function number5(){
+    console.log(fielddatas);
+    for(var i=0;i<fielddatas.length;i++){
+        if(fielddatas[i].fieldVolume<=100&&fielddatas[i].fieldVolume>40){
+            fielddates1.push(fielddatas[i]);
+
+
+        }
+
+    }
+
+
+    if ($('#search').val() == '') {
+        /*alert("bbb")*/
+
+
+        if ($("#choose").val() == "price") {
+            /*alert("aaaa")*/
+            pricedatas = fielddates1.sort(function (a, b) {
+                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+            })
+
+            fenye(pricedatas);
+
+
+        }
+        else if ($("#choose").val() == "remark") {
+
+            remarks = fielddates1.sort(function (a, b) {
+                return a.fieldGrade < b.fieldGrade ? 1 : -1;
+            })
+            fenye(remarks)
+
+        }
+        else if ($("#choose").val() == "number") {
+
+            console.log(fielddates1.sort(function (a, b) {
+                return a.rentCount < b.rentCount ? -1 : 1;
+            }))
+            fenye(number)
+        }else{
+            fenye(fielddates1)
+        }
+
+
+    }else {
+        if ($('#search').val() != '') {
+
+            for(var i=0;i<alldata.length;i++){
+                if(alldata[i].fieldVolume<=100&&alldata[i].fieldVolume>40){
                     alldatas.push(fielddatas[i]);
                 }
 
@@ -1958,12 +2401,12 @@ function number1(){
 
     }
 
-
+    fielddates1=[];
+    alldatas=[];
 }
-
-
-
-
+var pricedatas;
+var remarks;
+var number;
 
 
 function sortbymark() {
@@ -1992,9 +2435,9 @@ function sortbymark() {
         }
         else if ($("#choose").val() == "number") {
 
-            console.log(fielddatas.sort(function (a, b) {
+            number=fielddatas.sort(function (a, b) {
                 return a.rentCount < b.rentCount ? -1 : 1;
-            }))
+            })
             fenye(number)
         }
 
@@ -2050,6 +2493,9 @@ function sortbymark() {
 <script type="text/javascript" src="js/fieldinfo/moment.js"></script>
 <script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
 <script>
+
+
+
 var datearr=new Array();
 var datearr1=new Array();
 
@@ -2173,8 +2619,10 @@ var chooseend;//选择的结束日期
                         baseend=new Date(baseend);
                         basestart=new Date(basestart);
 
-
-                        if(baseend<choosestart||basestart>chooseend){
+                        now=new Date();
+                        console.log(now);
+                        var now1=dw(now);
+                        if(baseend<choosestart||basestart>chooseend&&baseend>now1){
                             datearr.push(data.data[i])
                         }
                         console.log(datearr)
@@ -2205,7 +2653,7 @@ var chooseend;//选择的结束日期
                         if(result.length==0){
                             swal("暂时没有该时间段的场地 ")
                         }
-                        fenye(result);
+                    fenye(result);
                     datearr1=[];
                     datearr=[];
                 }
@@ -2216,6 +2664,9 @@ var chooseend;//选择的结束日期
         }
 
     );
+
+
+
     console.log(choosestart)
 
 console.log(datearr)
