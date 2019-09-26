@@ -1,3 +1,73 @@
+var orderId =  sessionStorage.getItem("order_id");
+/*暂时用orederID作为detailID*/
+var detailId = orderId;
+console.log(orderId);
+var orderDetaildata;
+
+
+$.get({
+    url:"/orderDetail/showOrderDetail",
+    dataType:"json",   //text -》 data(string)    json ->(js中的json对象)
+    data:{"detailId": detailId},
+    success:function(data){
+        console.log(data);
+        if(data!=null){
+            orderDetaildata = data.data;
+            show(orderDetaildata);
+        }else{
+            alert("没有数据！")
+        }
+    }
+})
+
+function show(data){
+    var startTime = changeDate(data.startTime);
+    var endTime = changeDate(data.endTime);
+    if(data.fieldId != null && data.goodsId == null){
+        $('#evaluate-order-info').text("");
+        $('#evaluate-order-info').append(
+            `
+                    <div class="col-xs-3 evaluate-order-img">
+                        <a href="#"><img src="${data.extra1}"></a>
+                    </div>
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-8 evaluate-order-info">
+                        <div class="col-xs-12 evaluate-order-info-name"><a href="#">${data.productName}</a></div>
+                        <div class="col-xs-12 evaluate-order-info-weekprice">总价：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productTotal}</span></div>
+                        <div class="col-xs-6 evaluate-order-info-deposit">押金：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productDeposit}</span></div>
+                        <div class="col-xs-6 evaluate-order-info-dayprice">日租：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productPrice}</span>&nbsp;/天</div>
+                        <div class="col-xs-6 evaluate-order-info-grade">开始租用时间：${startTime}</div>
+                        <div class="col-xs-6 evaluate-order-info-grade">结束租用时间：${endTime}</div>
+                        <div class="col-xs-12 evaluate-order-info-address">地址：<span>${data.productAddress}</span></div>
+                        <div class="col-xs-12 evaluate-order-info-phone">联系电话：<span>${data.masterPhone}</span></div>
+                     </div>
+                 `
+        )
+    }else if(data.fieldId == null && data.goodsId != null){
+        $('#evaluate-order-info').text("");
+        $('#evaluate-order-info').append(
+            `
+                    <div class="col-xs-3 evaluate-order-img">
+                        <a href="#"><img src="${data.extra1}"></a>
+                    </div>
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-8 evaluate-order-info">
+                        <div class="col-xs-12 evaluate-order-info-name"><a href="#">${data.productName}</a></div>
+                        <div class="col-xs-12 evaluate-order-info-weekprice">总价：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productTotal}</span></div>
+                        <div class="col-xs-6 evaluate-order-info-deposit">押金：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productDeposit}</span></div>
+                        <div class="col-xs-6 evaluate-order-info-dayprice">日租：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productPrice}</span>&nbsp;/天</div>
+                        <div class="col-xs-6 evaluate-order-info-grade">开始租用时间：${startTime}</div>
+                        <div class="col-xs-6 evaluate-order-info-grade">结束租用时间：${endTime}</div>
+                        <div class="col-xs-12 evaluate-order-info-address">产品型号：<span>${data.productModel}</span></div>
+                        <div class="col-xs-12 evaluate-order-info-phone">联系电话：<span>${data.masterPhone}</span></div>
+                     </div>
+                 `
+        )
+    }
+
+}
+
+
 //图片上传预览功能
 var userAgent = navigator.userAgent;
 //用于判断浏览器类型
@@ -86,14 +156,15 @@ $("#bbt").click(function(){
     var content=$("#TextArea1").val();
     formData2.append("grade",grade);
     formData2.append("content",content);
+    formData2.append("orderId",orderId);
     console.log(formData2);
 
     $.ajax({
         type:'post',
         dataType:'json',
         data:formData2,
-        cache: false, //上传文件不需要缓存
         url:'/test1',
+        cache: false, //上传文件不需要缓存
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
@@ -105,3 +176,10 @@ $("#bbt").click(function(){
         }
     })
 })
+
+/*将date类型的时间转换成string类型*/
+function changeDate(date) {
+    var str = date.split('T');
+    var createTime = str[0];
+    return createTime;
+};

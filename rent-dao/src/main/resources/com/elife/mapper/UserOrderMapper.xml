@@ -13,6 +13,8 @@
     <result column="rent_id" property="rentId" jdbcType="INTEGER" />
     <result column="field_id" property="fieldId" jdbcType="INTEGER" />
     <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+
+    <collection property="orderDetails" column="id" select="com.elife.mapper.OrderDetailMapper.selectByOrderId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

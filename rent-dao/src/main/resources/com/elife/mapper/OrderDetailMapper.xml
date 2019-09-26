@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elife.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.elife.pojo.OrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="field_id" property="fieldId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="product_model" property="productModel" jdbcType="VARCHAR" />
+    <result column="product_address" property="productAddress" jdbcType="VARCHAR" />
+    <result column="product_number" property="productNumber" jdbcType="INTEGER" />
+    <result column="product_deposit" property="productDeposit" jdbcType="DECIMAL" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="product_total" property="productTotal" jdbcType="DECIMAL" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="product_status" property="productStatus" jdbcType="VARCHAR" />
+    <result column="master_id" property="masterId" jdbcType="INTEGER" />
+    <result column="master_phone" property="masterPhone" jdbcType="CHAR" />
+    <result column="extra1" property="extra1" jdbcType="VARCHAR" />
+    <result column="extra2" property="extra2" jdbcType="VARCHAR" />
+    <result column="extra3" property="extra3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, goods_id, field_id, product_name, product_type, product_model, product_address, 
+    product_number, product_deposit, product_price, product_total, start_time, end_time, 
+    product_status, master_id, master_phone, extra1, extra2, extra3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.OrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.elife.pojo.OrderDetailExample" >
+    delete from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.elife.pojo.OrderDetail" >
+    insert into order_detail (id, order_id, goods_id, 
+      field_id, product_name, product_type, 
+      product_model, product_address, product_number, 
+      product_deposit, product_price, product_total, 
+      start_time, end_time, product_status, 
+      master_id, master_phone, extra1, 
+      extra2, extra3)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{fieldId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{productModel,jdbcType=VARCHAR}, #{productAddress,jdbcType=VARCHAR}, #{productNumber,jdbcType=INTEGER}, 
+      #{productDeposit,jdbcType=DECIMAL}, #{productPrice,jdbcType=DECIMAL}, #{productTotal,jdbcType=DECIMAL}, 
+      #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{productStatus,jdbcType=VARCHAR}, 
+      #{masterId,jdbcType=INTEGER}, #{masterPhone,jdbcType=CHAR}, #{extra1,jdbcType=VARCHAR}, 
+      #{extra2,jdbcType=VARCHAR}, #{extra3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.elife.pojo.OrderDetail" >
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="fieldId != null" >
+        field_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="productModel != null" >
+        product_model,
+      </if>
+      <if test="productAddress != null" >
+        product_address,
+      </if>
+      <if test="productNumber != null" >
+        product_number,
+      </if>
+      <if test="productDeposit != null" >
+        product_deposit,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="productTotal != null" >
+        product_total,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="productStatus != null" >
+        product_status,
+      </if>
+      <if test="masterId != null" >
+        master_id,
+      </if>
+      <if test="masterPhone != null" >
+        master_phone,
+      </if>
+      <if test="extra1 != null" >
+        extra1,
+      </if>
+      <if test="extra2 != null" >
+        extra2,
+      </if>
+      <if test="extra3 != null" >
+        extra3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldId != null" >
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productModel != null" >
+        #{productModel,jdbcType=VARCHAR},
+      </if>
+      <if test="productAddress != null" >
+        #{productAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="productDeposit != null" >
+        #{productDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productTotal != null" >
+        #{productTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="masterId != null" >
+        #{masterId,jdbcType=INTEGER},
+      </if>
+      <if test="masterPhone != null" >
+        #{masterPhone,jdbcType=CHAR},
+      </if>
+      <if test="extra1 != null" >
+        #{extra1,jdbcType=VARCHAR},
+      </if>
+      <if test="extra2 != null" >
+        #{extra2,jdbcType=VARCHAR},
+      </if>
+      <if test="extra3 != null" >
+        #{extra3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.elife.pojo.OrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldId != null" >
+        field_id = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productType != null" >
+        product_type = #{record.productType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productModel != null" >
+        product_model = #{record.productModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productAddress != null" >
+        product_address = #{record.productAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productNumber != null" >
+        product_number = #{record.productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.productDeposit != null" >
+        product_deposit = #{record.productDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productPrice != null" >
+        product_price = #{record.productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productTotal != null" >
+        product_total = #{record.productTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=DATE},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.productStatus != null" >
+        product_status = #{record.productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.masterId != null" >
+        master_id = #{record.masterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.masterPhone != null" >
+        master_phone = #{record.masterPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.extra1 != null" >
+        extra1 = #{record.extra1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extra2 != null" >
+        extra2 = #{record.extra2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extra3 != null" >
+        extra3 = #{record.extra3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      field_id = #{record.fieldId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_type = #{record.productType,jdbcType=VARCHAR},
+      product_model = #{record.productModel,jdbcType=VARCHAR},
+      product_address = #{record.productAddress,jdbcType=VARCHAR},
+      product_number = #{record.productNumber,jdbcType=INTEGER},
+      product_deposit = #{record.productDeposit,jdbcType=DECIMAL},
+      product_price = #{record.productPrice,jdbcType=DECIMAL},
+      product_total = #{record.productTotal,jdbcType=DECIMAL},
+      start_time = #{record.startTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      product_status = #{record.productStatus,jdbcType=VARCHAR},
+      master_id = #{record.masterId,jdbcType=INTEGER},
+      master_phone = #{record.masterPhone,jdbcType=CHAR},
+      extra1 = #{record.extra1,jdbcType=VARCHAR},
+      extra2 = #{record.extra2,jdbcType=VARCHAR},
+      extra3 = #{record.extra3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.OrderDetail" >
+    update order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldId != null" >
+        field_id = #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productModel != null" >
+        product_model = #{productModel,jdbcType=VARCHAR},
+      </if>
+      <if test="productAddress != null" >
+        product_address = #{productAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        product_number = #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="productDeposit != null" >
+        product_deposit = #{productDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productTotal != null" >
+        product_total = #{productTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="productStatus != null" >
+        product_status = #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="masterId != null" >
+        master_id = #{masterId,jdbcType=INTEGER},
+      </if>
+      <if test="masterPhone != null" >
+        master_phone = #{masterPhone,jdbcType=CHAR},
+      </if>
+      <if test="extra1 != null" >
+        extra1 = #{extra1,jdbcType=VARCHAR},
+      </if>
+      <if test="extra2 != null" >
+        extra2 = #{extra2,jdbcType=VARCHAR},
+      </if>
+      <if test="extra3 != null" >
+        extra3 = #{extra3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.elife.pojo.OrderDetail" >
+    update order_detail
+    set order_id = #{orderId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      field_id = #{fieldId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_model = #{productModel,jdbcType=VARCHAR},
+      product_address = #{productAddress,jdbcType=VARCHAR},
+      product_number = #{productNumber,jdbcType=INTEGER},
+      product_deposit = #{productDeposit,jdbcType=DECIMAL},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      product_total = #{productTotal,jdbcType=DECIMAL},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      product_status = #{productStatus,jdbcType=VARCHAR},
+      master_id = #{masterId,jdbcType=INTEGER},
+      master_phone = #{masterPhone,jdbcType=CHAR},
+      extra1 = #{extra1,jdbcType=VARCHAR},
+      extra2 = #{extra2,jdbcType=VARCHAR},
+      extra3 = #{extra3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from order_detail where order_id = #{orderId}
+  </select>
+</mapper>

@@ -193,62 +193,64 @@ function orderpaging(data){
             console.log(data.length/8+1);
             console.log(Math.floor(data.length/8+1));
             var n=num-1;
-            $('#field-goods-order').text("");
+            var html  = ''
             if(data.length-n*8>=8){
                 for(i=0;i<8;i++) {
+                    var createTime = changeDate(data[8 * n + i].createTime);
+
                     if (i % 2 == 0) {
-                        $('#field-goods-order').append(
-                            `<div class="OrderListShowdiv odd-column">
-                                    <div><span>${data[8 * n + i].id}</span></div>
-                                    <div><span>${data[8 * n + i].createTime}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
-                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
-                                 </div>`
-                        )
+                        html += '<div class="OrderListShowdiv odd-column">';
                     } else {
-                        $('#field-goods-order').append(
-                            `<div class="OrderListShowdiv even-column">
-                                    <div><span>${data[8 * n + i].id}</span></div>
-                                    <div><span>${data[8 * n + i].createTime}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
-                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
-                                 </div>`
-                        )
+                        html += '<div class="OrderListShowdiv even-column">';
+                    }
+
+                    html += '<div><span>' + data[8 * n + i].id +'</span></div><div><span>'
+                        + createTime + '</span></div><div><span>' + data[8 * n + i].orderNumber +'</span></div><div><span>'
+                        + data[8 * n + i].orderPrice +'</span></div><div><span>' + data[8 * n + i].orderStatus +'</span></div><div><span>';
+
+                    if (data[8 * n + i].orderStatus == "未评价") {
+                        html += '<a href="#">查看详情</a><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[8 * n + i].id +')">添加评价</a></span></div></div>';
+                    } else {
+                        html += '<a href="#">查看详情</a></span></div></div>';
                     }
                 }
+
             }else if(data.length-n*8>0){
-                console.log(data.length-8*(n-1));
-                for(i=0;i<data.length-8*n;i++){
+                for(i=0;i<data.length-8*n;i++) {
+                    var createTime = changeDate(data[8 * n + i].createTime);
+
                     if (i % 2 == 0) {
-                        $('#field-goods-order').append(
-                            `<div class="OrderListShowdiv odd-column">
-                                    <div><span>${data[8 * n + i].id}</span></div>
-                                    <div><span>${data[8 * n + i].createTime}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
-                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
-                                 </div>`
-                        )
+                        html += '<div class="OrderListShowdiv odd-column">';
                     } else {
-                        $('#field-goods-order').append(
-                            `<div class="OrderListShowdiv even-column">
-                                    <div><span>${data[8 * n + i].id}</span></div>
-                                    <div><span>${data[8 * n + i].createTime}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderPrice}</span></div>
-                                    <div><span>${data[8 * n + i].orderStatus}</span></div>
-                                    <div><span><a href="view/orderinfo.html?id=${data[8 * n + i].id}">查看详情</a><a href="view/user_evaluate.html?id=${data[8 * n + i].id}">添加评价</a></span></div>
-                                 </div>`
-                        )
+                        html += '<div class="OrderListShowdiv even-column">';
+                    }
+
+                    html += '<div><span>' + data[8 * n + i].id +'</span></div><div><span>'
+                        + createTime + '</span></div><div><span>' + data[8 * n + i].orderNumber +'</span></div><div><span>'
+                        + data[8 * n + i].orderPrice +'</span></div><div><span>' + data[8 * n + i].orderStatus +'</span></div><div><span>';
+
+                    if (data[8 * n + i].orderStatus == "未评价") {
+                        html += '<a href="#">查看详情</a><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[8 * n + i].id +')">添加评价</a></span></div></div>';
+                    } else {
+                        html += '<a href="#">查看详情</a></span></div></div>';
                     }
                 }
             }
+            $('#field-goods-order').html(html)
         }
-
     })
+}
+
+function changeDate(date) {
+    var str = date.split('T');
+    var str1=str[1].split('.');
+    var createTime = str[0]+" "+str1[0];
+    return createTime;
+};
+
+function sendInfotoEvaluate(index){
+
+   var order_id = index;
+   sessionStorage.setItem("order_id",order_id);
+
 }
