@@ -44,8 +44,8 @@ public interface RentFieldMapper {
     //根据价格排序
     List<RentField>orderByPrice();
 
-    //模糊查找
-    List<RentField>selectByNameType(String NameType);
+    //模糊查找 排序yy
+    List<RentField>selectByNameType(@Param("NameType")String NameType,@Param("name")String name,@Param("order")String order,@Param("renshumin")Integer renshumin,@Param("renshumax")Integer renshumax);
 
 
 }

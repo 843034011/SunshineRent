@@ -354,8 +354,31 @@
   </select>
 
  <!-- yy模糊查找-->
-  <select id="selectByNameType" resultMap="BaseResultMap" parameterType="String">
-    select * from rent_field where field_name LIKE '%${value}%' or field_type LIKE '%${value}%'or field_address LIKE '%${value}%';
+  <select id="selectByNameType" resultMap="BaseResultMap">
+    select * from rent_field where 1=1
+    <if test="NameType != null and NameType !=''">
+    and (field_name like concat('%',#{NameType},'%')
+    </if>
+      <if test="NameType != null and NameType !=''">
+          or field_address like concat('%',#{NameType},'%'))
+      </if>
+      <if test="name != null and name !=''">
+          and field_type=#{name}
+      </if>
+    <if test="renshumin != null and renshumin !=''and renshumax !=null and renshumax !=''">
+      and field_volume between #{renshumin} and #{renshumax}
+    </if>
+    <if test="order == 'remark' ">
+      order by field_grade
+    </if>
+    <if test="order == 'number' ">
+      order by  rent_count
+    </if>
+    <if test="order == 'price' ">
+      order by field_dayprice
+    </if>
+
+
   </select>
 
 

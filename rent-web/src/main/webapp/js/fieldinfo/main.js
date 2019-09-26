@@ -1,3 +1,5 @@
+var renshumin;
+var renshumax;
 (function ($) {
     "use strict";
 
@@ -26,18 +28,51 @@
 	});
 	var afterdata;
 /*-----价格滑动js -----*/
-	console.log(fielddatas)
+
 	$( "#price-range" ).slider({
 		range: true,
 		min: 1,
-		max: 10000,
-		values: [ 10, 9000 ],
+		max: 200,
+		values: [ 0, 200 ],
 		slide: function( event, ui ) {
 
 			jQuery( "#slidevalue" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-			console.log(ui.values[1])
-			console.log(ui.values[0])
+			 renshumax=ui.values[1];
+			 renshumin=ui.values[0];
+			var nametype = $('#search').val();
+			var order=$("#choose").val();
+			console.log(order)
 
+
+
+			$.get({
+				url: "fields/selectnametype",
+				dataType: "json",
+				data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
+				success:function(data){
+					console.log(data)
+					if(data.data==null){
+						swal("暂无该场地")
+					}else{
+						fenye(data.data)
+					}
+					if(afterfield.length>data.data.length){
+						for(var i=0;i<afterfield.length;i++){
+							afterfield[i]=data.data[i];
+
+						}
+					}else{
+						for(var i=0;i<data.data.length;i++){
+							afterfield[i]=data.data[i];
+
+						}
+					}
+
+
+
+
+				}
+			})
 
 		}
 	});

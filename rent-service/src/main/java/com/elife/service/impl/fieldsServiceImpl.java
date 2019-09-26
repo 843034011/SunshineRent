@@ -2,13 +2,16 @@ package com.elife.service.impl;
 
 import com.elife.mapper.EvaluatePictureMapper;
 import com.elife.mapper.RentFieldMapper;
+import com.elife.mapper.UserOrderMapper;
 import com.elife.mapper.UserShoppingcartMapper;
 import com.elife.pojo.RentField;
+import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserShoppingcart;
 import com.elife.service.fieldsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +23,9 @@ public class fieldsServiceImpl implements fieldsService {
     RentFieldMapper rentFieldMapper;
     @Autowired
     UserShoppingcartMapper userShoppingcartMapper;
+
+    @Autowired
+    UserOrderMapper userOrderMapper;
 
     @Override
     public List<RentField> selectAllFields() {
@@ -39,8 +45,8 @@ public class fieldsServiceImpl implements fieldsService {
     }
 
     @Override
-    public List<RentField> selectByNameType(String NameType) {
-        List<RentField> list3=rentFieldMapper.selectByNameType(NameType);
+    public List<RentField> selectByNameType(String NameType,String name,String order,Integer renshumin,Integer renshumax) {
+        List<RentField> list3=rentFieldMapper.selectByNameType(NameType,name,order,renshumin,renshumax);
         System.out.println("+++=================================================");
         System.out.println(list3.size());
         return list3;
@@ -51,6 +57,12 @@ public class fieldsServiceImpl implements fieldsService {
         int num=userShoppingcartMapper.insertFields(userShoppingcart);
         System.out.println(num);
                 return 0;
+    }
+
+    @Override
+    public List<UserOrder> selectCannotOrder(Date startTime, Date endTime) {
+        List<UserOrder> userOrders= userOrderMapper.selectCannotOrder(startTime,endTime);
+        return userOrders;
     }
 
 
