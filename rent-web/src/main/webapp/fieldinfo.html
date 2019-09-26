@@ -493,7 +493,7 @@
 
                         <div class="tab-pane" id="proReview">
                             <div class="pro-add-to-cart" style="float:left; " >
-                                <p ><a href="#" onclick="quanbu()" id="all" style="background-color: #00a9e0;color: white">全部评价评价</a></p>
+                                <p ><a onclick="quanbu()" id="all" style="background-color: #00a9e0;color: white">全部评价评价</a></p>
                             </div>
 
 
@@ -1010,11 +1010,16 @@
 /*全部   */
 
     function fenye(data){
-
+        var totalPages;
+        if(data.length%6==0){
+            totalPages=data.length/6
+        }else{
+            totalPages=data.length/6+1
+        }
         $.jqPaginator('#pagination2', {
 
-            totalPages:Math.floor(data.length/6+1),
-            visiblePages: Math.floor(data.length/6+1),
+            totalPages:Math.floor(totalPages),
+            visiblePages: Math.floor(totalPages),
             currentPage:1,
             pageSize:6,
             first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
@@ -1085,12 +1090,15 @@
                                     '</div>'+
 
                                     ' <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>'
-                                    +'</div>>'
-                                    +' <div class="line" style="margin-top:130px"></div>'
+                                    +'</div>'
+
 
 
                             }
-                            html1+='</div>'+'</div>'+'</div>'
+
+
+                                html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。回复人：成长中的小如</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
+
 
                             /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                                  <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
@@ -1224,8 +1232,6 @@ console.log(dates)
     var str = url.split("=");
     var fieldid = str[1];
     var fielddatas;
-
-
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
@@ -1265,7 +1271,7 @@ console.log(dates)
     var str1 = url1.split("=");
     var fieldid1 = str1[1];
     var comments;
-    var fielddatas;
+
         /* 评论*/
     $.ajax({
         url:"test2",
@@ -1279,7 +1285,7 @@ console.log(dates)
                     datas.push(data[i]);
                 console.log(datas);
             }
-            fielddatas=datas
+            comments=datas
             console.log(datas);
             fenye(datas)
         }
@@ -1294,8 +1300,8 @@ console.log(dates)
 
 
         $('#some').css({"background-color":"white" ,"color":"#00a9e0"})
-        console.log(fielddatas)
-      fenye(fielddatas)
+        console.log(comments)
+      fenye(comments)
 
     }
 
@@ -1303,13 +1309,13 @@ console.log(dates)
     function youtu(){
         $('#some').css({"background-color":"#00a9e0" ,"color":"white"})
         $('#all').css({"background-color":"white" ,"color":"#00a9e0"})
-        console.log(fielddatas)
-        for(var i=0;i<fielddatas.length;i++){
-           console.log(fielddatas[i].picture.length)
-            if(fielddatas[i].picture.length!=0)
+        console.log(comments)
+        for(var i=0;i<comments.length;i++){
+           console.log(comments[i].picture.length)
+            if(comments[i].picture.length!=0)
             {
-                console.log(fielddatas[i])
-                fieldyoutu.push(fielddatas[i])
+                console.log(comments[i])
+                fieldyoutu.push(comments[i])
             }
 
         }

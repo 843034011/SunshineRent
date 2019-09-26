@@ -630,7 +630,7 @@
                         <!-- price-rang-filter start -->
 
                         <div class="price-rang-filter sidebar-list">
-                            <h3>价格</h3>
+                            <h3>人数</h3>
                             <div class="range-area">
                                 <div id="price-range"></div>
                                 <p><input class="range_value_1" type="text" id="slidevalue"/></p>
@@ -1656,6 +1656,7 @@
 <script type="text/javascript" src="js/fieldinfo/jqPaginator.js"></script>
 
 <script>
+
 function fenye(data){
     var totalPages;
     if(data.length%6==0){
@@ -1713,6 +1714,8 @@ function fenye(data){
         </div>
         <div class="single-product-text">
             <h2><a class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">${data[6*n+i].fieldName}</a></h2>
+             <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:${data[6*n+i].fieldVolume}人</a></h2>
+              <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:${data[6*n+i].rentCount}次</a></h2>
             <div class="product-price">
                 <span class="regular-price">¥${data[6*n+i].fieldDayprice}</span>
             </div>
@@ -1757,6 +1760,8 @@ function fenye(data){
         </div>
         <div class="single-product-text">
             <h2><a class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">${data[6*n+i].fieldName}</a></h2>
+             <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:${data[6*n+i].fieldVolume}人</a></h2>
+              <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:${data[6*n+i].rentCount}次</a></h2>
             <div class="product-price">
                 <span class="regular-price">¥${data[6*n+i].fieldDayprice}</span>
             </div>
@@ -1780,11 +1785,8 @@ function fenye(data){
 </script>
 
 
-
-
-
-
 <script>
+
 /*接受主页的name类型参数并且显示*/
     /* <div class="row all-grid-product">*/
     var fieldpictures;
@@ -1801,6 +1803,7 @@ var i=0
         url: "fields/showallfields",
         dataType: "json",
         success: function (data) {
+            console.log(name);
             fielddatas=data.data
             console.log(data)
             console.log(data.data.length)
@@ -1819,19 +1822,65 @@ var i=0
 
         }
     })
+var afterfield=databynames;//存放历经千难完线后的场地
 
-
+/*var findflag=false;
+var searchflag=false;
+var sortflag=false;
+var sliderflag=false;
+var finddata;
+var searchdata*/
 
 
 /*模糊查找*/
-    var alldata
+function find(){
+    var nametype = $('#search').val();
+    var order=$("#choose").val();
+    console.log(renshumax)
+    console.log(renshumax)
+    console.log(renshumax)
+    $.get({
+        url: "fields/selectnametype",
+        dataType: "json",
+        data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
+        success:function(data){
+            console.log(data)
+            if(data.code==3){
+                swal("暂无该场地")
+            }else{
+                fenye(data.data)
+            }
+            if(afterfield.length>data.data.length){
+                for(var i=0;i<afterfield.length;i++){
+                    afterfield[i]=data.data[i];
+
+                }
+            }else{
+                for(var i=0;i<data.data.length;i++){
+                    afterfield[i]=data.data[i];
+
+                }
+            }
+          /*  afterfield.splice(data.data.length,afterfield.length-data.data.length);*/
+
+           console.log(afterfield)
+
+
+
+        }
+    })
+}
+
+    console.log(afterfield)
+
+    /*var alldata
     function find() {
         var nametype = $('#search').val();
         console.log(nametype)
         $.get({
             url: "fields/selectnametype",
             dataType: "json",
-            data: {"nametype": nametype},
+            data: {"nametype": nametype,"name":name},
             success: function (data) {
                 console.log(data)
                 alldata=data.data;
@@ -1874,46 +1923,29 @@ var i=0
 
 
 
-                /*data.data[i].fieldDayprice*/
+                /!*data.data[i].fieldDayprice*!/
                 console.log(data.data)
-            }/*success结束*/
+            }/!*success结束*!/
 
         })
-    }
+    }*/
 </script>
-
-<!--<option value="" onclick="sortbymark()">评分</option>
-       <input  type="text" placeholder="搜索你想要的场地商品" id="search" name="search" style="width:200px;height:30px;border: 2px solid #00a9e0;
-                    border-radius: 20px;
-                    color: #565656;
-                    padding:0 30px 0 15px;" oninput="find"/>
--->
-
 
 
 <script>
 
 
 console.log(fielddatas)//全部数据
-console.log(alldata)//经过模糊搜索后的数据
 var fielddates1=new Array();
 var alldatas=new Array();
-var input=$('#search').val()
-console.log(input)
-var order=$("#choose").val()
-console.log(order)
-
-/*$.post({
-    url: "fields/showallfields",
-    dataType: "json",
 
 
-})*/
 
-/*根据类型搜索*/
-function bangong(){
 
-}
+console.log(afterfield)
+
+
+
 /*模糊查找并且排序*/
 function number1(){
      console.log(fielddatas);
@@ -2447,74 +2479,26 @@ var number;
 
 function sortbymark() {
 
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddatas.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddatas.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            number=fielddatas.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            })
-            fenye(number)
-        }
-
-
-
-    } else {
-        if ($('#search').val() != '') {
-
-
-            if ($("#choose").val() == "price") {
-                pricedatas = alldata.sort(function (a, b) {
-                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-                })
-
-                fenye(pricedatas);
-
+    var nametype = $('#search').val();
+    var order=$("#choose").val();
+    console.log(nametype)
+    console.log(order)
+    $.get({
+        url: "fields/selectnametype",
+        dataType: "json",
+        data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
+        success:function(data){
+            console.log(data)
+            afterfield=data.data
+            if(data.code==3){
+                swal("暂无该场地")
+            }else{
+                fenye(data.data)
             }
-            if ($("#choose").val() == "remark") {
-                remarks = alldata.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
-                })
 
-                fenye(remarks);
-
-
-            }
-            if ($("#choose").val() == "number") {
-                numbers = alldata.sort(function (a, b) {
-                    return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }
-            /*var opt=$("#choose").val();
-        console.log(opt)
-        console.log(alldata)
-        console.log("aaaa")
-        console.log( alldata.sort(function (a, b) { return a.fieldDayprice<b.fieldDayprice?-1:1; })  )*/
         }
+    })
 
-    }
 }
 
 
@@ -2534,7 +2518,8 @@ function sortbymark() {
 
 var datearr=new Array();
 var datearr1=new Array();
-
+var cannotid=new Array();//存放不能的日期
+var fieldriqi;//存放日期筛选后的
 var choosestart;//选择的开始日期
 var chooseend;//选择的结束日期
     function dw(date) {
@@ -2636,7 +2621,53 @@ var chooseend;//选择的结束日期
             $.post({
                 url:"fields/jieshoudate",
                 data:{"startTime":choosestart,"endTime":chooseend},
+                dataType:"json",
+                success:function(data){
+                    console.log(data.data)
+                    for(var j=0;j<data.data.length;j++){
+                        cannotid[j]=data.data[j].fieldId
+                        console.log(cannotid[j])
+                    }
+                      /* console.log(a)*/
+                    console.log(afterfield)
+                    console.log(cannotid[0])
+                    var afterfield1=new Array();
+                    for(var q=0;q<afterfield.length;q++){
+                        if(typeof(afterfield[q])!='undefined'){
+                            afterfield1.push(afterfield[q])
+                        }
+                    }
+
+
+console.log(afterfield1.length)
+                    for(var m=0;m<afterfield1.length;m++){
+                        for(var n=0;n<cannotid.length;n++){
+                            console.log(cannotid)
+                            console.log(afterfield1)
+                            console.log(afterfield1[0].id)
+                            console.log(m)
+                            console.log(n)
+                            if(m<afterfield1.length){
+
+
+                            if(afterfield1[m].id==cannotid[n]) {
+
+                                afterfield1.splice(m, 1);
+                            }}
+                        }}
+
+                    console.log(afterfield1)
+                    if(afterfield1.length==0){
+                        swal("暂时没有该场地")
+                    }else{
+                        fenye(afterfield1)
+                    }
+
+
+                }
             })
+
+
            /* $.get({
                 url:"orders/showallorders",
                 dataType:"json",

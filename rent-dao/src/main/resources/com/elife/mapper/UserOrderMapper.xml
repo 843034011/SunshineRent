@@ -329,7 +329,7 @@
     SELECT * FROM user_order
     WHERE
     (start_time >= #{startTime} AND #{endTime}>=start_time)
-    OR (#{startTime>=start_time} AND end_time >= #{endTime})
+    OR (#{startTime}>=start_time AND end_time >= #{endTime})
     OR (end_time >= #{startTime} AND #{endTime}>=end_time )
   </select>
 </mapper>

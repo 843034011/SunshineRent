@@ -526,7 +526,7 @@
 
             now = new Date()
             now.setTime(now.getTime() - 24 * 60 * 60 * 1000)
-          console.log(now)
+          /*console.log(now)*/
             if (date < now) {
                 return true;
             } else {
