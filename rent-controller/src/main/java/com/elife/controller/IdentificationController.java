@@ -1,7 +1,17 @@
 package com.elife.controller;
 
+import com.baidu.aip.ocr.AipOcr;
+import com.elife.dto.IdCardResult;
+import com.elife.vo.ResultData;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * @author llb
@@ -10,9 +20,139 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("identification")
 public class IdentificationController {
 
+    //设置APPID/AK/SK
+    public static final String APP_ID = "17347849";
+    public static final String API_KEY = "lkLb9yAyZ0H6gMGaUbxbwBye";
+    public static final String SECRET_KEY = "M1XeZDkSOITZTuSwAiF8SFiC6jUiT7No";
+
+    // 初始化一个AipOcr
+    static AipOcr client = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
+
+    public static void samplefront(AipOcr client, String url, IdCardResult idCardResult) {
+        // 传入可选参数调用接口
+        HashMap<String, String> options = new HashMap<String, String>();
+        options.put("detect_direction", "true");
+        options.put("detect_risk", "false");
+
+        String idCardSide = "front";
+
+        // 参数为本地路径
+        String image = url;
+        JSONObject res = client.idcard(image, idCardSide, options);
+
+        JSONObject words_result = res.getJSONObject("words_result");
+
+        JSONObject name = words_result.getJSONObject("姓名");
+        JSONObject num = words_result.getJSONObject("公民身份号码");
+
+        String realName = name.getString("words");
+        String idNumber = num.getString("words");
+
+        System.out.println(realName);
+        System.out.println(idNumber);
+
+        idCardResult.setRealName(realName);
+        idCardResult.setIdNumber(idNumber);
+    }
+
+    public static void sampleback(AipOcr client,String url, IdCardResult idCardResult) {
+        // 传入可选参数调用接口
+        HashMap<String, String> options = new HashMap<String, String>();
+        options.put("detect_direction", "true");
+        options.put("detect_risk", "false");
+
+        String idCardSide = "back";
+
+        // 参数为本地路径
+        String image = url;
+        JSONObject res = client.idcard(image, idCardSide, options);
+        JSONObject words_result = res.getJSONObject("words_result");
+
+        JSONObject endDate = words_result.getJSONObject("失效日期");
+        JSONObject startDate = words_result.getJSONObject("签发日期");
+
+        String end = endDate.getString("words");
+        String start = startDate.getString("words");
+
+        System.out.println(end);
+        System.out.println(start);
+
+        idCardResult.setEndDate(end);
+        idCardResult.setStartDate(start);
+    }
+
+
     @RequestMapping("show")
     public String showIdentification(){
         return "identification";
     }
 
+    @RequestMapping("idcard")
+    @ResponseBody
+    public ResultData confirm(MultipartFile front, MultipartFile back) throws IOException {
+
+        IdCardResult idCardResult = new IdCardResult();
+
+        System.out.println(front.toString());
+        System.out.println(back.toString());
+
+        String idCardFront = getAbsolute(front);
+        String idCardBack = getAbsolute(back);
+
+        sampleback(client,idCardBack,idCardResult);
+        samplefront(client,idCardFront,idCardResult);
+
+        System.out.println("======================");
+        System.out.println(idCardResult.toString());
+        System.out.println("======================");
+
+        ResultData resultData = new ResultData();
+        resultData.setCode(0);
+        return resultData;
+    }
+
+    public String getAbsolute(MultipartFile file) throws IOException {
+        String oldName = file.getOriginalFilename();
+        System.out.println(oldName);
+        String newName = UUID.randomUUID() + oldName.substring(oldName.lastIndexOf("."));
+        System.out.println(newName);
+
+        String basePath = "F:\\imgs\\";
+
+        File f = new File(basePath);
+        if(f.exists() == false){
+            f.mkdirs();
+        }
+
+        String newPath = basePath + newName;
+
+        System.out.println(newPath);
+
+        OutputStream outputstream = null;
+        InputStream inputstream = null;
+
+        try {
+            inputstream = file.getInputStream();
+            outputstream = new FileOutputStream(newPath);
+
+            byte[] buffer = new byte[1024 * 5];
+            int byteRead = -1;
+
+            while ((byteRead = (inputstream.read(buffer))) != -1) {
+                outputstream.write(buffer, 0, byteRead);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (outputstream != null) {
+                outputstream.flush();
+                outputstream.close();
+            }
+            if (inputstream != null) {
+                inputstream.close();
+            }
+        }
+        return newPath;
+    }
 }
