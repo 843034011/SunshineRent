@@ -29,11 +29,11 @@ setInterval(function(){
 
 //顶部导航栏
 $('.items').html(
-    ' <li class="item"><a href="/shoppingcart/showcart?regId='+$.cookie("id")+
+    ' <li class="item"><a href="/shoppingcart/showcart'+
     '                        ">购物车</a></li>\n' +
     '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
     '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-    '                        <li class="item"><a href="/goodsManageCon/showManage?regId='+$.cookie("id")+'">个人中心</a></li>\n' +
+    '                        <li class="item"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
     '                        <li class="item"><a href="login.html">登录</a></li>\n' +
     '                        <li class="item">\n' +
@@ -147,4 +147,90 @@ $('.div-btn').click(function () {
     }else if(type == '商品'){
         $(location).attr('href','productlist.html?name='+type_value);
     }
+})
+
+
+var reg_id = $.cookie('id');
+if(reg_id != 0 || reg_id != null) {
+    $.post({
+        url: "/indexCon/selectById",
+        data: "userId=" + reg_id,
+        dataType: "json",
+        success: function (data) {
+            if (data.data == 0) {
+                sessionStorage.setItem("isIdentified",data.data.isIdentified);
+               console.log("成功");
+            } else {
+                console.log("失败")
+            }
+        }
+    })
+}
+
+// 展示好评较高的场地
+$.post({
+    url:"/indexCon/selectFields",
+    dataType:"json",
+    success:function (data) {
+        $.each(data.data, function (index, value) {
+            if(index < 8){
+                $('.product-item').append(`
+                    <li class="item">
+                        <div class="prod-img sram-fake-table">
+                            <a class="link sram-fake-table-cell"  href="#" target="_blank">
+                                <img src="${value.fieldPictures[0].fieldPicture}"/>
+                            </a>
+                        </div>
+                        <a  class="prod-desc" target="_blank" href="#">
+                            <div class="prod-rental sram-ellipsis">
+                                <span>￥${value.fieldMonthprice}</span>/月                                                                    
+                            </div>
+                            <div class="prod-title sram-ellipsis">
+                                ${value.fieldName}                                                                  
+                            </div>
+                            <div class="prod-deposit-timer sram-ellipsis">
+                                <span class="deposit">押金￥${value.fieldDeposit}</span>
+                                &nbsp;&nbsp;
+                                <span class="timer">可容纳人数:${value.fieldVolume}</span>
+                                &nbsp;&nbsp;
+                                <span class="timer">评分:${value.fieldGrade}</span>
+                            </div>
+                        </a>
+                    </li>
+            `)
+            }
+        })
+    }
+
+})
+
+// 展示个人闲置商品
+$.post({
+    url:"/indexCon/selectGoods",
+    dataType:"json",
+    success:function (data) {
+        $.each(data.data, function (index, value) {
+            if(index < 6){
+               $('.ls-show').append(`
+                <div class="ls-box ls">
+                    <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                    <div class="text-box">
+                        <a  class="prod-desc" target="_blank" href="">
+                            <div class="prod-rental sram-ellipsis">
+                                <span>￥${value.goodsDayprice}</span>/天                                                                 </div>
+                            <div class="prod-title sram-ellipsis">
+                                ${value.goodsName}                                                                    </div>
+                            <div class="prod-deposit-timer sram-ellipsis">
+                                <span class="deposit">押金:￥${value.goodsDeposit}</span>
+                                <br>
+                                <span class="timer">￥${value.goodsWeekprice}</span>/周
+                            </div>
+                        </a>
+                    </div>
+                </div>
+               `)
+            }
+        })
+    }
+
 })

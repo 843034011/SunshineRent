@@ -264,4 +264,5 @@
   <insert id="insertFirst" parameterType="java.lang.Integer">
     insert into rent_user(user_id,is_identified) values (#{id},0)
   </insert>
+
 </mapper>

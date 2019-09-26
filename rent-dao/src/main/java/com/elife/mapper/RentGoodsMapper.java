@@ -13,6 +13,11 @@ public interface RentGoodsMapper {
 
     /**
      * @author:zgy
+     * @return 返回所有商品
+     */
+    List<RentGoods> selectAllGoods();
+    /**
+     * @author:zgy
      * @param regId 注册id
      * @return 返回用户商品列表
      */

@@ -194,6 +194,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
+  <select id="selectAllGoods"  resultMap="BaseResultMap">
+    select * from rent_goods
+  </select>
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.RentGoodsExample" >
     select

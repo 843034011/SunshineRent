@@ -24,17 +24,18 @@ function show() {
     })
 }
 
-$('#ul-good').html(
-    '<li>商品管理</li>\n' +
-    '<li><a href="/goodsManageCon/showManage?regId='+$.cookie("id")+'">商品管理</a></li>');
+// $('#ul-good').html(
+//     '<li>商品管理</li>\n' +
+//     '<li><a href="/goodsManageCon/showManage?regId='+$.cookie("id")+'">商品管理</a></li>');
 
 // 截取当前用户的id
-var url = window.location.href;
-var reg_id = url.split("=")[1];
+// var url = window.location.href;
+// var reg_id = url.split("=")[1];
 // alert(reg_id);
-
+var reg_id = $.cookie('id');
 var myGoods;
 var len;
+// alert("注册用户id:"+reg_id);
 if(reg_id != null || reg_id != 0) {
 $.post({
         url: "/goodsManageCon/selectRegId",
@@ -65,13 +66,19 @@ $.post({
                         </div>
                     </div>
                     <div class="div3">
-                        <button class="good-updata"><a href="addGoods?id=${value.id}">修改</a></button>
+                        <button class="good-updata" id="${value.id}"><a href="addGoods?value=0">修改</a></button>
                         <button class="good-delete">删除</button>
                     </div>
                 </li>
                 `
                 )
             });
+
+            $(".good-updata").click(function () {
+                var value_id = $(this).attr('id');
+                // alert(value_id);
+                sessionStorage.setItem("value_id",value_id);
+            })
 
             if (len != 0) {
                 // $('.items1').html('');
@@ -108,15 +115,15 @@ $.post({
                 })
             })
             //修改商品信息
-            $('.good-updata').click(function () {
-                window.location.href = "../goodsManageCon/addGoods";
-            })
+            // $('.good-updata').click(function () {
+            //     window.location.href = "../goodsManageCon/addGoods";
+            // })
         }
     })
 }else{
     // alert("请登录");
-    window.location.href = "../login.html";
-    alert("请登录");
+    // window.location.href = "../login.html";
+    alert("未登录，请登录");
 }
 
 
@@ -152,7 +159,7 @@ $('.search').find('.search-btn').click(function () {
                     '\n' +
                     '                </div>\n' +
                     '                <div class="div3">\n' +
-                    '                <button class="good-updata">修改</button>\n' +
+                    '                <button class="good-updata"><a href="addGoods?id=0">修改</a></button>\n' +
                     '                <button class="good-delete">删除</button>\n' +
                     '                </div>\n' +
                     '</li>'

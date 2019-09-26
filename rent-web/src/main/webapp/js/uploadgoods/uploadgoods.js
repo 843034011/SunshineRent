@@ -153,7 +153,7 @@ $("#goodstype-ul").find("li").click(function(){
 
 var reg_id = $.cookie("id");
 var datas;
-alert(reg_id)
+// alert(reg_id)
 //添加商品到数据库
 if(reg_id !=0 || reg_id != null){
     $('#submit-btn-add').click(function () {
@@ -198,6 +198,7 @@ if(reg_id !=0 || reg_id != null){
             contentType: false,
             success:function (data) {
                 if(data.code == 0) {
+                    // window.location.href("/goodsManageCon/showManage");
                     alert("添加成功")
                 } else {
                     alert("添加失败")
@@ -236,9 +237,10 @@ if(reg_id !=0 || reg_id != null){
 //     }
 // };
 var url = window.location.href;
-var id = url.split("=")[1];
-// alert(id);
-if(id != 0){
+var value = url.split("=")[1];
+// alert(value);
+if(value == 0){
+    var id = sessionStorage.getItem("value_id");
     $.post({
         url: "/goodsManageCon/selectById",
         dataType: "json",
@@ -307,7 +309,8 @@ if(id != 0){
                     cache: false, //上传文件不需要缓存
                     success:function (data) {
                         if(data.code == 0) {
-                            window.location.reload()
+                            window.location.href("/goodsManageCon/showManage");
+                            alert("修改成功");
                         } else {
                             alert("修改失败")
                         }
