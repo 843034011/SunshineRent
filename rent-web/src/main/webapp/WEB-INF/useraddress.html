@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="../css/useraddress/useraddress.css">
     <script src="../jquery/jquery.cookie.js"></script>
+    <!--<link rel="stylesheet" href="../css/useraddress/layui/css/layui.css">-->
+    <!--<script src="../css/useraddress/layui/layui.js"></script>-->
+
 
 </head>
 <body>
@@ -30,11 +33,41 @@
                                 <input id="inputUserName" type="text" class="form-control list-inline" placeholder="输入收件人姓名"/>
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="inputScope" class="col-sm-2 control-label">所在地区</label>
+                            <label for="inputScope" class="col-sm-2 control-label">收货地址</label>
                             <div class="col-sm-10">
-                                <input id="inputScope" type="text" class="form-control list-inline" placeholder="输入所在地区"/>
+                                <input id="inputScope" type="text" class="form-control list-inline" placeholder="输入收货地址"/>
                             </div>
+                            <!--地址三级联动 -->
+                            <!--<div class="layui-main">-->
+                                <!--<form class="layui-form" action="javascript:jg()" method="post" style="margin:50px auto">-->
+                                    <!--<div class="layui-form-item">-->
+                                        <!--<label class="layui-form-label">请选择地区</label>-->
+                                        <!--<div class="layui-inline">-->
+                                            <!--<select name="province" id="province" lay-verify="required" lay-search lay-filter="province">-->
+                                                <!--<option value="">省份</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                        <!--<div class="layui-inline">-->
+                                            <!--<select name="city" id="city" lay-verify="required" lay-search lay-filter="city">-->
+                                                <!--<option value="">地级市</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                        <!--<div class="layui-inline">-->
+                                            <!--<select name="district" id="district" lay-verify="required" lay-search>-->
+                                                <!--<option value="">县/区</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="layui-form-item">-->
+                                        <!--<label class="layui-form-label"></label>-->
+                                        <!--<div class="layui-input-inline">-->
+                                            <!--<button type="submit" class="layui-btn ">提交</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</form>-->
+                            <!--</div>-->
                         </div>
                         <div class="form-group">
                             <label for="inputAddress" class="col-sm-2 control-label">详细地址</label>
@@ -218,7 +251,8 @@
 </div>
 </body>
 
-
+<!--<script src="../js/useraddress/area.js"></script>-->
+<!--<script src="../js/useraddress/select.js"></script>-->
 <script src="../js/useraddress/useraddress.js"></script>
 </html>
 

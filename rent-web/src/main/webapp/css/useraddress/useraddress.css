@@ -38,6 +38,13 @@ img{vertical-align:top;}
 }
 
 /*top模块开始(包括导航 轮播 搜索)*/
+/* 模态框设置 */
+/*.form-group{*/
+    /*wdith:100%;*/
+    /*height:100px;*/
+    /*background-color: #00aced;*/
+/*}*/
+
 
 .top{
     width:100%;
