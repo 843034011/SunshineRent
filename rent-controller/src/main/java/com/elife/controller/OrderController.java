@@ -50,4 +50,9 @@ public class OrderController {
         resultData = showOrderInfoService.selectOrderInfo(orderId);
         return resultData;
     }
+
+    @RequestMapping("evaluate")
+    public String evaluateHtml() {
+        return "user_evaluate";
+    }
 }

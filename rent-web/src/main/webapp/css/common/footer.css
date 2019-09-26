@@ -24,7 +24,7 @@
     width:200px;
     height:200px;
     margin:auto;
-    background-image: url("../img/erweima.jpg");
+    background-image: url("/img/common/erweima.jpg");
 }
 
 .foot-container div h4{
