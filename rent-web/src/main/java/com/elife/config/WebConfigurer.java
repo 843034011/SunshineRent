@@ -4,6 +4,8 @@ import com.elife.config.Interceptor.LoginInterceptor;
 import com.elife.config.Interceptor.RegisterInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,6 +17,7 @@ import java.util.List;
 
 
 @Configuration
+//@EnableWebMvc
 public class WebConfigurer implements WebMvcConfigurer {
 
     @Autowired
@@ -42,4 +45,9 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(registerInterceptor).addPathPatterns(registerList).excludePathPatterns();
 
     }
+
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**");
+//    }
 }
