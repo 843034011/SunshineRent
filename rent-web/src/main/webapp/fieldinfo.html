@@ -53,7 +53,7 @@
         }*/
        #ditu{
            width: 400px;
-           height: 600px;
+           height: 400px;
            float:left
        }
         #ditua{
@@ -241,8 +241,22 @@
                     <!-- 我的爱好-->
                     <div class="top-shoping-cart">
                         <div class="top-wishlist">
-                            <a class="top-wishlist-link" href="mylove.html"><!--<span>3</span>--></a>
+                          <!--  <a class="top-wishlist-link" href="mylove.html">&lt;!&ndash;<span>3</span>&ndash;&gt;</a>-->
                             <!--<div class="wishlist-box-overlay">-->
+                           <a > <i class=" iconfont icon-gouwuche1"  id="myshop" onclick="shopping()"
+                               style="background-color: #f65656;
+	                               border-radius: 50%;
+                            height: 45px;
+                            line-height: 49px;
+                            position: absolute;
+                            text-align: center;
+                            width: 45px;
+                            left: 0;
+                            color:white
+                              "
+
+                            >
+                           </i></a>
                         </div>
 
 
@@ -283,7 +297,10 @@
                     </div>
 -->                        <!--我的购物车页面-->
                         <div class="top-mycart">
-                            <a class="top-mycart-link" id="myshop" onclick="shopping()"></a>
+                           <!--<a class="top-mycart-link" id="myshop" onclick="shopping()">-->
+
+
+                            <!--</a>-->
                         </div>
 
                     </div>
@@ -387,7 +404,7 @@
 
 
                     <div class="pro-add-to-cart" style="float:left; " >
-                        <p ><a title="Add to Cart" href="#" onclick="shop()">加入购物车</a></p>
+                        <p ><a title="Add to Cart" onclick="shop()">加入购物车</a></p>
                     </div>
                     <!--  <div class="single-product-social-share">
                           <img src="img/social-share.jpg" alt="" />
@@ -663,6 +680,7 @@
                     <div class="product-carousel-5">
                         <!-- &lt;!&ndash; single-product-item start &ndash;&gt;-->
                         <div class="single-product-item">
+
                             <div class="product-image">
                                 <div class="sale-stiker product-sticker">
                                     <img src="img/product/sale1.png" alt="product sticker" /><!--热销-->
@@ -1553,12 +1571,14 @@ function peoplecenter(){
     var y
     var xy
     var address
+    var all;
     console.log(fieldid)
     $.get({
         url:"fields/showallfields",
 
         dataType:"json",
         success:function (data) {
+            all=data;
             var inputAddress=data.data[fieldid-1].fieldAddress
             console.log(inputAddress)
             // 创建XMLHttpRequest对象
@@ -1688,7 +1708,7 @@ console.log(address)
                         eat += "\t" + arounds[i].name + "\n";
                         console.log(arounds[i].name)
                         $('.newslist01').append(
-                            `<li>${arounds[i].name}</li>
+                            `<li style="color:black">${arounds[i].name}</li>
 
                             `
                         )
@@ -1696,14 +1716,14 @@ console.log(address)
                     } else if (typecode.startsWith("07")) {
                         life += "\t" + arounds[i].name + "\n";
                         $('.newslist02').append(
-                            `<li>${arounds[i].name}</li>
+                            `<li style="color:black">${arounds[i].name}</li>
 
                             `
                         )
                     } else if (typecode.startsWith("12")) {
                         business += "\t" + arounds[i].name + "\n";
                         $('.newslist03').append(
-                            `<li>${arounds[i].name}</li>
+                            `<li style="color:black">${arounds[i].name}</li>
 
                             `
                         )
@@ -1754,30 +1774,46 @@ console.log(address)
     var fieldid = str[1];
     console.log(fieldid)
     var fielddatas;
+    var masterId
+
 function shop(){
-  $.post({
-      url:"fields/insertshoppingcart",
-      data:{"fieldid": fieldid},
-      success:function(data){
-          swal("加入购物车成功","","success")
-      }
-  })
+   /* console.log(all)
+    for(var q=0;q<all.data.length;q++){
+        fieldid=all.data[q].id;
+        masterId=all.data[q].regId;
+    }
+    if(masterId==regid){
+        swal("这是您自己的商品哦")
+    }else{*/
+
+        $.post({
+            url:"/shoppingcart/insertshoppingcart",
+            data:{"fieldid": fieldid},
+           success:function(data){
+
+                // console.log(data);
+                swal("加入购物车成功","","success")
+            }
+        })
+  /*  }*/
+
 
 }
 
 /*跳转到购物车页面*/
 
-var regid;
-        $.get({
+var regid;//登录人的id
+
+       /* $.get({
             url:"fields/shoppingcart",
             dataType:"json",
             success:function(data){
                 console.log(data)
                 regid=data;
-               /* document.getElementById("myshop").src="shoppingcart.html";*/
+               /!* document.getElementById("myshop").src="shoppingcart.html";*!/
             }
 
-        })
+        })*/
 
     function shopping(){
             window.location.href="/shoppingcart/showcart";

@@ -655,13 +655,13 @@
                         <!-- people-list start -->
                         <div class="color-list sidebar-list">
                             <h3>可容纳人数:</h3>
-                            <ul>
-                                <li><a href="#" onclick="number1()">0~10人</a></li>
-                                <li><a href="#" onclick="number2()">10~20人</a></li>
-                                <li><a href="#" onclick="number3()">20~30人</a></li>
-                                <li><a href="#" onclick="number4()">30~40人</a></li>
-                                <li><a href="#" onclick="number5()">40~100人</a></li>
-                                <li><a href="#" onclick="number6()">100人以上</a></li>
+                            <ul class="test">
+                                <li><a href="#" >0~10人</a></li>
+                                <li><a href="#" >10~20人</a></li>
+                                <li><a href="#">20~30人</a></li>
+                                <li><a href="#" >30~40人</a></li>
+                                <li><a href="#" >40~100人</a></li>
+                                <li><a href="#" >100人以上</a></li>
                             </ul>
                         </div>
                         <!-- people-list end -->
@@ -1781,7 +1781,10 @@ function fenye(data){
     })
 }
 
-
+$(".test li a").click(function(){
+    var val=$(this).text();
+    alert(val);
+});
 </script>
 
 

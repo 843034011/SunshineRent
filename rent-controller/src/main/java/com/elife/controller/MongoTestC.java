@@ -38,7 +38,7 @@ public class MongoTestC {
         evaluateResult.setPictureList(pictureList);
         evaluateResult.setFieldId(fieldId);*/
     @PostMapping(value = "/test1")
-    public void saveTest(MultipartFile[] file, int grade, String content,int orderId) throws Exception {
+    public int saveTest(MultipartFile[] file, int grade, String content,int orderId) throws Exception {
         Date date=new Date();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HHmmss");
         String date1=simpleDateFormat.format(date);
@@ -58,14 +58,20 @@ public class MongoTestC {
         mgtest.setRemark(evaluateResult.getGrade());
         mgtest.setRemarkContent(evaluateResult.getContent());
         List<Pictures> pictures=new ArrayList<Pictures>();
-        Pictures p=new Pictures();
+
         for(int i=0;i<evaluateResult.getPictureList().size();i++){
-            p.setPicture(evaluateResult.getPictureList().get(0));
+            Pictures p=new Pictures();
+            p.setPicture(evaluateResult.getPictureList().get(i));
             pictures.add(p);
         }
         mgtest.setFieldId(evaluateResult.getFieldId());
         mgtest.setPicture(pictures);
         mtdao.saveTest(mgtest);
+        if(mgtest==null){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
     @GetMapping(value = "/test2")

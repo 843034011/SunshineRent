@@ -32,7 +32,7 @@ function show(data){
                     </div>
                     <div class="col-xs-1"></div>
                     <div class="col-xs-8 evaluate-order-info">
-                        <div class="col-xs-12 evaluate-order-info-name"><a href="#">${data.productName}</a></div>
+                        <div class="col-xs-12 evaluate-order-info-name"><a href="http://localhost:8080/fieldinfo.html?id=${data.fieldId}">${data.productName}</a></div>
                         <div class="col-xs-12 evaluate-order-info-weekprice">总价：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productTotal}</span></div>
                         <div class="col-xs-6 evaluate-order-info-deposit">押金：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productDeposit}</span></div>
                         <div class="col-xs-6 evaluate-order-info-dayprice">日租：<span class="glyphicon glyphicon-yen" aria-hidden="true">${data.productPrice}</span>&nbsp;/天</div>

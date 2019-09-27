@@ -30,6 +30,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         List<String> loginList = new ArrayList<>();
         loginList.add("/shoppingcart/*");
         loginList.add("/orders/*");
+       /* loginList.add("/fields/insertshoppingcart");*/
 
         registry.addInterceptor(loginInterceptor).addPathPatterns(loginList).excludePathPatterns();
 
