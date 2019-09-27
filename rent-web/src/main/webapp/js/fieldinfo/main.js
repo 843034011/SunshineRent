@@ -36,7 +36,7 @@ var renshumax;
 		values: [ 0, 200 ],
 		slide: function( event, ui ) {
 
-			jQuery( "#slidevalue" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+			jQuery( "#slidevalue" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 			 renshumax=ui.values[1];
 			 renshumin=ui.values[0];
 			var nametype = $('#search').val();
