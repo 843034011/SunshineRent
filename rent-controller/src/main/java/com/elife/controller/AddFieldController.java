@@ -1,15 +1,18 @@
 package com.elife.controller;
 
-
-
+import com.elife.pojo.FieldPicture;
+import com.elife.pojo.RentField;
+import com.elife.service.QiniuService;
 import com.elife.service.impl.AddFieldServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  * author:zgy
@@ -18,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("addField")
 public class AddFieldController {
 
+
+    @Autowired
+    private QiniuService qiniuService;
 
     @Autowired
     AddFieldServiceImpl AddFiledService;
@@ -29,21 +35,52 @@ public class AddFieldController {
 
     @RequestMapping("insertRendField")
     @ResponseBody
-    public ResultData insertRendField(String fieldName,String fieldType,Integer fieldArea){
-        System.out.println("==========================");
-        System.out.println(fieldName);
-        System.out.println(fieldType);
-        System.out.println(fieldArea);
-        System.out.println("==========================");
-//        int rentFieldNum = AddFiledService.insertField(rentField);
+    public ResultData insertRendField(MultipartFile[] file, String fieldName,
+                                      String fieldType,
+                                      String fieldInfo, BigDecimal fieldDeposit,
+                                      BigDecimal fieldHourprice,BigDecimal fieldDayprice,
+                                      BigDecimal fieldWeekprice,BigDecimal fieldMonthprice,
+                                      String fieldAddress,BigDecimal fieldGrade,
+                                      Integer rentCount,Integer regId,
+                                      Integer fieldVolume) throws IOException {
+
         ResultData resultData = new ResultData();
-//        if(0 == rentFieldNum ) {
-//            resultData.setCode(3);
-//            resultData.setMessage("增加失败");
-//        } else {
-//            resultData.setCode(0);
-//            resultData.setData(rentFieldNum);
-//        }
+        FieldPicture fieldPicture = new FieldPicture();
+        RentField rentField = new RentField();
+
+        rentField.setFieldName(fieldName);
+        rentField.setFieldType(fieldType);
+        rentField.setFieldInfo(fieldInfo);
+        rentField.setFieldDeposit(fieldDeposit);
+        rentField.setFieldHourprice(fieldHourprice);
+        rentField.setFieldDayprice(fieldDayprice);
+        rentField.setFieldWeekprice(fieldWeekprice);
+        rentField.setFieldMonthprice(fieldMonthprice);
+        rentField.setFieldAddress(fieldAddress);
+        rentField.setFieldGrade(fieldGrade);
+        rentField.setRentCount(rentCount);
+        rentField.setRegId(regId);
+        rentField.setFieldVolume(fieldVolume);
+
+        int addFieldNum = AddFiledService.insertField(rentField);
+        if (file != null && file.length > 0) {
+            for (int i = 0; i < file.length; i++) {
+                MultipartFile filex = file[i];
+                String fileUrl = qiniuService.saveImage(filex);
+                fieldPicture.setFieldPicture(fileUrl);
+                fieldPicture.setId(rentField.getId());
+                AddFiledService.insertPicture(fieldPicture);
+            }
+        } else {
+            System.out.println("没有上传图片！");
+        }
+        if (addFieldNum == 0 ) {
+            resultData.setCode(5);
+            resultData.setMessage("添加失败");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(addFieldNum);
+        }
         return resultData;
     }
 

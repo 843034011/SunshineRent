@@ -1,6 +1,7 @@
 package com.elife.service;
 
-import com.elife.pojo.RentField1;
+import com.elife.pojo.FieldPicture;
+import com.elife.pojo.RentField;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,5 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AddFieldService {
 
-    int insertField(RentField1 rentField);
+    int insertField(RentField rentField);
+
+    int insertPicture(FieldPicture fieldPicture);
+
+
 }

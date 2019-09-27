@@ -82,23 +82,6 @@ $(".file").change(function() {
     });
 });
 
-
-//获取系统当前时间
-// function getNowData() {
-//     function getNow(s) {//判断是否在前面加0
-//         return s < 10 ? '0' + s: s;
-//     }
-//     var myDate = new Date();
-//     var year=myDate.getFullYear();        //获取当前年
-//     var month=myDate.getMonth()+1;   //获取当前月
-//     var date=myDate.getDate();            //获取当前日
-//     var h=myDate.getHours();              //获取当前小时数(0-23)
-//     var m=myDate.getMinutes();          //获取当前分钟数(0-59)
-//     var s=myDate.getSeconds();
-//     var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
-//     return now;
-// }
-
 //限制商品名称输入框的字数
 function limit_name_words(){
     //获取input输入框元素
@@ -134,14 +117,14 @@ function limit_model_words(){
 //评价字数限制
 function words_deal() {
 
-    var curLength=$("#goodsinfo").val().length;
+    var curLength=$("#filedinfo").val().length;
     if(curLength>140) {
-        var num=$("#goodsinfo").val().substr(0,140);
-        $("#goodsinfo").val(num);
+        var num=$("#filedinfo").val().substr(0,140);
+        $("#filedinfo").val(num);
         alert("超过字数限制，多出的字将被截断！" );
         $("#textCount").text(0);
     } else {
-        $("#textCount").text(140-$("#goodsinfo").val().length);
+        $("#textCount").text(140-$("#filedinfo").val().length);
     }
 }
 
@@ -156,7 +139,7 @@ var reg_id = $.cookie("id");
 if(reg_id !=0 || reg_id != null){
     $('#submit-btn-add').click(function () {
         formData3.append("fieldName",$('#fieldname').val());
-        formData3.append("fieldArea", $('#fieldarea').val());
+        // formData3.append("fieldArea", $('#fieldarea').val());
         formData3.append("fieldVolume", $('#fieldvolume').val());
         formData3.append("fieldAddress", $('#fieldaddress').val());
         formData3.append("fieldType", $('#fieldtype').val());

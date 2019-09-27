@@ -829,6 +829,7 @@ img{vertical-align:top;}
     width:180px;
     height:300px;
     margin: 0px 10px;
+    border: 1px solid #ccc;
     /*padding:5px 5px;*/
     /*background-color: red;*/
 }

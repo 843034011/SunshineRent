@@ -171,3 +171,11 @@ $('.search').find('.search-btn').click(function () {
 show();
 
 
+// var isIdentified = $.cookie('isIdentified');
+// $('#isIdentified').click(function () {
+//     if(isIdentified = 0){
+//         window.location.href('/identification/show');
+//     }else{
+//
+//     }
+// })

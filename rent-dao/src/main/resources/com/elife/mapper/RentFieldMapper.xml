@@ -115,7 +115,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.elife.pojo.RentField" >
+  <insert id="insert" parameterType="com.elife.pojo.RentField" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
     insert into rent_field (id, field_name, field_type, 
       field_info, field_deposit, field_hourprice, 
       field_dayprice, field_weekprice, field_monthprice, 

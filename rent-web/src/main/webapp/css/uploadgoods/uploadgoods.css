@@ -208,6 +208,7 @@ body{
     height:100px;
     background-color: #ccc;
 }
+
 .picture-upload-div{
     width:562px;
     min-height:172px;
@@ -300,7 +301,11 @@ body{
     display:block;
     margin-left: 435px;
 }
-
+#filedinfo-span{
+    color:rgb(0,200,190);
+    display:block;
+    margin-left: 435px;
+}
 .container-right .div-btn{
     width:88%;
     height:50px;
