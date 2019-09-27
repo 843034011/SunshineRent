@@ -76,19 +76,20 @@ public class fieldsInfo {
 
     }
 
-  @RequestMapping("insertshoppingcart")
+  /*@RequestMapping("insertshoppingcart")
     @ResponseBody
     public int insertFields(Integer fieldid, HttpSession session){
+      RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+      int id=rentRegister.getRegId();
      UserShoppingcart userShoppingcart=new UserShoppingcart();
       System.out.println(fieldid);
-        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
-        int id=rentRegister.getRegId();
+
         System.out.println(id);
         userShoppingcart.setFieldId(fieldid);
         userShoppingcart.setRegId(id);
         fieldsService.insertFields(userShoppingcart);
         return 0;
-    }
+    }*/
 
 
     @RequestMapping("shoppingcart")
@@ -119,6 +120,23 @@ public class fieldsInfo {
         }
         return resultData;
 
+    }
+
+    @RequestMapping("insertshoppingcart")
+    @ResponseBody
+    public int insertFields(Integer fieldid, HttpSession session){
+
+        System.out.println("==================================");
+        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        int id=rentRegister.getRegId();
+        UserShoppingcart userShoppingcart=new UserShoppingcart();
+        System.out.println(fieldid);
+
+        System.out.println(id);
+        userShoppingcart.setFieldId(fieldid);
+        userShoppingcart.setRegId(id);
+        fieldsService.insertFields(userShoppingcart);
+        return 0;
     }
 
 }

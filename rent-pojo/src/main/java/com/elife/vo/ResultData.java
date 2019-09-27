@@ -13,7 +13,8 @@ public class ResultData {
      * 4: 删除失败
      * 5: 修改失败
      * 6. 增加失败
-     *
+     * 7.不能租用自己的商品
+     *8.请先登录
      */
     private Integer code;
     /**

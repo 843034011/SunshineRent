@@ -1,10 +1,8 @@
 package com.elife.controller;
 
-import com.elife.pojo.RentField;
-import com.elife.pojo.RentGoods;
-import com.elife.pojo.RentRegister;
-import com.elife.pojo.UserOrder;
+import com.elife.pojo.*;
 import com.elife.service.ShoppingCartService;
+import com.elife.service.impl.fieldsServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +22,8 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCartService shoppingCartService;
 
+    @Autowired
+    fieldsServiceImpl fieldsService;
     /**
      * 跳转购物车界面 跳转到
      * /WEN-INF/shoppingcart.html
