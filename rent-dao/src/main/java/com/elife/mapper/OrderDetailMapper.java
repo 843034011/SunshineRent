@@ -32,4 +32,8 @@ public interface OrderDetailMapper {
     int updateByPrimaryKey(OrderDetail record);
 
     List<OrderDetail> selectByOrderId(Integer orderId);
+
+    List<OrderDetail> selectFieldOrderDateUnEvaluate(Integer num);
+
+    List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
 }

@@ -184,7 +184,7 @@ $.post({
 
 // 单个购物车数据删除函数
 function deletethis(obj) {
-    var result = confirm("您确定要把这天数据从购物车里删除么？")
+    var result = confirm("您确定要把这条数据从购物车里删除么？")
     if(result){
         var shoppingId = parseInt($(obj).parent().parent().attr("id"))
         if(shoppingId > 0){
@@ -194,7 +194,7 @@ function deletethis(obj) {
                 dataType: "json",
                 success: function (data) {
                     if(data.data != null){
-                        window.location.href="/shoppingcart/showcart?regId=" + regId;
+                        window.location.href="/shoppingcart/showcart";
                     }
                 }
             })
@@ -455,4 +455,3 @@ function totalmoney() {
 
     window.location.href = "/orders/ensureorder"
 }
-

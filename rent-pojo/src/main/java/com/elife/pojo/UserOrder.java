@@ -124,4 +124,22 @@ public class UserOrder {
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
     }
+
+    @Override
+    public String toString() {
+        return "UserOrder{" +
+                "id=" + id +
+                ", orderNumber=" + orderNumber +
+                ", orderPrice=" + orderPrice +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", orderRemark='" + orderRemark + '\'' +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", createTime=" + createTime +
+                ", rentId=" + rentId +
+                ", fieldId=" + fieldId +
+                ", goodsId=" + goodsId +
+                ", orderDetails=" + orderDetails +
+                '}';
+    }
 }
