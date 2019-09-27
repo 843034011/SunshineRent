@@ -11,9 +11,6 @@
     <script src="../jquery/jquery-3.4.1.js"></script>
     <script src="../jquery/jquery.cookie.js"></script>
     <script src="../bootstrap/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../css/useraddress/layui/css/layui.css">
-    <script src="../css/useraddress/layui/layui.js"></script>
-    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 
 </head>
@@ -63,48 +60,17 @@
             <div class="form-group">
                 <label for="fieldname">名称</label>
                 <input type="text" class="form-control input-width-50" id="fieldname" placeholder="请输入名称" value="" onkeydown="limit_name_words()">
-                <span id="fieldname-span">请输入名称！</span>
-            </div>
-            <div class="form-group">
-                <label for="fieldarea">面积</label>
-                <input type="text" class="form-control input-width-50" id="fieldarea" placeholder="请输入面积" value="" onkeydown="limit_model_words()">
-                <span id="fieldarea-span">请输入面积！</span>
+                <!--<span id="fieldname-span">请输入名称！</span>-->
             </div>
             <div class="form-group">
                 <label for="fieldvolume">人数</label>
                 <input type="text" class="form-control input-width-50" id="fieldvolume" placeholder="请输入人数" value="" onkeydown="limit_model_words()">
-                <span id="fieldvolume-span">请输入人数！</span>
+                <!--<span id="fieldvolume-span">请输入人数！</span>-->
             </div>
-            <div class="three-address">
-
-                <div class="layui-main">
-                    <form class="layui-form" action="javascript:jg()" method="post" style="margin:50px auto">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">请选择地区</label>
-                            <div class="layui-inline">
-                                <select name="province" id="province" lay-verify="required" lay-search lay-filter="province">
-                                    <option value="">省份</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <select name="city" id="city" lay-verify="required" lay-search lay-filter="city">
-                                    <option value="">地级市</option>
-                                </select>
-                            </div>
-                            <div class="layui-inline">
-                                <select name="district" id="district" lay-verify="required" lay-search>
-                                    <option value="">县/区</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label"></label>
-                            <div class="layui-input-inline">
-                                <button type="submit" class="layui-btn ">提交</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="form-group">
+                <label for="fieldvolume">地址</label>
+                <input type="text" class="form-control input-width-50" id="fieldaddress" placeholder="请输入地址" value="" onkeydown="limit_model_words()">
+                <!--<span id="fieldaddress-span">请输入地址！</span>-->
             </div>
             <div class="form-group">
                 <div style="float:left;height:34.4px;line-height:34.4px;margin-right:4px;"><label for="fieldtype">类型</label></div>
@@ -245,8 +211,8 @@
 </body>
 
 
-<script src="../js/useraddress/area.js"></script>
-<script src="../js/useraddress/select.js"></script>
+<!--<script src="../js/useraddress/area.js"></script>-->
+<!--<script src="../js/useraddress/select.js"></script>-->
 <script src="../js/uploadfield/uploadfield.js"></script>
 
 </html>

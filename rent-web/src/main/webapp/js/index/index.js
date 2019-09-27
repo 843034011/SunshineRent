@@ -37,7 +37,7 @@ $('.items').html(
     '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
     '                        <li class="item"><a href="login.html">登录</a></li>\n' +
     '                        <li class="item">\n' +
-                                 // llb 2019-9-20 修改首页到注册页面的跳转方式
+    // llb 2019-9-20 修改首页到注册页面的跳转方式
     '                            <a href="/register/showregister">注册</a>\n' +
     '                        </li>\n' +
     '                        <li class="item">\n' +
@@ -158,8 +158,8 @@ if(reg_id != 0 || reg_id != null) {
         dataType: "json",
         success: function (data) {
             if (data.data == 0) {
-                sessionStorage.setItem("isIdentified",data.data.isIdentified);
-               console.log("成功");
+                $.cookie("isIdentified",data.data.isIdentified)
+                console.log("成功");
             } else {
                 console.log("失败")
             }
@@ -211,7 +211,7 @@ $.post({
     success:function (data) {
         $.each(data.data, function (index, value) {
             if(index < 6){
-               $('.ls-show').append(`
+                $('.ls-show').append(`
                 <div class="ls-box ls">
                     <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
                     <div class="text-box">
