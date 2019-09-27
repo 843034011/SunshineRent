@@ -38,7 +38,7 @@ public class MongoTestC {
         evaluateResult.setPictureList(pictureList);
         evaluateResult.setFieldId(fieldId);*/
     @PostMapping(value = "/test1")
-    public void saveTest(MultipartFile[] file, int grade, String content) throws Exception {
+    public void saveTest(MultipartFile[] file, int grade, String content,int orderId) throws Exception {
         Date date=new Date();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HHmmss");
         String date1=simpleDateFormat.format(date);
@@ -48,7 +48,7 @@ public class MongoTestC {
 
         System.out.println(file);
         System.out.println(content);
-        EvaluateResult evaluateResult=evaluateResultService.saveEvaluateResult( file,grade,content,9);
+        EvaluateResult evaluateResult=evaluateResultService.saveEvaluateResult( file,grade,content,orderId);
         remarks mgtest = new remarks();
         mgtest.setId( Integer.parseInt(date1));
         mgtest.setReg_id(evaluateResult.getRegId());
