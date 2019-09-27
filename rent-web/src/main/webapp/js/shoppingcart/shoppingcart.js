@@ -1,6 +1,5 @@
-// 截取当前用户的id
-var url = window.location.href;
-var regId = url.split("=")[1]
+// 从cookie中获取当前用户的regId
+var regId = $.cookie("id")
 
 // 定义两个全局变量传参
 var kind;

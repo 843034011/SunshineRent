@@ -50,36 +50,18 @@ $("#idcard-submit").click(function () {
             processData: false,
             contentType: false,
             success: function (data) {
-                alert("成功了！！！！！！！！！！！！！！！！")
+                $("#idcard-submit").css("display","none");
+                $("#total-form").css("display","block");
+
+                if(data.code == 0){
+                    $("#realname").attr("value",data.data.realName)
+                    $("#idcard").attr("value",data.data.idNumber)
+                }else if(data.code==1){
+                    alert(data.message)
+                }
             }
         })
     } else {
         alert("请按顺序上传全部图片！！！！")
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-images = document.getElementsByClassName("img-head");
-for (var i = 0; i < images.length; i++) {
-    images[i].onclick = function (e) {
-        var btn_info = document.getElementsByClassName("btn-default")
-        btn_info[0].innerHTML = e.target.alt
-        var headimage = document.getElementById("headimage")
-        headimage.src = e.target.src
-    }
-}
-
