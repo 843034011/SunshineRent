@@ -28,6 +28,9 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public List<UserOrder> selectFieldOrderDateUnEvaluate(Integer num) {
         List<UserOrder> userOrders = userOrderMapper.selectFieldOrderDateUnEvaluate(num);
+        for (int i = 0; i < userOrders.size(); i++) {
+            System.out.println(userOrders.get(i).toString());
+        }
         return userOrders;
     }
 

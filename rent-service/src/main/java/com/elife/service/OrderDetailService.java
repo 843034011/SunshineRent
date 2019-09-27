@@ -2,6 +2,8 @@ package com.elife.service;
 
 import com.elife.pojo.OrderDetail;
 
+import java.util.List;
+
 public interface OrderDetailService {
 
     /**
@@ -11,4 +13,17 @@ public interface OrderDetailService {
      */
     OrderDetail selectById(Integer id);
 
+    /**
+     * 查询场地的被禁用时间
+     * @param num
+     * @return
+     */
+    List<OrderDetail> selectFieldOrderDateUnEvaluate(Integer num);
+
+    /**
+     * 查询商品的被禁用时间
+     * @param num
+     * @return
+     */
+    List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
 }

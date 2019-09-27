@@ -630,22 +630,28 @@
                 renderCalendar: function (side) {
                     // 向后台请求当前租品的占用日期，将所有日期封装为一个数组
                     $.post({
-                        url: "/orders/selectorderdate",
+                        url: "/orderDetail/selectorderdate",
                         async: false,
                         data: "num=" + num + "&kind=" + kind,
                         dataType: "json",
                         success: function (data) {
+                            alert(data.data.length)
                             if (data.data.length > 0) {
+
                                 for (var i = 0; i < data.data.length; i++) {
 
                                     var start = data.data[i].startTime.split("T")[0]
                                     var end = data.data[i].endTime.split("T")[0]
 
-                                    do {
+                                    if(start == end){
                                         jsonInvalidDate.push(start)
-                                        start = getNewDay(start, 1)
-                                    } while (start != end);
-                                    jsonInvalidDate.push(end)
+                                    } else{
+                                        while (start != end){
+                                            jsonInvalidDate.push(start)
+                                            start = getNewDay(start, 1)
+                                        }
+                                        jsonInvalidDate.push(end)
+                                    }
                                 }
                             }
                         }
