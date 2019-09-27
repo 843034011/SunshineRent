@@ -23,14 +23,14 @@ body{
     margin-left:20px;
 }
 .top-nav ul li span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .top-nav ul li a{
     text-decoration:none;
     color:#666;
 }
 .top-nav ul li a:hover{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 
 /* header */
@@ -54,15 +54,15 @@ body{
 }
 .header div a{
     text-decoration:none;
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .header div a div{
     text-align:center;
     width:80px;
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .header .return{
-    background-color:rgb(0,200,190) ;
+    background-color: #00A9E0 ;
     color:#fff;
 }
 .header .return:hover{
@@ -73,7 +73,7 @@ body{
     width:100px;
     font-size:16px;
     line-height:38px;
-    color:rgb(0,200,190);
+    color: #00A9E0;
     float:right;
     margin-right:0px;
     margin-top:10px;
@@ -85,7 +85,7 @@ body{
     height:40px;
     width:80px;
     color:#ffffff;
-    background-color:rgb(0,200,190);
+    background-color: #00A9E0;
     margin-left:0px;
     margin-right:150px;
     margin-top:10px;
@@ -104,10 +104,10 @@ body{
     float:right;
     height:40px;
     width:320px;
-    color:rgb(0,200,190);
+    color: #00A9E0;
     background-color:#fff;
     padding-left:5px;
-    border-color:rgb(0,200,190) ;
+    border-color: #00A9E0 ;
     border-right:0px solid #fff ;
 }
 
@@ -126,7 +126,7 @@ body{
     padding:0 0 0 0;
 }
 .breadcrumb li a:hover{
-    color:rgb(0,200,190);
+    color: #00A9E0;
     font-weight: bold;
     text-decoration: none;
 }
@@ -161,7 +161,7 @@ body{
 
 .container-left div ul li a:hover{
     text-decoration:none;
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 
 
@@ -179,7 +179,7 @@ body{
     margin-top:0px;
 }
 .page-header h4{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .form-group{
     margin-left:50px;
@@ -242,7 +242,7 @@ body{
     cursor:pointer;
 }
 .image-cover .delbtn {
-    color:rgb(0,200,190);
+    color: #00A9E0;
     font-size:20px;
 }
 .imageDiv:hover .image-cover {
@@ -255,7 +255,7 @@ body{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
-    border:1px dashed rgb(0,200,190);
+    border:1px dashed  #00A9E0;
     background:#f8f8f8;
     position:relative;
     overflow:hidden;
@@ -282,27 +282,27 @@ body{
 }
 
 #goodsname-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 #goodsmodel-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 #goodsnumber-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 #goodsdeposit-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 #goodsprice-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 #goodsinfo-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
     display:block;
     margin-left: 435px;
 }
 #filedinfo-span{
-    color:rgb(0,200,190);
+    color: #00A9E0;
     display:block;
     margin-left: 435px;
 }

@@ -41,7 +41,7 @@ public class AddFieldController {
                                       BigDecimal fieldHourprice,BigDecimal fieldDayprice,
                                       BigDecimal fieldWeekprice,BigDecimal fieldMonthprice,
                                       String fieldAddress,BigDecimal fieldGrade,
-                                      Integer rentCount,Integer regId,
+                                      Integer regId,
                                       Integer fieldVolume) throws IOException {
 
         ResultData resultData = new ResultData();
@@ -58,7 +58,7 @@ public class AddFieldController {
         rentField.setFieldMonthprice(fieldMonthprice);
         rentField.setFieldAddress(fieldAddress);
         rentField.setFieldGrade(fieldGrade);
-        rentField.setRentCount(rentCount);
+        rentField.setRentCount(0);
         rentField.setRegId(regId);
         rentField.setFieldVolume(fieldVolume);
 
@@ -68,7 +68,7 @@ public class AddFieldController {
                 MultipartFile filex = file[i];
                 String fileUrl = qiniuService.saveImage(filex);
                 fieldPicture.setFieldPicture(fileUrl);
-                fieldPicture.setId(rentField.getId());
+                fieldPicture.setFieldId(rentField.getId());
                 AddFiledService.insertPicture(fieldPicture);
             }
         } else {

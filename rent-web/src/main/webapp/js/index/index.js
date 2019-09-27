@@ -5,6 +5,13 @@ $(".show-nav").find("li").click(function () {
     target = $(this).css("border","2px solid rgb(0,200,190)");
 });
 
+//分类点击样式改变
+var target = $('.tabs-bar').find('div').eq(0).css({'background':'#00A9E0','color':'#ecfafa'});
+$('.tabs-bar').find('div').click(function () {
+    target.css({'background':'#f0f4f4','color':'#444'});
+    target = $(this).css({'background':'#00A9E0','color':'#ecfafa'})
+})
+
 //定时轮播
 var index = 1;
 var target = $(".show-nav").find("li").eq(index-1).css("border","2px solid rgb(0,200,190)");
@@ -27,24 +34,46 @@ setInterval(function(){
     target = $(".show-nav").find("li").eq(index-1).css("border","2px solid rgb(0,200,190)");
 },4000);
 
-//顶部导航栏
-$('.items').html(
-    ' <li class="item"><a href="/shoppingcart/showcart'+
-    '                        ">购物车</a></li>\n' +
-    '                        <li class="item"><a href="">商家旺铺</a></li>\n' +
-    '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-    '                        <li class="item"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
-    '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
-    '                        <li class="item"><a href="login.html">登录</a></li>\n' +
-    '                        <li class="item">\n' +
-    // llb 2019-9-20 修改首页到注册页面的跳转方式
-    '                            <a href="/register/showregister">注册</a>\n' +
-    '                        </li>\n' +
-    '                        <li class="item">\n' +
-    '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
-    '                        </li>'
-)
+var reg_id = $.cookie('id');
 
+//顶部导航栏
+if(reg_id == undefined){
+    $('.items').html(
+        ' <li class="item"><a href="/shoppingcart/showcart'+
+        '                        ">购物车</a></li>\n' +
+        '                        <li class="item"><a href="">咨询中心</a></li>\n' +
+        '                        <li class="item userCenter"><a href="">个人中心</a></li>\n' +
+        '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
+        '                        <li class="item"><a href="login.html">登录</a></li>\n' +
+        '                        <li class="item">\n' +
+        // llb 2019-9-20 修改首页到注册页面的跳转方式
+        '                            <a href="/register/showregister">注册</a>\n' +
+        '                        </li>\n' +
+        '                        <li class="item">\n' +
+        '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
+        '                        </li>'
+    )
+}else{
+    $('.items').html(
+        ' <li class="item"><a href="/shoppingcart/showcart'+
+        '                        ">购物车</a></li>\n' +
+        '                        <li class="item"><a href="">咨询中心</a></li>\n' +
+        '                        <li class="item userCenter"><a href="http://localhost:8080/index.html">个人中心</a></li>\n' +
+        '                        <li class="item" onclick="unlogin()"><a href="">退出登录</a></li>\n' +
+        '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
+        '                        <li class="item">\n' +
+        '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
+        '                        </li>'
+    )
+}
+
+function unlogin(){
+    $.cookie('id', '', { expires: -1 });
+    $.cookie('key', '', { expires: -1 });
+    $.cookie('isIdentified', '', { expires: -1 });
+    // $.cookie("isIdentified",data.data.isIdentified)
+    window.location.href="/index.html";
+}
 
 //搜索框相关
 var $li_i = $('#ul-search').find('li').find('i').eq(0).css('background-color','#0abfb6');
@@ -149,9 +178,7 @@ $('.div-btn').click(function () {
     }
 })
 
-
-var reg_id = $.cookie('id');
-if(reg_id != 0 || reg_id != null) {
+if(reg_id != undefined) {
     $.post({
         url: "/indexCon/selectById",
         data: "userId=" + reg_id,
@@ -167,21 +194,18 @@ if(reg_id != 0 || reg_id != null) {
     })
 }
 
-// 展示好评较高的场地
-$.post({
-    url:"/indexCon/selectFields",
-    dataType:"json",
-    success:function (data) {
-        $.each(data.data, function (index, value) {
-            if(index < 8){
-                $('.product-item').append(`
+// 展示租赁次数较多，好评较高的场地
+var fieid_id ;
+var allFieldData;
+function showData(){
+    $('.product-item').append(`
                     <li class="item">
                         <div class="prod-img sram-fake-table">
-                            <a class="link sram-fake-table-cell"  href="#" target="_blank">
+                            <a class="link sram-fake-table-cell"  href="/fieldinfo.html?id=${value.id}" target="_blank">
                                 <img src="${value.fieldPictures[0].fieldPicture}"/>
                             </a>
                         </div>
-                        <a  class="prod-desc" target="_blank" href="#">
+                        <a  class="prod-desc" target="_blank" href="/fieldinfo.html?id=${value.id}">
                             <div class="prod-rental sram-ellipsis">
                                 <span>￥${value.fieldMonthprice}</span>/月                                                                    
                             </div>
@@ -198,11 +222,50 @@ $.post({
                         </a>
                     </li>
             `)
+};
+//展示办公场地
+$.post({
+    url:"/indexCon/selectFields",
+    dataType:"json",
+    success:function (data) {
+        allFieldData = data.data;
+        $.each(allFieldData, function (index, value) {
+            if(value.fieldName=="办公场地"){
+                showData()
             }
         })
     }
-
 })
+//分类展示运动场地
+$(".sport").click(function () {
+    $.each(allFieldData, function (index, value) {
+        if(value.fieldName=="运动场地"){
+            showData()
+        }
+    })
+})
+$(".PE").click(function () {
+    $.each(allFieldData, function (index, value) {
+        if(value.fieldName=="体育电竞"){
+            showData()
+        }
+    })
+})
+$(".show").click(function () {
+    $.each(allFieldData, function (index, value) {
+        if(value.fieldName=="展览展示"){
+            showData()
+        }
+    })
+})
+$(".part").click(function () {
+    $.each(allFieldData, function (index, value) {
+        if(value.fieldName=="派对沙龙"){
+            showData()
+        }
+    })
+})
+
 
 // 展示个人闲置商品
 $.post({
@@ -234,3 +297,5 @@ $.post({
     }
 
 })
+
+

@@ -122,7 +122,7 @@ li{cursor: pointer;}
     padding-left: 20px;
     width:180px;
     font-size: 20px;
-    color:rgb(0,200,190);
+    color: #00A9E0;
     border-left:2px solid #888;
     /*padding-right: 40px;*/
 }
@@ -158,7 +158,7 @@ li{cursor: pointer;}
     font-size: 14px;
 }
 .left-nav ul li:hover{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 /*.right-con{*/
 /*width:850px;*/
@@ -351,7 +351,7 @@ li{cursor: pointer;}
 }
 .two .div3 button:hover{
     color:#fff;
-    background-color: rgb(0,200,190);
+    background-color:  #00A9E0;
     border: 1px solid #fff;
 }
 .manage .manage-page{
@@ -370,13 +370,13 @@ li{cursor: pointer;}
     width:150px;
     height:40px;
     font-size: 18px;
-    cololr:rgb(0,200,190);
+    cololr: #00A9E0;
     background-color: #FFF;
     border: 1px solid #fff;
 }
 .manage .manage-page button:hover{
     color:#fff;
-    background-color: rgb(0,200,190);
+    background-color:  #00A9E0;
 }
 
 .manage nav{
@@ -448,7 +448,7 @@ li{cursor: pointer;}
     margin:0px 7px 7px 0px;
 }
 .foot-grandchild a:hover{
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 
 .site-info{
@@ -482,13 +482,13 @@ li{cursor: pointer;}
     width:200px;
     height:40px;
     font-size: 18px;
-    border: 1px solid rgb(0,200,190);
+    border: 1px solid  #00A9E0;
     /*font-weight:700 ;*/
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .more-show input:hover {
     color:#fff;
-    background-color: rgb(0,200,190);
+    background-color:  #00A9E0;
 }
 .little-show{
     width:1200px;
@@ -511,11 +511,11 @@ li{cursor: pointer;}
     text-align: center;
     width:120px;
     height:40px;
-    border-top:2px solid rgb(0,200,190) ;
+    border-top:2px solid  #00A9E0 ;
     color:#333;
 }
 .ls-items li:first-child{
-    background-color:rgb(0,200,190) ;
+    background-color: #00A9E0 ;
     color:#fff;
 }
 .ls-show{
@@ -597,13 +597,13 @@ li{cursor: pointer;}
     width:200px;
     height:40px;
     font-size: 18px;
-    border: 1px solid rgb(0,200,190);
+    border: 1px solid  #00A9E0;
     /*font-weight:700 ;*/
-    color:rgb(0,200,190);
+    color: #00A9E0;
 }
 .more-show input:hover {
     color:#fff;
-    background-color: rgb(0,200,190);
+    background-color:  #00A9E0;
 }
 .little-show{
     width:1200px;
@@ -626,11 +626,11 @@ li{cursor: pointer;}
     text-align: center;
     width:120px;
     height:40px;
-    border-top:2px solid rgb(0,200,190) ;
+    border-top:2px solid  #00A9E0 ;
     color:#333;
 }
 .ls-items li:first-child{
-    background-color:rgb(0,200,190) ;
+    background-color: #00A9E0 ;
     color:#fff;
 }
 .ls-show{

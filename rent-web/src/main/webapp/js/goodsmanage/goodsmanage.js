@@ -36,8 +36,8 @@ var reg_id = $.cookie('id');
 var myGoods;
 var len;
 // alert("注册用户id:"+reg_id);
-if(reg_id != null || reg_id != 0) {
-$.post({
+if(reg_id != undefined) {
+    $.post({
         url: "/goodsManageCon/selectRegId",
         dataType: "json",
         data: "regId=" + reg_id,//页面获取
@@ -77,7 +77,7 @@ $.post({
             $(".good-updata").click(function () {
                 var value_id = $(this).attr('id');
                 // alert(value_id);
-                sessionStorage.setItem("value_id",value_id);
+                sessionStorage.setItem("value_id", value_id);
             })
 
             if (len != 0) {
@@ -92,7 +92,8 @@ $.post({
                     '            <li class="item" value="2">\n' +
                     '                退租商品(<span>0</span>)\n' +
                     '            </li>');
-            };
+            }
+            ;
             show();
 
             // 删除商品
@@ -100,13 +101,13 @@ $.post({
                 $.post({
                     url: "/goodsManageCon/deleteGood",
                     //实际使用
-                    data:"id="+$(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
+                    data: "id=" + $(this).parent().prev('.div2').find('.div2-con').find('.span-id').text(),
                     //测试
                     // data: "id=" + 5,
                     dataType: "json",
                     success: function (data) {
                         if (data.code == 0) {
-                            // alert("删除成功");
+                            alert("删除成功");
                             window.location.reload();
                         } else {
                             alert("删除失败")
@@ -120,11 +121,12 @@ $.post({
             // })
         }
     })
-}else{
-    // alert("请登录");
-    // window.location.href = "../login.html";
-    alert("未登录，请登录");
 }
+// }else{
+//     // alert("请登录");
+//     // window.location.href = "../login.html";
+//     alert("未登录，请登录");
+// }
 
 
 //点击搜索

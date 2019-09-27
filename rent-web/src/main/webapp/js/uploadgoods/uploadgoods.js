@@ -155,7 +155,7 @@ var reg_id = $.cookie("id");
 var datas;
 // alert(reg_id)
 //添加商品到数据库
-if(reg_id !=0 || reg_id != null){
+if(reg_id != undefined ){
     $('#submit-btn-add').click(function () {
         formData2.append("goodsName",$('#goodsname').val());
         formData2.append("goodsType", $('#goodstype').val());
@@ -200,6 +200,7 @@ if(reg_id !=0 || reg_id != null){
                 if(data.code == 0) {
                     // window.location.href("/goodsManageCon/showManage");
                     alert("添加成功")
+                    window.location.href="http://localhost:8080/goodsManageCon/showManage";
                 } else {
                     alert("添加失败")
                 }
@@ -309,8 +310,8 @@ if(value == 0){
                     cache: false, //上传文件不需要缓存
                     success:function (data) {
                         if(data.code == 0) {
-                            window.location.href("/goodsManageCon/showManage");
                             alert("修改成功");
+                            window.location.href="http://localhost:8080/goodsManageCon/showManage";
                         } else {
                             alert("修改失败")
                         }
