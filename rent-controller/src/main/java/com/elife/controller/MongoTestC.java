@@ -6,7 +6,6 @@ import com.elife.dto.EvaluateResult;
 import com.elife.pojo.Pictures;
 import com.elife.pojo.remarks;
 import com.elife.service.EvaluateResultService;
-import com.sun.corba.se.impl.interceptors.PICurrent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
