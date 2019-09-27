@@ -20,9 +20,11 @@
     <!--一对多关系———场地对场地图片-->
     <collection property="fieldPictures" column="id" select="com.elife.mapper.FieldPictureMapper.selectByFieldId"></collection>
   </resultMap>
+
   <select id="selectAllFields"  resultMap="BaseResultMap">
-    select * from rent_field
+    select * from rent_field order by rent_count desc,field_grade desc;
   </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
