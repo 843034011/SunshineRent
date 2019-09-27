@@ -21,7 +21,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
 
-        System.out.println(rentRegister.toString());
         if (rentRegister == null) {
             response.sendRedirect("../login.html?info=unlogin");
             return false;

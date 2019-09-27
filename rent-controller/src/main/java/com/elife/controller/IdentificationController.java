@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -106,8 +108,23 @@ public class IdentificationController {
         System.out.println(idCardResult.toString());
         System.out.println("======================");
 
+        String timeStr= LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).replaceAll("-","");
+
         ResultData resultData = new ResultData();
-        resultData.setCode(0);
+
+        if(Integer.parseInt(idCardResult.getStartDate()) > Integer.parseInt(timeStr) || Integer.parseInt(idCardResult.getEndDate()) < Integer.parseInt(timeStr)){
+            resultData.setCode(1);
+            resultData.setMessage("当前身份证已经过期了");
+        }
+
+        if(idCardResult != null){
+            resultData.setCode(0);
+            resultData.setData(idCardResult);
+        }else{
+            resultData.setCode(1);
+            resultData.setMessage("用户信息采集失败");
+        }
+
         return resultData;
     }
 
