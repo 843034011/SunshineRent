@@ -134,7 +134,7 @@ public class IdentificationController {
         String newName = UUID.randomUUID() + oldName.substring(oldName.lastIndexOf("."));
         System.out.println(newName);
 
-        String basePath = "F:\\imgs\\";
+        String basePath = "C:\\imgs\\";
 
         File f = new File(basePath);
         if(f.exists() == false){
