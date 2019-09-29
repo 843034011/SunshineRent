@@ -23,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
         if (rentRegister == null) {
-            System.out.println("888888888888888888888888888888888888888888888");
+            System.out.println("8888");
             response.sendRedirect("http://localhost:8080/login.html?info=unlogin");
             return false;
         } else {

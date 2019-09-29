@@ -36,14 +36,12 @@ public class MongoTestC {
         evaluateResult.setContent(content);
         evaluateResult.setPictureList(pictureList);
         evaluateResult.setFieldId(fieldId);*/
+/* 评论内容图片插入数据库*/
     @PostMapping(value = "/test1")
     public int saveTest(MultipartFile[] file, int grade, String content,int orderId) throws Exception {
         Date date=new Date();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HHmmss");
         String date1=simpleDateFormat.format(date);
-
-
-
 
         System.out.println(file);
         System.out.println(content);
@@ -72,6 +70,23 @@ public class MongoTestC {
             return 1;
         }
     }
+
+    @PostMapping(value="/dianzan")
+    public int addzan(){
+      /*  System.out.println(likeComment.toString());
+        Query query = new Query(where("id").is(commentId));
+        Comment comment = mongoTemplate.findOne(query, Comment.class);
+        List<LikeComment> likeCommentList = comment.getLikeCommentList();
+        for (int i = 0; i < likeCommentList.size(); i++) {
+            System.out.println(likeCommentList.get(i).toString());
+        }
+        likeCommentList.remove(likeComment);
+        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
+
+
+        return 0;
+    }
+
 
     @GetMapping(value = "/test2")
     public List<remarks> findTestByRegId() {

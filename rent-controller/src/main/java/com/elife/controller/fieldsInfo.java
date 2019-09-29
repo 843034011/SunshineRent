@@ -122,21 +122,47 @@ public class fieldsInfo {
 
     }
 
+    @RequestMapping("allshopping")
+    @ResponseBody
+    public ResultData selectAll(){
+        List<UserShoppingcart>userShoppingcarts=fieldsService.selectall();
+        System.out.println(userShoppingcarts);
+        ResultData resultData = new ResultData();
+        if(null == userShoppingcarts || userShoppingcarts.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(userShoppingcarts);
+        }
+        return resultData;
+
+    }
+
+
+
+
     @RequestMapping("insertshoppingcart")
     @ResponseBody
-    public int insertFields(Integer fieldid, HttpSession session){
+    public ResultData insertFields(Integer fieldid,Integer masterId,Integer reid){
+        ResultData resultData = new ResultData();
+        System.out.println("=================================="+masterId+reid);
+   /*     RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        Integer id=rentRegister.getRegId();//登录人*/
+        if(reid==masterId){
+            resultData.setCode(9);
+            return resultData;
+        }else{
+            UserShoppingcart userShoppingcart=new UserShoppingcart();
+            System.out.println(fieldid);
+            userShoppingcart.setFieldId(fieldid);
+            userShoppingcart.setRegId(reid);
+            fieldsService.insertFields(userShoppingcart);
+            resultData.setCode(0);
+            return resultData;
+        }
 
-        System.out.println("==================================");
-        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
-        int id=rentRegister.getRegId();
-        UserShoppingcart userShoppingcart=new UserShoppingcart();
-        System.out.println(fieldid);
 
-        System.out.println(id);
-        userShoppingcart.setFieldId(fieldid);
-        userShoppingcart.setRegId(id);
-        fieldsService.insertFields(userShoppingcart);
-        return 0;
     }
 
 }

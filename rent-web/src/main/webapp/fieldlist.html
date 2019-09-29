@@ -1654,10 +1654,39 @@
 </div>-->
 <script src="jquery/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="js/fieldinfo/jqPaginator.js"></script>
-
+<script src="jquery/jquery.cookie.js"></script>
 <script>
 
+
+    var lovefield=new Array();
+    var reid = $.cookie('id');
+    $.get({
+        url:"fields/allshopping",
+        dataType:"json",
+        async:false,
+        success:function(data) {
+            console.log(data)
+            if(reid!=undefined){
+                for(var i=0;i<data.data.length;i++){
+                    if(reid==data.data[i].regId){
+                        lovefield.push(data.data[i].fieldId)
+                    }
+                }
+            }
+        }
+
+    })
 function fenye(data){
+
+console.log(lovefield)
+    var lovefields = [];
+    for (var i = 0; i < lovefield.length; i++) {
+        if (lovefields.indexOf(lovefield[i]) === -1) {
+            lovefields.push(lovefield[i]);
+        }
+    }
+console.log(lovefields)
+
     var totalPages;
     if(data.length%6==0){
         totalPages=data.length/6
@@ -1681,51 +1710,59 @@ function fenye(data){
             /*  $('#p2').text(type + '：' + num);*/
 
             var n=num-1;
-
+            var html1 = ''
             $('.all-grid-product').text("");
             if(data.length-n*6>=6)
             {
                 for (i = 0; i < 6; i++) {
                    /* console.log(data[i].picture.length)*/
                     fieldpictures = data[i].fieldPictures[0]
+                    html1+='<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href="fieldinfo.html?id='+data[6*n+i].id+'">' +
+                        ' <div class="single-product-item">' +
+                        '<div class="product-image">' +
+                        '  <div class="sale-stiker product-sticker">' +
+                        ' <img src="img/product/sale1.png" alt="product sticker" />' +
+                        ' </div>'+
+                            '<a href="fieldinfo.html" title=""><img src="'+data[6*n+i].fieldPictures[0].fieldPicture+'"  alt="product image" style="width:700px;height:260px"/></a>' +
+                        ' <div class="single-product-overlay">' +
+                        ' <div class="rating-box">' +
+                        ' <span class="regular-price">'+  data[6*n+i].fieldGrade +'分  </span>' +
+                        ' </div>' +
+                        '<div class="product-quick-view">' +
+                        '<ul>'
+                    if(reid!=undefined){
+                        for(var q=0;q<lovefields.length;q++){
+                            if(data[6*n+i].id==lovefields[q]){
+                                html1+= ' <li><a href="#"><span class="glyphicon glyphicon-heart" style="color:#51c6ff;color-width:50%; font-size: 15px;"> </span></i></a></li>'
+                            }
+                        }
+                    }
 
-                    $('.all-grid-product').append(
-                        `<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href='fieldinfo.html?id=${data[6*n+i].id}' ">
-    <div class="single-product-item">
-        <div class="product-image">
-            <div class="sale-stiker product-sticker">
-                <img src="img/product/sale1.png" alt="product sticker" />
-            </div>
-            <a href="fieldinfo.html" title=""><img src="${data[6*n+i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
-            <div class="single-product-overlay">
-                <div class="rating-box">
 
-                                            <span class="regular-price">${data[6*n+i].fieldGrade}分  </span>
 
-                </div>
-                <div class="product-quick-view">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-copy"></i></a></li>
-                        <li><a href="#"><i class="fa fa-search"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="single-product-text">
-            <h2><a class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">${data[6*n+i].fieldName}</a></h2>
-             <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:${data[6*n+i].fieldVolume}人</a></h2>
-              <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:${data[6*n+i].rentCount}次</a></h2>
-            <div class="product-price">
-                <span class="regular-price">¥${data[6*n+i].fieldDayprice}</span>
-            </div>
-            <div class="pro-add-to-cart">
-                <p><a href="#" title="Add to Cart">加入购物车</a></p>
-            </div>
-        </div>
-    </div>
-</div>`
-                    )
+                        html1+='<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
+                        ' <li><a href="fieldinfo?id='+data[6*n+i].id+'"><i class="fa fa-search"></i></a></li>' +
+                        ' </ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="single-product-text">' +
+                        '<h2><a class="product-title" href="fieldinfo.html?id='+data[6*n+i].id+'" title="">'+data[6*n+i].fieldName+'</a></h2>' +
+                        ' <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:'+data[6*n+i].fieldVolume+'人</a></h2>' +
+                        ' <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:'+data[6*n+i].rentCount+'次</a></h2>' +
+                        '<div class="product-price">' +
+                        '<span class="regular-price">¥'+data[6*n+i].fieldDayprice+'</span>' +
+                        '</div>' +
+                        '<div class="pro-add-to-cart">' +
+                        ' <p><a href="#" title="Add to Cart">加入购物车</a></p>' +
+                        ' </div>' +
+                        ' </div>' +
+                        ' </div>' +
+                        ' </div>'
+                    $('.all-grid-product').html(html1);
+
+
+
                 }
             }else if(data.length-n*6>0){
                 console.log(data.length-6*(n-1))
@@ -2757,6 +2794,8 @@ console.log(datearr)
 <script src="js/fieldinfo/jqueryui.js"></script>
 <!-- mobile menu js -->
 <script src="js/fieldinfo/jquery.meanmenu.js"></script>
+
+<script src="jquery/jquery.cookie.js"></script>
 <!-- fancybox js -->
 <script src="js/fieldinfo/jquery.fancybox.js"></script>
 <!-- elevatezoom js -->

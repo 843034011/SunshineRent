@@ -22,4 +22,7 @@ public interface fieldsService {
 
    // yy 前台获取起止日期查询不能租的
    List<UserOrder> selectCannotOrder(Date startTime, Date endTime);
+
+   //UserShoppingcart
+   List<UserShoppingcart> selectall();
 }
