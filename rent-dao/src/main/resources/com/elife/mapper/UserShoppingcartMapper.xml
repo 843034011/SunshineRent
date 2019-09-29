@@ -330,4 +330,10 @@
   <insert id="insertFields" parameterType="usershoppingcart" useGeneratedKeys="true" keyProperty="id">
         insert into user_shoppingcart(field_id,reg_id) values (#{fieldId},#{regId})
     </insert>
+
+<!--//全部订单-->
+  <select id="selectall" resultMap="BaseResultMap" >
+    select* from user_shoppingcart;
+  </select>
+
 </mapper>

@@ -61,6 +61,13 @@
             font-size:15px;
             line-height:30px;
         }
+
+       .dianzan{
+           width:52px;
+           height:52px;
+           color:#0f0f0f;
+           border:1px solid black;
+       }
     </style>
 
 
@@ -242,7 +249,7 @@
                     <div class="top-shoping-cart">
                         <div class="top-wishlist">
                           <!--  <a class="top-wishlist-link" href="mylove.html">&lt;!&ndash;<span>3</span>&ndash;&gt;</a>-->
-                            <!--<div class="wishlist-box-overlay">-->
+
                            <a > <i class=" iconfont icon-gouwuche1"  id="myshop" onclick="shopping()"
                                style="background-color: #f65656;
 	                               border-radius: 50%;
@@ -253,9 +260,12 @@
                             width: 45px;
                             left: 0;
                             color:white
-                              "
+                              " >
 
-                            >
+                             <div class="wishlist-box-overlay">
+
+
+                             </div>
                            </i></a>
                         </div>
 
@@ -1073,8 +1083,14 @@
                                 '            border-radius:50px ;">' +
                                 '</div>' +
                                 '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
-                                '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con">&nbsp;'+datetimes+'</span> </div>' +
-                                '<div class="rating-box">'
+
+                                '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
+                                + '<a onclick="dianzan()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" id="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:black">16</span></a>'
+                                    +'<span>16</span>'
+                               + '</div>'
+
+
+                                +'<div class="rating-box">'
 
 
                             for(var j=0;j<data[6*n+i].remark;j++){
@@ -1223,16 +1239,16 @@
 
 
 
-    var dates
-$.ajax({
-    url: "orders/showallorders",
-    async:false,
-    dataType: "json",
-    success:function(data){
-        dates=data;
-    }
-})
-console.log(dates)
+//     var dates
+// $.ajax({
+//     url: "orders/showallorders",
+//     async:false,
+//     dataType: "json",
+//     success:function(data){
+//         dates=data;
+//     }
+// })
+/*console.log(dates)*/
 
  /*
     function (date){
@@ -1250,11 +1266,13 @@ console.log(dates)
     var str = url.split("=");
     var fieldid = str[1];
     var fielddatas;
+    console.log(fieldid)
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
         success:function(data){
             fielddatas=data;
+            console.log(data)
             console.log(data)
             console.log(data.data[fieldid-1].fieldPictures[0].fieldPicture)
 
@@ -1323,6 +1341,9 @@ console.log(dates)
 
     }
 
+
+
+
     var fieldyoutu=new Array();
     function youtu(){
         $('#some').css({"background-color":"#00a9e0" ,"color":"white"})
@@ -1342,6 +1363,34 @@ console.log(dates)
 
     }
 
+    var flag = false;
+    var color1 = "#e5312a";
+    var color2 = "#0f0f0f";
+
+    function dianzan() {
+        var reid = $.cookie('id');
+        if(reid==undefined){
+            swal("先登录在点赞哦")
+        }
+        if (flag == false) {
+            flag = true;
+            var count=document.getElementById("dianzan").innerText;
+            console.log(count)
+            document.getElementById("dianzan").style.color = color1;
+           count=count+1;
+            console.log(count)
+            $.post({
+                url:"dianzan",
+                data:{"count":count},
+
+            })
+        } else {
+            flag = false;
+            count = 0;
+            document.getElementById("dianzan").style.color = color2;
+
+        }
+    }
 
 var time;
     $('.ranges_1 ul').remove();
@@ -1776,26 +1825,36 @@ console.log(address)
     var fielddatas;
     var masterId
 
+
 function shop(){
-   /* console.log(all)
+    var reid = $.cookie('id');
+    console.log(all)
     for(var q=0;q<all.data.length;q++){
-        fieldid=all.data[q].id;
-        masterId=all.data[q].regId;
+       if(fieldid==all.data[q].id) {
+           masterId=all.data[q].regId;
+       }
     }
-    if(masterId==regid){
-        swal("这是您自己的商品哦")
-    }else{*/
-
+    console.log(masterId)
+    if(reid == undefined){
+        swal("请先登录")
+    }else{
         $.post({
-            url:"/shoppingcart/insertshoppingcart",
-            data:{"fieldid": fieldid},
-           success:function(data){
-
+            url:"fields/insertshoppingcart",
+            data:{"fieldid": fieldid,"masterId":masterId,"reid":reid},
+            success:function(data){
+                if(data.code==9){
+                    swal("不能购买您自己的商品哦")
+                }else if(data.code==0){
+                    swal("加入购物车成功","","success")
+                }
                 // console.log(data);
-                swal("加入购物车成功","","success")
+
             }
         })
-  /*  }*/
+    }
+
+
+
 
 
 }
@@ -1848,6 +1907,8 @@ var regid;//登录人的id
 <script src="js/fieldinfo//jquery.fancybox.js"></script>
 <!-- elevatezoom js -->
 <script src="js/fieldinfo/jquery.elevatezoom.js"></script>
+
+<script src="jquery/jquery.cookie.js"></script>
 <!-- bootstrap js -->
 <script src="js/fieldinfo/bootstrap.min.js"></script>
 <!-- owl.carousel js -->

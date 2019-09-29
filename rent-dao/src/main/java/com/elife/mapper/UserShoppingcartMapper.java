@@ -35,4 +35,6 @@ public interface UserShoppingcartMapper {
     List<UserOrder> selectAllUserOrderUnpaidById(Integer regId);
 
     int insertFields(UserShoppingcart userShoppingcart);
+
+    List<UserShoppingcart> selectall();
 }

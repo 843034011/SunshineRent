@@ -65,5 +65,11 @@ public class fieldsServiceImpl implements fieldsService {
         return userOrders;
     }
 
+    @Override
+    public List<UserShoppingcart> selectall() {
+        List<UserShoppingcart>userShoppingcarts=userShoppingcartMapper.selectall();
+        return userShoppingcarts;
+    }
+
 
 }
