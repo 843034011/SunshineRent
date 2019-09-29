@@ -15,7 +15,15 @@ public class remarks {
     private Integer masterId;
     private String reply_content;
     List<Pictures> picture;
+    List<zan> zans;
 
+    public List<zan> getZans() {
+        return zans;
+    }
+
+    public void setZans(List<zan> zans) {
+        this.zans = zans;
+    }
 
     public Integer getReg_id() {
         return reg_id;
@@ -29,6 +37,7 @@ public class remarks {
     public String toString() {
         return "remarks{" +
                 "id=" + id +
+                ", reg_id=" + reg_id +
                 ", userImg='" + userImg + '\'' +
                 ", userName='" + userName + '\'' +
                 ", createTime=" + createTime +
@@ -38,6 +47,7 @@ public class remarks {
                 ", masterId=" + masterId +
                 ", reply_content='" + reply_content + '\'' +
                 ", picture=" + picture +
+                ", zans=" + zans +
                 '}';
     }
 
