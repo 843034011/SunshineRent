@@ -62,6 +62,21 @@ public class GoodsManageController {
         return resultData;
     }
 
+    @RequestMapping("selectByType")
+    @ResponseBody
+    public ResultData selectByType(String goodsType){
+        List<RentGoods> rentGoods = goodsManageService.selectByType(goodsType);
+        ResultData resultData = new ResultData();
+        if(null == rentGoods || rentGoods.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(rentGoods);
+        }
+        return resultData;
+    }
+
     @RequestMapping("selectById")
     @ResponseBody
     public ResultData selectById(Integer id){

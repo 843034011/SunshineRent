@@ -11,6 +11,8 @@ import java.util.List;
 public interface RentFieldMapper {
     List<RentField>selectAllFields();
 
+    List<RentField> selectOrderByGrade(String fieldType);
+
     int countByExample(RentFieldExample example);
 
     int deleteByExample(RentFieldExample example);

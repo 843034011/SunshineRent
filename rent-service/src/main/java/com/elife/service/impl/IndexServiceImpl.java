@@ -20,8 +20,8 @@ public class IndexServiceImpl implements IndexService {
     RentGoodsMapper rentGoodsMapper;
 
     @Override
-    public List<RentField> selectAllFields() {
-        return rentFieldMapper.selectAllFields();
+    public List<RentField> selectOrderByGrade(String fieldType) {
+        return rentFieldMapper.selectOrderByGrade(fieldType);
     }
 
     @Override

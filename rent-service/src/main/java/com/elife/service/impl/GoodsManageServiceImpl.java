@@ -15,6 +15,15 @@ public class GoodsManageServiceImpl implements GoodsManageService {
     @Autowired
     RentGoodsMapper rentGoodsMapper;
 
+    /**
+     * author:zgy
+     * @param goodsType
+     * @return
+     */
+    @Override
+    public List<RentGoods> selectByType(String goodsType) {
+        return rentGoodsMapper.selectByType(goodsType);
+    }
 
     @Override
     public List<RentGoods> selectByRegId(Integer regId) {

@@ -101,6 +101,15 @@
   </select>
 
   <!--
+  zgy
+  查询所有商品
+-->
+  <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select * from rent_goods
+      where goods_type = #{goodsType,jdbcType=VARCHAR}
+      order by rent_count desc,goods_grade desc;
+  </select>
+  <!--
     zgy
     修改商品信息
   -->
