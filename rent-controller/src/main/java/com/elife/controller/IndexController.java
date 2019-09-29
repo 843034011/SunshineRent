@@ -44,9 +44,9 @@ public class IndexController {
     // 查询所有场地信息
     @RequestMapping("selectFields")
     @ResponseBody
-    public ResultData selectField(){
+    public ResultData selectField(String fieldType){
         ResultData resultData = new ResultData();
-        List<RentField> rentFields = indexService.selectAllFields();
+        List<RentField> rentFields = indexService.selectOrderByGrade(fieldType);
         if(rentFields != null ){
             resultData.setCode(0);
             resultData.setData(rentFields);

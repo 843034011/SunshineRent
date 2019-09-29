@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface IndexService {
 
-    List<RentField> selectAllFields();
+    List<RentField> selectOrderByGrade(String fieldType);
 
     List<RentGoods> selectAllGoods();
 

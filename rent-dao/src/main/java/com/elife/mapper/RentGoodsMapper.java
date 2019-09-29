@@ -16,6 +16,13 @@ public interface RentGoodsMapper {
      * @return 返回所有商品
      */
     List<RentGoods> selectAllGoods();
+
+    /**
+     * @author:zgy
+     * @return 通过类型进行排序返回所有商品
+     */
+    List<RentGoods> selectByType(String goodsType);
+
     /**
      * @author:zgy
      * @param regId 注册id

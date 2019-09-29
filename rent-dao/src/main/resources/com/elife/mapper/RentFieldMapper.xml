@@ -25,10 +25,11 @@
     select * from rent_field;
   </select>
 
-  <select id="selectOrderByGrade"  resultMap="BaseResultMap">
-    select * from rent_field order by rent_count desc,field_grade desc;
+    <select id="selectOrderByGrade"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from rent_field
+    where field_type = #{fieldType,jdbcType=VARCHAR}
+    order by rent_count desc,field_grade desc;
   </select>
-
 
   <sql id="Example_Where_Clause" >
     <where >

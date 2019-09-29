@@ -19,6 +19,10 @@ public interface GoodsManageService {
     List<RentGoods> selectByRegId(Integer regId);
 
     /**
+     * @return 排序类型返回商品集合
+     */
+    List<RentGoods> selectByType(String goodsType);
+    /**
      * 通过商品id查找商品
      * @return 返回商品
      */

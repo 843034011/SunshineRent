@@ -5,15 +5,10 @@ $(".show-nav").find("li").click(function () {
     target = $(this).css("border","2px solid rgb(0,200,190)");
 });
 
-//分类点击样式改变
-var target = $('.tabs-bar').find('div').eq(0).css({'background':'#00A9E0','color':'#ecfafa'});
-$('.tabs-bar').find('div').click(function () {
-    target.css({'background':'#f0f4f4','color':'#444'});
-    target = $(this).css({'background':'#00A9E0','color':'#ecfafa'})
-})
-
 //定时轮播
 var index = 1;
+
+
 var target = $(".show-nav").find("li").eq(index-1).css("border","2px solid rgb(0,200,190)");
 setInterval(function(){
     index++;
@@ -42,7 +37,7 @@ if(reg_id == undefined){
         ' <li class="item"><a href="/shoppingcart/showcart'+
         '                        ">购物车</a></li>\n' +
         '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-        '                        <li class="item userCenter"><a href="">个人中心</a></li>\n' +
+        '                        <li class="item userCenter" onclick="user()"><a href="">个人中心</a></li>\n' +
         '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
         '                        <li class="item"><a href="login.html">登录</a></li>\n' +
         '                        <li class="item">\n' +
@@ -58,7 +53,7 @@ if(reg_id == undefined){
         ' <li class="item"><a href="/shoppingcart/showcart'+
         '                        ">购物车</a></li>\n' +
         '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-        '                        <li class="item userCenter"><a href="http://localhost:8080/index.html">个人中心</a></li>\n' +
+        '                        <li class="item userCenter"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
         '                        <li class="item" onclick="unlogin()"><a href="">退出登录</a></li>\n' +
         '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
         '                        <li class="item">\n' +
@@ -67,12 +62,21 @@ if(reg_id == undefined){
     )
 }
 
+// function jump_center() {
+//     alert("跳转")
+//     window.location.href="http://localhost:8080/goodsManageCon/showManage";
+// }
+
+function user() {
+    alert("未登录，请登录")
+}
+
 function unlogin(){
     $.cookie('id', '', { expires: -1 });
     $.cookie('key', '', { expires: -1 });
     $.cookie('isIdentified', '', { expires: -1 });
     // $.cookie("isIdentified",data.data.isIdentified)
-    window.location.href="/index.html";
+    // window.location.href="/index.html";
 }
 
 //搜索框相关
@@ -177,7 +181,7 @@ $('.div-btn').click(function () {
         $(location).attr('href','productlist.html?name='+type_value);
     }
 })
-
+// 拿到是否注冊的值
 if(reg_id != undefined) {
     $.post({
         url: "/indexCon/selectById",
@@ -194,11 +198,16 @@ if(reg_id != undefined) {
     })
 }
 
-// 展示租赁次数较多，好评较高的场地
-var fieid_id ;
-var allFieldData;
-function showData(){
-    $('.product-item').append(`
+
+$.post({
+    url:"/indexCon/selectFields",
+    data:"fieldType="+"办公场地",
+    dataType:"json",
+    success:function (data) {
+        allFieldData = data.data;
+        $.each(allFieldData, function (index, value) {
+            if (index < 8) {
+                $('.product-item').append(`
                     <li class="item">
                         <div class="prod-img sram-fake-table">
                             <a class="link sram-fake-table-cell"  href="/fieldinfo.html?id=${value.id}" target="_blank">
@@ -221,56 +230,65 @@ function showData(){
                             </div>
                         </a>
                     </li>
-            `)
-};
-//展示办公场地
-$.post({
-    url:"/indexCon/selectFields",
-    dataType:"json",
-    success:function (data) {
-        allFieldData = data.data;
-        $.each(allFieldData, function (index, value) {
-            if(value.fieldName=="办公场地"){
-                showData()
+                `)
             }
         })
     }
 })
-//分类展示运动场地
-$(".sport").click(function () {
-    $.each(allFieldData, function (index, value) {
-        if(value.fieldName=="运动场地"){
-            showData()
-        }
-    })
-})
-$(".PE").click(function () {
-    $.each(allFieldData, function (index, value) {
-        if(value.fieldName=="体育电竞"){
-            showData()
-        }
-    })
-})
-$(".show").click(function () {
-    $.each(allFieldData, function (index, value) {
-        if(value.fieldName=="展览展示"){
-            showData()
-        }
-    })
-})
-$(".part").click(function () {
-    $.each(allFieldData, function (index, value) {
-        if(value.fieldName=="派对沙龙"){
-            showData()
+
+var li_item = $('.tabs-bar').find('div').eq(0).css({'background':'#00A9E0','color':'#ecfafa'});
+$('.tabs-bar').find('div').click(function () {
+    $(".product-item").html('');
+    var li_type = $(this).find('span').text();
+    li_item.css({'background':'#ecfafa','color':'#444'});
+    li_item = $(this).css({'background':'#00A9E0','color':'#ecfafa'});
+    $.post({
+        url:"/indexCon/selectFields",
+        data:"fieldType="+li_type,
+        dataType:"json",
+        success:function (data) {
+            allFieldData = data.data;
+            $.each(allFieldData, function (index, value) {
+                if (index < 8) {
+                    $('.product-item').append(`
+                    <li class="item">
+                        <div class="prod-img sram-fake-table">
+                            <a class="link sram-fake-table-cell"  href="/fieldinfo.html?id=${value.id}" target="_blank">
+                                <img src="${value.fieldPictures[0].fieldPicture}"/>
+                            </a>
+                        </div>
+                        <a  class="prod-desc" target="_blank" href="/fieldinfo.html?id=${value.id}">
+                            <div class="prod-rental sram-ellipsis">
+                                <span>￥${value.fieldMonthprice}</span>/月                                                                    
+                            </div>
+                            <div class="prod-title sram-ellipsis">
+                                ${value.fieldName}                                                                  
+                            </div>
+                            <div class="prod-deposit-timer sram-ellipsis">
+                                <span class="deposit">押金￥${value.fieldDeposit}</span>
+                                &nbsp;&nbsp;
+                                <span class="timer">可容纳人数:${value.fieldVolume}</span>
+                                &nbsp;&nbsp;
+                                <span class="timer">评分:${value.fieldGrade}</span>
+                            </div>
+                        </a>
+                    </li>
+                `)
+                }
+            })
         }
     })
 })
 
+// 展示租赁次数较多，好评较高的场地
+var fieid_id ;
+var allFieldData;
 
 // 展示个人闲置商品
 $.post({
-    url:"/indexCon/selectGoods",
+    url:"/goodsManageCon/selectByType",
     dataType:"json",
+    data:"goodsType="+"笔记本",
     success:function (data) {
         $.each(data.data, function (index, value) {
             if(index < 6){
@@ -295,7 +313,42 @@ $.post({
             }
         })
     }
-
 })
 
-
+var li_goods = $('.ls-items').find('li').eq(0).css('color','#00A9E0');
+$('.ls-items').find('li').click(function () {
+    $(".ls-show").html('');
+    var li_goodstype = $(this).find('span').text();
+    // alert(li_goodstype)
+    li_goods.css('color','#444');
+    li_goods = $(this).css('color','#00A9E0');
+    $.post({
+        url:"/goodsManageCon/selectByType",
+        dataType:"json",
+        data:"goodsType="+li_goodstype,
+        success:function (data) {
+            $.each(data.data, function (index, value) {
+                if(index < 6){
+                    $('.ls-show').append(`
+                <div class="ls-box ls">
+                    <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                    <div class="text-box">
+                        <a  class="prod-desc" target="_blank" href="">
+                            <div class="prod-rental sram-ellipsis">
+                                <span>￥${value.goodsDayprice}</span>/天                                                                 </div>
+                            <div class="prod-title sram-ellipsis">
+                                ${value.goodsName}                                                                    </div>
+                            <div class="prod-deposit-timer sram-ellipsis">
+                                <span class="deposit">押金:￥${value.goodsDeposit}</span>
+                                <br>
+                                <span class="timer">￥${value.goodsWeekprice}</span>/周
+                            </div>
+                        </a>
+                    </div>
+                </div>
+               `)
+                }
+            })
+        }
+    })
+})
