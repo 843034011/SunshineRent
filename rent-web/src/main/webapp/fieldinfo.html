@@ -1085,7 +1085,7 @@
                                 '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
 
                                 '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
-                                + '<a onclick="dianzan()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" id="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:black">16</span></a>'
+                                + '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" id="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:black">16</span></a>'
                                     +'<span>16</span>'
                                + '</div>'
 
@@ -1371,25 +1371,31 @@
         var reid = $.cookie('id');
         if(reid==undefined){
             swal("先登录在点赞哦")
-        }
-        if (flag == false) {
-            flag = true;
-            var count=document.getElementById("dianzan").innerText;
-            console.log(count)
-            document.getElementById("dianzan").style.color = color1;
-           count=count+1;
-            console.log(count)
-            $.post({
-                url:"dianzan",
-                data:{"count":count},
+        }else{
+            if (flag == false) {
+                flag = true;
+                var count=document.getElementById("dianzan").innerText;
+                console.log(count)
+                document.getElementById("dianzan").style.color = color1;
+                count=count+1;
+                console.log(count)
+                $(".dian").click(function() {
+                    console.log($(this).attr("value"))
+                })
+                var reg//pinglunren
+                console.log(reg)
+                $.post({
+                    url:"dianzan",
+                    data:{"reid":reid},
+                })
+            } else {
+                flag = false;
+                count = 0;
+                document.getElementById("dianzan").style.color = color2;
 
-            })
-        } else {
-            flag = false;
-            count = 0;
-            document.getElementById("dianzan").style.color = color2;
-
+            }
         }
+
     }
 
 var time;

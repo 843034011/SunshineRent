@@ -33,7 +33,7 @@ public class MongoTestDao {
 
 
     public List<remarks> findALL() {
-       /* Query query = new Query(Criteria.where("reg_id").is(regId));*/
+       /*Query query = new Query(Criteria.where("reg_id").is(regId));*/
         List<remarks> remark= mongoTemplate.findAll(remarks.class);
 
         return remark;
@@ -44,18 +44,18 @@ public class MongoTestDao {
 
 
 
-/*    public void updateTest(remarks test) {
-        Query query = new Query(Criteria.where("id").is(test.getId()));
- Update update = new Update().set("age", test.getAge()).set("name", test.getName());
+    public void updateTest(remarks remarks) {
+        Query query = new Query(Criteria.where("id").is(remarks.getId()));
+        Update update = new Update().set("zan", remarks.getZans());
 
-
+      /*  Update update = new Update().set("age", remarks.getZans()).set("name", remarks.getName());*/
         //更新查询返回结果集的第一条
- mongoTemplate.updateFirst(query, update, remarks.class);
+         mongoTemplate.updateFirst(query, update, remarks.class);
 
 
         //更新查询返回结果集的所有
         // mongoTemplate.updateMulti(query,update,TestEntity.class);
-    }*/
+    }
 
 /**
      * 删除对象
