@@ -5,8 +5,10 @@ import com.elife.dao.MongoTestDao;
 import com.elife.dto.EvaluateResult;
 import com.elife.pojo.Pictures;
 import com.elife.pojo.remarks;
+import com.elife.pojo.zan;
 import com.elife.service.EvaluateResultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 public class MongoTestC {
@@ -71,9 +75,15 @@ public class MongoTestC {
         }
     }
 
-    @PostMapping(value="/dianzan")
-    public int addzan(){
-      /*  System.out.println(likeComment.toString());
+ /*   @PostMapping(value="/dianzan")
+    public int addzan(Integer reid){
+        List<zan> zanList=new ArrayList<zan>();
+        System.out.println(reid);
+        Query query = new Query(where("id").is(reid));
+       remarks remarks = mtdao.findOne(query, remarks.class);
+
+
+      *//*  System.out.println(likeComment.toString());
         Query query = new Query(where("id").is(commentId));
         Comment comment = mongoTemplate.findOne(query, Comment.class);
         List<LikeComment> likeCommentList = comment.getLikeCommentList();
@@ -81,11 +91,11 @@ public class MongoTestC {
             System.out.println(likeCommentList.get(i).toString());
         }
         likeCommentList.remove(likeComment);
-        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
+        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*//*
 
 
         return 0;
-    }
+    }*/
 
 
     @GetMapping(value = "/test2")
