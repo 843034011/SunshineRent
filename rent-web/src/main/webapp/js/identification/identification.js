@@ -16,7 +16,11 @@ function imgChange(e) {
             } else if ($(e).attr("id") == "b") {
                 imgs.push(this.result)
                 $("#back").attr("src", this.result)
+            } else if ($(e).attr("id") == "head"){
+                imgs.push(this.result)
+                $("#h").attr("src", this.result)
             }
+
         };
     } else {
         alert("图片格式不正确，请上传 jpeg|png|gif|bmp 格式的图片")
@@ -57,6 +61,10 @@ $("#idcard-submit").click(function () {
                     $("#realname").attr("value", data.data.realName)
                     $("#idcard").attr("value", data.data.idNumber)
                     $("#phone").attr("value", $.cookie("key"))
+
+                    $("first-submit").css("display","none")
+                    $("total-form").css("display","block")
+
                 } else if (data.code == 1) {
                     alert(data.message)
                 }

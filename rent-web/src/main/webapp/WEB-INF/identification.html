@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" style="display: block">
+        <div class="form-group" style="display: block" id="first-submit">
             <div class="form-group text-center">
                 <input type="button" class="btn btn-default btn-submit" id="idcard-submit" value="提交">
             </div>
@@ -71,28 +71,11 @@
             <label for="head">点击<span style="color: red">此处</span>上传头像</label>
         </div>
 
-        <div class="form-group" style="display: block">
-            <div class="form-group">
-                <div class="waitting">
-                    <div style="width: 600px; height: 400px">
-                        <div id="img" style="border: black 1px solid; width: 600px; height: auto"></div>
-                    </div>
-                    <input type="file" id="head">
-                    <canvas id="cut" width="200" height="220" style="border: 1px coral solid; position: absolute; z-index: 700;"></canvas>
-                </div>
-                <div class="result">
-                    <div id="preview-pane">
-                        <div class="preview-container">
-                            <img src="/img/identification/upload.png" alt="裁剪后的图片" id="result" name="head">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group text-center">
+            <input type="file" onchange="imgChange(this)" id="head">
+            <img src="/img/identification/default.png" alt="请上传您的头像" id="h" name="head">
         </div>
 
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br>
         <div class="form-group form-sunmit">
             <input type="button" class="btn btn-default btn-submit" id="total-submit" value="提交">
         </div>
