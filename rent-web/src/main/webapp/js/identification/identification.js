@@ -30,16 +30,9 @@ function imgChange(e) {
 var formData = new FormData();
 
 $("#idcard-submit").click(function () {
-
-    for (var i = 0; i < imgs.length; i++) {
-        console.log(imgs[i])
-    }
-
+    
     var file1 = $("#f")[0].files;
     var file2 = $("#b")[0].files;
-
-    console.log(file1.length)
-    console.log(file2.length)
 
     if (file1.length == 1 && file2.length == 1) {
 
@@ -54,6 +47,7 @@ $("#idcard-submit").click(function () {
             processData: false,
             contentType: false,
             success: function (data) {
+
                 $("#idcard-submit").css("display", "none");
                 $("#total-form").css("display", "block");
 
@@ -68,6 +62,9 @@ $("#idcard-submit").click(function () {
                 } else if (data.code == 1) {
                     alert(data.message)
                 }
+
+                formData.delete("front")
+                formData.delete("back")
             }
         })
     } else {
@@ -75,53 +72,50 @@ $("#idcard-submit").click(function () {
     }
 })
 
-var imgUrl;
-
-var preImgWidth = $("#cut").css("width");
-var preImgheight = $("#cut").css("height");
-
-var image = new Image();
-
-$('#head').change(function() {
-    var file = this.files[0];
-    var reader = new FileReader();
-    reader.onload = function() {
-        // 通过 reader.result 来访问生成的 DataURL
-        var url = reader.result;
-
-        setImageURL(url);
-    };
-    reader.readAsDataURL(file);
-});
-
-function setImageURL(url) {
-
-    // image.width = 600;
-    // image.height = 400;
-    image.src = url;
-    image.id = "target";
-
-    console.log(image.src)
-
-    $("#img").append(image);
-
-    var cut = document.getElementById("cut");
-    var ctx = cut.getContext("2d");
-
-    image.onload = function() {
-
-        $('#target').Jcrop({
-            onChange: updatePreview,
-            onSelect: updatePreview,
-        });
-
-        //裁剪过程中，每改变裁剪大小执行该函数
-        function updatePreview(c) {
-            if(parseInt(c.w) > 0) {
-                ctx.drawImage(image, c.x, c.y, c.w, c.h, 0, 0, parseInt(preImgWidth), parseInt(preImgheight));
-                imgUrl = cut.toDataURL("image/png");//canvas画布转换为base64
-                console.log(c.x, c.y, c.w, c.h);
-            }
-        };
+function emailchange(){
+    var emailreg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+    if(emailreg.test($("#email").val()) == false){
+        $("#con").css("display","block")
+        $("#confirm").text("当前邮箱格式不正确！")
+    } else {
+        $("#con").css("display","none")
+        $("#confirm").text("")
     }
+
 }
+
+$("#c").click(function () {
+
+    if($("#nickname").val() != "" && $("#confirm").text() == ""){
+
+        var headimg = $("#head")[0].files[0];
+
+        formData.append("headimg",headimg)
+        formData.append("realname",$("#realname").val())
+        formData.append("idcard",$("#idcard").val())
+        formData.append("phone",$("#phone").val())
+        formData.append("nickname",$("#nickname").val())
+        formData.append("email",$("#email").val())
+
+        $.post({
+            url: "/identification/update",
+            data: formData,
+            dataType: "json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert("成功了！！！")
+                window.location.href = "../index.html"
+                formData.delete("headimg")
+                formData.delete("realname")
+                formData.delete("idcard")
+                formData.delete("phone")
+                formData.delete("nickname")
+                formData.delete("email")
+            }
+        })
+    }else{
+        alert("请完成必填项！！！")
+    }
+})

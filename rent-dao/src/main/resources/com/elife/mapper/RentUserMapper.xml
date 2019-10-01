@@ -265,4 +265,16 @@
     insert into rent_user(user_id,is_identified) values (#{id},0)
   </insert>
 
+  <update id="updateUser">
+    update rent_user
+    set
+    user_idcard = #{userResult.idcard},
+    user_nickname = #{userResult.nickname},
+    user_realname = #{userResult.realname},
+    user_picture = #{imgUrl},
+    user_phone = #{userResult.phone},
+    user_email = #{userResult.email},
+    is_identified = 1
+    where user_id = #{userResult.id}
+  </update>
 </mapper>

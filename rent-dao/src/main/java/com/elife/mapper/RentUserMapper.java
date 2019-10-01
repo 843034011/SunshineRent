@@ -1,9 +1,9 @@
 package com.elife.mapper;
 
+import com.elife.dto.UserResult;
 import com.elife.pojo.RentUser;
 import com.elife.pojo.RentUserExample;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,5 +37,13 @@ public interface RentUserMapper {
      * @return
      */
     int insertFirst(Integer id);
+
+    /**
+     * 认证时修改用户信息
+     * @param userResult
+     * @param imgUrl
+     * @return
+     */
+    int updateUser(@Param("userResult") UserResult userResult, @Param("imgUrl") String imgUrl);
 
 }

@@ -2,13 +2,20 @@ package com.elife.controller;
 
 import com.baidu.aip.ocr.AipOcr;
 import com.elife.dto.IdCardResult;
+import com.elife.dto.UserResult;
+import com.elife.pojo.RentRegister;
+import com.elife.service.IdentificationService;
+import com.elife.service.QiniuService;
+import com.elife.service.RentUserService;
 import com.elife.vo.ResultData;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +28,12 @@ import java.util.UUID;
 @Controller
 @RequestMapping("identification")
 public class IdentificationController {
+
+    @Autowired
+    QiniuService qiniuService;
+
+    @Autowired
+    IdentificationService identificationService;
 
     //设置APPID/AK/SK
     public static final String APP_ID = "17347849";
@@ -125,6 +138,48 @@ public class IdentificationController {
             resultData.setMessage("用户信息采集失败");
         }
 
+        return resultData;
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public ResultData update(MultipartFile headimg, UserResult userResult, HttpSession session) throws IOException {
+
+        ResultData resultData = new ResultData();
+
+        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        System.out.println(rentRegister.getRegId());
+        userResult.setId(rentRegister.getRegId());
+
+        System.out.println(userResult.getId());
+
+        System.out.println(headimg);
+
+        String imgUrl = new String();
+
+        if(headimg == null){
+            imgUrl = "http://pxm37tv32.bkt.clouddn.com/default.png";
+        }else{
+            imgUrl = qiniuService.saveImage(headimg);
+        }
+
+        System.out.println(imgUrl);
+
+        System.out.println(userResult.getRealname());
+        System.out.println(userResult.getIdcard());
+        System.out.println(userResult.getPhone());
+        System.out.println(userResult.getNickname());
+        System.out.println(userResult.getEmail());
+
+        int i = identificationService.updateUser(userResult,imgUrl);
+
+        if(i > 0){
+            resultData.setCode(0);
+            resultData.setMessage("修改成功！！！");
+        } else {
+            resultData.setCode(1);
+            resultData.setMessage("修改失败！！！");
+        }
         return resultData;
     }
 
