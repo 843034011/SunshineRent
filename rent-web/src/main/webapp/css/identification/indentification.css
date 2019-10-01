@@ -39,7 +39,7 @@
     z-index: 7;
     opacity: 0;
 }
-#idcard-submit{
+#idcard-submit,#c{
     cursor: pointer;
     color: red;
     font-size: 18px;
@@ -54,14 +54,22 @@
     display: none;
 }
 #head{
-    width: 0px;
-    height: 0px;
-    z-index: 0;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    margin-left: 250px;
+    z-index: 7;
     opacity: 0;
 }
 #h{
     width: 400px;
     height: 400px;
+    position: absolute;
+    margin-left: 250px;
+    z-index: -1;
     border-radius: 16px;
+}
+#con{
+    display: none;
 }
 
