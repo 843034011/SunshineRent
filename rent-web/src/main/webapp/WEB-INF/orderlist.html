@@ -15,6 +15,11 @@
             border-radius: 4px;
             border:1px solid #ccc;
         }
+        .pagination-nav{
+            min-height:150px;
+            margin-top:50px;
+            margin-bottom:50px;
+        }
     </style>
 </head>
 <body>
@@ -100,59 +105,60 @@
             </div>
         </div>
         <div class="container-right">
-            <h3>我的订单</h3>
+            <div class="container-right-div">
+                <h3>我的订单</h3>
 
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs nav-location" role="tablist">
-                <li role="presentation" class="active"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab" class="no-active" onclick="findallorder()">全部订单</a></li>
-                <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findfieldorder()">场地订单</a></li>
-                <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findgoodsorder()">商品订单</a></li>
-            </ul>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-location" role="tablist">
+                    <li role="presentation" class="active"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab" class="no-active" onclick="findallorder()">全部订单</a></li>
+                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findfieldorder()">场地订单</a></li>
+                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findgoodsorder()">商品订单</a></li>
+                </ul>
 
-            <div class="drop-form">
-                <!-- Single button -->
+                <div class="drop-form">
+                    <!-- Single button -->
 
-                <div class="btn-group">
-                    <div class="short-select-option">
-                        <select onchange="findorderbytime()" id="choose" class="select-option">
-                            <option value="all">全部订单</option>
-                            <option value="week" >近一周内订单</option>
-                            <option value="month">近一月内订单</option>
-                            <option value="halfyear">近半年内订单</option>
-                            <option value="year">近一年内订单</option>
-                        </select>
+                    <div class="btn-group">
+                        <div class="short-select-option">
+                            <select onchange="findorderbytime()" id="choose" class="select-option">
+                                <option value="all">全部订单</option>
+                                <option value="week" >近一周内订单</option>
+                                <option value="month">近一月内订单</option>
+                                <option value="halfyear">近半年内订单</option>
+                                <option value="year">近一年内订单</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入订单号" id="order-id-input" value="">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="findorderbyid()">搜索</button>
+                        </span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="请输入订单号" id="order-id-input" value="">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="findorderbyid()">搜索</button>
-                    </span>
+                <div class="MyOrderOpt">
+                    <div><span>租品</span></div>
+                    <div><span>数量</span></div>
+                    <div><span>实付款</span></div>
+                    <div><span>订单状态</span></div>
+                    <div><span>交易操作</span></div>
+                </div>
+
+                <div class="MyOrderPersonalList" id="field-goods-order">
+                    <!--&lt;!&ndash; Tab panes &ndash;&gt;
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="field-goods-order">
+                        </div>
+                    </div>-->
                 </div>
             </div>
 
-            <div class="MyOrderOpt">
-                <div><span>订单编号</span></div>
-                <div><span>创建时间</span></div>
-                <div><span>订单数量</span></div>
-                <div><span>订单金额</span></div>
-                <div><span>订单状态</span></div>
-                <div><span>订单操作</span></div>
-            </div>
-
-            <div class="MyOrderPersonalList">
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="field-goods-order">
-                    </div>
-                </div>
-            </div>
-
-            <nav aria-label="Page navigation">
+            <div class="pagination-nav">
                 <ul class="pagination" id="pagination2">
                 </ul>
-            </nav>
+            </div>
         </div>
     </div>
 </div>

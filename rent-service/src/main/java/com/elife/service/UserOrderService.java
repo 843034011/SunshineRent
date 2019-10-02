@@ -36,4 +36,6 @@ public interface UserOrderService {
     List<UserOrder>  selectAllByRentId(int rentId);
 
     UserOrder selectByOrderId(int orderId);
+
+    int updateByPrimaryKey(UserOrder record);
 }
