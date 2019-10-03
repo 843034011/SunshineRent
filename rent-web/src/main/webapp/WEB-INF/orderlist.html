@@ -111,8 +111,9 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-location" role="tablist">
                     <li role="presentation" class="active"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab" class="no-active" onclick="findallorder()">全部订单</a></li>
-                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findfieldorder()">场地订单</a></li>
-                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findgoodsorder()">商品订单</a></li>
+                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findUnpaidorder()">未支付</a></li>
+                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findNoReturnOrder()">未归还</a></li>
+                    <li role="presentation"><a href="#field-goods-order" aria-controls="field-goods-order" role="tab" data-toggle="tab"  class="no-active" onclick="findNoEvaluatedOrder()">未评价</a></li>
                 </ul>
 
                 <div class="drop-form">
@@ -232,6 +233,7 @@
 
 </body>
 <script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/orderlist/jqPaginator.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/orderlist/user_frame.js"></script>

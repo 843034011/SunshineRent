@@ -1,15 +1,20 @@
+// 从cookie中获取当前用户的regId
+var regId = $.cookie("id");
+console.log("regId = " + regId);
+
 var orderdatas;
 var databyrentID = new Array();
 var i=0;
 $.ajax({
     url:"/userorder/showallorders",
-    dataType:"json",   //text -》 data(string)    json ->(js中的json对象)
+    dataType:"json",
+    data:{"regId":regId},
     success:function(data){
         orderdatas=data.data;
         console.log(data);
         console.log(data.data.length);
         for(var j=0;j<data.data.length;j++){
-            if(data.data[j].rentId == 3 ){
+            if(data.data[j].rentId == regId ){
                 databyrentID.push(data.data[j]);
                 /*console.log(databyrentID);*/
             }
@@ -26,65 +31,63 @@ var findresultdata;
 function findallorder(){
     var allorderdata = new Array();
     for(var j=0;j<orderdatas.length;j++){
-        if(orderdatas[j].rentId == 3 ){
+        if(orderdatas[j].rentId == regId ){
             allorderdata.push(orderdatas[j]);
-            /*console.log(allorderdata);*/
         }
     }
-    /*console.log(allorderdata);
-    console.log(allorderdata.length);*/
     orderpaging(allorderdata);
     findresultdata = allorderdata;
-    /*console.log(findresultdata);*/
 }
-<!--查找场地订单-->
-function findfieldorder(){
-    var fieldorderdata = new Array();
+/*查找未支付的订单*/
+function findUnpaidorder(){
+    var unpaidorderdata = new Array();
     for(var j=0;j<orderdatas.length;j++){
-        if(orderdatas[j].rentId == 3 ){
-            if(orderdatas[j].fieldId != null && orderdatas[j].goodsId == null){
-                fieldorderdata.push(orderdatas[j]);
-                /*console.log(fieldorderdata);*/
+        if(orderdatas[j].rentId == regId ){
+            if(orderdatas[j].orderStatus == "未支付"){
+                unpaidorderdata.push(orderdatas[j]);
             }
         }
     }
-    /*console.log(fieldorderdata);
-    console.log(fieldorderdata.length);*/
-    orderpaging(fieldorderdata);
-    findresultdata = fieldorderdata;
-    /*console.log(findresultdata);*/
+    orderpaging(unpaidorderdata);
+    findresultdata = unpaidorderdata;
 }
-<!--查找商品订单-->
-function findgoodsorder(){
-    var goodsorderdata = new Array();
+/*查找未归还的订单*/
+function findNoReturnOrder(){
+    var noReturnOrderdata = new Array();
     for(var j=0;j<orderdatas.length;j++){
-        if(orderdatas[j].rentId == 3 ){
-            if(orderdatas[j].fieldId == null && orderdatas[j].goodsId != null){
-                goodsorderdata.push(orderdatas[j]);
-                /*console.log(goodsorderdata);*/
+        if(orderdatas[j].rentId == regId ){
+            if(orderdatas[j].orderStatus == "未归还"){
+                noReturnOrderdata.push(orderdatas[j]);
             }
         }
     }
-    /*console.log(goodsorderdata);
-    console.log(goodsorderdata.length);*/
-    orderpaging(goodsorderdata);
-    findresultdata = goodsorderdata;
-    /*console.log(findresultdata);
-    console.log("length = " + findresultdata.length);*/
+    orderpaging(noReturnOrderdata);
+    findresultdata = noReturnOrderdata;
 }
+/*查找未评价的订单*/
+function findNoEvaluatedOrder(){
+    var noEvaluatedOrderdata = new Array();
+    for(var j=0;j<orderdatas.length;j++){
+        if(orderdatas[j].rentId == regId ){
+            if(orderdatas[j].orderStatus == "未评价"){
+                noEvaluatedOrderdata.push(orderdatas[j]);
+            }
+        }
+    }
+    orderpaging(noEvaluatedOrderdata);
+    findresultdata = noEvaluatedOrderdata;
+}
+
+
 
 function findorderbytime(){
     var findresultdata2 = findresultdata;
     var findtimeorderdata = new Array();
 
-    /* console.log(findresultdata);*/
-
     if($("#choose").val() == "all"){
         for(var j=0;j<findresultdata.length;j++){
             findtimeorderdata.push(findresultdata[j]);
         }
-        /*console.log(findtimeorderdata);
-        console.log(findtimeorderdata.length);*/
         orderpaging(findtimeorderdata);
     }
     if($("#choose").val() == "week"){
@@ -94,13 +97,10 @@ function findorderbytime(){
 
         for(var j=0;j<findresultdata.length;j++){
             var createTime = new Date(findresultdata[j].createTime);
-            /*console.log("createTime = " + createTime);*/
             if(createTime > date1 &&  createTime < date2){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        /*console.log(findtimeorderdata);
-        console.log(findtimeorderdata.length);*/
         orderpaging(findtimeorderdata);
     }
     if($("#choose").val() == "month"){
@@ -110,13 +110,10 @@ function findorderbytime(){
 
         for(var j=0;j<findresultdata.length;j++){
             var createTime = new Date(findresultdata[j].createTime);
-            /*console.log("createTime = " + createTime);*/
             if(createTime > date1 &&  createTime < date2){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        /*console.log(findtimeorderdata);
-        console.log(findtimeorderdata.length);*/
         orderpaging(findtimeorderdata);
     }
     if($("#choose").val() == "halfyear"){
@@ -126,13 +123,10 @@ function findorderbytime(){
 
         for(var j=0;j<findresultdata.length;j++){
             var createTime = new Date(findresultdata[j].createTime);
-            /*console.log("createTime = " + createTime);*/
             if(createTime > date1 &&  createTime < date2){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        /*console.log(findtimeorderdata);
-        console.log(findtimeorderdata.length);*/
         orderpaging(findtimeorderdata);
     }
     if($("#choose").val() == "year"){
@@ -142,13 +136,10 @@ function findorderbytime(){
 
         for(var j=0;j<findresultdata.length;j++){
             var createTime = new Date(findresultdata[j].createTime);
-            /*console.log("createTime = " + createTime);*/
             if(createTime > date1 &&  createTime < date2){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        /*console.log(findtimeorderdata);
-        console.log(findtimeorderdata.length);*/
         orderpaging(findtimeorderdata);
     }
 }
@@ -175,7 +166,7 @@ function orderpaging(data){
     if(data.length%4 == 0 ){
         totalPages = data.length/4;
     }else{
-        totalPages = data.length/4+1
+        totalPages = data.length/4+1;
     }
 
     $.jqPaginator('#pagination2',{
@@ -200,29 +191,20 @@ function orderpaging(data){
 
 
                     html += '<div class="user-order-info"><div class="order-info-title-div"><div class="order-info-title"><span>' + createTime
-                        + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].orderNumber
-                        + '</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="http://pxm37tv32.bkt.clouddn.com/f14-1%20-%20%E5%89%AF%E6%9C%AC.png"></div>'
-                        + '<div class="order-info-detail-info"><p><a>太湖之星泳池派对别墅</a></p><p>派对沙龙</p><p>江苏省苏州市吴中区香山街道太湖之星</p></div></div>'
-                        + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderNumber + '</span></div>'
-                        + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderPrice + '</span></div>'
-                        + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderStatus + '</span></div>'
-                        + '<div class="order-info-detail-operate"><a><span>追加评论</span></a></div></div></div>';
+                        + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].id;
 
-                   /* if (i % 2 == 0) {
-                        html += '<div class="OrderListShowdiv odd-column">';
-                    } else {
-                        html += '<div class="OrderListShowdiv even-column">';
+                    console.log("====================");
+                    console.log("orderDetails.length = " + data[4 * n + i].orderDetails.length);
+                    console.log("====================");
+                    for(j=0;j<data[4 * n + i].orderDetails.length;j++){
+                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra1 +'"></div>'
+                            + '<div class="order-info-detail-info"><p><a>'+ data[4 * n + i].orderDetails[j].productName
+                            + '</a></p><p>'+ data[4 * n + i].orderDetails[j].productType + '</p><p>'+ data[4 * n + i].orderDetails[j].productAddress + '</p></div></div>'
+                            + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderDetails[j].productNumber + '</span></div>'
+                            + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderDetails[j].productTotal + '</span></div>'
+                            + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderDetails[j].productStatus + '</span></div>'
+                            + '<div class="order-info-detail-operate"><a><span>追加评论</span></a></div></div></div>';
                     }
-
-                    html += '<div><span>' + data[8 * n + i].id +'</span></div><div><span>'
-                        + createTime + '</span></div><div><span>' + data[8 * n + i].orderNumber +'</span></div><div><span>'
-                        + data[8 * n + i].orderPrice +'</span></div><div><span>' + data[8 * n + i].orderStatus +'</span></div><div><span>';
-
-                    if (data[8 * n + i].orderStatus == "未评价") {
-                        html += '<a href="#">查看详情</a><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[8 * n + i].id +')">添加评价</a></span></div></div>';
-                    } else {
-                        html += '<a href="#">查看详情</a></span></div></div>';
-                    }*/
                 }
 
             }else if(data.length-n*4>0){
@@ -230,24 +212,17 @@ function orderpaging(data){
                     var createTime = changeDate(data[4 * n + i].createTime);
 
                     html += '<div class="user-order-info"><div class="order-info-title-div"><div class="order-info-title"><span>' + createTime
-                        + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].orderNumber
-                        + '</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="http://pxm37tv32.bkt.clouddn.com/f14-1%20-%20%E5%89%AF%E6%9C%AC.png"></div>'
-                        + '<div class="order-info-detail-info"><p><a>太湖之星泳池派对别墅</a></p><p>派对沙龙</p><p>江苏省苏州市吴中区香山街道太湖之星</p></div></div>'
-                        + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderNumber + '</span></div>'
-                        + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderPrice + '</span></div>'
-                        + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderStatus + '</span></div>'
-                        + '<div class="order-info-detail-operate"><a><span>追加评论</span></a></div></div></div>';
+                        + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].id;
 
-
-                   /* html += '<div><span>' + data[8 * n + i].id +'</span></div><div><span>'
-                        + createTime + '</span></div><div><span>' + data[8 * n + i].orderNumber +'</span></div><div><span>'
-                        + data[8 * n + i].orderPrice +'</span></div><div><span>' + data[8 * n + i].orderStatus +'</span></div><div><span>';
-
-                    if (data[8 * n + i].orderStatus == "未评价") {
-                        html += '<a href="#">查看详情</a><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[8 * n + i].id +')">添加评价</a></span></div></div>';
-                    } else {
-                        html += '<a href="#">查看详情</a></span></div></div>';
-                    }*/
+                    for(j=0;j<data[4 * n + i].orderDetails.length;j++){
+                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra1 +'"></div>'
+                            + '<div class="order-info-detail-info"><p><a>'+ data[4 * n + i].orderDetails[j].productName
+                            + '</a></p><p>'+ data[4 * n + i].orderDetails[j].productType + '</p><p>'+ data[4 * n + i].orderDetails[j].productAddress + '</p></div></div>'
+                            + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderDetails[j].productNumber + '</span></div>'
+                            + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderDetails[j].productTotal + '</span></div>'
+                            + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderDetails[j].productStatus + '</span></div>'
+                            + '<div class="order-info-detail-operate"><a><span>追加评论</span></a></div></div></div>';
+                    }
                 }
             }
             $('#field-goods-order').html(html)
