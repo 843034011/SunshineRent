@@ -4,7 +4,6 @@ import com.elife.mapper.UserOrderMapper;
 import com.elife.pojo.UserOrder;
 import com.elife.service.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,5 +47,10 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public UserOrder selectByOrderId(int orderId) {
         return userOrderMapper.selectById(orderId);
+    }
+
+    @Override
+    public int updateByPrimaryKey(UserOrder record) {
+        return userOrderMapper.updateByPrimaryKey(record);
     }
 }

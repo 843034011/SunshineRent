@@ -7,14 +7,17 @@
 /* container-right */
 .container-right{
     width:1000px;
-    min-height:800px;
+    /*min-height:1200px;*/
     background-color:#ffffff;
     box-shadow: 10px 10px 10px #f1f1f1;
     float:left;
     margin-left:50px;
+}
+.container-right-div{
+    width:1000px;
+    min-height:1200px;
     padding-top:50px;
 }
-
 /* dropdown search*/
 .drop-form{
     width:960px;
@@ -52,14 +55,18 @@
     margin-top:20px;
     z-index:1;
 }
+.MyOrderOpt div:first-child{
+    width:400px;
+}
 .MyOrderOpt div{
     float:left;
-    width:160px;
+    width:120px;
     height:40px;
     line-height:40px;
     border-right:1px solid #ddd;
 }
 .MyOrderOpt div:last-child{
+    width:160px;
     border-right:none;
 }
 .MyOrderPersonalList{
@@ -68,24 +75,82 @@
     height:400px;
     z-index:1;
 }
-.OrderListShowdiv{
+
+.user-order-info{
     width:960px;
-    height:50px;
+    height:200px;
+    margin-top:20px;
 }
-.odd-column{
-    background-color:#b9def0;
+.order-info-title-div{
+    width:960px;
+    height:40px;
+    background-color:#f5f5f5;
 }
-.OrderListShowdiv div{
+.order-info-title{
+    padding-left:40px;
+    text-align: left;
+    font-size:14px;
+    line-height:40px;
+}
+.order-info-detail{
+    width:960px;
+    height:150px;
+    border:1px solid #f5f5f5;
+    padding-left:14px;
+    padding-right:14px;
+}
+.order-info-detail div{
     float:left;
+}
+.order-info-detail-img{
     width:160px;
-    height:50px;
-    line-height:50px;
+    height:120px;
+    margin-top:14px;
 }
-.btn-search-detail{
-    height:28px;
+.order-info-detail-img:hover{
+    -webkit-box-shadow: #00A0DC 0px 0px 8px;
+    -moz-box-shadow: #00A0DC 0px 0px 8px;
+    box-shadow: #00A0DC 0px 0px 8px;
 }
-.btn-search-detail:hover{
-    background-color: #0282d3;
-    color:#fff;
-    border:none;
+.order-info-detail-img img{
+    width:160px;
+    height:120px;
+}
+.order-info-detail-info{
+    text-align: left;
+    width:240px;
+    height:150px;
+    padding-top:14px;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:14px;
+    color:#999999;
+}
+.order-info-detail-info p a{
+    font-size:18px;
+    color:#2aabd2;
+}
+.order-info-detail-number{
+    width:120px;
+    height:150px;
+    padding-top:30px;
+    border-left:1px solid #f5f5f5;
+}
+.order-info-detail-total{
+    width:120px;
+    height:150px;
+    padding-top:30px;
+    border-left:1px solid #f5f5f5;
+}
+.order-info-detail-status{
+    width:120px;
+    height:150px;
+    padding-top:30px;
+    border-left:1px solid #f5f5f5;
+}
+.order-info-detail-operate{
+    width:160px;
+    height:150px;
+    padding-top:30px;
+    border-left:1px solid #f5f5f5;
 }

@@ -29,8 +29,10 @@ public class OrderController {
 
     @RequestMapping("showallorders")
     @ResponseBody
-    public ResultData selectAllBook(HttpSession session){
-        List<UserOrder> orderList = userOrderService.selectAllByRentId(3);
+    public ResultData selectAllBook(int regId,HttpSession session){
+        System.out.println("==========");
+        System.out.println("regId = " + regId);
+        List<UserOrder> orderList = userOrderService.selectAllByRentId(regId);
         ResultData resultData = new ResultData();
         if(null == orderList || orderList.size() ==0) {
             resultData.setCode(3);
