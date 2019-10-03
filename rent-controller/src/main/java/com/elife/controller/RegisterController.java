@@ -65,6 +65,14 @@ public class RegisterController {
             resultData.setCode(0);
             resultData.setData(rentRegister);
             session.setAttribute("rentRegister",rentRegister);
+
+            RentUser rentUser = userService.selectByTelephone(rentRegister.getRegId());
+
+            System.out.println(rentUser.getUserId());
+            System.out.println(rentUser.getIsIdentified());
+
+            session.setAttribute("idIdentified",rentUser.getIsIdentified());
+
         }else {
             resultData.setCode(1);
             resultData.setMessage("查询无果！！");
