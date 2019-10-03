@@ -635,7 +635,6 @@
                         data: "num=" + num + "&kind=" + kind,
                         dataType: "json",
                         success: function (data) {
-                            alert(data.data.length)
                             if (data.data.length > 0) {
 
                                 for (var i = 0; i < data.data.length; i++) {

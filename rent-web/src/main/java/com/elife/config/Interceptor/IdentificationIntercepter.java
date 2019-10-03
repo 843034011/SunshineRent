@@ -1,34 +1,30 @@
 package com.elife.config.Interceptor;
 
-import com.elife.pojo.RentRegister;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- * @author llb
- */
 @Component
-public class LoginInterceptor implements HandlerInterceptor {
+public class IdentificationIntercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
+        Byte isIdentified = (Byte) request.getSession().getAttribute("idIdentified");
 
-        HttpSession session = request.getSession();
-
-        RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
-
-        if (rentRegister == null) {
+        System.out.println("=================");
+        System.out.println(isIdentified);
+        if(isIdentified == null ){
             response.sendRedirect("http://localhost:8080/login.html?info=unlogin");
+        }
+
+        if(isIdentified == 0 ){
+            response.sendRedirect("http://localhost:8080/identification/show");
             return false;
-        } else {
+        } else if(isIdentified == 1 ){
             return true;
         }
+        return false;
     }
 }

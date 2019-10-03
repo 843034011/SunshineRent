@@ -1,5 +1,7 @@
 package com.elife.service;
 
+import com.elife.pojo.RentUser;
+
 public interface UserService {
 
     /**
@@ -7,4 +9,11 @@ public interface UserService {
      * @return
      */
     int insertFirst(Integer id);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    RentUser selectByTelephone(Integer id);
 }

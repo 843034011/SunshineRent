@@ -1,5 +1,6 @@
 // 从cookie中获取当前用户的regId
 var regId = $.cookie("id")
+console.log(regId)
 
 // 定义两个全局变量传参
 var kind;
@@ -414,7 +415,7 @@ $(".choose-all").click(function () {
 // 结算函数
 function totalmoney() {
 
-    var json = [];
+    var results = [];
 
     for (var i = 0; i < $(".choose-one-box").length; i++) {
 
@@ -422,16 +423,17 @@ function totalmoney() {
 
             var order = {};
 
+            order.shoppingCartId = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("id")
+            order.type = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind")
+            order.id = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+
             sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
             sdate = sedate.split("-")[0].replace(/\//g,"-");
             edate = sedate.split("-")[1].replace(/\//g,"-");
-
             order.startTime = sdate;
             order.endTime = edate;
 
-            order.orderPrice = $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText;
-
-            order.rid = regId;
+            order.total = $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText;
 
             var fid = null;
             var gid = null;
@@ -443,11 +445,21 @@ function totalmoney() {
             }
 
             order.fieldId = fid;
-            order.goodsId = gid
+            order.goodsId = gid;
 
-            json.push(order)
+            results.push(order)
         }
     }
+
+    var json = [];
+    json.push(results)
+
+    var orderTotal = $(".total-money").text()
+    json.push(orderTotal)
+
+    console.log(regId)
+    var rId = regId;
+    json.push(rId)
 
     var fifteen = new Date()
     fifteen.setTime(fifteen.getTime() + 15 * 60 * 1000)

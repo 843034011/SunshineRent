@@ -1,5 +1,6 @@
 package com.elife.config;
 
+import com.elife.config.Interceptor.IdentificationIntercepter;
 import com.elife.config.Interceptor.LoginInterceptor;
 import com.elife.config.Interceptor.RegisterInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 
 /**
  * @author llb
-*/
+ */
 @Configuration
 public class WebConfigurer implements WebMvcConfigurer {
 
@@ -22,15 +23,16 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Autowired
     RegisterInterceptor registerInterceptor;
 
+    @Autowired
+    IdentificationIntercepter identificationIntercepter;
+
     //配置拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         //登录拦截的黑名单
         List<String> loginList = new ArrayList<>();
-        loginList.add("/shoppingcart/*");
-        loginList.add("/orders/*");
-       /* loginList.add("/fields/insertshoppingcart");*/
+        loginList.add("/shoppingcart/**");
 
         registry.addInterceptor(loginInterceptor).addPathPatterns(loginList).excludePathPatterns();
 
@@ -41,5 +43,10 @@ public class WebConfigurer implements WebMvcConfigurer {
 
         registry.addInterceptor(registerInterceptor).addPathPatterns(registerList).excludePathPatterns();
 
+
+        // 认证拦截的黑名单
+        List<String> identificationList = new ArrayList<>();
+        identificationList.add("/orders/insertorder");
+        registry.addInterceptor(identificationIntercepter).addPathPatterns(identificationList).excludePathPatterns();
     }
 }
