@@ -1,6 +1,8 @@
 package com.elife.dao;
 
 
+import com.elife.pojo.RentRegister;
+import com.elife.pojo.Zans;
 import com.elife.pojo.remarks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -9,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,17 +47,38 @@ public class MongoTestDao {
 
 
 
-    public void updateTest(remarks remarks) {
-        Query query = new Query(Criteria.where("id").is(remarks.getId()));
-        Update update = new Update().set("zan", remarks.getZans());
+    public remarks updateTest(remarks remarks) {
+
+        System.out.println( "regid+++++++"+remarks.getReg_id() );
+        System.out.println("zan+++++++++"+remarks.getZan().toString());
+        Zans zans=new Zans();
+        List<Zans> zansList = remarks.getZan();
+
+        Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
+
+        mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
+
+        /*  System.out.println(likeComment.toString());
+
+       Comment comment = mongoTemplate.findOne(query, Comment.class);
+        List<LikeComment> likeCommentList = comment.getLikeCommentList();
+        for (int i = 0; i < likeCommentList.size(); i++) {
+/          System.out.println(likeCommentList.get(i).toString());
+        }
+//        likeCommentList.remove(likeComment);
+//        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
+
+       /* Update update = new Update().set("zan", remarks.getZans());*/
 
       /*  Update update = new Update().set("age", remarks.getZans()).set("name", remarks.getName());*/
         //更新查询返回结果集的第一条
-         mongoTemplate.updateFirst(query, update, remarks.class);
+      /* */
+
 
 
         //更新查询返回结果集的所有
         // mongoTemplate.updateMulti(query,update,TestEntity.class);
+        return remarks;
     }
 
 /**

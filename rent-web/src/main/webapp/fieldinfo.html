@@ -1009,6 +1009,7 @@
 <script type="text/javascript" src="js/fieldinfo/jqPaginator.js"></script>
 <script type="text/javascript" src="js/fieldinfo/moment.js"></script>
 <script type="text/javascript" src="js/fieldinfo/daterangepicker.js"></script>
+<script src="jquery/jquery.cookie.js"></script>
 <script>
     var orders
     $.get({
@@ -1074,7 +1075,8 @@
 
                             var date = new Date(data[6*n+i].createTime);
                             var datetimes = dw(date);
-
+                           var loginid = $.cookie('id');
+                           var colorflag=false;
 
 
                             html1 +='<div class="comment-show-con-img pull-left"   style="margin-left: 5px">' +
@@ -1085,9 +1087,30 @@
                                 '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
 
                                 '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
-                                + '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" id="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:black">16</span></a>'
+
+                        for(var p=0;p<data[6*n+i].zan.length;p++){
+                            if(data[6*n+i].zan[p].zan==loginid){
+                                colorflag=true;
+                            }
+                           /* if(data[6*n+i].zan[p].zan==loginid){
+                                html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+                                +'<span>16</span>'
+                                + '</div>'
+                            }*/
+
+                        }
+                        if(colorflag==true){
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+                                +'<span>16</span>'
+                                + '</div>'
+                        }else{
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+                                +'<span>16</span>'
+                                + '</div>'
+                        }
+                              /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
                                     +'<span>16</span>'
-                               + '</div>'
+                               + '</div>'*/
 
 
                                 +'<div class="rating-box">'
@@ -1318,12 +1341,14 @@
             var datas=new Array();
             for(var i=0;i<data.length;i++){
                 if(fieldid1==data[i].fieldId)
+                    console.log(data[i].zanId)
                     datas.push(data[i]);
                 console.log(datas);
             }
             comments=datas
             console.log(datas);
             fenye(datas)
+
         }
 
     })
@@ -1366,37 +1391,90 @@
     var flag = false;
     var color1 = "#e5312a";
     var color2 = "#0f0f0f";
-
-    function dianzan() {
+  /*  '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
+    + '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:black">'+data[6*n+i].zan.length+'</span></a>'
+    +'<span>16</span>'
+    + '</div>'*/
+     function dianzan() {
         var reid = $.cookie('id');
         if(reid==undefined){
             swal("先登录在点赞哦")
         }else{
-            if (flag == false) {
-                flag = true;
-                var count=document.getElementById("dianzan").innerText;
+           /* if (flag == false) {
+                flag = true;*/
+              /*  var count=document.getElementById("dianzan").innerText;
                 console.log(count)
-                document.getElementById("dianzan").style.color = color1;
-                count=count+1;
-                console.log(count)
-                $(".dian").click(function() {
-                    console.log($(this).attr("value"))
-                })
-                var reg//pinglunren
-                console.log(reg)
-                $.post({
-                    url:"dianzan",
-                    data:{"reid":reid},
-                })
-            } else {
-                flag = false;
-                count = 0;
-                document.getElementById("dianzan").style.color = color2;
+                document.getElementById("dianzan").style.color = color1;*/
 
-            }
+             $(".dian").click(function() {
+                   if(flag==false){
+                       console.log($(this).attr("value"))
+                       reg=$(this).attr("value");//fabiaopinglunderen
+                       var bch = $(this).children();
+                       console.log(bch)
+                       bch.css("color",color1)
+                       var count=bch.text();
+                       bch.text((count-0)+1);
+                       console.log(count)
+                       console.log(reg)
+                       $.post({
+                           url:"dianzan",
+                           data:{"reid":reid,"reg":reg},
+                       })
+
+                   }else if(flag==true){
+                       console.log($(this).attr("value"))
+                       reg=$(this).attr("value");//fabiaopinglunderen
+                       var bch = $(this).children();
+                       console.log(bch)
+                       bch.css("color",color2)
+                       var count=bch.text();
+                       bch.text((count-0)-1);
+                       console.log(count)
+                       console.log(reg)
+                   }
+
+                })
+
+               var reg//pinglunren
+
+         /*   } */
         }
 
     }
+
+
+
+
+   /* $(".dian").click(function() {
+      if(flag==false){
+          console.log($(this).attr("value"))
+          reg=$(this).attr("value");//fabiaopinglunderen
+          var bch = $(this).children();
+          console.log(bch)
+          bch.css("color",color1)
+          var count=bch.text();
+          bch.text((count-0)+1);
+          console.log(count)
+          console.log(reg)
+          $.post({
+              url:"dianzan",
+              data:{"reid":reid,"reg":reg},
+          })
+      }else if(flag==true){
+          console.log($(this).attr("value"))
+          reg=$(this).attr("value");//fabiaopinglunderen
+          var bch = $(this).children();
+          console.log(bch)
+          bch.css("color",color2)
+          var count=bch.text();
+          bch.text((count-0)-1);
+          console.log(count)
+          console.log(reg)
+      }
+
+
+    })*/
 
 var time;
     $('.ranges_1 ul').remove();
