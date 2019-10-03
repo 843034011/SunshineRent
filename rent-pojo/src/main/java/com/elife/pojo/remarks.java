@@ -15,23 +15,8 @@ public class remarks {
     private Integer masterId;
     private String reply_content;
     List<Pictures> picture;
-    List<zan> zans;
+    List<Zans> zan;
 
-    public List<zan> getZans() {
-        return zans;
-    }
-
-    public void setZans(List<zan> zans) {
-        this.zans = zans;
-    }
-
-    public Integer getReg_id() {
-        return reg_id;
-    }
-
-    public void setReg_id(Integer reg_id) {
-        this.reg_id = reg_id;
-    }
 
     @Override
     public String toString() {
@@ -47,9 +32,27 @@ public class remarks {
                 ", masterId=" + masterId +
                 ", reply_content='" + reply_content + '\'' +
                 ", picture=" + picture +
-                ", zans=" + zans +
+                ", zan=" + zan +
                 '}';
     }
+
+    public List<Zans> getZan() {
+        return zan;
+    }
+
+    public void setZan(List<Zans> zan) {
+        this.zan = zan;
+    }
+
+    public Integer getReg_id() {
+        return reg_id;
+    }
+
+    public void setReg_id(Integer reg_id) {
+        this.reg_id = reg_id;
+    }
+
+
 
     public Integer getId() {
         return id;

@@ -4,8 +4,9 @@ package com.elife.controller;
 import com.elife.dao.MongoTestDao;
 import com.elife.dto.EvaluateResult;
 import com.elife.pojo.Pictures;
+import com.elife.pojo.RentRegister;
 import com.elife.pojo.remarks;
-import com.elife.pojo.zan;
+import com.elife.pojo.Zans;
 import com.elife.service.EvaluateResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.awt.peer.PanelPeer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,6 +62,10 @@ public class MongoTestC {
         mgtest.setRemarkContent(evaluateResult.getContent());
         List<Pictures> pictures=new ArrayList<Pictures>();
 
+       /* List<zan> zanList=new ArrayList<>();
+        zan zan=new zan();
+        mgtest.setZanId(zan.getZanId());*/
+
         for(int i=0;i<evaluateResult.getPictureList().size();i++){
             Pictures p=new Pictures();
             p.setPicture(evaluateResult.getPictureList().get(i));
@@ -75,27 +81,44 @@ public class MongoTestC {
         }
     }
 
- /*   @PostMapping(value="/dianzan")
-    public int addzan(Integer reid){
-        List<zan> zanList=new ArrayList<zan>();
+   @PostMapping(value="/dianzan")
+   public int addzan(Integer reid, Integer reg, HttpSession session){
+
+
+     /*  RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+       int id=rentRegister.getRegId();*/
+
+        remarks remarks=new remarks();
+        List<Zans>zansList=new ArrayList<>();
+        Zans zans1=new Zans();
+        zans1.setZan(reid);
+        zansList.add(zans1);
+        remarks.setReg_id(reg);
+        remarks.setZan(zansList);
+
+       System.out.println(zansList.toString());
         System.out.println(reid);
-        Query query = new Query(where("id").is(reid));
-       remarks remarks = mtdao.findOne(query, remarks.class);
+        System.out.println(reg);
+        remarks remarks1=mtdao.updateTest(remarks);
+       System.out.println("cccccccccc"+remarks.toString());
 
 
-      *//*  System.out.println(likeComment.toString());
-        Query query = new Query(where("id").is(commentId));
-        Comment comment = mongoTemplate.findOne(query, Comment.class);
+     /* remarks remarks = mtdao.updateTest(query, remarks.class);*/
+
+
+      /*  System.out.println(likeComment.toString());
+
+       Comment comment = mongoTemplate.findOne(query, Comment.class);
         List<LikeComment> likeCommentList = comment.getLikeCommentList();
         for (int i = 0; i < likeCommentList.size(); i++) {
-            System.out.println(likeCommentList.get(i).toString());
+/          System.out.println(likeCommentList.get(i).toString());
         }
-        likeCommentList.remove(likeComment);
-        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*//*
-
-
-        return 0;
-    }*/
+//        likeCommentList.remove(likeComment);
+//        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
+//
+//
+       return 0;
+    }
 
 
     @GetMapping(value = "/test2")
@@ -105,7 +128,7 @@ public class MongoTestC {
         return remark;
     }
 /*
-    @GetMapping(value = "/test3")
+    @GetMapping(value = "/dianzan")
     public void updateTest() {
        remarks mgtest = new remarks();
         mgtest.setId(11);
@@ -117,6 +140,7 @@ public class MongoTestC {
     public void deleteTestById() {
         mtdao.deleteTestById(11);
     }*/
+
 }
 
 
