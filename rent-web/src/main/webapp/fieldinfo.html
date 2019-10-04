@@ -1101,11 +1101,11 @@
                         }
                         if(colorflag==true){
                             html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-                                +'<span>16</span>'
+
                                 + '</div>'
                         }else{
                             html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
-                                +'<span>16</span>'
+
                                 + '</div>'
                         }
                               /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
@@ -1336,14 +1336,16 @@
         url:"test2",
         dataType: "json",
         success:function(data){
-
+          console.log(fieldid1)
             console.log(data);
             var datas=new Array();
             for(var i=0;i<data.length;i++){
-                if(fieldid1==data[i].fieldId)
-                    console.log(data[i].zanId)
+                if(fieldid1==data[i].fieldId){
+                    console.log(data[i].fieldId)
                     datas.push(data[i]);
-                console.log(datas);
+                    console.log(datas);
+                }
+
             }
             comments=datas
             console.log(datas);
@@ -1358,8 +1360,6 @@
    /* 全部评价*/
     function quanbu(){
       $('#all').css({"background-color":"#00a9e0" ,"color":"white"})
-
-
         $('#some').css({"background-color":"white" ,"color":"#00a9e0"})
         console.log(comments)
       fenye(comments)
@@ -1389,6 +1389,8 @@
     }
 
     var flag = false;
+
+
     var color1 = "#e5312a";
     var color2 = "#0f0f0f";
   /*  '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
@@ -1400,45 +1402,37 @@
         if(reid==undefined){
             swal("先登录在点赞哦")
         }else{
-           /* if (flag == false) {
-                flag = true;*/
+            if (flag == false) {
+                flag = true;
               /*  var count=document.getElementById("dianzan").innerText;
                 console.log(count)
                 document.getElementById("dianzan").style.color = color1;*/
 
              $(".dian").click(function() {
-                   if(flag==false){
+
                        console.log($(this).attr("value"))
                        reg=$(this).attr("value");//fabiaopinglunderen
                        var bch = $(this).children();
                        console.log(bch)
                        bch.css("color",color1)
                        var count=bch.text();
-                       bch.text((count-0)+1);
                        console.log(count)
+                      var count1= parseInt(count);
+                       bch.text(count1+1);
+                       console.log(count1+1)
                        console.log(reg)
+                       console.log(reid)
                        $.post({
                            url:"dianzan",
                            data:{"reid":reid,"reg":reg},
                        })
 
-                   }else if(flag==true){
-                       console.log($(this).attr("value"))
-                       reg=$(this).attr("value");//fabiaopinglunderen
-                       var bch = $(this).children();
-                       console.log(bch)
-                       bch.css("color",color2)
-                       var count=bch.text();
-                       bch.text((count-0)-1);
-                       console.log(count)
-                       console.log(reg)
-                   }
 
                 })
 
                var reg//pinglunren
 
-         /*   } */
+          }
         }
 
     }
