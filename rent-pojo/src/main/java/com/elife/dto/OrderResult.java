@@ -1,9 +1,9 @@
 package com.elife.dto;
 
 public class OrderResult {
-    private Integer shoppingCartId;
+    private String shoppingCartId;
     private String type;
-    private Integer id;
+    private String id;
     private String total;
     private String startTime;
     private String endTime;
@@ -26,12 +26,11 @@ public class OrderResult {
         this.endTime = endTime;
     }
 
-
-    public Integer getShoppingCartId() {
+    public String getShoppingCartId() {
         return shoppingCartId;
     }
 
-    public void setShoppingCartId(Integer shoppingCartId) {
+    public void setShoppingCartId(String shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
     }
 
@@ -43,11 +42,11 @@ public class OrderResult {
         this.type = type;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

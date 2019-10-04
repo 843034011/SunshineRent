@@ -1,19 +1,20 @@
 package com.elife.controller;
 
-import com.elife.dto.ShoppingCartResult;
+import com.elife.dto.TotalOrderResult;
 import com.elife.pojo.UserOrder;
 import com.elife.service.UserOrderService;
-import com.elife.service.impl.UserOrderServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.nio.file.attribute.UserDefinedFileAttributeView;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * author:byf
@@ -57,10 +58,26 @@ public class UserOrderController {
         return "ensureorder";
     }
 
-    @RequestMapping("insertorder")
+    @RequestMapping(value = "/insertorder")
     @ResponseBody
-    public int insertOrder(@RequestBody List<ShoppingCartResult> shoppingCartResults){
-        System.out.println(shoppingCartResults.size());
-        return 0;
+    public ResultData insertOrder(@RequestBody TotalOrderResult totalOrderResult){
+
+        ResultData resultData = new ResultData();
+
+        // 生成订单的创建时间
+        String timeStr= LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        // 生成订单编号
+        String orderId = UUID.randomUUID().toString().replaceAll("-","");
+
+        // 添加当前总订单所需要的参数
+        totalOrderResult.setOrderId(orderId);
+        totalOrderResult.setOrderStatus("已完成");
+        totalOrderResult.setCreateTime(timeStr);
+
+        System.out.println(totalOrderResult.toString());
+
+        resultData.setCode(0);
+        return resultData;
     }
 }
