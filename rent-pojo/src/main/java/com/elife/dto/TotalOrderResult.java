@@ -4,11 +4,20 @@ import java.util.List;
 
 public class TotalOrderResult {
     private String orderId;
-    private Integer orderNumber = 1;
+    private String orderNumber = "1";
     private String orderTotal;
     private String orderStatus;
     private String createTime;
-    private Integer rId;
+
+    public String getrId() {
+        return rId;
+    }
+
+    public void setrId(String rId) {
+        this.rId = rId;
+    }
+
+    private String rId;
     private List<OrderResult> results;
 
     public String getOrderId() {
@@ -43,14 +52,6 @@ public class TotalOrderResult {
         this.createTime = createTime;
     }
 
-    public Integer getRegId() {
-        return rId;
-    }
-
-    public void setRegId(Integer regId) {
-        this.rId = regId;
-    }
-
     public List<OrderResult> getResults() {
         return results;
     }
@@ -67,7 +68,7 @@ public class TotalOrderResult {
                 ", orderTotal='" + orderTotal + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", createTime='" + createTime + '\'' +
-                ", regId=" + rId +
+                ", rId=" + rId +
                 ", results=" + results +
                 '}';
     }

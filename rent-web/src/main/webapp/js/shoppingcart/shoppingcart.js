@@ -1,6 +1,5 @@
 // 从cookie中获取当前用户的regId
 var regId = $.cookie("id")
-console.log(regId)
 
 // 定义两个全局变量传参
 var kind;
@@ -186,21 +185,21 @@ $.post({
 // 单个购物车数据删除函数
 function deletethis(obj) {
     var result = confirm("您确定要把这条数据从购物车里删除么？")
-    if(result){
+    if (result) {
         var shoppingId = parseInt($(obj).parent().parent().attr("id"))
-        if(shoppingId > 0){
+        if (shoppingId > 0) {
             $.post({
                 url: "/shoppingcart/deletebyshoppingid",
                 data: "shoppingId=" + shoppingId,
                 dataType: "json",
                 success: function (data) {
-                    if(data.data != null){
-                        window.location.href="/shoppingcart/showcart";
+                    if (data.data != null) {
+                        window.location.href = "/shoppingcart/showcart";
                     }
                 }
             })
         }
-    }else{
+    } else {
 
     }
 }
@@ -336,7 +335,7 @@ $(".choose-all").click(function () {
                 alert("请先为全部商品选择日期！！")
                 break;
             }
-            if(i == ($(".choose-one-box").length - 1)){
+            if (i == ($(".choose-one-box").length - 1)) {
                 $(".choose-all").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
                 $(".choose-one-box").html("<i class=\"icon-choose\"><img src=\"../img/shoppingcart/yes.png\" class=\"choosed\"></i>")
                 $(".list").attr("choosed", "1")
@@ -419,51 +418,68 @@ function totalmoney() {
 
     for (var i = 0; i < $(".choose-one-box").length; i++) {
 
-        if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>'){
+        if ($(".choose-one-box")[i].innerHTML == '<i class="icon-choose"><img src="../img/shoppingcart/yes.png" class="choosed"></i>') {
 
-            var order = {};
+            var shoppingCartId = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("id")
+            var type = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind")
+            var id = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
 
-            order.shoppingCartId = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("id")
-            order.type = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind")
-            order.id = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+            var sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
+            var sdate = sedate.split("-")[0].replace(/\//g, "-");
+            var edate = sedate.split("-")[1].replace(/\//g, "-");
+            var startTime = sdate;
+            var endTime = edate;
 
-            sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
-            sdate = sedate.split("-")[0].replace(/\//g,"-");
-            edate = sedate.split("-")[1].replace(/\//g,"-");
-            order.startTime = sdate;
-            order.endTime = edate;
-
-            order.total = $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText;
+            var total = $(".choose-one-box")[i].parentNode.parentNode.children[5].innerText;
 
             var fid = null;
             var gid = null;
 
             if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'field') {
-                fid =  $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+                fid = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
             } else if ($(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind") == 'goods') {
-                gid =  $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+                gid = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
             }
 
-            order.fieldId = fid;
-            order.goodsId = gid;
+            var fieldId = fid;
+            var goodsId = gid;
 
-            results.push(order)
+            var result = {
+                "shoppingCartId": shoppingCartId,
+                "type": type,
+                "id": id,
+                "startTime": startTime,
+                "endTime": endTime,
+                "total": total,
+                "fieldId": fieldId,
+                "goodsId": goodsId,
+            };
+
+            results.push(result)
         }
     }
 
-    var json = [];
-    json.push(results)
 
-    var orderTotal = $(".total-money").text()
-    json.push(orderTotal)
+    var json = {
+        "rId": regId,
+        "orderTotal": $(".total-money").text(),
+        "results": results
+    };
 
-    console.log(regId)
-    var rId = regId;
-    json.push(rId)
+    console.log(JSON.stringify(json))
 
-    var fifteen = new Date()
-    fifteen.setTime(fifteen.getTime() + 15 * 60 * 1000)
-    $.cookie("waitting",json,{ path: "/",expires: fifteen,sucue:true})
+    if (1) {
+        $.post({
+            url: "/orders/insertorder",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(json),
+            dataType: "json",
+            success: function (data) {
+                if(data.code == 0){
 
-    window.location.href = "/orders/ensureorder"
+                }
+            }
+        })
+    }
+
 }
