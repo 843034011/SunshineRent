@@ -100,8 +100,8 @@ public class MongoTestC {
         System.out.println(reid);
         System.out.println(reg);
         remarks remarks1=mtdao.updateTest(remarks);
-       System.out.println("cccccccccc"+remarks.toString());
-
+       /*System.out.println("cccccccccc"+remarks.toString());
+*/
 
      /* remarks remarks = mtdao.updateTest(query, remarks.class);*/
 
