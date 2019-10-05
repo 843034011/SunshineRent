@@ -75,6 +75,7 @@ function unlogin(){
     $.cookie('id', '', { expires: -1 });
     $.cookie('key', '', { expires: -1 });
     $.cookie('isIdentified', '', { expires: -1 });
+    $.session.clear();
     // $.cookie("isIdentified",data.data.isIdentified)
     // window.location.href="/index.html";
 }
@@ -352,3 +353,6 @@ $('.ls-items').find('li').click(function () {
         }
     })
 })
+
+//当前页面关闭调用方法
+// window.onbeforeunload=unlogin();

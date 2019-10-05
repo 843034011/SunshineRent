@@ -1,3 +1,10 @@
+// $(document).ready(function(){
+//     $(function() {
+//         $('.header').load('../headerandfooter/header/publicheader.html');
+//     });
+// })
+
+
 // 从cookie中获取当前用户的regId
 var regId = $.cookie("id");
 console.log("regId = " + regId);

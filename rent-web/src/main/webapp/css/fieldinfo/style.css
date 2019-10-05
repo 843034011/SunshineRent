@@ -73,13 +73,13 @@ a {
 a:hover {
     text-decoration: none;
 }
-a:active,
-a:focus {
-	outline:0;
-	border:none;
-	text-decoration: none;
-	color:#555;
-}
+/*a:active,*/
+/*a:focus {*/
+	/*outline:0;*/
+	/*border:none;*/
+	/*text-decoration: none;*/
+	/*color:#555;*/
+/*}*/
 img {
 	border:none;
 	max-width:100%;
@@ -283,7 +283,13 @@ a.greentech-scrollertop{
 	opacity:1;
 }
 .header-middle{
-	padding:26px 0 30px;
+
+	margin:10px 0 0 30px;
+	width:1200px;
+	height:100px;
+	margin: auto;
+	/*text-align: left;*/
+	/*background: #00aced;*/
 }
 .logo{}
 .logo a{}
@@ -334,7 +340,7 @@ a.greentech-scrollertop{
 	border: 2px solid #00a9e0;
 	border-radius: 20px;
 	color: #565656;
-	height: 42px;
+	height: 40px;
 	padding:0 30px 0 15px;
 	width: 100%;
 }
@@ -5065,9 +5071,6 @@ form.error-ser-form .error-search{
 .price-range .price-range-text .number-first {
 	width: 34px;
 }
-
-
-
 
 
 

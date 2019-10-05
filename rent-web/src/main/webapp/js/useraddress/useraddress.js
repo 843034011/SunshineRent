@@ -25,7 +25,6 @@ function each_fun() {
                         </div>
                         <div class="div-in2">
                             <div class="fl delete">
-                                <span>默认地址</span>
                                 <span class="span-updata">修改</span>
                             </div>
                             <span class="span-last">×</span>
@@ -88,6 +87,9 @@ $.post({
             })
 
             //修改数据到数据库
+            $('.btn-cal').click(function () {
+                window.location.reload();
+            })
             $('.btn-updata').click(function () {
                 var updatainfo = JSON.stringify(
                     {
