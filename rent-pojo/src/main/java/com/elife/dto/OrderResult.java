@@ -4,11 +4,57 @@ public class OrderResult {
     private String shoppingCartId;
     private String type;
     private String id;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String total;
     private String startTime;
     private String endTime;
     private String fieldId;
     private String goodsId;
+
+    private String orderId;
+    private String address;
+
+    @Override
+    public String toString() {
+        return "OrderResult{" +
+                "shoppingCartId='" + shoppingCartId + '\'' +
+                ", type='" + type + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", total='" + total + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", fieldId='" + fieldId + '\'' +
+                ", goodsId='" + goodsId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getStartTime() {
         return startTime;
@@ -74,15 +120,4 @@ public class OrderResult {
         this.goodsId = goodsId;
     }
 
-    @Override
-    public String toString() {
-        return "OrderResult{" +
-                "shoppingCartId=" + shoppingCartId +
-                ", type='" + type + '\'' +
-                ", id=" + id +
-                ", total='" + total + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                '}';
-    }
 }

@@ -4,19 +4,10 @@ import java.util.List;
 
 public class TotalOrderResult {
     private String orderId;
-    private String orderNumber = "1";
+    private String orderNumber;
     private String orderTotal;
     private String orderStatus;
     private String createTime;
-
-    public String getrId() {
-        return rId;
-    }
-
-    public void setrId(String rId) {
-        this.rId = rId;
-    }
-
     private String rId;
     private List<OrderResult> results;
 
@@ -26,6 +17,14 @@ public class TotalOrderResult {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public String getOrderTotal() {
@@ -52,6 +51,14 @@ public class TotalOrderResult {
         this.createTime = createTime;
     }
 
+    public String getrId() {
+        return rId;
+    }
+
+    public void setrId(String rId) {
+        this.rId = rId;
+    }
+
     public List<OrderResult> getResults() {
         return results;
     }
@@ -64,11 +71,11 @@ public class TotalOrderResult {
     public String toString() {
         return "TotalOrderResult{" +
                 "orderId='" + orderId + '\'' +
-                ", orderNumber=" + orderNumber +
+                ", orderNumber='" + orderNumber + '\'' +
                 ", orderTotal='" + orderTotal + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", createTime='" + createTime + '\'' +
-                ", rId=" + rId +
+                ", rId='" + rId + '\'' +
                 ", results=" + results +
                 '}';
     }
