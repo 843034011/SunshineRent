@@ -81,6 +81,26 @@ public class MongoTestC {
         }
     }
 
+    @PostMapping(value="/quxiao")
+    public int cancelZan(Integer reid, Integer reg, HttpSession session){
+        remarks remarks=new remarks();
+        List<Zans>zansList=new ArrayList<>();
+        Zans zans1=new Zans();
+        zans1.setZan(reid);
+        zansList.add(zans1);
+        remarks.setReg_id(reg);
+        remarks.setZan(zansList);
+
+        System.out.println(zansList.toString());
+        System.out.println(reid);
+        System.out.println(reg);
+
+        mtdao.delete(remarks);
+
+        return 0;
+    }
+
+
    @PostMapping(value="/dianzan")
    public int addzan(Integer reid, Integer reg, HttpSession session){
 
@@ -100,6 +120,7 @@ public class MongoTestC {
         System.out.println(reid);
         System.out.println(reg);
         remarks remarks1=mtdao.updateTest(remarks);
+
        /*System.out.println("cccccccccc"+remarks.toString());
 */
 

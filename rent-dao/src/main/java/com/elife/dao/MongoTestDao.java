@@ -52,10 +52,11 @@ public class MongoTestDao {
         System.out.println( "regid+++++++"+remarks.getReg_id() );
         System.out.println("zan+++++++++"+remarks.getZan().toString());
         Zans zans=new Zans();
+        zans.setZan(remarks.getZan().get(0).getZan());
         List<Zans> zansList = remarks.getZan();
 
         Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
-
+        zansList.add(zans);
         mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
 
         /*  System.out.println(likeComment.toString());
@@ -84,14 +85,21 @@ public class MongoTestDao {
 /**
      * 删除对象
      *
-     * @param id*/
-
+     * */
 
 /*
-    public void deleteTestById(Integer id) {
-        Query query = new Query(Criteria.where("id").is(id));
-        mongoTemplate.remove(query,remarks.class);
-    }*/
+Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));*/
+    public void delete(remarks remarks) {
+        System.out.println( "regid+++++++"+remarks.getReg_id() );
+        System.out.println("zan+++++++++"+remarks.getZan().toString());
+        Zans zans=new Zans();
+        zans.setZan(remarks.getZan().get(0).getZan());
+        List<Zans> zansList = remarks.getZan();
+
+        Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
+        zansList.remove(zans);
+        mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
+    }
 
 
 }

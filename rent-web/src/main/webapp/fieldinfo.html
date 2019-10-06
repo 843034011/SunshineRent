@@ -1100,11 +1100,11 @@
 
                         }
                         if(colorflag==true){
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="1" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
 
                                 + '</div>'
                         }else{
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="0" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
 
                                 + '</div>'
                         }
@@ -1388,9 +1388,10 @@
 
     }
 
+
+
+    console.log(comments)
     var flag = false;
-
-
     var color1 = "#e5312a";
     var color2 = "#0f0f0f";
   /*  '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
@@ -1398,6 +1399,7 @@
     +'<span>16</span>'
     + '</div>'*/
      function dianzan() {
+
         var reid = $.cookie('id');
         if(reid==undefined){
             swal("先登录在点赞哦")
@@ -1413,19 +1415,44 @@
                        console.log($(this).attr("value"))
                        reg=$(this).attr("value");//fabiaopinglunderen
                        var bch = $(this).children();
-                       console.log(bch)
-                       bch.css("color",color1)
-                       var count=bch.text();
-                       console.log(count)
-                      var count1= parseInt(count);
-                       bch.text(count1+1);
-                       console.log(count1+1)
-                       console.log(reg)
-                       console.log(reid)
-                       $.post({
-                           url:"dianzan",
-                           data:{"reid":reid,"reg":reg},
-                       })
+                       console.log(bch.attr("value"))
+
+                 if(bch.attr("value")==0){
+                     bch.attr("value","1");
+                     console.log(bch.attr("value"))
+                     bch.css("color",color1)
+
+                     var count=bch.text();
+                     console.log(count)
+                     var count1= parseInt(count);
+                     bch.text(count1+1);
+                     console.log(count1+1)
+                     console.log(reg)
+                     console.log(reid)
+                     $.post({
+                         url:"dianzan",
+                         data:{"reid":reid,"reg":reg},
+                     })
+                 }else if(bch.attr("value")==1){
+                     bch.attr("value","0");
+                     console.log(bch.attr("value"))
+                     bch.css("color",color2)
+
+                     var count=bch.text();
+                     console.log(count)
+                     var count1= parseInt(count);
+                     bch.text(count1-1);
+                     console.log(count1+1)
+                     console.log(reg)
+                     console.log(reid)
+                     $.post({
+                         url:"quxiao",
+                         data:{
+                             "reid":reid,"reg":reg
+                         }
+                     })
+                 }
+
 
 
                 })
