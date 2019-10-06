@@ -3,6 +3,7 @@
 <mapper namespace="com.elife.mapper.UserOrderMapper" >
   <resultMap id="BaseResultMap" type="com.elife.pojo.UserOrder" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="order_number" property="orderNumber" jdbcType="INTEGER" />
     <result column="order_price" property="orderPrice" jdbcType="DECIMAL" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
@@ -75,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, order_number, order_price, start_time, end_time, order_remark, order_status, 
+    id, order_no, order_number, order_price, start_time, end_time, order_remark, order_status,
     create_time, rent_id, field_id, goods_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.elife.pojo.UserOrderExample" >
@@ -109,11 +110,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.elife.pojo.UserOrder" >
-    insert into user_order (id, order_number, order_price, 
+    insert into user_order (id, order_no, order_number, order_price,
       start_time, end_time, order_remark, 
       order_status, create_time, rent_id, 
       field_id, goods_id)
-    values (#{id,jdbcType=INTEGER}, #{orderNumber,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, 
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderNumber,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL},
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{orderRemark,jdbcType=VARCHAR}, 
       #{orderStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{rentId,jdbcType=INTEGER}, 
       #{fieldId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER})
@@ -123,6 +124,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
       </if>
       <if test="orderNumber != null" >
         order_number,
@@ -158,6 +162,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="orderNumber != null" >
         #{orderNumber,jdbcType=INTEGER},
@@ -203,6 +210,9 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
       <if test="record.orderNumber != null" >
         order_number = #{record.orderNumber,jdbcType=INTEGER},
       </if>
@@ -241,6 +251,7 @@
   <update id="updateByExample" parameterType="map" >
     update user_order
     set id = #{record.id,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
       order_number = #{record.orderNumber,jdbcType=INTEGER},
       order_price = #{record.orderPrice,jdbcType=DECIMAL},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
@@ -258,6 +269,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.elife.pojo.UserOrder" >
     update user_order
     <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
       <if test="orderNumber != null" >
         order_number = #{orderNumber,jdbcType=INTEGER},
       </if>
@@ -293,7 +307,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.elife.pojo.UserOrder" >
     update user_order
-    set order_number = #{orderNumber,jdbcType=INTEGER},
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=INTEGER},
       order_price = #{orderPrice,jdbcType=DECIMAL},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},

@@ -7,6 +7,8 @@ import java.util.List;
 public class UserOrder {
     private Integer id;
 
+    private String orderNO;
+
     private Integer orderNumber;
 
     private BigDecimal orderPrice;
@@ -33,6 +35,14 @@ public class UserOrder {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getOrderNO() {
+        return orderNO;
+    }
+
+    public void setOrderNO(String orderNO) {
+        this.orderNO = orderNO;
     }
 
     public Integer getOrderNumber() {
@@ -129,6 +139,7 @@ public class UserOrder {
     public String toString() {
         return "UserOrder{" +
                 "id=" + id +
+                ", orderNO='" + orderNO + '\'' +
                 ", orderNumber=" + orderNumber +
                 ", orderPrice=" + orderPrice +
                 ", startTime=" + startTime +
