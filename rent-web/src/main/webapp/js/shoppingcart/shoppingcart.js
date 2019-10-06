@@ -57,7 +57,7 @@ $.post({
                     
                                     <div class="col-md-2 text-left">
                                         <div class="info">
-                                            <a href="../fieldinfo.html?id=${value.fieldId}">【${data.data.fieldName}】${data.data.fieldInfo}</a> 
+                                            <a href="../fieldinfo.html?id=${value.fieldId}"><span>【${data.data.fieldName}】</span>${data.data.fieldInfo}</a> 
                                         </div>                                      
                                     </div>
                                     <div class="col-md-2 text-center three-line">
@@ -128,7 +128,7 @@ $.post({
                     
                                     <div class="col-md-2 text-left">
                                         <div class="info">
-                                            <a href="../productinfo.html?id=${value.goodsId}">【${data.data.goodsName}】${data.data.goodsInfo}</a> 
+                                            <a href="../productinfo.html?id=${value.goodsId}"><span>【${data.data.goodsName}】</span>${data.data.goodsInfo}</a> 
                                         </div>                                      
                                     </div>
                                     <div class="col-md-2 text-center two-line">
@@ -423,6 +423,7 @@ function totalmoney() {
             var shoppingCartId = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("id")
             var type = $(".choose-one-box")[i].parentNode.parentNode.getAttribute("kind")
             var id = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].getAttribute("num")
+            var name = $(".choose-one-box")[i].parentNode.parentNode.children[1].children[0].children[0].children[0].innerText
 
             var sedate = $(".choose-one-box")[i].parentNode.parentNode.children[4].children[0].children[0].innerText.trim()
             var sdate = sedate.split("-")[0].replace(/\//g, "-");
@@ -448,6 +449,7 @@ function totalmoney() {
                 "shoppingCartId": shoppingCartId,
                 "type": type,
                 "id": id,
+                "name": name,
                 "startTime": startTime,
                 "endTime": endTime,
                 "total": total,
@@ -461,6 +463,7 @@ function totalmoney() {
 
 
     var json = {
+        "orderNumber": $("#num").text(),
         "rId": regId,
         "orderTotal": $(".total-money").text(),
         "results": results
@@ -470,13 +473,13 @@ function totalmoney() {
 
     if (1) {
         $.post({
-            url: "/orders/insertorder",
+            url: "/orders/addinfo",
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(json),
             dataType: "json",
             success: function (data) {
                 if(data.code == 0){
-
+                    window.location.href = "/orders/ensureorder"
                 }
             }
         })

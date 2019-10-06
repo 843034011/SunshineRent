@@ -4,16 +4,69 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ensureorder/ensureorder.css">
 
 </head>
 <body>
 
+<!-- 模态框 -->
+<div class="modal fade" id="new">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="float: left">选择一个收货地址</span>
+                <span style="float: right"><a href="/userAddressCon/showAddress">地址管理</a></span>
+            </div>
+            <div>
+                <ul id="content">
+
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-success btn-sub" type="button" value="确定" onclick="addaddress()">
+                <input class="btn btn-danger btn-cal" data-dismiss="modal" type="button" value="取消">
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div style="width: 60%; margin: auto ;border: 1px black solid;">
+        <form>
+            <div class="form-group">
+                <label>订单编号：</label>
+                <span id="orderId"></span>
+            </div>
+            <div class="form-group">
+                <label>订单数量：</label>
+                <span id="orderNumber"></span>
+            </div>
+            <div class="form-group">
+                <label>订单总价：</label>
+                <span id="orderTotal"></span>
+            </div>
+            <div class="form-group">
+                <label>订单详情：</label>
+                <div id="results" style="width: 80%;margin: auto">
+                    <ul class="order-list">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center" style="width: 100%;height: 40px;border-top: 1px black solid">
+                <div style="width: 30%;height: 40px;background-color: red; margin: auto;">
+                    <span id="confirm" onclick="confirm()">确认订单</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <script src="../jquery/jquery-3.4.1.js"></script>
 <script src="../jquery/jquery.cookie.js"></script>
-
-<script>
-    console.log($.cookie("waitting"))
-</script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../js/ensureorder/ensureorder.js"></script>
 
 
 </body>
