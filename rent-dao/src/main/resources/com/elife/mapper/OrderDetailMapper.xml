@@ -457,4 +457,22 @@
   <select id="selectGoodsOrderDateUnEvaluate" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select <include refid="Base_Column_List" /> from order_detail where goods_id = #{num} and product_status = '未归还'
   </select>
+
+  <insert id="insertOrderDetailField">
+    insert into order_detail(order_id, goods_id, field_id, product_name, product_type,
+      product_address, product_number,product_deposit, product_price,
+      product_total,start_time, end_time, product_status,extra2)
+    values (#{orderResult.id},#{orderResult.goodsId},#{orderResult.fieldId},#{orderResult.name},#{orderResult.type},
+      #{rentField.fieldAddress},'1',#{rentField.fieldDeposit},#{rentField.fieldDayprice},
+      #{orderResult.total},#{orderResult.startTime},#{orderResult.endTime},'未归还',#{order})
+  </insert>
+
+  <insert id="insertOrderDetailGoods">
+    insert into order_detail(order_id, goods_id, field_id, product_name, product_type,
+      product_number,product_deposit, product_price,
+      extra1,product_total,start_time, end_time, product_status,extra2)
+    values (#{orderResult.id},#{orderResult.goodsId},#{orderResult.fieldId},#{orderResult.name},#{orderResult.type},
+      '1',#{rentGoods.goodsDeposit},#{rentGoods.goodsDayprice},
+      #{orderResult.address},#{orderResult.total},#{orderResult.startTime},#{orderResult.endTime},'未归还',#{order})
+  </insert>
 </mapper>

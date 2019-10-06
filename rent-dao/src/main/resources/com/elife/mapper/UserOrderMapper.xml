@@ -334,4 +334,9 @@
     OR (#{startTime}>=start_time AND end_time >= #{endTime})
     OR (end_time >= #{startTime} AND #{endTime}>=end_time )
   </select>
+
+  <insert id="insertOrder" parameterType="com.elife.dto.TotalOrderResult">
+    insert into user_order (id, order_number, order_price,order_status, create_time, rent_id)
+    values (null,#{totalOrderResult.orderNumber},#{totalOrderResult.orderTotal},#{totalOrderResult.orderStatus},#{totalOrderResult.createTime},#{totalOrderResult.rId})
+  </insert>
 </mapper>

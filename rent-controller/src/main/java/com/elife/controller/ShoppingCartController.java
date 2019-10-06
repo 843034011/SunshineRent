@@ -22,8 +22,6 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCartService shoppingCartService;
 
-    @Autowired
-    fieldsServiceImpl fieldsService;
     /**
      * 跳转购物车界面 跳转到
      * /WEN-INF/shoppingcart.html

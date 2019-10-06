@@ -1,14 +1,15 @@
 package com.elife.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class TotalOrderResult {
     private String orderId;
-    private String orderNumber;
-    private String orderTotal;
+    private Integer orderNumber;
+    private BigDecimal orderTotal;
     private String orderStatus;
     private String createTime;
-    private String rId;
+    private Integer rId;
     private List<OrderResult> results;
 
     public String getOrderId() {
@@ -19,19 +20,19 @@ public class TotalOrderResult {
         this.orderId = orderId;
     }
 
-    public String getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public String getOrderTotal() {
+    public BigDecimal getOrderTotal() {
         return orderTotal;
     }
 
-    public void setOrderTotal(String orderTotal) {
+    public void setOrderTotal(BigDecimal orderTotal) {
         this.orderTotal = orderTotal;
     }
 
@@ -51,11 +52,11 @@ public class TotalOrderResult {
         this.createTime = createTime;
     }
 
-    public String getrId() {
+    public Integer getrId() {
         return rId;
     }
 
-    public void setrId(String rId) {
+    public void setrId(Integer rId) {
         this.rId = rId;
     }
 

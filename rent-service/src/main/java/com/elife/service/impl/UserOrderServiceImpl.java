@@ -1,5 +1,6 @@
 package com.elife.service.impl;
 
+import com.elife.dto.TotalOrderResult;
 import com.elife.mapper.UserOrderMapper;
 import com.elife.pojo.UserOrder;
 import com.elife.service.UserOrderService;
@@ -52,5 +53,10 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public int updateByPrimaryKey(UserOrder record) {
         return userOrderMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public int insertOrder(TotalOrderResult totalOrderResult) {
+        return userOrderMapper.insertOrder(totalOrderResult);
     }
 }

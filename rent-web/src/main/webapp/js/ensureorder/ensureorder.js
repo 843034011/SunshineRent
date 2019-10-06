@@ -171,7 +171,7 @@ function confirm() {
         for (let i = 0; i < $(".address").length; i++) {
             if($(".address")[i].innerHTML == "点击此处选择收获地址！"){
                 alert("请为全部商品选择收获地址！！！")
-                break
+                return
             }
         }
     }

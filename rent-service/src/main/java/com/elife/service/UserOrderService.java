@@ -1,6 +1,7 @@
 package com.elife.service;
 
 
+import com.elife.dto.TotalOrderResult;
 import com.elife.pojo.UserOrder;
 
 import java.util.List;
@@ -38,4 +39,6 @@ public interface UserOrderService {
     UserOrder selectByOrderId(int orderId);
 
     int updateByPrimaryKey(UserOrder record);
+
+    int insertOrder(TotalOrderResult totalOrderResult);
 }
