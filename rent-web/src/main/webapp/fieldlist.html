@@ -113,7 +113,7 @@
     <!-- header-top end -->
     <!-- header-middle start -->
     <div class="header-middle">
-        <div class="container" style="margin-left: 50px">
+        <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-3">
                     <!-- logo start -->
@@ -656,35 +656,35 @@
                         <div class="color-list sidebar-list">
                             <h3>可容纳人数:</h3>
                             <ul class="test">
-                                <li><a href="#" >0~10人</a></li>
-                                <li><a href="#" >10~20人</a></li>
+                                <li><a href="#">0~10人</a></li>
+                                <li><a href="#">10~20人</a></li>
                                 <li><a href="#">20~30人</a></li>
-                                <li><a href="#" >30~40人</a></li>
-                                <li><a href="#" >40~100人</a></li>
-                                <li><a href="#" >100人以上</a></li>
+                                <li><a href="#">30~40人</a></li>
+                                <li><a href="#">40~100人</a></li>
+                                <li><a href="#">100人以上</a></li>
                             </ul>
                         </div>
                         <!-- people-list end -->
                     </div>
                     <!-- shop-by-area end -->
                     <!-- Compare Products start -->
-               <!--     <div class="compare-products single-sidebar">
-                        <h2>Compare Products (3)</h2>
-                        <div class="all-compare-product">
-                            <ul>
-                                <li><p><a href="#">Bncover humour</a></p><a href="#" class="remove-icon-btn">remove</a>
-                                </li>
-                                <li><p><a href="#">Facilisis sagit</a></p><a href="#" class="remove-icon-btn">remove</a>
-                                </li>
-                                <li><p><a href="#">Etiam gravida</a></p><a href="#" class="remove-icon-btn">remove</a>
-                                </li>
-                            </ul>
-                            <div class="compare-action">
-                                <a href="#">Clear All</a>
-                                <a href="#" class="compare-btn">Compare</a>
-                            </div>
-                        </div>
-                    </div-->>
+                    <!--     <div class="compare-products single-sidebar">
+                             <h2>Compare Products (3)</h2>
+                             <div class="all-compare-product">
+                                 <ul>
+                                     <li><p><a href="#">Bncover humour</a></p><a href="#" class="remove-icon-btn">remove</a>
+                                     </li>
+                                     <li><p><a href="#">Facilisis sagit</a></p><a href="#" class="remove-icon-btn">remove</a>
+                                     </li>
+                                     <li><p><a href="#">Etiam gravida</a></p><a href="#" class="remove-icon-btn">remove</a>
+                                     </li>
+                                 </ul>
+                                 <div class="compare-action">
+                                     <a href="#">Clear All</a>
+                                     <a href="#" class="compare-btn">Compare</a>
+                                 </div>
+                             </div>
+                         </div-->>
                     <!--&lt;!&ndash; Compare Products end &ndash;&gt;
                     &lt;!&ndash; single-img-add start &ndash;&gt;-->
                     <!--<div class="single-img-add single-sidebar">
@@ -780,7 +780,7 @@
                                                         <span>
                                                           <i class="icon iconfont icon-calendar1"></i> 日期选择
                                                         </span>
-                    <i class="icon iconfont icon-danxian-youjiantou-copy" ></i>
+                    <i class="icon iconfont icon-danxian-youjiantou-copy"></i>
                 </button>
                 <!--	&lt;!&ndash; product-sgorting end &ndash;&gt;
                     &lt;!&ndash; all-product start &ndash;&gt;-->
@@ -1603,7 +1603,7 @@
                 <div class="htmleaf-container">
                     <p id="p2"></p>
                     <div class="container">
-                        <div class="row" style="min-height:500px;padding:2em 0;">
+                        <div class="row" style="padding:2em 0;">
                             <ul class="pagination" id="pagination2"></ul>
                         </div>
                     </div>
@@ -1611,10 +1611,11 @@
             </div>
         </div>
     </div>
-    </div>
-
 
 </section>
+
+<!-- 引入公共底部 -->
+<div class="add-footer" style="width:100%;margin: auto;"></div>
 
 <!-- footer-area end -->
 <!--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -1658,17 +1659,17 @@
 <script>
 
 
-    var lovefield=new Array();
+    var lovefield = new Array();
     var reid = $.cookie('id');
     $.get({
-        url:"fields/allshopping",
-        dataType:"json",
-        async:false,
-        success:function(data) {
+        url: "fields/allshopping",
+        dataType: "json",
+        async: false,
+        success: function (data) {
             console.log(data)
-            if(reid!=undefined){
-                for(var i=0;i<data.data.length;i++){
-                    if(reid==data.data[i].regId){
+            if (reid != undefined) {
+                for (var i = 0; i < data.data.length; i++) {
+                    if (reid == data.data[i].regId) {
                         lovefield.push(data.data[i].fieldId)
                     }
                 }
@@ -1676,107 +1677,105 @@
         }
 
     })
-function fenye(data){
 
-console.log(lovefield)
-    var lovefields = [];
-    for (var i = 0; i < lovefield.length; i++) {
-        if (lovefields.indexOf(lovefield[i]) === -1) {
-            lovefields.push(lovefield[i]);
+    function fenye(data) {
+
+        console.log(lovefield)
+        var lovefields = [];
+        for (var i = 0; i < lovefield.length; i++) {
+            if (lovefields.indexOf(lovefield[i]) === -1) {
+                lovefields.push(lovefield[i]);
+            }
         }
-    }
-console.log(lovefields)
+        console.log(lovefields)
 
-    var totalPages;
-    if(data.length%6==0){
-        totalPages=data.length/6
-    }else{
-        totalPages=data.length/6+1
-    }
-    $.jqPaginator('#pagination2', {
+        var totalPages;
+        if (data.length % 6 == 0) {
+            totalPages = data.length / 6
+        } else {
+            totalPages = data.length / 6 + 1
+        }
+        $.jqPaginator('#pagination2', {
 
-        totalPages:Math.floor(totalPages),
-        visiblePages: Math.floor(totalPages),
-        currentPage:1,
-        pageSize:6,
-        first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
-        prev: '<li class="prev"><a href="javascript:;">前一页</a></li>',
-        next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
-        last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
-        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-        onPageChange: function (num,type) {
-    console.log(data.length/6+1)
-             console.log( Math.floor(data.length/6+1))
-            /*  $('#p2').text(type + '：' + num);*/
+            totalPages: Math.floor(totalPages),
+            visiblePages: Math.floor(totalPages),
+            currentPage: 1,
+            pageSize: 6,
+            first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">前一页</a></li>',
+            next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
+            last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            onPageChange: function (num, type) {
+                console.log(data.length / 6 + 1)
+                console.log(Math.floor(data.length / 6 + 1))
+                /*  $('#p2').text(type + '：' + num);*/
 
-            var n=num-1;
-            var html1 = ''
-            $('.all-grid-product').text("");
-            if(data.length-n*6>=6)
-            {
-                for (i = 0; i < 6; i++) {
-                   /* console.log(data[i].picture.length)*/
-                    fieldpictures = data[i].fieldPictures[0]
-                    html1+='<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href="fieldinfo.html?id='+data[6*n+i].id+'">' +
-                        ' <div class="single-product-item">' +
-                        '<div class="product-image">' +
-                        '  <div class="sale-stiker product-sticker">' +
-                        ' <img src="img/product/sale1.png" alt="product sticker" />' +
-                        ' </div>'+
-                            '<a href="fieldinfo.html" title=""><img src="'+data[6*n+i].fieldPictures[0].fieldPicture+'"  alt="product image" style="width:700px;height:260px"/></a>' +
-                        ' <div class="single-product-overlay">' +
-                        ' <div class="rating-box">' +
-                        ' <span class="regular-price">'+  data[6*n+i].fieldGrade +'分  </span>' +
-                        ' </div>' +
-                        '<div class="product-quick-view">' +
-                        '<ul>'
-                    if(reid!=undefined){
-                        for(var q=0;q<lovefields.length;q++){
-                            if(data[6*n+i].id==lovefields[q]){
-                                html1+= ' <li><a href="#"><span class="glyphicon glyphicon-heart" style="color:#51c6ff;color-width:50%; font-size: 15px;"> </span></i></a></li>'
+                var n = num - 1;
+                var html1 = ''
+                $('.all-grid-product').text("");
+                if (data.length - n * 6 >= 6) {
+                    for (i = 0; i < 6; i++) {
+                        /* console.log(data[i].picture.length)*/
+                        fieldpictures = data[i].fieldPictures[0]
+                        html1 += '<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href="fieldinfo.html?id=' + data[6 * n + i].id + '">' +
+                            ' <div class="single-product-item">' +
+                            '<div class="product-image">' +
+                            '  <div class="sale-stiker product-sticker">' +
+                            ' <img src="img/product/sale1.png" alt="product sticker" />' +
+                            ' </div>' +
+                            '<a href="fieldinfo.html" title=""><img src="' + data[6 * n + i].fieldPictures[0].fieldPicture + '"  alt="product image" style="width:700px;height:260px"/></a>' +
+                            ' <div class="single-product-overlay">' +
+                            ' <div class="rating-box">' +
+                            ' <span class="regular-price">' + data[6 * n + i].fieldGrade + '分  </span>' +
+                            ' </div>' +
+                            '<div class="product-quick-view">' +
+                            '<ul>'
+                        if (reid != undefined) {
+                            for (var q = 0; q < lovefields.length; q++) {
+                                if (data[6 * n + i].id == lovefields[q]) {
+                                    html1 += ' <li><a href="#"><span class="glyphicon glyphicon-heart" style="color:#51c6ff;color-width:50%; font-size: 15px;"> </span></i></a></li>'
+                                }
                             }
                         }
+
+
+                        html1 += '<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
+                            ' <li><a href="fieldinfo?id=' + data[6 * n + i].id + '"><i class="fa fa-search"></i></a></li>' +
+                            ' </ul>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="single-product-text">' +
+                            '<h2><a class="product-title" href="fieldinfo.html?id=' + data[6 * n + i].id + '" title="">' + data[6 * n + i].fieldName + '</a></h2>' +
+                            ' <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:' + data[6 * n + i].fieldVolume + '人</a></h2>' +
+                            ' <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:' + data[6 * n + i].rentCount + '次</a></h2>' +
+                            '<div class="product-price">' +
+                            '<span class="regular-price">¥' + data[6 * n + i].fieldDayprice + '</span>' +
+                            '</div>' +
+                            '<div class="pro-add-to-cart">' +
+                            ' <p><a href="#" title="Add to Cart">加入购物车</a></p>' +
+                            ' </div>' +
+                            ' </div>' +
+                            ' </div>' +
+                            ' </div>'
+                        $('.all-grid-product').html(html1);
+
+
                     }
-
-
-
-                        html1+='<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
-                        ' <li><a href="fieldinfo?id='+data[6*n+i].id+'"><i class="fa fa-search"></i></a></li>' +
-                        ' </ul>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="single-product-text">' +
-                        '<h2><a class="product-title" href="fieldinfo.html?id='+data[6*n+i].id+'" title="">'+data[6*n+i].fieldName+'</a></h2>' +
-                        ' <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:'+data[6*n+i].fieldVolume+'人</a></h2>' +
-                        ' <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:'+data[6*n+i].rentCount+'次</a></h2>' +
-                        '<div class="product-price">' +
-                        '<span class="regular-price">¥'+data[6*n+i].fieldDayprice+'</span>' +
-                        '</div>' +
-                        '<div class="pro-add-to-cart">' +
-                        ' <p><a href="#" title="Add to Cart">加入购物车</a></p>' +
-                        ' </div>' +
-                        ' </div>' +
-                        ' </div>' +
-                        ' </div>'
-                    $('.all-grid-product').html(html1);
-
-
-
-                }
-            }else if(data.length-n*6>0){
-                console.log(data.length-6*(n-1))
-                for (i = 0; i <data.length-6*n; i++) {
-                    fieldpictures = data[i].fieldPictures[0]
-                    console.log(fieldpictures = data[i].fieldPictures[0].fieldPicture)
-                    $('.all-grid-product').append(
-                        `<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href='fieldinfo.html?id=${data[6*n+i].id}' ">
+                } else if (data.length - n * 6 > 0) {
+                    console.log(data.length - 6 * (n - 1))
+                    for (i = 0; i < data.length - 6 * n; i++) {
+                        fieldpictures = data[i].fieldPictures[0]
+                        console.log(fieldpictures = data[i].fieldPictures[0].fieldPicture)
+                        $('.all-grid-product').append(
+                            `<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href='fieldinfo.html?id=${data[6 * n + i].id}' ">
     <div class="single-product-item">
         <div class="product-image">
             <div class="sale-stiker product-sticker">
                 <img src="img/product/sale1.png" alt="product sticker" />
             </div>
-            <a href="fieldinfo.html" title=""><img src="${data[6*n+i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
+            <a href="fieldinfo.html" title=""><img src="${data[6 * n + i].fieldPictures[0].fieldPicture}"  alt="product image" style="width:700px;height:260px"/></a>
             <div class="single-product-overlay">
                 <div class="rating-box">
 
@@ -1796,11 +1795,11 @@ console.log(lovefields)
             </div>
         </div>
         <div class="single-product-text">
-            <h2><a class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">${data[6*n+i].fieldName}</a></h2>
-             <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">可容纳:${data[6*n+i].fieldVolume}人</a></h2>
-              <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6*n+i].id}" title="">已租次数:${data[6*n+i].rentCount}次</a></h2>
+            <h2><a class="product-title" href="fieldinfo.html?id=${data[6 * n + i].id}" title="">${data[6 * n + i].fieldName}</a></h2>
+             <h2 ><a style="font-size: 12px; float: left; color:grey" class="product-title" href="fieldinfo.html?id=${data[6 * n + i].id}" title="">可容纳:${data[6 * n + i].fieldVolume}人</a></h2>
+              <h2 ><a style="font-size: 12px; float: right;color:grey" class="product-title" href="fieldinfo.html?id=${data[6 * n + i].id}" title="">已租次数:${data[6 * n + i].rentCount}次</a></h2>
             <div class="product-price">
-                <span class="regular-price">¥${data[6*n+i].fieldDayprice}</span>
+                <span class="regular-price">¥${data[6 * n + i].fieldDayprice}</span>
             </div>
             <div class="pro-add-to-cart">
                 <p><a href="#" title="Add to Cart">加入购物车</a></p>
@@ -1808,48 +1807,47 @@ console.log(lovefields)
         </div>
     </div>
 </div>`
-                    )
+                        )
+                    }
                 }
+
+
             }
+        })
+    }
 
-
-
-        }
-    })
-}
-
-$(".test li a").click(function(){
-    var val=$(this).text();
-    alert(val);
-});
+    $(".test li a").click(function () {
+        var val = $(this).text();
+        alert(val);
+    });
 </script>
 
 
 <script>
 
-/*接受主页的name类型参数并且显示*/
+    /*接受主页的name类型参数并且显示*/
     /* <div class="row all-grid-product">*/
     var fieldpictures;
     var fielddatas;
 
-var url=decodeURI(location.href);
-var str = url.split("=");
-var name = str[1];
-console.log(name);
-var fielddatas;
-var databynames=new Array();
-var i=0
+    var url = decodeURI(location.href);
+    var str = url.split("=");
+    var name = str[1];
+    console.log(name);
+    var fielddatas;
+    var databynames = new Array();
+    var i = 0
     $.ajax({
         url: "fields/showallfields",
         dataType: "json",
         success: function (data) {
             console.log(name);
-            fielddatas=data.data
+            fielddatas = data.data
             console.log(data)
             console.log(data.data.length)
-             console.log(data.data[0].fieldType)
-            for(var j=0;j<data.data.length;j++){
-                if(data.data[j].fieldType==name){
+            console.log(data.data[0].fieldType)
+            for (var j = 0; j < data.data.length; j++) {
+                if (data.data[j].fieldType == name) {
                     databynames.push(data.data[j])
                     console.log(databynames);
 
@@ -1862,54 +1860,53 @@ var i=0
 
         }
     })
-var afterfield=databynames;//存放历经千难完线后的场地
+    var afterfield = databynames;//存放历经千难完线后的场地
 
-/*var findflag=false;
-var searchflag=false;
-var sortflag=false;
-var sliderflag=false;
-var finddata;
-var searchdata*/
+    /*var findflag=false;
+    var searchflag=false;
+    var sortflag=false;
+    var sliderflag=false;
+    var finddata;
+    var searchdata*/
 
 
-/*模糊查找*/
-function find(){
-    var nametype = $('#search').val();
-    var order=$("#choose").val();
-    console.log(renshumax)
-    console.log(renshumax)
-    console.log(renshumax)
-    $.get({
-        url: "fields/selectnametype",
-        dataType: "json",
-        data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
-        success:function(data){
-            console.log(data)
-            if(data.code==3){
-                swal("暂无该场地")
-            }else{
-                fenye(data.data)
-            }
-            if(afterfield.length>data.data.length){
-                for(var i=0;i<afterfield.length;i++){
-                    afterfield[i]=data.data[i];
-
+    /*模糊查找*/
+    function find() {
+        var nametype = $('#search').val();
+        var order = $("#choose").val();
+        console.log(renshumax)
+        console.log(renshumax)
+        console.log(renshumax)
+        $.get({
+            url: "fields/selectnametype",
+            dataType: "json",
+            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax},
+            success: function (data) {
+                console.log(data)
+                if (data.code == 3) {
+                    swal("暂无该场地")
+                } else {
+                    fenye(data.data)
                 }
-            }else{
-                for(var i=0;i<data.data.length;i++){
-                    afterfield[i]=data.data[i];
+                if (afterfield.length > data.data.length) {
+                    for (var i = 0; i < afterfield.length; i++) {
+                        afterfield[i] = data.data[i];
 
+                    }
+                } else {
+                    for (var i = 0; i < data.data.length; i++) {
+                        afterfield[i] = data.data[i];
+
+                    }
                 }
+                /*  afterfield.splice(data.data.length,afterfield.length-data.data.length);*/
+
+                console.log(afterfield)
+
+
             }
-          /*  afterfield.splice(data.data.length,afterfield.length-data.data.length);*/
-
-           console.log(afterfield)
-
-
-
-        }
-    })
-}
+        })
+    }
 
     console.log(afterfield)
 
@@ -1975,575 +1972,544 @@ function find(){
 <script>
 
 
-console.log(fielddatas)//全部数据
-var fielddates1=new Array();
-var alldatas=new Array();
+    console.log(fielddatas)//全部数据
+    var fielddates1 = new Array();
+    var alldatas = new Array();
 
 
+    console.log(afterfield)
 
 
-console.log(afterfield)
-
-
-
-/*模糊查找并且排序*/
-function number1(){
-     console.log(fielddatas);
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume<=10&&fielddatas[i].fieldVolume>0){
-            fielddates1.push(fielddatas[i]);
-
-        }
-
-    }
-    if(fielddates1.length==0){
-        swal("暂无可容纳0~10人场地")
-    }else{
-
-
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-
-            for (var i = 0; i < alldata.length; i++) {
-                if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
-                    alldatas.push(alldata[i]);
-                }
+    /*模糊查找并且排序*/
+    function number1() {
+        console.log(fielddatas);
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume <= 10 && fielddatas[i].fieldVolume > 0) {
+                fielddates1.push(fielddatas[i]);
 
             }
+
+        }
+        if (fielddates1.length == 0) {
+            swal("暂无可容纳0~10人场地")
+        } else {
+
+
+            if ($('#search').val() == '') {
+                /*alert("bbb")*/
+                if ($("#choose").val() == "price") {
+                    /*alert("aaaa")*/
+                    pricedatas = fielddates1.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
+
+                    fenye(pricedatas);
+
+
+                } else if ($("#choose").val() == "remark") {
+
+                    remarks = fielddates1.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? 1 : -1;
+                    })
+                    fenye(remarks)
+
+                } else if ($("#choose").val() == "number") {
+
+                    console.log(fielddates1.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    }))
+                    fenye(number)
+                } else {
+                    fenye(fielddates1)
+                }
+
+
+            } else {
+                if ($('#search').val() != '') {
+
+                    for (var i = 0; i < alldata.length; i++) {
+                        if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
+                            alldatas.push(alldata[i]);
+                        }
+
+                    }
+                    if ($("#choose").val() == "price") {
+                        pricedatas = alldatas.sort(function (a, b) {
+                            return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                        })
+
+                        fenye(pricedatas);
+
+                    } else if ($("#choose").val() == "remark") {
+                        remarks = alldatas.sort(function (a, b) {
+                            return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                        })
+
+                        fenye(remarks);
+
+
+                    } else if ($("#choose").val() == "number") {
+                        numbers = alldatas.sort(function (a, b) {
+                            return a.rentCount < b.rentCount ? -1 : 1;
+                        })
+
+                        fenye(numbers);
+                    } else {
+                        fenye(alldatas)
+                    }
+                }
+            }
+        }
+        fielddates1 = [];
+
+    }
+
+
+    function number2() {
+        console.log(fielddatas);
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume <= 20 && fielddatas[i].fieldVolume > 10) {
+                fielddates1.push(fielddatas[i]);
+
+            }
+
+        }
+
+
+        if ($('#search').val() == '') {
+            /*alert("bbb")*/
+
+
             if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
+                /*alert("aaaa")*/
+                pricedatas = fielddates1.sort(function (a, b) {
                     return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
                 })
 
                 fenye(pricedatas);
+
 
             } else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+
+                remarks = fielddates1.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? 1 : -1;
                 })
-
-                fenye(remarks);
-
+                fenye(remarks)
 
             } else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
-                    return a.rentCount < b.rentCount ? -1 : 1;
-                })
 
-                fenye(numbers);
+                console.log(fielddates1.sort(function (a, b) {
+                    return a.rentCount < b.rentCount ? -1 : 1;
+                }))
+                fenye(number)
             } else {
-                fenye(alldatas)
+                fenye(fielddates1)
             }
-        }
-    }
-    }
-    fielddates1=[];
-
-}
 
 
-function number2(){
-    console.log(fielddatas);
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume<=20&&fielddatas[i].fieldVolume>10){
-            fielddates1.push(fielddatas[i]);
+        } else {
+            if ($('#search').val() != '') {
 
-        }
+                for (var i = 0; i < alldata.length; i++) {
+                    if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
+                        alldatas.push(alldata[i]);
+                    }
 
-    }
-
-
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-
-            for(var i=0;i<alldata.length;i++){
-                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
-                    alldatas.push(alldata[i]);
                 }
+                if ($("#choose").val() == "price") {
+                    pricedatas = alldatas.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
+
+                    fenye(pricedatas);
+
+                } else if ($("#choose").val() == "remark") {
+                    remarks = alldatas.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                    })
+
+                    fenye(remarks);
+
+
+                } else if ($("#choose").val() == "number") {
+                    numbers = alldatas.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    })
+
+                    fenye(numbers);
+                } else {
+                    fenye(alldatas)
+                }
+            }
+
+        }
+
+        fielddates1 = [];
+        alldatas = [];
+    }
+
+
+    function number3() {
+        console.log(fielddatas);
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume <= 30 && fielddatas[i].fieldVolume > 20) {
+                fielddates1.push(fielddatas[i]);
+
 
             }
+
+        }
+
+
+        if ($('#search').val() == '') {
+            /*alert("bbb")*/
+
+
             if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
+                /*alert("aaaa")*/
+                pricedatas = fielddates1.sort(function (a, b) {
                     return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
                 })
 
                 fenye(pricedatas);
 
-            }
-            else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+
+            } else if ($("#choose").val() == "remark") {
+
+                remarks = fielddates1.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? 1 : -1;
                 })
+                fenye(remarks)
 
-                fenye(remarks);
+            } else if ($("#choose").val() == "number") {
 
-
-            }
-            else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
+                console.log(fielddates1.sort(function (a, b) {
                     return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }else{
-                fenye(alldatas)
+                }))
+                fenye(number)
+            } else {
+                fenye(fielddates1)
             }
-        }
-
-    }
-
-    fielddates1=[];
-    alldatas=[];
-}
 
 
+        } else {
+            if ($('#search').val() != '') {
 
+                for (var i = 0; i < alldata.length; i++) {
+                    if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
+                        alldatas.push(alldata[i]);
+                    }
 
-function number3(){
-    console.log(fielddatas);
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume<=30&&fielddatas[i].fieldVolume>20){
-            fielddates1.push(fielddatas[i]);
-
-
-        }
-
-    }
-
-
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-
-            for(var i=0;i<alldata.length;i++){
-                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
-                    alldatas.push(alldata[i]);
                 }
+                if ($("#choose").val() == "price") {
+                    pricedatas = alldatas.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
+
+                    fenye(pricedatas);
+
+                } else if ($("#choose").val() == "remark") {
+                    remarks = alldatas.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                    })
+
+                    fenye(remarks);
+
+
+                } else if ($("#choose").val() == "number") {
+                    numbers = alldatas.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    })
+
+                    fenye(numbers);
+                } else {
+                    fenye(alldatas)
+                }
+            }
+
+        }
+        fielddates1 = [];
+        alldatas = [];
+    }
+
+    function number4() {
+        console.log(fielddatas);
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume <= 40 && fielddatas[i].fieldVolume > 30) {
+                fielddates1.push(fielddatas[i]);
+
 
             }
+
+        }
+
+
+        if ($('#search').val() == '') {
+            /*alert("bbb")*/
+
+
             if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
+                /*alert("aaaa")*/
+                pricedatas = fielddates1.sort(function (a, b) {
                     return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
                 })
 
                 fenye(pricedatas);
 
-            }
-            else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+
+            } else if ($("#choose").val() == "remark") {
+
+                remarks = fielddates1.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? 1 : -1;
                 })
+                fenye(remarks)
 
-                fenye(remarks);
+            } else if ($("#choose").val() == "number") {
 
-
-            }
-            else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
+                console.log(fielddates1.sort(function (a, b) {
                     return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }else{
-                fenye(alldatas)
+                }))
+                fenye(number)
+            } else {
+                fenye(fielddates1)
             }
-        }
-
-    }
-    fielddates1=[];
-    alldatas=[];
-}
-
-function number4(){
-    console.log(fielddatas);
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume<=40&&fielddatas[i].fieldVolume>30){
-            fielddates1.push(fielddatas[i]);
 
 
-        }
+        } else {
+            if ($('#search').val() != '') {
 
-    }
+                for (var i = 0; i < alldata.length; i++) {
+                    if (alldata[i].fieldVolume <= 10 && alldata[i].fieldVolume > 0) {
+                        alldatas.push(alldata[i]);
+                    }
 
-
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-
-            for(var i=0;i<alldata.length;i++){
-                if(alldata[i].fieldVolume<=10&&alldata[i].fieldVolume>0){
-                    alldatas.push(alldata[i]);
                 }
+                if ($("#choose").val() == "price") {
+                    pricedatas = alldatas.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
 
+                    fenye(pricedatas);
+
+                } else if ($("#choose").val() == "remark") {
+                    remarks = alldatas.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                    })
+
+                    fenye(remarks);
+
+
+                } else if ($("#choose").val() == "number") {
+                    numbers = alldatas.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    })
+
+                    fenye(numbers);
+                } else {
+                    fenye(alldatas)
+                }
             }
+
+        }
+        fielddates1 = [];
+        alldatas = [];
+    }
+
+
+    function number6() {
+        console.log(fielddatas);
+        console.log(alldata)
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume >= 100) {
+                fielddates1.push(fielddatas[i]);
+            }
+        }
+
+        console.log(fielddates1)
+        if ($('#search').val() == '') {
+            /*alert("bbb")*/
+
+
             if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
+                /*alert("aaaa")*/
+                pricedatas = fielddates1.sort(function (a, b) {
                     return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
                 })
 
                 fenye(pricedatas);
 
-            }
-            else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+
+            } else if ($("#choose").val() == "remark") {
+
+                remarks = fielddates1.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? 1 : -1;
                 })
+                fenye(remarks)
 
-                fenye(remarks);
+            } else if ($("#choose").val() == "number") {
 
-
-            }
-            else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
+                console.log(fielddates1.sort(function (a, b) {
                     return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }else{
-                fenye(alldatas)
+                }))
+                fenye(number)
+            } else {
+                fenye(fielddates1)
             }
-        }
-
-    }
-    fielddates1=[];
-    alldatas=[];
-}
 
 
+        } else {
+            if ($('#search').val() != '') {
+                console.log(alldata)
+                for (var i = 0; i < alldata.length; i++) {
+                    if (alldata[i].fieldVolume >= 100) {
+                        alldatas.push(alldata[i]);
+                    }
 
-function number6(){
-    console.log(fielddatas);
-    console.log(alldata)
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume>=100){
-            fielddates1.push(fielddatas[i]);
-        }
-    }
-
-console.log(fielddates1)
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-console.log(alldata)
-            for(var i=0;i<alldata.length;i++){
-                if(alldata[i].fieldVolume>=100){
-                    alldatas.push(alldata[i]);
                 }
+                if ($("#choose").val() == "price") {
+                    pricedatas = alldatas.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
+
+                    fenye(pricedatas);
+
+                } else if ($("#choose").val() == "remark") {
+                    remarks = alldatas.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                    })
+
+                    fenye(remarks);
+
+
+                } else if ($("#choose").val() == "number") {
+                    numbers = alldatas.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    })
+
+                    fenye(numbers);
+                } else {
+                    fenye(alldatas)
+                }
+            }
+
+        }
+        fielddates1 = [];
+        alldatas = [];
+    }
+
+
+    function number5() {
+        console.log(fielddatas);
+        for (var i = 0; i < fielddatas.length; i++) {
+            if (fielddatas[i].fieldVolume <= 100 && fielddatas[i].fieldVolume > 40) {
+                fielddates1.push(fielddatas[i]);
+
 
             }
+
+        }
+
+
+        if ($('#search').val() == '') {
+            /*alert("bbb")*/
+
+
             if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
+                /*alert("aaaa")*/
+                pricedatas = fielddates1.sort(function (a, b) {
                     return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
                 })
 
                 fenye(pricedatas);
 
-            }
-            else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
+
+            } else if ($("#choose").val() == "remark") {
+
+                remarks = fielddates1.sort(function (a, b) {
+                    return a.fieldGrade < b.fieldGrade ? 1 : -1;
                 })
+                fenye(remarks)
 
-                fenye(remarks);
+            } else if ($("#choose").val() == "number") {
 
-
-            }
-            else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
+                console.log(fielddates1.sort(function (a, b) {
                     return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }else{
-                fenye(alldatas)
+                }))
+                fenye(number)
+            } else {
+                fenye(fielddates1)
             }
+
+
+        } else {
+            if ($('#search').val() != '') {
+
+                for (var i = 0; i < alldata.length; i++) {
+                    if (alldata[i].fieldVolume <= 100 && alldata[i].fieldVolume > 40) {
+                        alldatas.push(fielddatas[i]);
+                    }
+
+                }
+                if ($("#choose").val() == "price") {
+                    pricedatas = alldatas.sort(function (a, b) {
+                        return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
+                    })
+
+                    fenye(pricedatas);
+
+                } else if ($("#choose").val() == "remark") {
+                    remarks = alldatas.sort(function (a, b) {
+                        return a.fieldGrade < b.fieldGrade ? -1 : 1;
+                    })
+
+                    fenye(remarks);
+
+
+                } else if ($("#choose").val() == "number") {
+                    numbers = alldatas.sort(function (a, b) {
+                        return a.rentCount < b.rentCount ? -1 : 1;
+                    })
+
+                    fenye(numbers);
+                } else {
+                    fenye(alldatas)
+                }
+            }
+
         }
 
+        fielddates1 = [];
+        alldatas = [];
     }
-    fielddates1=[];
-    alldatas=[];
-}
+
+    var pricedatas;
+    var remarks;
+    var number;
 
 
-function number5(){
-    console.log(fielddatas);
-    for(var i=0;i<fielddatas.length;i++){
-        if(fielddatas[i].fieldVolume<=100&&fielddatas[i].fieldVolume>40){
-            fielddates1.push(fielddatas[i]);
+    function sortbymark() {
 
-
-        }
-
-    }
-
-
-    if ($('#search').val() == '') {
-        /*alert("bbb")*/
-
-
-        if ($("#choose").val() == "price") {
-            /*alert("aaaa")*/
-            pricedatas = fielddates1.sort(function (a, b) {
-                return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-            })
-
-            fenye(pricedatas);
-
-
-        }
-        else if ($("#choose").val() == "remark") {
-
-            remarks = fielddates1.sort(function (a, b) {
-                return a.fieldGrade < b.fieldGrade ? 1 : -1;
-            })
-            fenye(remarks)
-
-        }
-        else if ($("#choose").val() == "number") {
-
-            console.log(fielddates1.sort(function (a, b) {
-                return a.rentCount < b.rentCount ? -1 : 1;
-            }))
-            fenye(number)
-        }else{
-            fenye(fielddates1)
-        }
-
-
-    }else {
-        if ($('#search').val() != '') {
-
-            for(var i=0;i<alldata.length;i++){
-                if(alldata[i].fieldVolume<=100&&alldata[i].fieldVolume>40){
-                    alldatas.push(fielddatas[i]);
+        var nametype = $('#search').val();
+        var order = $("#choose").val();
+        console.log(nametype)
+        console.log(order)
+        $.get({
+            url: "fields/selectnametype",
+            dataType: "json",
+            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax},
+            success: function (data) {
+                console.log(data)
+                afterfield = data.data
+                if (data.code == 3) {
+                    swal("暂无该场地")
+                } else {
+                    fenye(data.data)
                 }
 
             }
-            if ($("#choose").val() == "price") {
-                pricedatas = alldatas.sort(function (a, b) {
-                    return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-                })
-
-                fenye(pricedatas);
-
-            }
-            else if ($("#choose").val() == "remark") {
-                remarks = alldatas.sort(function (a, b) {
-                    return a.fieldGrade < b.fieldGrade ? -1 : 1;
-                })
-
-                fenye(remarks);
-
-
-            }
-            else if ($("#choose").val() == "number") {
-                numbers = alldatas.sort(function (a, b) {
-                    return a.rentCount < b.rentCount ? -1 : 1;
-                })
-
-                fenye(numbers);
-            }else{
-                fenye(alldatas)
-            }
-        }
+        })
 
     }
-
-    fielddates1=[];
-    alldatas=[];
-}
-var pricedatas;
-var remarks;
-var number;
-
-
-function sortbymark() {
-
-    var nametype = $('#search').val();
-    var order=$("#choose").val();
-    console.log(nametype)
-    console.log(order)
-    $.get({
-        url: "fields/selectnametype",
-        dataType: "json",
-        data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
-        success:function(data){
-            console.log(data)
-            afterfield=data.data
-            if(data.code==3){
-                swal("暂无该场地")
-            }else{
-                fenye(data.data)
-            }
-
-        }
-    })
-
-}
-
-
-
-
 
 
 </script>
@@ -2555,13 +2521,12 @@ function sortbymark() {
 <script>
 
 
-
-var datearr=new Array();
-var datearr1=new Array();
-var cannotid=new Array();//存放不能的日期
-var fieldriqi;//存放日期筛选后的
-var choosestart;//选择的开始日期
-var chooseend;//选择的结束日期
+    var datearr = new Array();
+    var datearr1 = new Array();
+    var cannotid = new Array();//存放不能的日期
+    var fieldriqi;//存放日期筛选后的
+    var choosestart;//选择的开始日期
+    var chooseend;//选择的结束日期
     function dw(date) {
         var y = date.getFullYear();
         var m = date.getMonth() + 1;
@@ -2569,9 +2534,8 @@ var chooseend;//选择的结束日期
         var d = date.getDate();
         d = d < 10 ? ('0' + d) : d;
 
-        return y + '/' + m + '/' + d ;
+        return y + '/' + m + '/' + d;
     };
-
 
 
     $('.ranges_1 ul').remove();
@@ -2583,9 +2547,9 @@ var chooseend;//选择的结束日期
 
                 '今天': [moment(), moment()],
                 '明天': [moment().subtract(-1, 'days'), moment().subtract(-1, 'days')],
-                '未来七天': [moment(),moment().subtract(-6, 'days')],
-                '未来30天': [moment(),moment().subtract(-29, 'days')],
-                '未来60天': [moment(),moment().subtract(-59, 'days'), ],
+                '未来七天': [moment(), moment().subtract(-6, 'days')],
+                '未来30天': [moment(), moment().subtract(-29, 'days')],
+                '未来60天': [moment(), moment().subtract(-59, 'days'),],
 
 
             },
@@ -2607,99 +2571,101 @@ var chooseend;//选择的结束日期
         },*/
 
 
-        function(start, end,label) {
+        function (start, end, label) {
             /*alert(start.)*/
             /* var valid = !(start.getDay() == 0 || start.getDay() == 6);  // 禁用 星期六 和 星期日
              var _class = '';
              var _tooltip = valid ? '' : 'weekends are disabled';
              return [valid,_class,_tooltip];*/
             //label:通过它来知道用户选择的是什么，传给后台进行相应的展示
-            if(label=='全部'){
+            if (label == '全部') {
 
                 $('#daterange-btn span').html('全部');
-                time=start.format('YYYY/MM/DD') + " " + end.format('YYYY/MM/DD');
+                time = start.format('YYYY/MM/DD') + " " + end.format('YYYY/MM/DD');
                 console.log(time)
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
 
-            }else if(label=='今天'){
+            } else if (label == '今天') {
 
                 $('#daterange-btn span').html(end.format('YYYY/MM/DD'));
-                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
-            }else if(label=='明天'){
+                time = start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
+            } else if (label == '明天') {
 
                 $('#daterange-btn span').html(start.format('YYYY/MM/DD'));
-                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                time = start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
                 console.log(time)
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
-            }else if(label=='未来七天'){
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
+            } else if (label == '未来七天') {
 
-                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
-                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD') + '-' + end.format('YYYY/MM/DD'));
+                time = start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
                 console.log(time)
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
-            }else if(label=='未来30天'){
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
+            } else if (label == '未来30天') {
 
-                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
-                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD') + '-' + end.format('YYYY/MM/DD'));
+                time = start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
                 console.log(start)
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
-            }else if(label=='未来60天'){
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
+            } else if (label == '未来60天') {
 
-                $('#daterange-btn span').html(start.format('YYYY/MM/DD')+'-'+end.format('YYYY/MM/DD'));
-                time=start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
+                $('#daterange-btn span').html(start.format('YYYY/MM/DD') + '-' + end.format('YYYY/MM/DD'));
+                time = start.format('YYYY-MM-DD') + " " + end.format('YYYY-MM-DD');
                 console.log(start)
-                choosestart=start.format('YYYY/MM/DD');
-                chooseend=end.format('YYYY/MM/DD');
+                choosestart = start.format('YYYY/MM/DD');
+                chooseend = end.format('YYYY/MM/DD');
             }
             console.log(toString.call(choosestart));
             $.post({
-                url:"fields/jieshoudate",
-                data:{"startTime":choosestart,"endTime":chooseend},
-                dataType:"json",
-                success:function(data){
+                url: "fields/jieshoudate",
+                data: {"startTime": choosestart, "endTime": chooseend},
+                dataType: "json",
+                success: function (data) {
                     console.log(data.data)
-                    for(var j=0;j<data.data.length;j++){
-                        cannotid[j]=data.data[j].fieldId
+                    for (var j = 0; j < data.data.length; j++) {
+                        cannotid[j] = data.data[j].fieldId
                         console.log(cannotid[j])
                     }
-                      /* console.log(a)*/
+                    /* console.log(a)*/
                     console.log(afterfield)
                     console.log(cannotid[0])
-                    var afterfield1=new Array();
-                    for(var q=0;q<afterfield.length;q++){
-                        if(typeof(afterfield[q])!='undefined'){
+                    var afterfield1 = new Array();
+                    for (var q = 0; q < afterfield.length; q++) {
+                        if (typeof (afterfield[q]) != 'undefined') {
                             afterfield1.push(afterfield[q])
                         }
                     }
 
 
-console.log(afterfield1.length)
-                    for(var m=0;m<afterfield1.length;m++){
-                        for(var n=0;n<cannotid.length;n++){
+                    console.log(afterfield1.length)
+                    for (var m = 0; m < afterfield1.length; m++) {
+                        for (var n = 0; n < cannotid.length; n++) {
                             console.log(cannotid)
                             console.log(afterfield1)
                             console.log(afterfield1[0].id)
                             console.log(m)
                             console.log(n)
-                            if(m<afterfield1.length){
+                            if (m < afterfield1.length) {
 
 
-                            if(afterfield1[m].id==cannotid[n]) {
+                                if (afterfield1[m].id == cannotid[n]) {
 
-                                afterfield1.splice(m, 1);
-                            }}
-                        }}
+                                    afterfield1.splice(m, 1);
+                                }
+                            }
+                        }
+                    }
 
                     console.log(afterfield1)
-                    if(afterfield1.length==0){
+                    if (afterfield1.length == 0) {
                         swal("暂时没有该场地")
-                    }else{
+                    } else {
                         fenye(afterfield1)
                     }
 
@@ -2708,82 +2674,80 @@ console.log(afterfield1.length)
             })
 
 
-           /* $.get({
-                url:"orders/showallorders",
-                dataType:"json",
-                success:function(data){
+            /* $.get({
+                 url:"orders/showallorders",
+                 dataType:"json",
+                 success:function(data){
 
 
 
-                    choosestart=new Date(choosestart);
-                    chooseend=new Date(chooseend);
+                     choosestart=new Date(choosestart);
+                     chooseend=new Date(chooseend);
 
 
 
-                    console.log(data.data)
-                    for(var i=0;i<data.data.length;i++){
+                     console.log(data.data)
+                     for(var i=0;i<data.data.length;i++){
 
 
-                        var date = new Date(data.data[i].startTime);
-                        var basestart = dw(date);
-                        var date1 = new Date(data.data[i].endTime);
-                        var baseend= dw(date1);
+                         var date = new Date(data.data[i].startTime);
+                         var basestart = dw(date);
+                         var date1 = new Date(data.data[i].endTime);
+                         var baseend= dw(date1);
 
 
-                        baseend=new Date(baseend);
-                        basestart=new Date(basestart);
+                         baseend=new Date(baseend);
+                         basestart=new Date(basestart);
 
-                        now=new Date();
-                        console.log(now);
-                        var now1=dw(now);
-                        if(baseend<choosestart||basestart>chooseend&&baseend>now1){
-                            datearr.push(data.data[i])
+                         now=new Date();
+                         console.log(now);
+                         var now1=dw(now);
+                         if(baseend<choosestart||basestart>chooseend&&baseend>now1){
+                             datearr.push(data.data[i])
+                         }
+                         console.log(datearr)
+                     }
+                     console.log(datearr)
+                     console.log(fielddatas)
+
+                     for(var j=0;j<fielddatas.length;j++)
+                         for(var m=0;m<datearr.length;m++){
+                             if(fielddatas[j].id==datearr[m].fieldId)
+                             {
+                                 datearr1.push(fielddatas[j])
+
+                             }
+                         }
+                     var result = [];
+                     var obj = {};
+                     console.log(result)
+                     for(var n =0; n<datearr1.length; n++){
+                         if(!obj[datearr1[n].id]){
+                             result.push(datearr1[n]);
+                             obj[datearr1[n].id] = true;
                         }
-                        console.log(datearr)
-                    }
-                    console.log(datearr)
-                    console.log(fielddatas)
+                     }
+                     console.log(result);
 
-                    for(var j=0;j<fielddatas.length;j++)
-                        for(var m=0;m<datearr.length;m++){
-                            if(fielddatas[j].id==datearr[m].fieldId)
-                            {
-                                datearr1.push(fielddatas[j])
+                         console.log(datearr1);
+                         if(result.length==0){
+                             swal("暂时没有该时间段的场地 ")
+                         }
+                     fenye(result);
+                     datearr1=[];
+                     datearr=[];
+                 }
 
-                            }
-                        }
-                    var result = [];
-                    var obj = {};
-                    console.log(result)
-                    for(var n =0; n<datearr1.length; n++){
-                        if(!obj[datearr1[n].id]){
-                            result.push(datearr1[n]);
-                            obj[datearr1[n].id] = true;
-                       }
-                    }
-                    console.log(result);
-
-                        console.log(datearr1);
-                        if(result.length==0){
-                            swal("暂时没有该时间段的场地 ")
-                        }
-                    fenye(result);
-                    datearr1=[];
-                    datearr=[];
-                }
-
-            })*/
+             })*/
             console.log(choosestart)
 
         }
-
     );
-
 
 
     console.log(choosestart)
 
-console.log(datearr)
+    console.log(datearr)
 
 </script>
 
@@ -2812,6 +2776,7 @@ console.log(datearr)
 <script src="js/fieldinfo/wow.js"></script>
 <script>
     new WOW().init();
+    $('.add-footer').load('headerandfooter/footer/fieldindex-footer.html')
 </script>
 <!-- main js -->
 <script src="js/fieldinfo/main.js"></script>
