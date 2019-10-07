@@ -45,8 +45,8 @@ public class fieldsServiceImpl implements fieldsService {
     }
 
     @Override
-    public List<RentField> selectByNameType(String NameType,String name,String order,Integer renshumin,Integer renshumax) {
-        List<RentField> list3=rentFieldMapper.selectByNameType(NameType,name,order,renshumin,renshumax);
+    public List<RentField> selectByNameType(String NameType,String name,String order,Integer renshumin,Integer renshumax,String quyu) {
+        List<RentField> list3=rentFieldMapper.selectByNameType(NameType,name,order,renshumin,renshumax,quyu);
         System.out.println("+++=================================================");
         System.out.println(list3.size());
         return list3;

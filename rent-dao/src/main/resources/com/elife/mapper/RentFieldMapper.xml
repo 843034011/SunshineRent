@@ -370,6 +370,9 @@
       <if test="NameType != null and NameType !=''">
           or field_address like concat('%',#{NameType},'%'))
       </if>
+      <if test="quyu !=null and quyu !=''">
+      and  field_address like  concat('%',#{quyu},'%')
+      </if>
       <if test="name != null and name !=''">
           and field_type=#{name}
       </if>
@@ -385,6 +388,7 @@
     <if test="order == 'price' ">
       order by field_dayprice
     </if>
+
 
 
   </select>

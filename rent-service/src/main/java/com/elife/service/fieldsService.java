@@ -16,7 +16,7 @@ public interface fieldsService {
 
    List<RentField> orderByPrice();
 
-   List<RentField>selectByNameType(String NameType,String name,String order,Integer renshumin,Integer renshumax);
+   List<RentField>selectByNameType(String NameType,String name,String order,Integer renshumin,Integer renshumax,String quyu);
 
    int insertFields(UserShoppingcart userShoppingcart);
 

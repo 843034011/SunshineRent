@@ -53,9 +53,11 @@ public class MongoTestDao {
         System.out.println("zan+++++++++"+remarks.getZan().toString());
         Zans zans=new Zans();
         zans.setZan(remarks.getZan().get(0).getZan());
-        List<Zans> zansList = remarks.getZan();
+
 
         Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
+         remarks remarks1 = mongoTemplate.findOne(query, remarks.class);
+        List<Zans> zansList = remarks1.getZan();
         zansList.add(zans);
         mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
 
@@ -94,10 +96,21 @@ Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));*/
         System.out.println("zan+++++++++"+remarks.getZan().toString());
         Zans zans=new Zans();
         zans.setZan(remarks.getZan().get(0).getZan());
-        List<Zans> zansList = remarks.getZan();
 
+
+        System.out.println("zandddd++++++++++++=="+zans.toString());
         Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
-        zansList.remove(zans);
+        remarks remarks1 = mongoTemplate.findOne(query, remarks.class);
+        List<Zans> zansList = remarks1.getZan();
+        System.out.println("oooooooo"+zansList.get(1));
+        for(int i=0;i<zansList.size();i++)
+        {
+            if(zansList.get(i).getZan()==zans.getZan()){
+                zansList.remove(i);
+            }
+        }
+
+        System.out.println(zansList.toString());
         mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
     }
 
