@@ -1,10 +1,8 @@
 package com.elife.service.impl;
 
-import com.elife.mapper.EvaluatePictureMapper;
-import com.elife.mapper.RentFieldMapper;
-import com.elife.mapper.UserOrderMapper;
-import com.elife.mapper.UserShoppingcartMapper;
+import com.elife.mapper.*;
 import com.elife.pojo.RentField;
+import com.elife.pojo.RentGoods;
 import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserShoppingcart;
 import com.elife.service.fieldsService;
@@ -26,6 +24,9 @@ public class fieldsServiceImpl implements fieldsService {
 
     @Autowired
     UserOrderMapper userOrderMapper;
+
+    @Autowired
+    RentGoodsMapper rentGoodsMapper;
 
     @Override
     public List<RentField> selectAllFields() {
@@ -70,6 +71,16 @@ public class fieldsServiceImpl implements fieldsService {
         List<UserShoppingcart>userShoppingcarts=userShoppingcartMapper.selectall();
         return userShoppingcarts;
     }
+
+
+
+   /* 商品相关*/
+    public List<RentGoods> showAllGoods(){
+        List<RentGoods> showAllGoods=rentGoodsMapper.showAllGoods();
+        return showAllGoods;
+    }
+
+
 
 
 }

@@ -109,6 +109,12 @@
       where goods_type = #{goodsType,jdbcType=VARCHAR}
       order by rent_count desc,goods_grade desc;
   </select>
+
+
+
+  <select id="showAllGoods" resultMap="BaseResultMap" >
+      select * from rent_goods
+  </select>
   <!--
     zgy
     修改商品信息

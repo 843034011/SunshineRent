@@ -74,7 +74,7 @@
 <header class="header-area">
     <!-- header-top start -->
  <div class="header-top">
-     <!--   <div class="container">
+     <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="welcome-mes">
@@ -107,8 +107,8 @@
                     </div>
                 </div>
             </div>
-        </div>-->
-     <div class="add-header" style="width:100%;margin: auto;"></div>
+        </div>
+     <!--<div class="add-header" style="width:100%;margin: auto;"></div>-->
     </div>
 
     <!-- header-top end -->
@@ -1732,17 +1732,25 @@
                             ' </div>' +
                             '<div class="product-quick-view">' +
                             '<ul>'
+                        var heartflag=false;
                         if (reid != undefined) {
+
                             for (var q = 0; q < lovefields.length; q++) {
                                 if (data[6 * n + i].id == lovefields[q]) {
-                                    html1 += ' <li><a href="#"><span class="glyphicon glyphicon-heart" style="color:#51c6ff;color-width:50%; font-size: 15px;"> </span></i></a></li>'
+                                   heartflag=true
+
                                 }
+                            }
+                            if(heartflag==true){
+                                html1 += ' <li><a href="#"><span class="glyphicon glyphicon-heart" > </span></i></a></li>'
+                            }else{
+                                html1 += '<li><a href="#"><i class="fa fa-heart-o"></i></a></li>'
                             }
                         }
 
 
                         html1 += '<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
-                            ' <li><a href="fieldinfo?id=' + data[6 * n + i].id + '"><i class="fa fa-search"></i></a></li>' +
+                            ' <li><a href="fieldinfo.html?id=' + data[6 * n + i].id + '"><i class="fa fa-search"></i></a></li>' +
                             ' </ul>' +
                             '</div>' +
                             '</div>' +
