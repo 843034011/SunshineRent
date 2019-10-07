@@ -43,4 +43,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public int insertOrderDetailGoods(OrderResult orderResult, RentGoods rentGoods, String orderId) {
         return orderDetailMapper.insertOrderDetailGoods(orderResult,rentGoods,orderId);
     }
+
+    @Override
+    public int updateByPrimaryKey(OrderDetail orderDetail) {
+        return orderDetailMapper.updateByPrimaryKey(orderDetail);
+    }
+
 }

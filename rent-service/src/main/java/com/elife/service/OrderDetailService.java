@@ -33,4 +33,6 @@ public interface OrderDetailService {
     int insertOrderDetailField(OrderResult orderResult, RentField rentField, String orderId);
 
     int insertOrderDetailGoods(OrderResult orderResult, RentGoods rentGoods, String orderId);
+
+    int updateByPrimaryKey(OrderDetail orderDetail);
 }

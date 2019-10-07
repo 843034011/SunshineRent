@@ -201,21 +201,18 @@ function orderpaging(data){
                         + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].orderNo;
 
                     for(j=0;j<data[4 * n + i].orderDetails.length;j++){
-                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra1 +'"></div>'
+                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra3 +'"></div>'
                             + '<div class="order-info-detail-info"><p><a>'+ data[4 * n + i].orderDetails[j].productName
                             + '</a></p><p>'+ data[4 * n + i].orderDetails[j].productType + '</p><p>'+ data[4 * n + i].orderDetails[j].productAddress + '</p></div></div>'
                             + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderDetails[j].productNumber + '</span></div>'
                             + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderDetails[j].productTotal + '</span></div>'
                             + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderDetails[j].productStatus + '</span></div>';
                         if( data[4 * n + i].orderDetails[j].productStatus == "未归还" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>立即归还</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a onclick="giveBack(' + data[4 * n + i].orderDetails[j].id +')"><span>立即归还</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "未评价" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>立即评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>立即评价</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "已完成" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>追加评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>追加评价</span></a></div></div></div>';
                         }else{
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }
@@ -230,21 +227,18 @@ function orderpaging(data){
                         + '</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号：</span><span>' + data[4 * n + i].orderNo;
 
                     for(j=0;j<data[4 * n + i].orderDetails.length;j++){
-                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra1 +'"></div>'
+                        html +='</span></div></div><div class="order-info-detail"><div><div class="order-info-detail-img"><img src="'+ data[4 * n + i].orderDetails[j].extra3 +'"></div>'
                             + '<div class="order-info-detail-info"><p><a>'+ data[4 * n + i].orderDetails[j].productName
                             + '</a></p><p>'+ data[4 * n + i].orderDetails[j].productType + '</p><p>'+ data[4 * n + i].orderDetails[j].productAddress + '</p></div></div>'
                             + '<div class="order-info-detail-number"><span>' + data[4 * n + i].orderDetails[j].productNumber + '</span></div>'
                             + '<div class="order-info-detail-total"><span>' + data[4 * n + i].orderDetails[j].productTotal + '</span></div>'
                             + '<div class="order-info-detail-status"><span>' + data[4 * n + i].orderDetails[j].productStatus + '</span></div>';
                         if( data[4 * n + i].orderDetails[j].productStatus == "未归还" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>立即归还</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a onclick="giveBack(' + data[4 * n + i].orderDetails[j].id +')"><span>立即归还</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "未评价" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>立即评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>立即评价</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "已完成" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
-                            html += '<div class="order-info-detail-operate"><a><span>追加评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>追加评价</span></a></div></div></div>';
                         }else{
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }
@@ -265,7 +259,25 @@ function changeDate(date) {
 
 function sendInfotoEvaluate(index){
 
-   var order_id = index;
-   sessionStorage.setItem("order_id",order_id);
+   var detail_id = index;
+   sessionStorage.setItem("detail_id",detail_id);
 
+}
+
+function giveBack(index){
+    alert("是否归还租品！");
+    var detailId  = index;
+    $.ajax({
+        type: "post",
+        url: "/orderDetail/giveback",
+        dataType: "json",   //text -》 data(string)    json ->(js中的json对象)
+        data: {"detailId":detailId},
+        success: function (data) {
+            if(data.code == 0 ){
+                alert("归还成功！")
+            }else{
+                alert("归还失败！")
+            }
+        }
+    })
 }
