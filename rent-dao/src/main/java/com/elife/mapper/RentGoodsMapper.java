@@ -17,6 +17,10 @@ public interface RentGoodsMapper {
      */
     List<RentGoods> selectAllGoods();
 
+
+    List<RentGoods> showAllGoods();
+
+
     /**
      * @author:zgy
      * @return 通过类型进行排序返回所有商品
@@ -90,4 +94,6 @@ public interface RentGoodsMapper {
      * @return
      */
     RentGoods selectGoodsWithPictureById(Integer id);
+
+
 }

@@ -1,8 +1,5 @@
 package com.elife.controller;
-import com.elife.pojo.RentRegister;
-import com.elife.pojo.RentField;
-import com.elife.pojo.UserOrder;
-import com.elife.pojo.UserShoppingcart;
+import com.elife.pojo.*;
 import com.elife.service.impl.fieldsServiceImpl;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +119,24 @@ public class fieldsInfo {
         return resultData;
 
     }
+
+   /* 展示所有商品*/
+    @RequestMapping("showallgoods")
+    @ResponseBody
+    public ResultData selectAllProducts(){
+        List<RentGoods> rentGoods = fieldsService.showAllGoods();
+        ResultData resultData = new ResultData();
+        if(null == rentGoods || rentGoods.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(rentGoods);
+
+        }
+        return resultData;
+    }
+
 
     @RequestMapping("allshopping")
     @ResponseBody
