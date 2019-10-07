@@ -58,12 +58,13 @@ public class fieldsInfo {
 
     @RequestMapping("selectnametype")
     @ResponseBody
-    public ResultData selectByNameType(String nametype,String name,String order,Integer renshumin,Integer renshumax){
+    public ResultData selectByNameType(String nametype,String name,String order,Integer renshumin,Integer renshumax,String quyu){
         System.out.println("++++++++++++++++"+name);
         System.out.println(nametype);
         System.out.println(order);
         System.out.println(renshumin);
-        List<RentField> orderlist = fieldsService.selectByNameType(nametype,name,order,renshumin,renshumax);
+        System.out.println("+++++"+quyu);
+        List<RentField> orderlist = fieldsService.selectByNameType(nametype,name,order,renshumin,renshumax,quyu);
         ResultData resultData = new ResultData();
         if(null == orderlist || orderlist.size() ==0) {
             resultData.setCode(3);

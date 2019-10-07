@@ -91,7 +91,7 @@ public class MongoTestC {
         remarks.setReg_id(reg);
         remarks.setZan(zansList);
 
-        System.out.println(zansList.toString());
+        System.out.println("+++++++++++++++++++++++++++++++"+remarks.toString());
         System.out.println(reid);
         System.out.println(reg);
 

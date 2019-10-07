@@ -73,8 +73,8 @@
 <!-- header-area start -->
 <header class="header-area">
     <!-- header-top start -->
-    <div class="header-top">
-        <div class="container">
+ <div class="header-top">
+     <!--   <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="welcome-mes">
@@ -88,28 +88,29 @@
                                 <li><a href="">账户</a><i class="fa fa-angle-down"></i>
                                     <ul>
                                         <li><a href="my-account.html">个人中心</a></li>
-                                        <!--<li><a href="wishlist.html">收藏夹</a></li>-->
-                                        <!--<li><a href="cart.html">购物车</a></li>-->
+                                        &lt;!&ndash;<li><a href="wishlist.html">收藏夹</a></li>&ndash;&gt;
+                                        &lt;!&ndash;<li><a href="cart.html">购物车</a></li>&ndash;&gt;
                                         <li><a href="cart.html">订单</a></li>
                                         <li><a href="checkout.html">退出登录</a></li>
-                                        <!--<li><a href="#">Log in</a></li>-->
+                                        &lt;!&ndash;<li><a href="#">Log in</a></li>&ndash;&gt;
                                     </ul>
                                 </li>
 
-                                <li class="last"><a href="#">帮助</a><!--<i class="fa fa-angle-down">--></i>
-                                    <!--<ul>
+                                <li class="last"><a href="#">帮助</a>&lt;!&ndash;<i class="fa fa-angle-down">&ndash;&gt;</i>
+                                    &lt;!&ndash;<ul>
                                         <li><a href="#">English</a></li>
                                         <li><a href="#">France</a></li>
-                                    </ul>-->
+                                    </ul>&ndash;&gt;
                                 </li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>-->
+     <div class="add-header" style="width:100%;margin: auto;"></div>
     </div>
+
     <!-- header-top end -->
     <!-- header-middle start -->
     <div class="header-middle">
@@ -654,14 +655,14 @@
                         <!-- Manufacturer end -->
                         <!-- people-list start -->
                         <div class="color-list sidebar-list">
-                            <h3>可容纳人数:</h3>
+                            <h3>选择租用区域</h3>
                             <ul class="test">
-                                <li><a href="#">0~10人</a></li>
-                                <li><a href="#">10~20人</a></li>
-                                <li><a href="#">20~30人</a></li>
-                                <li><a href="#">30~40人</a></li>
-                                <li><a href="#">40~100人</a></li>
-                                <li><a href="#">100人以上</a></li>
+                                <li><a>吴中区</a></li>
+                                <li><a >相城区</a></li>
+                                <li><a >姑苏区</a></li>
+                                <li><a >工业园区</a></li>
+                                <li><a >昆山市</a></li>
+                                <li><a >张家港市</a></li>
                             </ul>
                         </div>
                         <!-- people-list end -->
@@ -1815,10 +1816,40 @@
             }
         })
     }
-
+    var quyu;
     $(".test li a").click(function () {
-        var val = $(this).text();
-        alert(val);
+         quyu = $(this).text();
+        alert(quyu);
+
+        $.get({
+            url: "fields/selectnametype",
+            dataType: "json",
+            data: {"quyu":quyu},
+            success: function (data) {
+                console.log(data)
+                if (data.code == 3) {
+                    swal("暂无该场地")
+                } else {
+                    fenye(data.data)
+                }
+                if (afterfield.length > data.data.length) {
+                    for (var i = 0; i < afterfield.length; i++) {
+                        afterfield[i] = data.data[i];
+
+                    }
+                } else {
+                    for (var i = 0; i < data.data.length; i++) {
+                        afterfield[i] = data.data[i];
+
+                    }
+                }
+                /*  afterfield.splice(data.data.length,afterfield.length-data.data.length);*/
+
+                console.log(afterfield)
+
+
+            }
+        })
     });
 </script>
 
@@ -1880,7 +1911,7 @@
         $.get({
             url: "fields/selectnametype",
             dataType: "json",
-            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax},
+            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
                 console.log(data)
                 if (data.code == 3) {
@@ -2496,7 +2527,7 @@
         $.get({
             url: "fields/selectnametype",
             dataType: "json",
-            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax},
+            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
                 console.log(data)
                 afterfield = data.data
@@ -2777,6 +2808,7 @@
 <script>
     new WOW().init();
     $('.add-footer').load('headerandfooter/footer/fieldindex-footer.html')
+    $('.add-header').load('headerandfooter/header/publicheader.html')
 </script>
 <!-- main js -->
 <script src="js/fieldinfo/main.js"></script>
