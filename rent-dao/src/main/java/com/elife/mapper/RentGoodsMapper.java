@@ -4,6 +4,7 @@ import com.elife.pojo.GoodsPicture;
 import com.elife.pojo.RentGoods;
 import com.elife.pojo.RentGoodsExample;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface RentGoodsMapper {
      * @author:zgy
      * @return 返回所有商品
      */
+    @Select("select * from rent_goods")
     List<RentGoods> selectAllGoods();
 
     /**

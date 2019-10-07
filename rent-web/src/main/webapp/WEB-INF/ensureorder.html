@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<div class="en-header"></div>
+
 <!-- 模态框 -->
 <div class="modal fade" id="new">
     <div class="modal-dialog">
@@ -31,7 +33,7 @@
     </div>
 </div>
 <div>
-    <div style="width: 60%; margin: auto ;border: 1px black solid;">
+    <div style="width: 60%; margin: auto ;border: 1px black solid; margin-top: 50px">
         <form>
             <div class="form-group">
                 <label>订单编号：</label>
@@ -62,12 +64,17 @@
     </div>
 </div>
 
+<div class="en-footer"></div>
 
 <script src="../jquery/jquery-3.4.1.js"></script>
 <script src="../jquery/jquery.cookie.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../js/ensureorder/ensureorder.js"></script>
 
+<script>
+    $('.en-header').load('../headerandfooterin/header/publicheader.html');
+    $('.en-footer').load('../headerandfooterin/footer/fieldindex-footer.html');
+</script>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class IndexController {
     }
 
     // 查询所有商品信息
-    @RequestMapping("selectGoods")
+    @RequestMapping(value="selectGoods",method = RequestMethod.GET)
     @ResponseBody
     public ResultData selectGoods(){
         ResultData resultData = new ResultData();

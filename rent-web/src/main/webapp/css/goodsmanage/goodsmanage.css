@@ -57,14 +57,14 @@ a:hover{
     width: 100%;
     z-index: 101;
     /*height: 100px;*/
-    background: #fff;
+    background:#fff !important;
     /*border-bottom: 1px solid #ddd;*/
 }
 .t-nav .nav-1200{
     margin: auto;
     height:100px;
     width:1200px;
-    /*background: aqua;*/
+    /*background: #fff;*/
 }
 .nav-1200 .navbar-left{
     /*height: 100%;*/
@@ -98,7 +98,6 @@ a:hover{
 .navbar-left .position{
     padding-left:5px;
 }
-
 .nav-1200 .navbar-right{
     /*line-height: 100px;*/
     margin-top: 20px;
@@ -119,7 +118,6 @@ a:hover{
     float:left;
     text-align: center;
 }
-
 .navbar-right .items li:last-child{
     /*margin-left: 20px;*/
     padding-left: 20px;
