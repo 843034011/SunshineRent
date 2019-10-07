@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<div class="ident-header"></div>
+
 <div class="container-fluid">
     <form enctype="multipart/form-data" id="idcard-form">
         <div style="height: 200px;" class="form-group">
@@ -86,12 +88,17 @@
     </form>
 </div>
 
+<div class="ident-footer"></div>
+
 <script src="/jquery/jquery-3.4.1.js"></script>
 <script src="/jquery/jquery.Jcrop.js"></script>
 <script src="/jquery/jquery.cookie.js"></script>
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/js/identification/identification.js"></script>
-
+<script>
+    $('.ident-header').load('../headerandfooterin/header/publicheader.html');
+    $('.ident-footer').load('../headerandfooterin/footer/fieldindex-footer.html');
+</script>
 </body>
 
 </html>

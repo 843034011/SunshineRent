@@ -11,7 +11,11 @@
 
 </head>
 <body>
+
+<div class="cart-header"></div>
+
 <div id="order-choose">
+
 
     <div class="order-title">
         <p id="all-goods">全部商品</p>
@@ -60,7 +64,11 @@
             </div>
         </div>
     </div>
+
+
 </div>
+
+<div class="cart-footer"></div>
 
 <script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery.cookie.js"></script>
@@ -68,5 +76,9 @@
 <script type="text/javascript" src="../js/shoppingcart/daterangepicker.js"></script>
 <script type="text/javascript" src="../js/shoppingcart/shoppingcart.js"></script>
 
+<script>
+    $('.cart-header').load('../headerandfooterin/header/publicheader.html');
+    $('.cart-footer').load('../headerandfooterin/footer/fieldindex-footer.html');
+</script>
 </body>
 </html>
