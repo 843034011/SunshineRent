@@ -1,7 +1,4 @@
-var orderId =  sessionStorage.getItem("order_id");
-/*暂时用orederID作为detailID*/
-var detailId = orderId;
-console.log(orderId);
+var detailId =  sessionStorage.getItem("detail_id");
 var orderDetaildata;
 
 
@@ -28,7 +25,7 @@ function show(data){
         $('#evaluate-order-info').append(
             `
                     <div class="col-xs-3 evaluate-order-img">
-                        <a href="#"><img src="${data.extra1}"></a>
+                        <a href="#"><img src="${data.extra3}"></a>
                     </div>
                     <div class="col-xs-1"></div>
                     <div class="col-xs-8 evaluate-order-info">
@@ -168,10 +165,13 @@ $("#bbt").click(function(){
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
-            if(data.success=='ok'){
+            if(data.code == 0){
                 console.log("====success====");
+                alert("评价成功！")
+                window.location.href="http://localhost:8080/index.html"
             }else{
                 console.log("====fail====");
+                alert("出错了！")
             }
         }
     })

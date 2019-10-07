@@ -5,6 +5,7 @@ import com.elife.pojo.UserOrder;
 import com.elife.service.OrderDetailService;
 import com.elife.vo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +32,23 @@ public class OrderDetailController {
             resultData.setCode(0);
             resultData.setData(orderDetail);
 
+        }
+        return resultData;
+    }
+
+    @RequestMapping("giveback")
+    @ResponseBody
+    public ResultData giveBack(int detailId){
+        ResultData resultData = new ResultData();
+        OrderDetail orderDetail = orderDetailService.selectById(detailId);
+        orderDetail.setProductStatus("未评价");
+        int result = orderDetailService.updateByPrimaryKey(orderDetail);
+        if(result >= 1) {
+            resultData.setCode(0);
+            resultData.setMessage("修改成功");
+        } else {
+            resultData.setCode(5);
+            resultData.setMessage("修改失败");
         }
         return resultData;
     }
