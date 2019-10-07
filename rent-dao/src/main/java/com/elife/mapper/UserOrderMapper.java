@@ -1,5 +1,6 @@
 package com.elife.mapper;
 
+import com.elife.dto.TotalOrderResult;
 import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserOrderExample;
 import org.apache.ibatis.annotations.Param;
@@ -52,4 +53,6 @@ public interface UserOrderMapper {
 
     // yy 前台获取起止日期查询不能租的
     List<UserOrder> selectCannotOrder(Date startTime,Date endTime);
+
+    int insertOrder(@Param("totalOrderResult") TotalOrderResult totalOrderResult);
 }

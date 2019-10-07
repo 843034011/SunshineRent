@@ -1,25 +1,18 @@
 package com.elife.dto;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class OrderResult {
     private String shoppingCartId;
     private String type;
-    private String id;
+    private Integer id;
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private String total;
-    private String startTime;
-    private String endTime;
-    private String fieldId;
-    private String goodsId;
-
+    private BigDecimal total;
+    private Date startTime;
+    private Date endTime;
+    private Integer fieldId;
+    private Integer goodsId;
     private String orderId;
     private String address;
 
@@ -28,48 +21,16 @@ public class OrderResult {
         return "OrderResult{" +
                 "shoppingCartId='" + shoppingCartId + '\'' +
                 ", type='" + type + '\'' +
-                ", id='" + id + '\'' +
+                ", id=" + id +
                 ", name='" + name + '\'' +
-                ", total='" + total + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", fieldId='" + fieldId + '\'' +
-                ", goodsId='" + goodsId + '\'' +
-                ", orderId='" + orderId + '\'' +
+                ", total=" + total +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", fieldId=" + fieldId +
+                ", goodsId=" + goodsId +
+                ", orderId=" + orderId +
                 ", address='" + address + '\'' +
                 '}';
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public String getShoppingCartId() {
@@ -88,36 +49,75 @@ public class OrderResult {
         this.type = type;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getTotal() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public String getFieldId() {
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Integer getFieldId() {
         return fieldId;
     }
 
-    public void setFieldId(String fieldId) {
+    public void setFieldId(Integer fieldId) {
         this.fieldId = fieldId;
     }
 
-    public String getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(String goodsId) {
+    public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

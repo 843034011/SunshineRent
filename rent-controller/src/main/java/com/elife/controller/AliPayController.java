@@ -8,12 +8,21 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 
 import com.elife.alipay.AlipayConfig;
 
+import com.elife.dto.TotalOrderResult;
+import com.elife.pojo.RentField;
+import com.elife.pojo.RentGoods;
+import com.elife.service.OrderDetailService;
+import com.elife.service.ShoppingCartService;
+import com.elife.service.UserOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -21,13 +30,22 @@ import java.util.*;
 @RequestMapping("alipay")
 public class AliPayController{
 
+    @Autowired
+    ShoppingCartService shoppingCartService;
+
+    @Autowired
+    UserOrderService userOrderService;
+
+    @Autowired
+    OrderDetailService orderDetailService;
+
     /**
      * 确认订单结算
      * @param httpResponse
      * @throws IOException
      */
     @RequestMapping("payInfo")
-    public void alipay(HttpServletResponse httpResponse, String orderId, String money,String storeName) throws IOException {
+    public void alipay(HttpServletResponse httpResponse, String orderId, String money,String storeName,HttpSession session) throws IOException {
 
         //实例化客户端,填入所需参数
         AlipayClient alipayClient = new DefaultAlipayClient(
@@ -42,21 +60,22 @@ public class AliPayController{
         request.setNotifyUrl(AlipayConfig.NOTIFY_URL);
 
         // 订单号，订单系统中唯一订单号
-        // 生成随机Id
        String out_trade_no = orderId;
 
         // 付款金额
         String total_amount =money;
 
         // 订单名称
-        String subject = "欢迎选购"+storeName;
+        String subject = "";
 
-        //商品描述，可空
-        String body = "尊敬的会员欢迎购买奥迪A8 2016款 A8L 60 TFSl quattro豪华型";
+        TotalOrderResult totalOrderResult = (TotalOrderResult) session.getAttribute("totalOrderResult");
+        for (int i = 0; i < totalOrderResult.getResults().size(); i++) {
+            subject += totalOrderResult.getResults().get(i).getName() + " ";
+        }
+
         request.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                 + "\"total_amount\":\""+ total_amount +"\","
                 + "\"subject\":\""+ subject +"\","
-                + "\"body\":\""+ body +"\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}"
         );
 
@@ -76,7 +95,7 @@ public class AliPayController{
     }
 
     @RequestMapping(value = "returnUrl", method = RequestMethod.GET)
-    public String returnUrl(HttpServletRequest request, HttpServletResponse response,String out_trade_no) throws IOException, AlipayApiException {
+    public String returnUrl(HttpServletRequest request,HttpSession session) throws IOException, AlipayApiException {
         System.out.println("=================================同步回调=====================================");
 
         // 获取支付宝GET过来反馈信息
@@ -112,16 +131,38 @@ public class AliPayController{
             // 付款金额
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
 
-            System.out.println("商户订单号="+out_trade_no);
+            System.out.println("商户订单号="+out_trade_no1);
             System.out.println("支付宝交易号="+trade_no);
             System.out.println("付款金额="+total_amount);
 
-            //支付成功，修复支付状态
-            //payService.updateById(Integer.valueOf(out_trade_no));
+            // 支付成功，删除购物车中数据、向订单表、订单详情表内插入数据
+            TotalOrderResult totalOrderResult = (TotalOrderResult) session.getAttribute("totalOrderResult");
+            System.out.println(totalOrderResult.toString());
 
-            return "redirect:http://localhost:8080/orderdetail.html?orderId="+out_trade_no+"&orderIsPay=1";//跳转付款成功页面
+            // 向订单表中插数据
+            int a = userOrderService.insertOrder(totalOrderResult);
+
+            String orderId = totalOrderResult.getOrderId();
+
+            // 向订单详情表内插入数据
+            for (int i = 0; i < totalOrderResult.getResults().size(); i++) {
+                if(totalOrderResult.getResults().get(i).getType().equals("field")){
+                    RentField rentField = shoppingCartService.selectFieldById(totalOrderResult.getResults().get(i).getFieldId());
+                    int m = orderDetailService.insertOrderDetailField(totalOrderResult.getResults().get(i),rentField,orderId);
+                } else if(totalOrderResult.getResults().get(i).getType().equals("goods")){
+                    RentGoods rentGoods = shoppingCartService.selectGoodsById(totalOrderResult.getResults().get(i).getGoodsId());
+                    int n = orderDetailService.insertOrderDetailGoods(totalOrderResult.getResults().get(i),rentGoods,orderId);
+            }
+            }
+
+            // 从购物车表中删除数据
+            for (int i = 0; i < totalOrderResult.getResults().size(); i++) {
+                int o = shoppingCartService.deleteByShoppingId(Integer.parseInt(totalOrderResult.getResults().get(i).getShoppingCartId()));
+            }
+
+            return "success";//跳转付款成功页面
         }else{
-            return "no";//跳转付款失败页面
+            return "defeat";//跳转付款失败页面
         }
     }
 }

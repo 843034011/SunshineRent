@@ -1,7 +1,10 @@
 package com.elife.mapper;
 
+import com.elife.dto.OrderResult;
 import com.elife.pojo.OrderDetail;
 import com.elife.pojo.OrderDetailExample;
+import com.elife.pojo.RentField;
+import com.elife.pojo.RentGoods;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +39,10 @@ public interface OrderDetailMapper {
     List<OrderDetail> selectFieldOrderDateUnEvaluate(Integer num);
 
     List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
+
+    int insertOrderDetail(OrderResult orderResult);
+
+    int insertOrderDetailField(@Param("orderResult") OrderResult orderResult,@Param("rentField") RentField rentField,@Param("order") String orderId);
+
+    int insertOrderDetailGoods(@Param("orderResult") OrderResult orderResult,@Param("rentGoods") RentGoods rentGoods,@Param("order") String orderId);
 }

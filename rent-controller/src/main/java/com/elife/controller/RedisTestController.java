@@ -19,14 +19,15 @@ public class RedisTestController {
     @RequestMapping("test")
     public String test(){
 
-//        List<String> list = new ArrayList<>();
-//        list.add("liu");
-//        list.add("lan");
-//        list.add("bo");
+        List<String> list = new ArrayList<>();
+        list.add("liu");
+        list.add("lan");
+        list.add("bo");
 
-        TotalOrderResult totalOrderResult = new TotalOrderResult();
+//        TotalOrderResult totalOrderResult = new TotalOrderResult();
 
-        redisService.set("test",totalOrderResult);
+        long time = 15 * 60;
+        redisService.set("test",list,time);
 
         System.out.println("======================");
         System.out.println(redisService.get("test"));

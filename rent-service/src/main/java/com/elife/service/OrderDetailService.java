@@ -1,6 +1,9 @@
 package com.elife.service;
 
+import com.elife.dto.OrderResult;
 import com.elife.pojo.OrderDetail;
+import com.elife.pojo.RentField;
+import com.elife.pojo.RentGoods;
 
 import java.util.List;
 
@@ -26,4 +29,8 @@ public interface OrderDetailService {
      * @return
      */
     List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
+
+    int insertOrderDetailField(OrderResult orderResult, RentField rentField, String orderId);
+
+    int insertOrderDetailGoods(OrderResult orderResult, RentGoods rentGoods, String orderId);
 }
