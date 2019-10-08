@@ -45,7 +45,7 @@ function show(data){
         $('#evaluate-order-info').append(
             `
                     <div class="col-xs-3 evaluate-order-img">
-                        <a href="#"><img src="${data.extra1}"></a>
+                        <a href="#"><img src="${data.extra3}"></a>
                     </div>
                     <div class="col-xs-1"></div>
                     <div class="col-xs-8 evaluate-order-info">
@@ -153,7 +153,7 @@ $("#bbt").click(function(){
     var content=$("#TextArea1").val();
     formData2.append("grade",grade);
     formData2.append("content",content);
-    formData2.append("orderId",orderId);
+    formData2.append("orderId",30);
     console.log(formData2);
 
     $.ajax({
@@ -165,7 +165,7 @@ $("#bbt").click(function(){
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
-            if(data.code == 0){
+            if(data == 0){
                 console.log("====success====");
                 alert("评价成功！")
                 window.location.href="http://localhost:8080/index.html"

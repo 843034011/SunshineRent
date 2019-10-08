@@ -160,9 +160,9 @@ public class AliPayController{
                 int o = shoppingCartService.deleteByShoppingId(Integer.parseInt(totalOrderResult.getResults().get(i).getShoppingCartId()));
             }
 
-            return "success";//跳转付款成功页面
+            return "shoppingcart";//跳转付款成功页面
         }else{
-            return "defeat";//跳转付款失败页面
+            return "shoppingcart";//跳转付款失败页面
         }
     }
 }

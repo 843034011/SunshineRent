@@ -115,6 +115,7 @@
     text-align: center;
 }
 .field_picture{
+    margin-top: 14px;
     width: 150px;
     height: 100px;
 }

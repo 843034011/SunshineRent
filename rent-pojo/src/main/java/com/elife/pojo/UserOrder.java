@@ -7,7 +7,7 @@ import java.util.List;
 public class UserOrder {
     private Integer id;
 
-    private String orderNO;
+    private String orderNo;
 
     private Integer orderNumber;
 
@@ -37,12 +37,12 @@ public class UserOrder {
         this.id = id;
     }
 
-    public String getOrderNO() {
-        return orderNO;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setOrderNO(String orderNO) {
-        this.orderNO = orderNO;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public Integer getOrderNumber() {
@@ -139,7 +139,7 @@ public class UserOrder {
     public String toString() {
         return "UserOrder{" +
                 "id=" + id +
-                ", orderNO='" + orderNO + '\'' +
+                ", orderNO='" + orderNo + '\'' +
                 ", orderNumber=" + orderNumber +
                 ", orderPrice=" + orderPrice +
                 ", startTime=" + startTime +

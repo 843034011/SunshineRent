@@ -34,6 +34,8 @@ public interface OrderDetailMapper {
 
     List<OrderDetail> selectByOrderId(Integer orderId);
 
+    List<OrderDetail> selectByOrderNo(String orderNo);
+
     List<OrderDetail> selectFieldOrderDateUnEvaluate(Integer num);
 
     List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
