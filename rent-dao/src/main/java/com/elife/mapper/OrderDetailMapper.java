@@ -1,13 +1,11 @@
 package com.elife.mapper;
 
 import com.elife.dto.OrderResult;
-import com.elife.pojo.OrderDetail;
-import com.elife.pojo.OrderDetailExample;
-import com.elife.pojo.RentField;
-import com.elife.pojo.RentGoods;
+import com.elife.pojo.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -45,4 +43,9 @@ public interface OrderDetailMapper {
     int insertOrderDetailField(@Param("orderResult") OrderResult orderResult,@Param("rentField") RentField rentField,@Param("order") String orderId);
 
     int insertOrderDetailGoods(@Param("orderResult") OrderResult orderResult,@Param("rentGoods") RentGoods rentGoods,@Param("order") String orderId);
+
+    List<OrderDetail> selectAllOrders();
+
+    // yy 前台获取起止日期查询不能租的
+    List<UserOrder> selectCannotOrder(Date startTime, Date endTime);
 }

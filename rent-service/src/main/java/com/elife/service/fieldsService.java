@@ -1,5 +1,6 @@
 package com.elife.service;
 
+import com.elife.pojo.OrderDetail;
 import com.elife.pojo.RentField;
 import com.elife.pojo.UserOrder;
 import com.elife.pojo.UserShoppingcart;
@@ -25,4 +26,6 @@ public interface fieldsService {
 
    //UserShoppingcart
    List<UserShoppingcart> selectall();
+
+   List<OrderDetail> selectAllOrders();
 }

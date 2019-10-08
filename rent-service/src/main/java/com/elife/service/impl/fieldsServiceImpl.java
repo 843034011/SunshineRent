@@ -1,10 +1,7 @@
 package com.elife.service.impl;
 
 import com.elife.mapper.*;
-import com.elife.pojo.RentField;
-import com.elife.pojo.RentGoods;
-import com.elife.pojo.UserOrder;
-import com.elife.pojo.UserShoppingcart;
+import com.elife.pojo.*;
 import com.elife.service.fieldsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,10 +20,13 @@ public class fieldsServiceImpl implements fieldsService {
     UserShoppingcartMapper userShoppingcartMapper;
 
     @Autowired
-    UserOrderMapper userOrderMapper;
+    OrderDetailMapper userOrderMapper;
 
     @Autowired
     RentGoodsMapper rentGoodsMapper;
+
+    @Autowired
+    OrderDetailMapper orderDetailMapper;
 
     @Override
     public List<RentField> selectAllFields() {
@@ -72,9 +72,14 @@ public class fieldsServiceImpl implements fieldsService {
         return userShoppingcarts;
     }
 
+    @Override
+    public List<OrderDetail> selectAllOrders() {
+        List<OrderDetail>userShoppingcarts=orderDetailMapper.selectAllOrders();
+        return null;
+    }
 
 
-   /* 商品相关*/
+    /* 商品相关*/
     public List<RentGoods> showAllGoods(){
         List<RentGoods> showAllGoods=rentGoodsMapper.showAllGoods();
         return showAllGoods;
