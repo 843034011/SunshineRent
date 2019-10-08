@@ -74,8 +74,8 @@ public class fieldsServiceImpl implements fieldsService {
 
     @Override
     public List<OrderDetail> selectAllOrders() {
-        List<OrderDetail>userShoppingcarts=orderDetailMapper.selectAllOrders();
-        return null;
+        List<OrderDetail>orderDetails=orderDetailMapper.selectAllOrders();
+        return orderDetails;
     }
 
 

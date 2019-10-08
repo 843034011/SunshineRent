@@ -88,19 +88,19 @@
                                 <li><a href="">账户</a><i class="fa fa-angle-down"></i>
                                     <ul>
                                         <li><a href="my-account.html">个人中心</a></li>
-                                        &lt;!&ndash;<li><a href="wishlist.html">收藏夹</a></li>&ndash;&gt;
-                                        &lt;!&ndash;<li><a href="cart.html">购物车</a></li>&ndash;&gt;
+                                        <li><a href="wishlist.html">收藏夹</a></li>
+                                        <li><a href="cart.html">购物车</a></li>
                                         <li><a href="cart.html">订单</a></li>
                                         <li><a href="checkout.html">退出登录</a></li>
-                                        &lt;!&ndash;<li><a href="#">Log in</a></li>&ndash;&gt;
+                                        <li><a href="#">Log in</a></li>
                                     </ul>
                                 </li>
 
                                 <li class="last"><a href="#">帮助</a>&lt;!&ndash;<i class="fa fa-angle-down">&ndash;&gt;</i>
-                                    &lt;!&ndash;<ul>
+                                    <ul>
                                         <li><a href="#">English</a></li>
                                         <li><a href="#">France</a></li>
-                                    </ul>&ndash;&gt;
+                                    </ul>
                                 </li>
                             </ul>
                         </nav>
@@ -1763,7 +1763,7 @@
                             '<span class="regular-price">¥' + data[6 * n + i].fieldDayprice + '</span>' +
                             '</div>' +
                             '<div class="pro-add-to-cart">' +
-                            ' <p><a href="#" title="Add to Cart">加入购物车</a></p>' +
+                            ' <p><a title="Add to Cart" value="'+data[6*n+i].id+'" class="shop" onclick="shopping()">加入购物车</a></p>' +
                             ' </div>' +
                             ' </div>' +
                             ' </div>' +
@@ -1775,7 +1775,6 @@
                 } else if (data.length - n * 6 > 0) {
                     console.log(data.length - 6 * (n - 1))
                     for (i = 0; i < data.length - 6 * n; i++) {
-                        /* console.log(data[i].picture.length)*/
                         fieldpictures = data[i].fieldPictures[0]
                         html1 += '<div class="col-xs-12 col-sm-6 col-md-3 col-lg-6" onclick="javascript:location.href="fieldinfo.html?id=' + data[6 * n + i].id + '">' +
                             ' <div class="single-product-item">' +
@@ -1821,7 +1820,7 @@
                             '<span class="regular-price">¥' + data[6 * n + i].fieldDayprice + '</span>' +
                             '</div>' +
                             '<div class="pro-add-to-cart">' +
-                            ' <p><a href="#" title="Add to Cart">加入购物车</a></p>' +
+                            ' <p><a title="Add to Cart" value="'+data[6*n+i].id+'" class="shop" onclick="shopping()">加入购物车</a></p>' +
                             ' </div>' +
                             ' </div>' +
                             ' </div>' +
@@ -1834,15 +1833,17 @@
             }
         })
     }
+
     var quyu;
     $(".test li a").click(function () {
          quyu = $(this).text();
-        alert(quyu);
+        var nametype = $('#search').val();
+        var order = $("#choose").val();
 
         $.get({
             url: "fields/selectnametype",
             dataType: "json",
-            data: {"quyu":quyu},
+            data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
                 console.log(data)
                 if (data.code == 3) {
@@ -1923,6 +1924,7 @@
     function find() {
         var nametype = $('#search').val();
         var order = $("#choose").val();
+        quyu = $(this).text();
         console.log(renshumax)
         console.log(renshumax)
         console.log(renshumax)
@@ -1932,11 +1934,11 @@
             data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
                 console.log(data)
-                if (data.code == 3) {
+               /* if (data.code == 3) {
                     swal("暂无该场地")
-                } else {
+                } else {*/
                     fenye(data.data)
-                }
+             /*   }*/
                 if (afterfield.length > data.data.length) {
                     for (var i = 0; i < afterfield.length; i++) {
                         afterfield[i] = data.data[i];
@@ -1959,62 +1961,7 @@
 
     console.log(afterfield)
 
-    /*var alldata
-    function find() {
-        var nametype = $('#search').val();
-        console.log(nametype)
-        $.get({
-            url: "fields/selectnametype",
-            dataType: "json",
-            data: {"nametype": nametype,"name":name},
-            success: function (data) {
-                console.log(data)
-                alldata=data.data;
 
-                console.log($("#choose").val())
-
-              console.log(pricedatas)
-
-                if($("#choose").val()==''){
-                    fenye(alldata);
-                }
-                else if($("#choose").val()!=''){
-                    if($("#choose").val()=="price"){
-                        pricedatas1 = alldata.sort(function (a, b) {
-                            return a.fieldDayprice < b.fieldDayprice ? -1 : 1;
-                        })
-                       console.log(pricedatas1)
-                        fenye(pricedatas1);
-                    }
-                    if($("#choose").val()=="remark"){
-                        remarks1 = alldata.sort(function (a, b) {
-                            return a.fieldGrade < b.fieldGrade ? -1 : 1;
-                        })
-
-
-
-                        fenye(remarks1)
-                    }
-                    if($("#choose").val()=="number"){
-                        numbers1 = alldata.sort(function (a, b) {
-                            return a.rentCount < b.rentCount ? -1 : 1;
-                        })
-
-
-
-                        fenye(numbers1)
-                    }
-
-                }
-
-
-
-                /!*data.data[i].fieldDayprice*!/
-                console.log(data.data)
-            }/!*success结束*!/
-
-        })
-    }*/
 </script>
 
 
@@ -2447,7 +2394,79 @@
     }
 
 
-    function number5() {
+
+   /* function shopping() {
+        var reid = $.cookie('id');
+        var fieldid = $('.shop').val();
+        console.log(fieldid)
+        console.log(databynames)
+
+        for (var q = 0; q < databynames.length; q++) {
+            if (fieldid == databynames[q].id) {
+                masterId = databynames[q].regId;
+            }
+        }
+        console.log(masterId)
+        if (reid == undefined) {
+            swal("请先登录")
+        } else {
+            $.post({
+                url: "fields/insertshoppingcart",
+                data: {"fieldid": fieldid, "masterId": masterId, "reid": reid},
+                success: function (data) {
+                    if (data.code == 9) {
+                        swal("不能购买您自己的商品哦")
+                    } else if (data.code == 0) {
+                        swal("加入购物车成功", "", "success")
+                    }
+                    // console.log(data);
+
+                }
+            })
+        }
+    }*/
+
+    function shopping(){
+        var reid = $.cookie('id');
+       /* var fieldid = $('.shop').val();*/
+        $(".shop").click(function() {
+            console.log($(this).attr("value"))
+            fieldid=$(this).attr("value");//fabiaopinglunderen
+
+
+            console.log(fieldid)
+            console.log(databynames)
+            for (var q = 0; q < databynames.length; q++) {
+                if (fieldid == databynames[q].id) {
+                    masterId = databynames[q].regId;
+                }
+            }
+            console.log(masterId)
+            if(reid == undefined){
+                swal("请先登录")
+            }else{
+                $.post({
+                    url:"fields/insertshoppingcart",
+                    data:{"fieldid": fieldid,"masterId":masterId,"reid":reid},
+                    success:function(data){
+                        if(data.code==9){
+                            swal("不能购买您自己的商品哦")
+                        }else if(data.code==0){
+                            swal("加入购物车成功","","success")
+                        }
+                        // console.log(data);
+
+                    }
+                })
+            }
+
+        })
+
+    }
+
+
+
+        function number5() {
         console.log(fielddatas);
         for (var i = 0; i < fielddatas.length; i++) {
             if (fielddatas[i].fieldVolume <= 100 && fielddatas[i].fieldVolume > 40) {
@@ -2536,12 +2555,16 @@
     var number;
 
 
+
+
+
     function sortbymark() {
 
         var nametype = $('#search').val();
         var order = $("#choose").val();
         console.log(nametype)
         console.log(order)
+        var quyu = $(this).text();
         $.get({
             url: "fields/selectnametype",
             dataType: "json",
@@ -2695,11 +2718,7 @@
                     console.log(afterfield1.length)
                     for (var m = 0; m < afterfield1.length; m++) {
                         for (var n = 0; n < cannotid.length; n++) {
-                            console.log(cannotid)
-                            console.log(afterfield1)
-                            console.log(afterfield1[0].id)
-                            console.log(m)
-                            console.log(n)
+
                             if (m < afterfield1.length) {
 
 

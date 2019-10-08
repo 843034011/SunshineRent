@@ -486,7 +486,7 @@
 
  <!-- yy-->
   <select id="selectCannotOrder" parameterType="Date" resultMap="BaseResultMap">
-    SELECT * FROM user_order
+    SELECT * FROM order_detail
     WHERE
     (start_time >= #{startTime} AND #{endTime}>=start_time)
     OR (#{startTime}>=start_time AND end_time >= #{endTime})
