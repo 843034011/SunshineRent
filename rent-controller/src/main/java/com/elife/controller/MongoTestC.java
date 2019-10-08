@@ -44,14 +44,16 @@ public class MongoTestC {
         evaluateResult.setFieldId(fieldId);*/
 /* 评论内容图片插入数据库*/
     @PostMapping(value = "/test1")
-    public int saveTest(MultipartFile[] file, int grade, String content,int orderId) throws Exception {
+    public int saveTest(MultipartFile[] file, int grade, String content,Integer detailId) throws Exception {
+        System.out.println("============" + detailId + "=================");
+
         Date date=new Date();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HHmmss");
         String date1=simpleDateFormat.format(date);
 
         System.out.println(file);
         System.out.println(content);
-        EvaluateResult evaluateResult=evaluateResultService.saveEvaluateResult( file,grade,content,orderId);
+        EvaluateResult evaluateResult=evaluateResultService.saveEvaluateResult( file,grade,content,detailId);
         remarks mgtest = new remarks();
         mgtest.setId( Integer.parseInt(date1));
         mgtest.setReg_id(evaluateResult.getRegId());

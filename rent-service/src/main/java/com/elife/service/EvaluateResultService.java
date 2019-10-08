@@ -1,9 +1,11 @@
 package com.elife.service;
 
 import com.elife.dto.EvaluateResult;
+import com.elife.mapper.OrderDetailMapper;
 import com.elife.mapper.RentUserMapper;
 import com.elife.mapper.UserOrderMapper;
 import com.elife.pojo.EvaluatePicture;
+import com.elife.pojo.OrderDetail;
 import com.elife.pojo.RentUser;
 import com.elife.pojo.UserOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,16 @@ public class EvaluateResultService {
     @Autowired
     UserOrderMapper userOrderMapper;
 
-    public EvaluateResult saveEvaluateResult(MultipartFile[] file, int grade, String content,int orderId) throws IOException {
+    @Autowired
+    OrderDetailMapper orderDetailMapper;
+
+    public EvaluateResult saveEvaluateResult(MultipartFile[] file, int grade, String content,Integer detailId) throws IOException {
+        System.out.println("============" + detailId + "=================");
+
         EvaluateResult evaluateResult = new EvaluateResult();
 
-        UserOrder  userOrder = userOrderMapper.selectById(orderId);
+        OrderDetail orderDetail = orderDetailMapper.selectByPrimaryKey(detailId);
+        UserOrder  userOrder = userOrderMapper.selectById(orderDetail.getOrderId());
         int regId = userOrder.getRentId();
 
         RentUser rentUser = rentUserMapper.selectById(regId);
@@ -60,13 +68,13 @@ public class EvaluateResultService {
         evaluateResult.setContent(content);
         evaluateResult.setPictureList(pictureList);
         Integer fieldId;
-        if( userOrder.getFieldId() != null){
-            fieldId = userOrder.getFieldId();
+        if( orderDetail.getFieldId() != null){
+            fieldId = orderDetail.getFieldId();
             evaluateResult.setFieldId(fieldId);
         }
         Integer goodsId;
-        if( userOrder.getGoodsId() != null){
-            goodsId = userOrder.getGoodsId();
+        if( orderDetail.getGoodsId() != null){
+            goodsId = orderDetail.getGoodsId();
             evaluateResult.setGoodsId(goodsId);
         }
 
