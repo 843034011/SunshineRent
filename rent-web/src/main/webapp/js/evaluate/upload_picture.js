@@ -1,7 +1,7 @@
 var detailId =  sessionStorage.getItem("detail_id");
 var orderDetaildata;
 
-
+console.log("===========" + detailId + "===============");
 $.get({
     url:"/orderDetail/showOrderDetail",
     dataType:"json",   //text -》 data(string)    json ->(js中的json对象)
@@ -153,7 +153,7 @@ $("#bbt").click(function(){
     var content=$("#TextArea1").val();
     formData2.append("grade",grade);
     formData2.append("content",content);
-    formData2.append("orderId",30);
+    formData2.append("detailId",detailId);
     console.log(formData2);
 
     $.ajax({
@@ -165,7 +165,7 @@ $("#bbt").click(function(){
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success:function(data){
-            if(data == 0){
+            if(data == 1){
                 console.log("====success====");
                 alert("评价成功！")
                 window.location.href="http://localhost:8080/index.html"

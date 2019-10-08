@@ -342,6 +342,9 @@
       select * from user_order where rent_id = #{rentId}
   </select>
 
+  <select id="selectByOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user_order where order_no = #{orderNo}
+  </select>
 
 
   <insert id="insertOrder" parameterType="com.elife.dto.TotalOrderResult">

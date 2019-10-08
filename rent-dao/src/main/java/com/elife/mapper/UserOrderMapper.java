@@ -51,6 +51,7 @@ public interface UserOrderMapper {
     //根据用户id查询用户的所有的id
     List<UserOrder> selectAllByRentId(int rentId);
 
+    UserOrder selectByOrderNo(String orderNo);
 
 
     int insertOrder(@Param("totalOrderResult") TotalOrderResult totalOrderResult);
