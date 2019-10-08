@@ -61,10 +61,12 @@ function findUnpaidorder(){
 /*查找未归还的订单*/
 function findNoReturnOrder(){
     var noReturnOrderdata = new Array();
-    for(var j=0;j<orderdatas.length;j++){
-        if(orderdatas[j].rentId == regId ){
-            if(orderdatas[j].orderStatus == "未归还"){
-                noReturnOrderdata.push(orderdatas[j]);
+    for(var m=0;m<orderdatas.length;m++){
+        for(var n=0;n<orderdatas[m].orderDetails[n].length;n++){
+            if(orderdatas[m].rentId == regId ){
+                if(orderdatas[m].orderDetails[n].productStatus == "未归还"){
+                    noEvaluatedOrderdata.push(orderdatas[m]);
+                }
             }
         }
     }
@@ -74,10 +76,12 @@ function findNoReturnOrder(){
 /*查找未评价的订单*/
 function findNoEvaluatedOrder(){
     var noEvaluatedOrderdata = new Array();
-    for(var j=0;j<orderdatas.length;j++){
-        if(orderdatas[j].rentId == regId ){
-            if(orderdatas[j].orderStatus == "未评价"){
-                noEvaluatedOrderdata.push(orderdatas[j]);
+    for(var m=0;m<orderdatas.length;m++){
+        for(var n=0;n<orderdatas[m].orderDetails[n].length;n++){
+            if(orderdatas[m].rentId == regId ){
+                if(orderdatas[m].orderDetails[n].productStatus == "未评价"){
+                    noEvaluatedOrderdata.push(orderdatas[m]);
+                }
             }
         }
     }
