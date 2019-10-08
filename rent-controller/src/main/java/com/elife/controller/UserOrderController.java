@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,14 +64,14 @@ public class UserOrderController {
 
     @RequestMapping("getfirstorder")
     @ResponseBody
-    public ResultData getFirstOrder(HttpSession session) {
+    public ResultData getFirstOrder() {
         ResultData resultData = new ResultData();
 
         TotalOrderResult totalOrderResult = new TotalOrderResult();
 
         // 判断当前redis缓存中是否有totalOrderResult，如果有取出来
-        if(redisService.exists("totalOrderResult") == true){
-            totalOrderResult = (TotalOrderResult) redisService.get("totalOrderResult");
+        if(redisService.exists(orderId) == true){
+            totalOrderResult = (TotalOrderResult) redisService.get(orderId);
         } else {
             resultData.setCode(1);
             resultData.setMessage("当前缓存中缺少数据！！！！");
@@ -85,9 +84,11 @@ public class UserOrderController {
         return resultData;
     }
 
+    private static String orderId;
+
     @RequestMapping(value = "/addinfo")
     @ResponseBody
-    public ResultData insertOrder(@RequestBody TotalOrderResult totalOrderResult, HttpSession session) {
+    public ResultData insertOrder(@RequestBody TotalOrderResult totalOrderResult) {
 
         ResultData resultData = new ResultData();
 
@@ -96,7 +97,7 @@ public class UserOrderController {
         System.out.println(timeStr);
         System.out.println(timeStr.replaceAll("-","").replaceAll(":","").replaceAll(" ",""));
         // 生成订单编号
-        String orderId = UUID.randomUUID().toString().replaceAll("-", "");
+        orderId = UUID.randomUUID().toString().replaceAll("-", "");
 
         // 添加当前总订单所需要的参数
         totalOrderResult.setOrderId(orderId);
@@ -111,7 +112,8 @@ public class UserOrderController {
         System.out.println(totalOrderResult.toString());
 
         // 将订单信息放入redis缓存中
-        redisService.set("totalOrderResult", totalOrderResult);
+        long l = 15 * 60;
+        redisService.set(orderId, totalOrderResult,l);
 
         resultData.setCode(0);
         return resultData;
@@ -146,7 +148,7 @@ public class UserOrderController {
 
         // 将订单信息放入redis缓存中，并设置有效时间为15min
         long l = 15 * 60;
-        redisService.set("totalOrderResult", totalOrderResult,l);
+        redisService.set(orderId, totalOrderResult,l);
 
         resultData.setCode(0);
         resultData.setData(totalOrderResult);
@@ -160,16 +162,16 @@ public class UserOrderController {
         TotalOrderResult totalOrderResult = new TotalOrderResult();
 
         // 判断当前redis缓存中是否有totalOrderResult，如果有取出来
-        if(redisService.exists("totalOrderResult") == true){
-            totalOrderResult = (TotalOrderResult) redisService.get("totalOrderResult");
+        if(redisService.exists(orderId) == true){
+            totalOrderResult = (TotalOrderResult) redisService.get(orderId);
         } else {
             return "shoppingcart";
         }
 
+        redisService.remove(orderId);
+
         // 将当前订单存放到session中
         session.setAttribute("totalOrderResult",totalOrderResult);
-
-        redisService.remove("totalOrderResult");
 
         System.out.println(totalOrderResult.toString());
 

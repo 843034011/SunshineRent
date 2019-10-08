@@ -21,6 +21,10 @@
         }
     }
 
+    window.onunload = function(){
+        $.cookie("id", '', { expires: -1 })
+        $.cookie("key", '', { expires: -1 })
+    }
 </script>
 
 </body>

@@ -8,7 +8,6 @@ $(".show-nav").find("li").click(function () {
 //定时轮播
 var index = 1;
 
-
 var target = $(".show-nav").find("li").eq(index-1).css("border","2px solid rgb(0,200,190)");
 setInterval(function(){
     index++;
@@ -30,14 +29,16 @@ setInterval(function(){
 },4000);
 
 var reg_id = $.cookie('id');
-
+console.log(reg_id)
+console.log(reg_id == '')
 //顶部导航栏
+// if(reg_id == undefined){
 if(reg_id == undefined){
     $('.items').html(
         ' <li class="item"><a href="/shoppingcart/showcart'+
         '                        ">购物车</a></li>\n' +
         '                        <li class="item"><a href="">咨询中心</a></li>\n' +
-        '                        <li class="item userCenter" onclick="user()"><a href="">个人中心</a></li>\n' +
+        '                        <li class="item userCenter"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
         '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
         '                        <li class="item"><a href="login.html">登录</a></li>\n' +
         '                        <li class="item">\n' +
@@ -54,7 +55,7 @@ if(reg_id == undefined){
         '                        ">购物车</a></li>\n' +
         '                        <li class="item"><a href="">咨询中心</a></li>\n' +
         '                        <li class="item userCenter"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
-        '                        <li class="item" onclick="unlogin()"><a href="">退出登录</a></li>\n' +
+        '                        <li class="item"><span onclick="unlogin()">退出登录</span></li>\n' +
         '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
         '                        <li class="item">\n' +
         '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
@@ -67,17 +68,13 @@ if(reg_id == undefined){
 //     window.location.href="http://localhost:8080/goodsManageCon/showManage";
 // }
 
-function user() {
-    alert("未登录，请登录")
-}
-
 function unlogin(){
     $.cookie('id', '', { expires: -1 });
     $.cookie('key', '', { expires: -1 });
     $.cookie('isIdentified', '', { expires: -1 });
-    $.session.clear();
+    // $.session.clear();
     // $.cookie("isIdentified",data.data.isIdentified)
-    // window.location.href="/index.html";
+    window.location.href="/indexCon/clearsession";
 }
 
 //搜索框相关

@@ -28,10 +28,20 @@ $("#login").click(function () {
         success: function (data) {
             if(data.code == 0){
 
-                $.cookie("id",data.data.regId)
-                $.cookie("key",data.data.regUsername)
+                $.cookie("id",data.data.regId,"Session")
+                $.cookie("key",data.data.regUsername,"Session")
+                console.log($.cookie("id"))
+                console.log($.cookie("key"))
 
-                window.location.href = "index.html"
+                alert(1)
+                var href = $.cookie("header_href")
+
+                if(href == undefined){
+                    window.location.href = "/index.html"
+                } else {
+                    window.location.href = '/' + href.split("/")[1] +'';
+                }
+
             } else {
                 $("#telephone").val("")
                 $("#telephone").attr("placeholder", "手机号或密码不正确，请重新输入！")
