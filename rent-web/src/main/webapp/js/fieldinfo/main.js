@@ -41,6 +41,7 @@ var renshumax;
 			 renshumin=ui.values[0];
 			var nametype = $('#search').val();
 			var order=$("#choose").val();
+			var quyu = $(this).text();
 			console.log(order)
 
 
@@ -48,7 +49,7 @@ var renshumax;
 			$.get({
 				url: "fields/selectnametype",
 				dataType: "json",
-				data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax},
+				data: {"nametype": nametype, "name": name,"order":order,"renshumin":renshumin,"renshumax":renshumax,"quyu":quyu},
 				success:function(data){
 					console.log(data)
 					if(data.data==null){
@@ -76,8 +77,8 @@ var renshumax;
 
 		}
 	});
-	jQuery( "#slidevalue" ).val( "$" + $( "#price-range" ).slider( "values", 0 ) +
-		"      $" + $( "#price-range" ).slider( "values", 1 ) );
+	jQuery( "#slidevalue" ).val( $( "#price-range" ).slider( "values", 0 ) +
+		"   ~   " + $( "#price-range" ).slider( "values", 1 ) );
 
 
 	/*for(var i=0;i<fielddatas.length;i++){
