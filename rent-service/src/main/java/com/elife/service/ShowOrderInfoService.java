@@ -27,48 +27,49 @@ public class ShowOrderInfoService {
     @Autowired
     FieldPictureMapper fieldPictureMapper;
 
-    public ResultData selectOrderInfo(int orderId){
-        ResultData resultData = new ResultData();
+    @Autowired
+    GoodsPictureMapper goodsPictureMapper;
 
-        UserOrder userOrder = userOrderMapper.selectById(orderId);
-        if(userOrder.getFieldId() != null && userOrder.getGoodsId() == null){
-            RentField rentField = rentFieldMapper.selectByPrimaryKey(userOrder.getFieldId());
-            RentUser rentUser = rentUserMapper.selectById(rentField.getRegId());
-            List<FieldPicture> fieldPictureList = fieldPictureMapper.selectByFieldId(rentField.getId());
+    @Autowired
+    OrderDetailMapper orderDetailMapper;
+    public int selectOrderInfo(String orderNo){
 
-            FieldOrderInfo fieldOrderInfo = new FieldOrderInfo();
-            fieldOrderInfo.setSamplePicture(fieldPictureList.get(0).getFieldPicture());
-            System.out.println("picture = " + fieldOrderInfo.getSamplePicture());
-            fieldOrderInfo.setFieldName(rentField.getFieldName());
-            fieldOrderInfo.setFieldType(rentField.getFieldType());
-            fieldOrderInfo.setFieldGrade(rentField.getFieldGrade());
-            fieldOrderInfo.setFieldCount((rentField.getRentCount()));
-            fieldOrderInfo.setFieldDeposit(rentField.getFieldDeposit());
-            fieldOrderInfo.setFieldDayPrice(rentField.getFieldDayprice());
-            fieldOrderInfo.setFieldWeekPrice(rentField.getFieldWeekprice());
-            fieldOrderInfo.setFieldAddress(rentField.getFieldAddress());
-            fieldOrderInfo.setMasterName(rentUser.getUserRealname());
-            fieldOrderInfo.setMasterPhone(rentUser.getUserPhone());
+        int result = 0;
+        List<OrderDetail> orderDetailList = orderDetailMapper.selectByOrderNo(orderNo);
+        for(int i=0; i<orderDetailList.size();i++){
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail = orderDetailList.get(i);
+            if(orderDetail.getFieldId() != null && orderDetail.getGoodsId() == null){
+                if(orderDetail.getExtra3() ==null ){
+                    RentField rentField = rentFieldMapper.selectByPrimaryKey(orderDetail.getFieldId());
+                    RentUser rentUser = rentUserMapper.selectById(rentField.getRegId());
+                    List<FieldPicture> fieldPictureList = fieldPictureMapper.selectByFieldId(rentField.getId());
 
+                    orderDetail.setMasterId(rentUser.getUserId());
+                    orderDetail.setMasterPhone(rentUser.getUserPhone());
+                    orderDetail.setExtra3(fieldPictureList.get(0).getFieldPicture());
 
-            if(null == fieldOrderInfo ) {
-                resultData.setCode(3);
-                resultData.setMessage("查无数据");
-            } else {
-                resultData.setCode(0);
-                resultData.setData(fieldOrderInfo);
+                    result = orderDetailMapper.updateByPrimaryKey(orderDetail);
+                }else{
+                    result = 1;
+                }
+            }else {
+                if(orderDetail.getExtra3() ==  null ){
+                    RentGoods rentGoods = rentGoodsMapper.selectById(orderDetail.getGoodsId());
+                    RentUser rentUser = rentUserMapper.selectById(rentGoods.getRegId());
+                    List<GoodsPicture> goodsPictureList = goodsPictureMapper.selectByGoodsId(rentGoods.getId());
+
+                    orderDetail.setMasterId(rentUser.getUserId());
+                    orderDetail.setMasterPhone(rentUser.getUserPhone());
+                    orderDetail.setExtra3(goodsPictureList.get(0).getGoodsPicture());
+
+                    result = orderDetailMapper.updateByPrimaryKey(orderDetail);
+                }else{
+                    result = 1;
+                }
             }
-        }else{
-            RentGoods rentGoods = rentGoodsMapper.selectById(userOrder.getGoodsId());
-            if(null == rentGoods ) {
-                resultData.setCode(3);
-                resultData.setMessage("查无数据");
-            } else {
-                resultData.setCode(0);
-                resultData.setData(rentGoods);
-            }
+
         }
-        return resultData;
+        return result;
     }
-
 }

@@ -33,25 +33,32 @@ public class OrderController {
         System.out.println("==========");
         System.out.println("regId = " + regId);
         List<UserOrder> orderList = userOrderService.selectAllByRentId(regId);
+
+        int result = 0;
+        for(int i=0;i<orderList.size();i++){
+            result = showOrderInfoService.selectOrderInfo(orderList.get(i).getOrderNo());
+        }
+        List<UserOrder> orderList2 = userOrderService.selectAllByRentId(regId);
+
         ResultData resultData = new ResultData();
-        if(null == orderList || orderList.size() ==0) {
+        if(null == orderList2 || orderList2.size() ==0) {
             resultData.setCode(3);
             resultData.setMessage("查无数据");
         } else {
             resultData.setCode(0);
-            resultData.setData(orderList);
+            resultData.setData(orderList2);
 
         }
         return resultData;
     }
 
-    @RequestMapping("showorderinfo")
-    @ResponseBody
-    public ResultData selectByOrderId(int orderId){
-        ResultData resultData = new ResultData();
-        resultData = showOrderInfoService.selectOrderInfo(orderId);
-        return resultData;
-    }
+//    @RequestMapping("showorderinfo")
+//    @ResponseBody
+//    public ResultData selectByOrderId(int orderId){
+//        ResultData resultData = new ResultData();
+//        resultData = showOrderInfoService.selectOrderInfo(orderId);
+//        return resultData;
+//    }
 
     @RequestMapping("evaluate")
     public String evaluateHtml() {
