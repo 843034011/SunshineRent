@@ -201,7 +201,7 @@
                 </div>
             </div>
         </div>
-
+       <!-- <div class="add-header" style="width:100%;margin: auto;"></div>-->
     </div>
     <!-- header-top end -->
     <!-- header-middle start -->
@@ -380,16 +380,14 @@
                     </div>
                     <div class="product-variation">
                         <div class="product-quantity">
-                            <div class="cart-plus-minus" >
-                                <label  style="color: darkgrey;" >场地面积: </label>
+
+                                <h3  style="color:#333333;font-size:14px" id="area">场地面积: </h3>
                                 <!--<input class="cart-plus-minus-box" type="text" name="qtybutton" value="0"  readonly="true">-->
 
 
-                            </div>
 
-                            </br>
 
-                            </br>  </br>
+
                             <!--<div class="bjui-pageContent" >-->
                             <!-- </div>-->
 
@@ -525,7 +523,7 @@
                             </div>
 
 
-                            <div class="pro-add-to-cart" style="float:left; " >
+                            <div class="pro-add-to-cart" style="float:left;margin-left: 5px " >
                                 <p ><a onclick="youtu()" id="some" >有图评价</a></p>
                             </div>
 
@@ -688,7 +686,7 @@
                     <div class="section-heading">
                         <h2><span>相关</span> 商品</h2>
                     </div>
-                <!--    <div class="product-carousel-5">-->
+                    <div class="product-carousel-5">
                         <!-- &lt;!&ndash; single-product-item start &ndash;&gt;-->
                         <div class="single-product-item">
 
@@ -771,8 +769,6 @@
                         </div>
                         <!-- &lt;!&ndash; single-product-item end &ndash;&gt;
                          &lt;!&ndash; single-product-item start &ndash;&gt;-->
-
-
                         <div class="single-product-item">
                             <div class="product-image">
                                 <div class="product-sticker">
@@ -1308,7 +1304,7 @@
             $(".regular-price").text("¥"+data.data[fieldid-1].fieldDayprice)
             $("#fieldtext").text(data.data[fieldid-1].fieldInfo)
             $('#address').text("场地地址:"+data.data[fieldid-1].fieldAddress)
-
+            $('#area').text("场地面积:"+data.data[fieldid-1].fieldVolume+"平方米")
             /* $('#optima_gallery').find("li").remove();*/
             for(var i=0;i<data.data[fieldid-1].fieldPictures.length;i++){
                 console.log(data.data[fieldid-1].fieldPictures[i].fieldPicture)
@@ -1997,32 +1993,7 @@ var regid;//登录人的id
         // })
     }
 
-    $.ajax({
-        url:"fieldss/showallfields",
-        dataType:"json",
-        success:function(data) {
-            console.log(data);
-            for(var m=0;m<data.data.length;m++){
 
-            }
-
-        }
-
-    })
-
-   /* for(var q=0;q<data.data){
-        console.log(data.data[fieldid-1].fieldPictures[i].fieldPicture)
-        $('#optima_gallery').append(`
-
-             <li>
-        <a href="#" data-image="${data.data[fieldid-1].fieldPictures[i].fieldPicture}" data-zoom-image="${data.data[fieldid-1].fieldPictures[i].fieldPicture}">
-         <img src="${data.data[fieldid-1].fieldPictures[i].fieldPicture}" alt="optima" style="width:119px;height:88.84px"/>
-          </a>
-        </li>
-
-
-               `)
-    }*/
 
 
 
@@ -2055,6 +2026,7 @@ var regid;//登录人的id
 <script src="js/fieldinfo/wow.js"></script>
 <script>
     new WOW().init();
+   /* $('.add-header').load('headerandfooter/header/publicheader.html')*/
 </script>
 <!-- main js -->
 <script src="js/fieldinfo/main.js"></script>

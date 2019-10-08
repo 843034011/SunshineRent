@@ -105,7 +105,7 @@ public class fieldsInfo {
 
          Date startTime1 = new Date(startTime);
          Date endTime1=new Date(endTime);
-        System.out.println(startTime1);
+        System.out.println("+++++++++++1111+"+startTime1);
         List<UserOrder> userOrders=fieldsService.selectCannotOrder(startTime1,endTime1);
         System.out.println(userOrders);
         ResultData resultData = new ResultData();
@@ -155,6 +155,23 @@ public class fieldsInfo {
 
     }
 
+
+    @RequestMapping("allorders")
+    @ResponseBody
+    public ResultData selectAllOrders(){
+        List<OrderDetail>orderDetails=fieldsService.selectAllOrders();
+        System.out.println(orderDetails);
+        ResultData resultData = new ResultData();
+        if(null == orderDetails || orderDetails.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(orderDetails);
+        }
+        return resultData;
+
+    }
 
 
 

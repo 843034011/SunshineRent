@@ -454,6 +454,9 @@
     select <include refid="Base_Column_List" /> from order_detail where field_id = #{num} and product_status = '未归还'
   </select>
 
+  <select id="selectAllOrders" resultMap="BaseResultMap">
+    select * from order_detail;
+  </select>
   <select id="selectGoodsOrderDateUnEvaluate" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select <include refid="Base_Column_List" /> from order_detail where goods_id = #{num} and product_status = '未归还'
   </select>
@@ -475,4 +478,14 @@
       '1',#{rentGoods.goodsDeposit},#{rentGoods.goodsDayprice},
       #{orderResult.address},#{orderResult.total},#{orderResult.startTime},#{orderResult.endTime},'未归还',#{order})
   </insert>
+
+
+ <!-- yy-->
+  <select id="selectCannotOrder" parameterType="Date" resultMap="BaseResultMap">
+    SELECT * FROM user_order
+    WHERE
+    (start_time >= #{startTime} AND #{endTime}>=start_time)
+    OR (#{startTime}>=start_time AND end_time >= #{endTime})
+    OR (end_time >= #{startTime} AND #{endTime}>=end_time )
+  </select>
 </mapper>

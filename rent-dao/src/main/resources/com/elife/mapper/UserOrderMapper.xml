@@ -342,13 +342,7 @@
       select * from user_order where rent_id = #{rentId}
   </select>
 
-  <select id="selectCannotOrder" parameterType="Date" resultMap="BaseResultMap">
-    SELECT * FROM user_order
-    WHERE
-    (start_time >= #{startTime} AND #{endTime}>=start_time)
-    OR (#{startTime}>=start_time AND end_time >= #{endTime})
-    OR (end_time >= #{startTime} AND #{endTime}>=end_time )
-  </select>
+
 
   <insert id="insertOrder" parameterType="com.elife.dto.TotalOrderResult">
     insert into user_order (id, order_no, order_price,order_status, create_time, rent_id)
