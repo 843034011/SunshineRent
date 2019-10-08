@@ -127,6 +127,7 @@
             /*padding-right: 40px;*/
         }
     </style>
+
 </head>
 <body><!-- body里面全部拿走 -->
 <div class="top">
@@ -148,7 +149,7 @@
                 <ul class="items">
                     <li class="item"><a href="/goodsManageCon/showManage">个人中心</a></li>
                     <li class="item"><a href="/shoppingcart/showcart">购物车</a></li>
-                    <li class="item" onclick="unlogin()"><a href="">退出登录</a></li>
+                    <!--<li class="item" onclick="unlogin()"><a href="">退出登录</a></li>-->
                     <li class="item"><a href="">咨询中心</a></li>
                     <!--<li class="item"><a href="">成为租赁商</a></li>-->
                     <li class="item">
@@ -161,12 +162,9 @@
 </div>
 </body>
 <script>
-    function unlogin() {
-        $.cookie('id', '', { expires: -1 });
-        $.cookie('key', '', { expires: -1 });
-        $.cookie('isIdentified', '', { expires: -1 });
-        // $.cookie("isIdentified",data.data.isIdentified)
-        window.location.href="/index.html";
+    window.onunload = function(){
+        $.cookie("id", '', { expires: -1 })
+        $.cookie("key", '', { expires: -1 })
     }
 </script>
 </html>

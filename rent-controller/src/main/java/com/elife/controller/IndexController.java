@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -72,5 +74,13 @@ public class IndexController {
             resultData.setMessage("没有数据");
         }
         return resultData;
+    }
+
+    //清除session
+    @RequestMapping("/clearsession")
+    public String returnUrl(HttpSession session){
+        session.removeAttribute("rentRegister");
+        session.removeAttribute("idIdentified");
+        return "index.html";
     }
 }
