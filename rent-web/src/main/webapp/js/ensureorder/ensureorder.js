@@ -28,11 +28,11 @@ $.post({
                                     </div>
                                     <div class="form-group">
                                         <label>开始时间：</label>
-                                        <span>${data.data.results[i].startTime}</span>
+                                        <span>${data.data.results[i].startTime.split("T")[0]}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>结束时间：</label>
-                                        <span>${data.data.results[i].endTime}</span>
+                                        <span>${data.data.results[i].endTime.split("T")[0]}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>当前价格：</label>
@@ -54,11 +54,11 @@ $.post({
                                     </div>
                                     <div class="form-group">
                                         <label>开始时间：</label>
-                                        <span>${data.data.results[i].startTime}</span>
+                                        <span>${data.data.results[i].startTime.split("T")[0]}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>结束时间：</label>
-                                        <span>${data.data.results[i].endTime}</span>
+                                        <span>${data.data.results[i].endTime.split("T")[0]}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>当前价格：</label>

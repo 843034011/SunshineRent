@@ -33,13 +33,14 @@ public class WebConfigurer implements WebMvcConfigurer {
         //登录拦截的黑名单
         List<String> loginList = new ArrayList<>();
         loginList.add("/shoppingcart/**");
+        loginList.add("/goodsManageCon/showManage");
 
         registry.addInterceptor(loginInterceptor).addPathPatterns(loginList).excludePathPatterns();
 
 
-        //注册拦截的黑名单
+        //注册拦截的防止表单重复提交
         List<String> registerList = new ArrayList<>();
-        registerList.add("/register/**");
+        registerList.add("/register/insertuser");
 
         registry.addInterceptor(registerInterceptor).addPathPatterns(registerList).excludePathPatterns();
 

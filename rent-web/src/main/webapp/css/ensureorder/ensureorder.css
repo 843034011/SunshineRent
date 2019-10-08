@@ -3,6 +3,7 @@
 }
 .list{
     list-style: none;
+    margin-top: 10px;
 }
 .choose-one-box{
     width: 16px;

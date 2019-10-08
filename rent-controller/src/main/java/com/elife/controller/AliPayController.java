@@ -12,6 +12,7 @@ import com.elife.dto.TotalOrderResult;
 import com.elife.pojo.RentField;
 import com.elife.pojo.RentGoods;
 import com.elife.service.OrderDetailService;
+import com.elife.service.RedisService;
 import com.elife.service.ShoppingCartService;
 import com.elife.service.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,16 @@ public class AliPayController{
     @Autowired
     OrderDetailService orderDetailService;
 
+    @Autowired
+    private RedisService redisService;
+
     /**
      * 确认订单结算
      * @param httpResponse
      * @throws IOException
      */
     @RequestMapping("payInfo")
-    public void alipay(HttpServletResponse httpResponse, String orderId, String money,String storeName,HttpSession session) throws IOException {
+    public void alipay(HttpServletResponse httpResponse, String orderId, String money,HttpSession session) throws IOException {
 
         //实例化客户端,填入所需参数
         AlipayClient alipayClient = new DefaultAlipayClient(
@@ -159,6 +163,8 @@ public class AliPayController{
             for (int i = 0; i < totalOrderResult.getResults().size(); i++) {
                 int o = shoppingCartService.deleteByShoppingId(Integer.parseInt(totalOrderResult.getResults().get(i).getShoppingCartId()));
             }
+
+            session.removeAttribute("totalOrderResult");
 
             return "shoppingcart";//跳转付款成功页面
         }else{
