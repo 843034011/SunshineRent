@@ -100,26 +100,30 @@ $.post({
                         "regId":myAddress[0].regId
                     });
                 // console.log(updatainfo);
-                $.post({
-                    url:"/userAddressCon/updataAddress",
-                    data:updatainfo,
-                    // data:"id="+get_updata_id,
-                    dataType:"json",
-                    // processData: false,//发送异步请求必须设置
-                    contentType: "application/json",
-                    success:function (data) {
-                        if(data.code == 0) {
-                            alert("修改成功");
-                            window.location.reload();
-                            $("#new").modal("hide");
-                        } else {
-                            // alert("传到这的id:"+get_updata_id);
-                            alert("修改失败");
-                            // alert(data.code);
+                var up_address = $('#inputScope').val();
+                if(up_address.indexOf('江苏省苏州市')!=-1){
+                    $.post({
+                        url:"/userAddressCon/updataAddress",
+                        data:updatainfo,
+                        // data:"id="+get_updata_id,
+                        dataType:"json",
+                        // processData: false,//发送异步请求必须设置
+                        contentType: "application/json",
+                        success:function (data) {
+                            if(data.code == 0) {
+                                alert("修改成功");
+                                window.location.reload();
+                                $("#new").modal("hide");
+                            } else {
+                                // alert("传到这的id:"+get_updata_id);
+                                alert("修改失败");
+                                // alert(data.code);
+                            }
                         }
-                    }
-                })
-
+                    })
+                }else{
+                    alert('地址输入有误')
+                }
             })
         }
     })
@@ -134,24 +138,27 @@ $('.btn-sub').click(function () {
             "pickerPhone":$('#inputPhone').val(),
             "regId":myAddress[0].regId
         });
-    $.post({
-        url:"/userAddressCon/insertAddress",
-        data:addressinfo,
-        contentType:"application/json",
-        dataType:"json",
-        // processData: false,//发送异步请求必须设置
-        // contentType: false,
-        success:function (data) {
-            if(data.code == 0) {
-                alert("添加成功");
-                location.reload();
-                $("#new").modal("hide")
-            } else {
-                alert("添加失败")
+    if(up_address.indexOf('江苏省苏州市')!=-1){
+        $.post({
+            url:"/userAddressCon/insertAddress",
+            data:addressinfo,
+            contentType:"application/json",
+            dataType:"json",
+            // processData: false,//发送异步请求必须设置
+            // contentType: false,
+            success:function (data) {
+                if(data.code == 0) {
+                    alert("添加成功");
+                    location.reload();
+                    $("#new").modal("hide")
+                } else {
+                    alert("添加失败")
+                }
             }
-        }
-    })
-
+        })
+    }else{
+        alert('地址输入有误')
+    }
 })
 
 

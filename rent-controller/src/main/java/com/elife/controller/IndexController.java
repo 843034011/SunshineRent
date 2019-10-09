@@ -78,9 +78,11 @@ public class IndexController {
 
     //清除session
     @RequestMapping("/clearsession")
-    public String returnUrl(HttpSession session){
-        session.removeAttribute("rentRegister");
-        session.removeAttribute("idIdentified");
-        return "index.html";
+    public void returnUrl(HttpServletRequest request){
+        request.getSession().removeAttribute("rentRegister");
+        request.getSession().removeAttribute("idIdentified");
+        /*session.removeAttribute("rentRegister");
+        session.removeAttribute("idIdentified");*/
+//        return "index.html";
     }
 }

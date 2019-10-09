@@ -50,12 +50,13 @@ if(reg_id == undefined){
         '                        </li>'
     )
 }else{
+    $.cookie('rentRegister',sessionStorage.getItem('rentRegister'));
     $('.items').html(
         ' <li class="item"><a href="/shoppingcart/showcart'+
         '                        ">购物车</a></li>\n' +
         '                        <li class="item"><a href="">咨询中心</a></li>\n' +
         '                        <li class="item userCenter"><a href="/goodsManageCon/showManage">个人中心</a></li>\n' +
-        '                        <li class="item"><span onclick="unlogin()">退出登录</span></li>\n' +
+        '                        <li class="item" style="cursor: pointer;"><span onclick="unlogin()">退出登录</span></li>\n' +
         '                        <!--<li class="item"><a href="">成为租赁商</a></li>-->\n' +
         '                        <li class="item">\n' +
         '                            <span class="tel"><a href="">159-8444-5209</a></span>\n' +
@@ -72,9 +73,17 @@ function unlogin(){
     $.cookie('id', '', { expires: -1 });
     $.cookie('key', '', { expires: -1 });
     $.cookie('isIdentified', '', { expires: -1 });
+    $.cookie('rentRegister', '', { expires: -1 });
     // $.session.clear();
     // $.cookie("isIdentified",data.data.isIdentified)
-    window.location.href="/indexCon/clearsession";
+    // window.location.href="/indexCon/clearsession";
+    $.post({
+        url:"/indexCon/clearsession",
+        success:function () {
+
+        }
+    })
+    location.reload();
 }
 
 //搜索框相关

@@ -152,22 +152,27 @@ if(reg_id !=0 || reg_id != null){
         formData3.append("fieldWeekprice",$('#fieldweekprice').val());
         formData3.append("fieldMonthprice",$('#fieldmonthprice').val());
         formData3.append("regId",reg_id);
-        $.post({
-            url:"/addField/insertRendField",
-            data:formData3,
-            dataType:"json",
-            contentType:"application/json",
-            cache: false, //上传文件不需要缓存
-            processData: false,
-            contentType: false,
-            success:function (data) {
-                if(data.code == 0) {
-                    alert("添加成功")
-                } else {
-                    alert("添加失败")
+        var up_fieldaddress = $('#fieldaddress').val();
+        if(up_fieldaddress.indexOf('江苏省苏州市')!=-1){
+            $.post({
+                url:"/addField/insertRendField",
+                data:formData3,
+                dataType:"json",
+                contentType:"application/json",
+                cache: false, //上传文件不需要缓存
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    if(data.code == 0) {
+                        alert("添加成功")
+                    } else {
+                        alert("添加失败")
+                    }
                 }
-            }
-        })
+            })
+        }else{
+            alert('地址输入有误')
+        }
     })
 }
 
