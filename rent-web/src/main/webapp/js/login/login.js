@@ -33,7 +33,6 @@ $("#login").click(function () {
                 console.log($.cookie("id"))
                 console.log($.cookie("key"))
 
-                alert(1)
                 var href = $.cookie("header_href")
 
                 if(href == undefined){
