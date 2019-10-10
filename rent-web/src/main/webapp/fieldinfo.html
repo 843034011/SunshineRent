@@ -45,6 +45,16 @@
     <!--<link rel="stylesheet" href="css/demo-center.css" />-->
     <link rel="stylesheet" type="text/css" href="css/fieldinfo/prety-json.css">
 
+
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>周边检索</title>
+    <!--<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />-->
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+
+
+
+
     <style>
 
        /* #ditu{
@@ -53,7 +63,7 @@
         }*/
        #ditu{
            width: 400px;
-           height: 400px;
+           height: 300px;
            float:left
        }
         #ditua{
@@ -85,7 +95,7 @@
         .table_card .tab li:hover { height:37px; background:#fff; color:#333; cursor:pointer;color: #5fa2ff
         }
         .table_card .activ { height:37px !important; background:#fff !important; color:#333}
-        .table_card .tabCon { background:#fff; padding:15px; border-bottom:1px #e1e1e1 solid; border-left:1px #e1e1e1 solid; border-right:1px #e1e1e1 solid;width:360px;margin-left:155px; margin-left: 170px}
+        .table_card .tabCon { background:#fff; padding:15px; border-bottom:1px #e1e1e1 solid; border-left:1px #e1e1e1 solid; border-right:1px #e1e1e1 solid;width:375px;margin-left:155px; margin-left: 170px}
         .table_card .tabCon div { display:none}
         .table_card .tabCon .on { display:block}
 
@@ -442,6 +452,9 @@
                         <!-- <li><a href="#proTag" data-toggle="tab">场地商品标签</a></li>-->
                     </ul>
 
+
+
+
                     <!--     &lt;!&ndash; Tab panes &ndash;&gt;-->
                     <div class="product-tab-content tab-content">
                         <div class="tab-pane active" id="proDescription">
@@ -449,7 +462,8 @@
                                 <!-- <h2>周边环境</h2>
                                  <p>周边有华为，有国科数据中心，周边有华为，有国科数据中心，周边有华为，有国科数据中心，
                                      周边有华为，有国科数据中心，周边有华为，有国科数据中心，. </p>-->
-                                <div id="ditu" ></div>
+                                <div id="ditu" style="float:left"></div>
+
 
                                 <!--<div class="info">-->
                                     <!--<div class="input-item">
@@ -471,7 +485,7 @@
                                        <button type="button" class="btn btn-info" onclick="around()" style="float:left;margin-left:20px">显示周边环境</button>
                                 <br>
                                 <br>
-                                    <div class="table_card" >
+                                    <div class="table_card" style="float:left">
                                         <ul class="tab">
                                             <li class="activ">餐饮服务类</li>
                                             <li>生活服务类</li>
@@ -508,10 +522,27 @@
                                             </div>
 
                                         </div>
-                                        <div style="background-color: white;height:450px;width:10px"></div>
+
+                                        <div id="container1" class="map" style="  width: 100%; height: 100%; float:left"></div>
+                                        <div id="panel" style="
+                                        float:left;
+                                            background-color: white;
+                                            max-height: 90%;
+                                            overflow-y: auto;
+                                            top: 10px;
+                                            right: 10px;
+                                            width: 280px;
+                                            background-color: #009cf9;
+                                            border-top-left-radius: 4px;
+                                            border-top-right-radius: 4px;
+                                            border-bottom-left-radius: 4px;
+                                            border-bottom-right-radius: 4px;
+                                                                            "></div>
+
+                                        <!--<div style="background-color: white;height:450px;width:10px"></div>-->
                                     </div>
                                     <!--<button id="button" onclick="around()">显示周边环境</button>-->
-
+                                <div style="background-color: white;height:450px;width:10px"></div>
                                 </div>
 
                            <!-- </div>-->
@@ -519,7 +550,7 @@
 
                         <div class="tab-pane" id="proReview">
                             <div class="pro-add-to-cart" style="float:left; " >
-                                <p ><a onclick="quanbu()" id="all" style="background-color: #00a9e0;color: white">全部评价评价</a></p>
+                                <p ><a onclick="quanbu()" id="all" style="background-color: #00a9e0;color: white">全部评价</a></p>
                             </div>
 
 
@@ -1802,7 +1833,8 @@ function peoplecenter(){
 </script>
 
 <!-- 地图-->
-<script src="https://webapi.amap.com/maps?v=1.4.14&key=d733fb8cd38afe151c4ef8b628b4d3a3&plugin=AMap.Autocomplete,AMap.Geocoder"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.14&key=d733fb8cd38afe151c4ef8b628b4d3a3&plugin=AMap.Autocomplete,AMap.Geocoder&plugin=AMap.Driving"></script>
+<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 <!--<script type="text/javascript" src="js/fieldinfo/jquery-1.11.1.min.js" ></script>-->
 <script type="text/javascript" src="js/fieldinfo/underscore-min.js" ></script>
 <script type="text/javascript" src="js/fieldinfo/backbone-min.js" ></script>
@@ -1816,6 +1848,34 @@ function peoplecenter(){
         resizeEnable: true, //是否监控地图容器尺寸变化
         zoom: 11, //初始地图级别
     });
+
+   /* var search, center = [116.39946, 39.910829];
+    var searchOptions = {
+        map: map,
+        panel: 'panel',
+        keywords: '',
+        pageSize: 5,
+        orderBy: '_id:ASC'
+    };
+    //加载CloudDataSearch服务插件
+    AMap.service(["AMap.CloudDataSearch"], function() {
+        search = new AMap.CloudDataSearch('532b9b3ee4b08ebff7d535b4', searchOptions);
+        search.searchNearBy(center, 1000);
+    });
+    // 中心点位置
+    var icon = new AMap.Icon({
+        size: new AMap.Size(20, 30),    // 图标尺寸
+        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png',  // Icon的图像
+        imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
+    });
+    var marker = new AMap.Marker({
+        icon: icon,
+        position: center,
+        offset: new AMap.Pixel(-10, -10)
+    });
+    marker.setMap(map);
+
+
 
     map.plugin('AMap.Geolocation', function () {
         geolocation = new AMap.Geolocation({
@@ -1832,16 +1892,53 @@ function peoplecenter(){
             zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
         });
         map.addControl(geolocation);
+        geolocation.getCurrentPosition(function(status,result){
+            if(status=='complete'){
+                onComplete(result)
+            }else{
+                onError(result)
+            }
+        });
+        function onComplete(data) {
+            console.log(data.position.lat)
+            console.log(data.position.lng)
+
+
+
+            var map = new AMap.Map("container1", {
+                resizeEnable: true,
+                center: [116.397428, 39.90923],//地图中心点
+                zoom: 13 //地图显示的缩放级别
+            });
+            //构造路线导航类
+            var driving = new AMap.Driving({
+                map: map,
+                panel: "panel"
+            });
+            // 根据起终点经纬度规划驾车导航路线
+            driving.search(new AMap.LngLat(data.position.lng,data.position.lat), new AMap.LngLat(116.427281, 39.903719), function(status, result) {
+                // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+                if (status === 'complete') {
+                    log.success('绘制驾车路线完成')
+                } else {
+                    log.error('获取驾车数据失败：' + result)
+                }
+            });
+
+        }
         geolocation.getCurrentPosition();
+        console.log(position)
+        console.log( AMap.event.addListener(geolocation, 'complete', onComplete))
         AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
         AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
     });
 
 
-    function onError(data) {
-        alert(JSON.stringify(data));
-        document.getElementById('tip').innerHTML = '定位失败';
-    }
+*/
+
+
+
+
     var geocoder,marker,lnglat;
     function regeoCode() {
         if(!geocoder){
@@ -1924,6 +2021,94 @@ function peoplecenter(){
                     lnglat=[x,y];
                     regeoCode();
 
+                    var search, center = [116.39946, 39.910829];
+                    var searchOptions = {
+                        map: map,
+                        panel: 'panel',
+                        keywords: '',
+                        pageSize: 5,
+                        orderBy: '_id:ASC'
+                    };
+                    //加载CloudDataSearch服务插件
+                    AMap.service(["AMap.CloudDataSearch"], function() {
+                        search = new AMap.CloudDataSearch('532b9b3ee4b08ebff7d535b4', searchOptions);
+                        search.searchNearBy(center, 1000);
+                    });
+                    // 中心点位置
+                    var icon = new AMap.Icon({
+                        size: new AMap.Size(20, 30),    // 图标尺寸
+                        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png',  // Icon的图像
+                        imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
+                    });
+                    var marker = new AMap.Marker({
+                        icon: icon,
+                        position: center,
+                        offset: new AMap.Pixel(-10, -10)
+                    });
+                    marker.setMap(map);
+
+
+
+                    map.plugin('AMap.Geolocation', function () {
+                        geolocation = new AMap.Geolocation({
+                            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                            maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                            convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                            showButton: true,        //显示定位按钮，默认：true
+                            buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                            showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                            showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                            panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                            zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                        });
+                        map.addControl(geolocation);
+                        geolocation.getCurrentPosition(function(status,result){
+                            if(status=='complete'){
+                                onComplete(result)
+                            }else{
+                                onError(result)
+                            }
+                        });
+                        function onComplete(data) {
+                            console.log(data.position.lat)
+                            console.log(data.position.lng)
+                             console.log(address)
+
+
+                            var map = new AMap.Map("container1", {
+                                resizeEnable: true,
+                                center: [116.397428, 39.90923],//地图中心点
+                                zoom: 13 //地图显示的缩放级别
+                            });
+                            //构造路线导航类
+                            var driving = new AMap.Driving({
+                                map: map,
+                                panel: "panel"
+                            });
+                            // 根据起终点经纬度规划驾车导航路线
+                            driving.search(new AMap.LngLat(data.position.lng,data.position.lat), new AMap.LngLat(x,y), function(status, result) {
+                                // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+                                if (status === 'complete') {
+                                    log.success('绘制驾车路线完成')
+                                } else {
+                                    log.error('获取驾车数据失败：' + result)
+                                }
+                            });
+
+                        }
+                        geolocation.getCurrentPosition();
+                        console.log(position)
+                        console.log( AMap.event.addListener(geolocation, 'complete', onComplete))
+                        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                    });
+
+
+
+
+
                 }
             }
 
@@ -1934,6 +2119,7 @@ function peoplecenter(){
             console.log(address)
         }
     })
+
 
 
     function around() {
@@ -1998,6 +2184,15 @@ console.log(address)
         // 发送请求
         xhr.send();
     }
+
+
+
+
+
+
+
+
+
 </script>
 
 
