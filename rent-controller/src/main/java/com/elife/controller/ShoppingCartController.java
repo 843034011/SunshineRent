@@ -27,7 +27,7 @@ public class ShoppingCartController {
      * /WEN-INF/shoppingcart.html
      * @return
      */
-    @RequestMapping("showcart")
+    @RequestMapping("/showcart")
     public String showcart(){
         return "shoppingcart";
     }

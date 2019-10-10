@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
 
         if (rentRegister == null) {
-            response.sendRedirect("http://localhost:8080/login.html?info=unlogin");
+            response.sendRedirect("/login.html?info=unlogin");
             return false;
         } else {
             return true;
