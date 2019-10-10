@@ -74,7 +74,7 @@
 <header class="header-area">
     <!-- header-top start -->
  <div class="header-top">
-     <div class="container">
+    <!-- <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="welcome-mes">
@@ -107,24 +107,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+     <div class="add-header" style="width:100%;margin: auto;"></div>
      <!--<div class="add-header" style="width:100%;margin: auto;"></div>-->
     </div>
 
     <!-- header-top end -->
     <!-- header-middle start -->
-    <div class="header-middle">
-        <div class="container">
-            <div class="row">
+   <!-- <div class="header-middle">
+        <div class="container">-->
+           <!-- <div class="row">
                 <div class="col-xs-12 col-md-3">
-                    <!-- logo start -->
+                    &lt;!&ndash; logo start &ndash;&gt;
                     <div class="logo">
                         <a href="index.html"><img src="img//fieldinfo/logo3.png" alt="GreenTech"/></a>
                     </div>
-                    <!-- logo end -->
-                </div>
-                <div class="col-xs-12 col-md-9">
-                    <!-- category search start -->
+                    &lt;!&ndash; logo end &ndash;&gt;
+                </div>-->
+            <!--    <div class="col-xs-12 col-md-9">
+                    &lt;!&ndash; category search start &ndash;&gt;
 
                     <div class="category-search-area">
                         <div class="search-cat">
@@ -147,19 +148,19 @@
                         </div>
                     </div>
 
-                    <!-- category search end -->
-                    <!-- top-shoping-cart start -->
-                    <!-- 我的爱好-->
+                    &lt;!&ndash; category search end &ndash;&gt;
+                    &lt;!&ndash; top-shoping-cart start &ndash;&gt;
+                    &lt;!&ndash; 我的爱好&ndash;&gt;
                     <div class="top-shoping-cart">
                         <div class="top-wishlist">
-                            <a class="top-wishlist-link" href="mylove.html"><!--<span>3</span>--></a>
-                            <!--<div class="wishlist-box-overlay">-->
+                            <a class="top-wishlist-link" href="mylove.html">&lt;!&ndash;<span>3</span>&ndash;&gt;</a>
+                            &lt;!&ndash;<div class="wishlist-box-overlay">&ndash;&gt;
                         </div>
 
 
                         <div class="top-mycart">
                             <a class="top-mycart-link" href="shoppingcart.html"></a>
-                        </div>
+                        </div>-->
                         <!--分类下拉页面-->
                         <!--		&lt;&ndash; header-middle end &ndash;&gt;
                                 &lt;&ndash;header-bottom start &ndash;&gt;-->
@@ -589,7 +590,7 @@
                 <div class="greentect_bradcame">
                     <ul>
                         <li><a href="index.html">首页</a></li>
-                        <li>办公场地</li>
+                        <li id="daohang"></li>
                     </ul>
                 </div>
             </div>
@@ -1671,7 +1672,10 @@
             if (reid != undefined) {
                 for (var i = 0; i < data.data.length; i++) {
                     if (reid == data.data[i].regId) {
-                        lovefield.push(data.data[i].fieldId)
+
+                        if(data.data[i].fieldId){
+                            lovefield.push(data.data[i].fieldId)
+                        }
                     }
                 }
             }
@@ -1680,9 +1684,13 @@
     })
 
     function fenye(data) {
-
+        var url = decodeURI(location.href);
+        var str = url.split("=");
+        var name = str[1];
+        $('#daohang').text(name)
         console.log(lovefield)
         var lovefields = [];
+
         for (var i = 0; i < lovefield.length; i++) {
             if (lovefields.indexOf(lovefield[i]) === -1) {
                 lovefields.push(lovefield[i]);

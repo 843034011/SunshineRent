@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("fields")
-
+/*所有场地*/
 public class fieldsInfo {
     @Autowired
     fieldsServiceImpl fieldsService;
@@ -56,11 +56,7 @@ public class fieldsInfo {
     @RequestMapping("selectnametype")
     @ResponseBody
     public ResultData selectByNameType(String nametype,String name,String order,Integer renshumin,Integer renshumax,String quyu){
-        System.out.println("++++++++++++++++"+name);
-        System.out.println(nametype);
-        System.out.println(order);
-        System.out.println(renshumin);
-        System.out.println("+++++"+quyu);
+
         List<RentField> orderlist = fieldsService.selectByNameType(nametype,name,order,renshumin,renshumax,quyu);
         ResultData resultData = new ResultData();
         if(null == orderlist || orderlist.size() ==0) {
@@ -174,10 +170,10 @@ public class fieldsInfo {
     }
 
 
-
+/*加入购物车*/
     @RequestMapping("insertshoppingcart")
     @ResponseBody
-    public ResultData insertFields(Integer fieldid,Integer masterId,Integer reid){
+    public ResultData insertFields(Integer fieldid,Integer masterId,Integer reid,Integer goodsid){
         ResultData resultData = new ResultData();
         System.out.println("=================================="+masterId+reid);
    /*     RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
