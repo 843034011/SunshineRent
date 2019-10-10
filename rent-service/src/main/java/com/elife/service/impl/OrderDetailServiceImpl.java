@@ -35,6 +35,12 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
+    public List<OrderDetail> selectAllOrders() {
+        List<OrderDetail> orderDetails = orderDetailMapper.selectAllOrders();
+        return orderDetails;
+    }
+
+    @Override
     public int insertOrderDetailField(OrderResult orderResult, RentField rentField, String orderId) {
         return orderDetailMapper.insertOrderDetailField(orderResult,rentField,orderId);
     }

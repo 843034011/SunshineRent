@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 public class RentApplication {
 
     public static void main(String[] args) {
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         SpringApplication.run(RentApplication.class,args);
     }
     /**

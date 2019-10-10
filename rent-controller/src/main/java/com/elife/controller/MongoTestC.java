@@ -73,8 +73,21 @@ public class MongoTestC {
             p.setPicture(evaluateResult.getPictureList().get(i));
             pictures.add(p);
         }
-        mgtest.setFieldId(evaluateResult.getFieldId());
+        if(evaluateResult.getFieldId() != null){
+            mgtest.setFieldId(evaluateResult.getFieldId());
+            mgtest.setGoodsId(0);
+        }else if(evaluateResult.getGoodsId() != null){
+            mgtest.setFieldId(0);
+            mgtest.setGoodsId(evaluateResult.getGoodsId());
+        }
+
         mgtest.setPicture(pictures);
+
+        List<Zans> zansList = new ArrayList<>();
+        Zans zans = new Zans();
+        zans.setZan(0);
+        zansList.add(zans);
+        mgtest.setZan(zansList);
         mtdao.saveTest(mgtest);
         if(mgtest==null){
             return 0;

@@ -140,22 +140,37 @@ function findorderbytime(){
     }
 }
 
-function findorderbyid(){
-    var data = new Array();
+function findorderbyName(){
+    var findresultdata3;
+    var findresultByName = new Array();
 
-    var orderID = document.getElementById("order-id-input").value;
-    console.log("orderID = " + orderID);
+    var keywords = document.getElementById("order-id-input").value;
 
-    for(var j=0;j<databyrentID.length;j++){
-        if(databyrentID[j].id == orderID ){
-            data.push(databyrentID[j])
+
+    console.log("keywords = " + keywords);
+    console.log("regId = " + regId);
+
+
+    $.ajax({
+        url:"/ESTest",
+        dataType:"json",
+        data:{"regId":regId,"keywords":keywords},
+        success:function(data){
+            findresultdata3=data.data;
+            console.log(data);
+            console.log(data.data.length);
+            for(var j=0;j<data.data.length;j++){
+                if(data.data[j].rentId == regId ){
+                    findresultByName.push(data.data[j]);
+                }
+            }
+            console.log(findresultByName);
+            console.log(findresultByName.length);
+            orderpaging(findresultByName);
         }
-    }
-    if(data != null && data.length>0){
-        orderpaging(data);
-    }else{
-        alert("没有找到该订单！请重新输入！")
-    }
+    })
+
+
 }
 function orderpaging(data){
     var totalPages;

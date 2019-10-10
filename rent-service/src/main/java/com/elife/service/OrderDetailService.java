@@ -30,6 +30,8 @@ public interface OrderDetailService {
      */
     List<OrderDetail> selectGoodsOrderDateUnEvaluate(Integer num);
 
+    List<OrderDetail> selectAllOrders();
+
     int insertOrderDetailField(OrderResult orderResult, RentField rentField, String orderId);
 
     int insertOrderDetailGoods(OrderResult orderResult, RentGoods rentGoods, String orderId);
