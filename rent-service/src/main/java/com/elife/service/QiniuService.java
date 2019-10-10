@@ -23,10 +23,10 @@ public class QiniuService {
     private static final Logger logger = LoggerFactory.getLogger(QiniuService.class);
 
     // 设置好账号的ACCESS_KEY和SECRET_KEY
-    String ACCESS_KEY = "puR-T-Z5jjNQu00YJ0ds58gS9FE64IB2x0TgnG1I";
-    String SECRET_KEY = "g2ovTfbQk0QAlU__g_l5kfldsbwjEmyUF426YrtQ";
+    String ACCESS_KEY = "Ro6hDxW5wAbwkmVN0yjFWRImoiO9ivqXOA1MxKIF";
+    String SECRET_KEY = "gsJtKJXqnEfs3TleJAd4lHf8-cLInw_7Ee40zP6y";
     // 要上传的空间
-    String bucketname = "sunshinerent";
+    String bucketname = "foodie-picture";
 
     // 密钥配置
     Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
@@ -36,7 +36,7 @@ public class QiniuService {
     UploadManager uploadManager = new UploadManager(cfg);
 
     // 测试域名，只有30天有效期
-    private static String QINIU_IMAGE_DOMAIN = "http://pxm37tv32.bkt.clouddn.com/";
+    private static String QINIU_IMAGE_DOMAIN = "http://pyw2d2nwt.bkt.clouddn.com/";
 
     // 简单上传，使用默认策略，只需要设置上传的空间名就可以了
     public String getUpToken() {

@@ -1,9 +1,16 @@
 package com.elife.pojo;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Document(indexName = "orderdetail",type = "orderdetail", shards = 4, replicas = 0)
 public class OrderDetail {
+    @Id
     private Integer id;
 
     private Integer orderId;
@@ -12,6 +19,7 @@ public class OrderDetail {
 
     private Integer fieldId;
 
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String productName;
 
     private String productType;
@@ -202,5 +210,57 @@ public class OrderDetail {
 
     public void setExtra3(String extra3) {
         this.extra3 = extra3 == null ? null : extra3.trim();
+    }
+
+    public OrderDetail() {
+    }
+
+    public OrderDetail(Integer id, Integer orderId, Integer goodsId, Integer fieldId, String productName, String productType, String productModel, String productAddress, Integer productNumber, BigDecimal productDeposit, BigDecimal productPrice, BigDecimal productTotal, Date startTime, Date endTime, String productStatus, Integer masterId, String masterPhone, String extra1, String extra2, String extra3) {
+        this.id = id;
+        this.orderId = orderId;
+        this.goodsId = goodsId;
+        this.fieldId = fieldId;
+        this.productName = productName;
+        this.productType = productType;
+        this.productModel = productModel;
+        this.productAddress = productAddress;
+        this.productNumber = productNumber;
+        this.productDeposit = productDeposit;
+        this.productPrice = productPrice;
+        this.productTotal = productTotal;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.productStatus = productStatus;
+        this.masterId = masterId;
+        this.masterPhone = masterPhone;
+        this.extra1 = extra1;
+        this.extra2 = extra2;
+        this.extra3 = extra3;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", orderId=" + orderId +
+                ", goodsId=" + goodsId +
+                ", fieldId=" + fieldId +
+                ", productName='" + productName + '\'' +
+                ", productType='" + productType + '\'' +
+                ", productModel='" + productModel + '\'' +
+                ", productAddress='" + productAddress + '\'' +
+                ", productNumber=" + productNumber +
+                ", productDeposit=" + productDeposit +
+                ", productPrice=" + productPrice +
+                ", productTotal=" + productTotal +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", productStatus='" + productStatus + '\'' +
+                ", masterId=" + masterId +
+                ", masterPhone='" + masterPhone + '\'' +
+                ", extra1='" + extra1 + '\'' +
+                ", extra2='" + extra2 + '\'' +
+                ", extra3='" + extra3 + '\'' +
+                '}';
     }
 }

@@ -12,6 +12,7 @@ public class remarks {
     private Integer remark;
     private String remarkContent;
     private Integer fieldId;
+    private Integer goodsId;
     private Integer masterId;
     private String reply_content;
     List<Pictures> picture;
@@ -29,6 +30,7 @@ public class remarks {
                 ", remark=" + remark +
                 ", remarkContent='" + remarkContent + '\'' +
                 ", fieldId=" + fieldId +
+                ", goodsId=" + goodsId +
                 ", masterId=" + masterId +
                 ", reply_content='" + reply_content + '\'' +
                 ", picture=" + picture +
@@ -108,6 +110,14 @@ public class remarks {
 
     public void setFieldId(Integer fieldId) {
         this.fieldId = fieldId;
+    }
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Integer getMasterId() {

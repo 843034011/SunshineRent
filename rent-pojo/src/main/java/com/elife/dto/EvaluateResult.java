@@ -76,19 +76,19 @@ public class EvaluateResult {
         this.pictureList = pictureList;
     }
 
-    public int getFieldId() {
+    public Integer getFieldId() {
         return fieldId;
     }
 
-    public void setFieldId(int fieldId) {
+    public void setFieldId(Integer fieldId) {
         this.fieldId = fieldId;
     }
 
-    public int getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(int goodsId) {
+    public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
     }
 

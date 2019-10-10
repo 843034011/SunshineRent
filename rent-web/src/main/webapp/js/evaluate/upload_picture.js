@@ -168,7 +168,7 @@ $("#bbt").click(function(){
             if(data == 1){
                 console.log("====success====");
                 alert("评价成功！")
-                window.location.href="http://localhost:8080/index.html"
+                window.location.href="https://127.0.0.1/userorder/showorderlist"
             }else{
                 console.log("====fail====");
                 alert("出错了！")

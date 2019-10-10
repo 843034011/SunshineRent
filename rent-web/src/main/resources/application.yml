@@ -24,7 +24,11 @@ spring:
     timeout: 300
   data:
     mongodb:
-      uri: mongodb://localhost:27017/remarks
+      uri: mongodb://49.235.97.129:27017/remarks
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 127.0.0.1:9300
+
   devtools:
     restart:
       additional-paths: src/main/java
