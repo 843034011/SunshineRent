@@ -40,7 +40,7 @@ public class WebConfigurer implements WebMvcConfigurer {
 
         //注册拦截的防止表单重复提交
         List<String> registerList = new ArrayList<>();
-        registerList.add("/register/insertuser");
+        registerList.add("/register/**");
 
         registry.addInterceptor(registerInterceptor).addPathPatterns(registerList).excludePathPatterns();
 
