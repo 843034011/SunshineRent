@@ -449,6 +449,7 @@
                     <ul class="more-info-tab nav nav-tabs">
                         <li class="active"><a href="#proDescription" data-toggle="tab">场地周边环境</a></li>
                         <li><a name="review" href="#proReview" data-toggle="tab" >其他用户的评价</a></li>
+                        <li><a name="route" href="#proroute" data-toggle="tab" >场地路线</a></li>
                         <!-- <li><a href="#proTag" data-toggle="tab">场地商品标签</a></li>-->
                     </ul>
 
@@ -482,10 +483,10 @@
                                 <br>
                                 <br>
 
-                                       <button type="button" class="btn btn-info" onclick="around()" style="float:left;margin-left:20px">显示周边环境</button>
+                                       <button type="button" class="btn btn-info" onclick="around()" style="margin-left:5px">显示周边环境</button>
                                 <br>
                                 <br>
-                                    <div class="table_card" style="float:left">
+                                    <div class="table_card" >
                                         <ul class="tab">
                                             <li class="activ">餐饮服务类</li>
                                             <li>生活服务类</li>
@@ -523,9 +524,9 @@
 
                                         </div>
 
-                                        <div id="container1" class="map" style="  width: 100%; height: 100%; float:left"></div>
-                                        <div id="panel" style="
-                                        float:left;
+                                       <!-- <div id="container1" class="map" style="  width:300px; height: 300px; float:left;margin-top:20px">
+                                           </div> <div id="panel" style="
+                                        margin-top:130px;
                                             background-color: white;
                                             max-height: 90%;
                                             overflow-y: auto;
@@ -537,7 +538,10 @@
                                             border-top-right-radius: 4px;
                                             border-bottom-left-radius: 4px;
                                             border-bottom-right-radius: 4px;
-                                                                            "></div>
+
+                                                                            ">
+                                        </div>-->
+
 
                                         <!--<div style="background-color: white;height:450px;width:10px"></div>-->
                                     </div>
@@ -573,127 +577,7 @@
                                 <br>
 
                             <div class="comment-show-con clearfix" >
-                               <!-- <div class="comment-show-con-img pull-left" style="margin-left: 5px">
-                                   <img src="img/fieldinfo/header-img-comment_03.png"  id="touxiang" alt="" >
-                                </div>
-                                <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">
-                                    <a href="#" class="comment-size-name" >杨阳 </a> <span class="my-pl-con">&nbsp;刚刚</span> </div>
-                                    <div class="rating-box">
-                                        <a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="2 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="3 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="4 star" href="#" ><i class="fa fa-star-o"></i></a>
-                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
-                                    </div>
-                                    <div class="date-dz">
-                                        <span class="date-dz-left  comment-time">2019-9-9 18:17:50</span>
 
-                                        <span class=" date-dz-line">|</span>
-
-
-
-                                        <div class="hui" style="float: left">
-
-                                            <a href="javascript:;" class="date-dz-z "><i class="date-dz-z-click-red"></i>回复
-                                                &lt;!&ndash; (<i class="z-num">666</i>)&ndash;&gt;</a>
-
-                                        </div>
-
-
-
-                                    </div>
-
-
-                                </div>
-                                <br><br><br>
-
-
-
-                                <div class="hf-list-con">
-                                    <div >
-                                        杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊
-                                    </div>
-                                    <br>
-                                    <div class="sliderbox" style="float:left;">
-                                      &lt;!&ndash;  <div id="btn-left" class="arrow-btn dasabled"></div>&ndash;&gt;
-                                        <div class="slider" >
-                                            <ul>
-                                                <li class="current" style="float:left;" ><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                            </ul>
-                                        </div>
-                                        &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
-                                    </div>
-                                    <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
-                                </div>&lt;!&ndash;slider end&ndash;&gt;
-
-                                <div class="line" style="margin-top:130px"></div>
-
-                                <br><br>-->
-
-                               <!-- <div class="comment-show-con-img pull-left" style="margin-left: 5px">
-                                    &lt;!&ndash; <img src="img/fieldinfo/header-img-comment_03.png"  id="touxiang" alt="" >&ndash;&gt;
-                                </div>
-                                <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">
-                                    <a href="#" class="comment-size-name" >杨阳 </a> <span class="my-pl-con">&nbsp;刚刚</span> </div>
-                                    <div class="rating-box">
-                                        <a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="2 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="3 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>
-                                        <a title="4 star" href="#" ><i class="fa fa-star-o"></i></a>
-                                        <a title="5 star" href="#"><i class="fa fa-star-o"></i></a>
-                                    </div>
-                                    <div class="date-dz">
-                                        <span class="date-dz-left  comment-time">2019-9-9 18:17:50</span>
-
-                                        <span class=" date-dz-line">|</span>
-
-
-
-                                        <div class="hui" style="float: left">
-
-                                            <a href="javascript:;" class="date-dz-z "><i class="date-dz-z-click-red"></i>回复
-                                                &lt;!&ndash; (<i class="z-num">666</i>)&ndash;&gt;</a>
-
-                                        </div>
-
-
-
-                                    </div>
-
-
-                                </div>
-                                <br><br><br>
-
-
-
-                                <div class="hf-list-con">
-                                    <div >
-                                        杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊杨阳这道菜真好吃啊
-                                    </div>
-                                    <br>
-                                    <div class="sliderbox" style="float:left;">
-                                        &lt;!&ndash;  <div id="btn-left" class="arrow-btn dasabled"></div>&ndash;&gt;
-                                        <div class="slider" id="thumbnail1">
-                                            <ul>
-                                                <li class="current" style="float:left;" ><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                                <li style="float:left;"><a href="null" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                                            </ul>
-                                        </div>
-                                        &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
-                                    </div>
-                                    <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
-                                </div>slider end-->
 
                                 <br>   <br>
 
@@ -708,17 +592,59 @@
                                     </div>
                                 </div>
 
-                        </div>
+
+
+
+
+
                     </div>
 
 
 
 
 
+                    </div>
+                    <div class="tab-pane route" id="proroute">
+                        <div class="tab-route">
+
+                            <div id="container1" class="map" style="  width:500px; height: 500px;float:left;">
+
+                                <div style="background-color: black;height:450px;width:10px"></div>
+                            </div> <div id="panel" style="
+                            float:left;
+                                        margin-top:130px;
+                                            background-color: white;
+                                            /*max-height: 90%;*/
+                                            overflow-y: auto;
+                                            margin-left:100px;
+                                            margin-top:0px;
+                                            right: 10px;
+                                            width: 280px;
+                                            background-color: #009cf9;
+                                            border-top-left-radius: 4px;
+                                            border-top-right-radius: 4px;
+                                            border-bottom-left-radius: 4px;
+                                            border-bottom-right-radius: 4px;
+
+                                                                            ">
+                           <!-- <div style="background-color: white;height:450px;width:10px"></div>-->
+                        </div>
+                            <div style="background-color: white;height:600px;width:10px"></div>
+                            <!--<h3>其他用户对它的标签 :<br> <a href="#">men</a><span> (1)</span></h3>
+                            <label>添加你的标签</label>
+                            <input type="text" class="tag-box form-control" />
+
+                            <a href="#" class="add-tag-btn">添加标签</a>
+                            <p>用空格分开标签。对短语使用单引号（'）</p>-->
+                        </div>
+                    </div>
+
 
 
                     <!--    product description tab end-->
                 </div>
+
+
                 <!--   &lt;!&ndash; single page product information end &ndash;&gt;
                            &lt;!&ndash; related product start &ndash;&gt;&ndash;&gt;-->
                 <div class="row related-product">
@@ -1173,8 +1099,8 @@
                                 html1+=
                                     '<div class="sliderbox" style="float:left;">' +
                                     '  <div class="slider"   >' +
-                                    '<ul>' +
-                                    '<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'
+                                    '<ul>'
+
 
                                 for(var m=0;m<data[6*n+i].picture.length;m++){
                                   /*  console.log(data[6*n+i].picture[m])*/
@@ -1239,11 +1165,7 @@
                             if(data[6*n+i].zan[p].zan==loginid){
                                 colorflag=true;
                             }
-                            /* if(data[6*n+i].zan[p].zan==loginid){
-                                 html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-                                 +'<span>16</span>'
-                                 + '</div>'
-                             }*/
+
 
                         }
                         if(colorflag==true){
@@ -1304,7 +1226,8 @@
                         html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
 
 
-                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+
+                        /* aaaaaaaaaa<li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              </ul>
@@ -1415,21 +1338,21 @@
                                     </div>
                                     <div class="product-quick-view">
                                         <ul>
-                                            <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-copy"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                            <li><a ><i class="fa fa-heart-o"></i></a></li>
+                                            <li><a ><i class="fa fa-copy"></i></a></li>
+                                            <li><a ><i class="fa fa-search"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="single-product-text">
-                                <h2><a class="product-title" href="single-product.html" title="">游戏机</a></h2>
+                                <h2><a class="product-title" href="fieldinfo.html?id=${data.data[i].id}" title="">${data.data[i].fieldName}</a></h2>
                                 <div class="product-price">
-                                    <span class="regular-price">¥999.00</span>
+                                    <span class="regular-price">${data.data[i].fieldDayprice}</span>
                                 </div>
-                                <div class="pro-add-to-cart">
-                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
-                                </div>
+                               <!-- <div class="pro-add-to-cart">
+                                    <p><a href="#" title="Add to Cart" >添加到购物车</a></p>
+                                </div>-->
                             </div>
                         </div>
                `)
@@ -1629,38 +1552,6 @@ function haoping(){
     }
 
 
-
-
-   /* $(".dian").click(function() {
-      if(flag==false){
-          console.log($(this).attr("value"))
-          reg=$(this).attr("value");//fabiaopinglunderen
-          var bch = $(this).children();
-          console.log(bch)
-          bch.css("color",color1)
-          var count=bch.text();
-          bch.text((count-0)+1);
-          console.log(count)
-          console.log(reg)
-          $.post({
-              url:"dianzan",
-              data:{"reid":reid,"reg":reg},
-          })
-      }else if(flag==true){
-          console.log($(this).attr("value"))
-          reg=$(this).attr("value");//fabiaopinglunderen
-          var bch = $(this).children();
-          console.log(bch)
-          bch.css("color",color2)
-          var count=bch.text();
-          bch.text((count-0)-1);
-          console.log(count)
-          console.log(reg)
-      }
-
-
-    })*/
-
 var time;
     $('.ranges_1 ul').remove();
 
@@ -1849,96 +1740,6 @@ function peoplecenter(){
         zoom: 11, //初始地图级别
     });
 
-   /* var search, center = [116.39946, 39.910829];
-    var searchOptions = {
-        map: map,
-        panel: 'panel',
-        keywords: '',
-        pageSize: 5,
-        orderBy: '_id:ASC'
-    };
-    //加载CloudDataSearch服务插件
-    AMap.service(["AMap.CloudDataSearch"], function() {
-        search = new AMap.CloudDataSearch('532b9b3ee4b08ebff7d535b4', searchOptions);
-        search.searchNearBy(center, 1000);
-    });
-    // 中心点位置
-    var icon = new AMap.Icon({
-        size: new AMap.Size(20, 30),    // 图标尺寸
-        image: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png',  // Icon的图像
-        imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
-    });
-    var marker = new AMap.Marker({
-        icon: icon,
-        position: center,
-        offset: new AMap.Pixel(-10, -10)
-    });
-    marker.setMap(map);
-
-
-
-    map.plugin('AMap.Geolocation', function () {
-        geolocation = new AMap.Geolocation({
-            enableHighAccuracy: true,//是否使用高精度定位，默认:true
-            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-            maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-            convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-            showButton: true,        //显示定位按钮，默认：true
-            buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-            showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-            showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-            panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-            zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-        });
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition(function(status,result){
-            if(status=='complete'){
-                onComplete(result)
-            }else{
-                onError(result)
-            }
-        });
-        function onComplete(data) {
-            console.log(data.position.lat)
-            console.log(data.position.lng)
-
-
-
-            var map = new AMap.Map("container1", {
-                resizeEnable: true,
-                center: [116.397428, 39.90923],//地图中心点
-                zoom: 13 //地图显示的缩放级别
-            });
-            //构造路线导航类
-            var driving = new AMap.Driving({
-                map: map,
-                panel: "panel"
-            });
-            // 根据起终点经纬度规划驾车导航路线
-            driving.search(new AMap.LngLat(data.position.lng,data.position.lat), new AMap.LngLat(116.427281, 39.903719), function(status, result) {
-                // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-                if (status === 'complete') {
-                    log.success('绘制驾车路线完成')
-                } else {
-                    log.error('获取驾车数据失败：' + result)
-                }
-            });
-
-        }
-        geolocation.getCurrentPosition();
-        console.log(position)
-        console.log( AMap.event.addListener(geolocation, 'complete', onComplete))
-        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
-    });
-
-
-*/
-
-
-
-
     var geocoder,marker,lnglat;
     function regeoCode() {
         if(!geocoder){
@@ -2079,7 +1880,7 @@ function peoplecenter(){
 
                             var map = new AMap.Map("container1", {
                                 resizeEnable: true,
-                                center: [116.397428, 39.90923],//地图中心点
+                                center: [data.position.lng, data.position.lat],//地图中心点
                                 zoom: 13 //地图显示的缩放级别
                             });
                             //构造路线导航类
@@ -2272,23 +2073,8 @@ var regid;//登录人的id
 
     function shopping(){
             window.location.href="/shoppingcart/showcart";
-        // $.post({
-        //     url:"/shoppingcart/showcart?regId="+ fieldid,
-        //
-        //     success:function(data){
-        //         swal("success")
-        //
-        //         /* document.getElementById("myshop").src="shoppingcart.html";*/
-        //     }
-        //
-        // })
+
     }
-
-
-
-
-
-
 
 
 
