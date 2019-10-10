@@ -145,7 +145,7 @@ if(reg_id !=0 || reg_id != null){
         formData3.append("fieldType", $('#fieldtype').val());
         formData3.append("fieldInfo",$('#fieldinfo').val());
         formData3.append("fieldDeposit",$('#fielddeposit').val());
-        formData3.append("fieldGrade",0);
+        formData3.append("fieldGrade",5);
         formData3.append("fieldCount",0);
         formData3.append("fieldHourprice",$('#fieldhourprice').val());
         formData3.append("fieldDayprice",$('#fielddayprice').val());
