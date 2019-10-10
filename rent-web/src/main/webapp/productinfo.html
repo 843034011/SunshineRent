@@ -1260,9 +1260,6 @@
        }*/
 
 
-
-
-
     var url = String(window.document.URL);
     var str = url.split("=");
     var fieldid = str[1];
@@ -1363,7 +1360,7 @@
             console.log(data);
             var datas=new Array();
             for(var i=0;i<data.length;i++){
-                if(fieldid1==data[i].fieldId){
+                if(fieldid1==data[i].goodsId){
                     console.log(data[i].fieldId)
                     datas.push(data[i]);
                     console.log(datas);
