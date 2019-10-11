@@ -200,7 +200,7 @@ if(reg_id != undefined ){
                 if(data.code == 0) {
                     // window.location.href("/goodsManageCon/showManage");
                     alert("添加成功")
-                    window.location.href="http://localhost:8080/goodsManageCon/showManage";
+                    window.location.href="http://127.0.0.1/goodsManageCon/showManage";
                 } else {
                     alert("添加失败")
                 }
@@ -311,7 +311,7 @@ if(value == 0){
                     success:function (data) {
                         if(data.code == 0) {
                             alert("修改成功");
-                            window.location.href="http://localhost:8080/goodsManageCon/showManage";
+                            window.location.href="http://127.0.0.1/goodsManageCon/showManage";
                         } else {
                             alert("修改失败")
                         }

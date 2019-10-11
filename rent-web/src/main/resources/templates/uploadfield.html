@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>场地管理</title>
 
-    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/uploadgoods/footer.css">
-    <link rel="stylesheet" href="../static/css/uploadgoods/uploadgoods.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/uploadgoods/footer.css">
+    <link rel="stylesheet" href="../css/uploadgoods/uploadgoods.css">
 
-    <script src="../static/jquery/jquery-3.4.1.js"></script>
-    <script src="../static/jquery/jquery.cookie.js"></script>
-    <script src="../static/bootstrap/js/bootstrap.js"></script>
+    <script src="../jquery/jquery-3.4.1.js"></script>
+    <script src="../jquery/jquery.cookie.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
 
 
 </head>
@@ -33,7 +33,7 @@
     <div align="center">
         <div class="header">
             <!-- 向左浮动 -->
-            <div><a href="/index.html"><img src="../static/img/uploadgoods/logo3.jpg"/></a></div>
+            <div><a href="/index.html"><img src="../img/uploadgoods/logo3.jpg"/></a></div>
             <div>
                 <h3>个人中心</h3>
                 <a href="/goodsManageCon/showManage">
@@ -41,7 +41,7 @@
                 </a>
             </div>
             <!-- 向右浮动 -->
-            <div id="shoppingcart-btn"><img src="#">购物车</div>
+            <div id="shoppingcart-btn"></div>
             <div id="search">搜索</div>
             <form action="" id="header-search-form">
                 <input type="text" name="keywords" id="header-search-form-child" placeholder="输入搜索内容">
@@ -59,17 +59,17 @@
         <form>
             <div class="form-group">
                 <label for="fieldname">名称</label>
-                <input type="text" class="form-control input-width-50" id="fieldname" placeholder="请输入名称" value="" onkeydown="limit_name_words()">
+                <input type="text" class="form-control input-width-50" id="fieldname" placeholder="请输入名称" value="" >
                 <!--<span id="fieldname-span">请输入名称！</span>-->
             </div>
             <div class="form-group">
                 <label for="fieldvolume">人数</label>
-                <input type="text" class="form-control input-width-50" id="fieldvolume" placeholder="请输入人数" value="" onkeydown="limit_model_words()">
+                <input type="text" class="form-control input-width-50" id="fieldvolume" placeholder="请输入人数" value="" >
                 <!--<span id="fieldvolume-span">请输入人数！</span>-->
             </div>
             <div class="form-group">
                 <label for="fieldvolume">地址</label>
-                <input type="text" class="form-control input-width-50" id="fieldaddress" placeholder="请输入地址" value="" onkeydown="limit_model_words()">
+                <input type="text" class="form-control input-width-50" id="fieldaddress" placeholder="请输入地址" value="" >
                 <!--<span id="fieldaddress-span">请输入地址！</span>-->
             </div>
             <div class="form-group">
@@ -82,20 +82,23 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul id="fieldtype-ul" class="dropdown-menu dropdown-menu-right">
-                            <li>&nbsp;&nbsp;办公场地</li>
-                            <li>&nbsp;&nbsp;运动场地</li>
-                            <li>&nbsp;&nbsp;体育电竞</li>
-                            <li>&nbsp;&nbsp;展览展示</li>
-                            <li>&nbsp;&nbsp;派对沙龙</li>
+                            <li>办公场地</li>
+                            <li>运动场地</li>
+                            <li>体育电竞</li>
+                            <li>展览展示</li>
+                            <li>派对沙龙</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="fielddeposit">押金</label>
-                <input type="text" class="form-control input-deposit" id="fielddeposit" placeholder="请输入押金">
+                <label for="fielddeposit">押&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金</label>
+                <input type="text" class="form-control input-deposit" id="fielddeposit" placeholder="请输入">
                 <!--<span id="goodsdeposit-span">请您输入正确地输入符合您的商品价值的押金金额，以方便他人参考！</span>-->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="fieldarea">面&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;积</label>
+                <input type="number" class="form-control input-rentprice" id="fieldarea" placeholder="请输入">
             </div>
             <div class="form-group">
                 <label for="fieldhourprice">小时租金</label>
@@ -124,7 +127,7 @@
                         <div class="addImages">
                             <input type="file" class="file" id="upload-picture" multiple="multiple" accept="image/png, image/jpeg, image/gif, image/jpg">
                             <div class="text-detail">
-                                <img class="plus-img" src="../static/img/common/plus2.jpg"/>
+                                <img class="plus-img" src="../img/common/plus2.jpg"/>
                             </div>
                         </div>
                     </div>
@@ -213,6 +216,6 @@
 
 <!--<script src="../js/useraddress/area.js"></script>-->
 <!--<script src="../js/useraddress/select.js"></script>-->
-<script src="../static/js/uploadfield/uploadfield.js"></script>
+<script src="../js/uploadfield/uploadfield.js"></script>
 
 </html>

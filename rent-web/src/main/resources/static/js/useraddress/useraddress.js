@@ -99,7 +99,6 @@ $.post({
                         "pickerPhone":$('#inputPhone').val(),
                         "regId":myAddress[0].regId
                     });
-                // console.log(updatainfo);
                 var up_address = $('#inputScope').val();
                 if(up_address.indexOf('江苏省苏州市')!=-1){
                     $.post({
@@ -138,6 +137,7 @@ $('.btn-sub').click(function () {
             "pickerPhone":$('#inputPhone').val(),
             "regId":myAddress[0].regId
         });
+    var up_address = $('#inputScope').val();
     if(up_address.indexOf('江苏省苏州市')!=-1){
         $.post({
             url:"/userAddressCon/insertAddress",
