@@ -64,10 +64,21 @@ public class UserOrderController {
 
     @RequestMapping("getfirstorder")
     @ResponseBody
-    public ResultData getFirstOrder() {
+    public ResultData getFirstOrder(HttpSession session) {
         ResultData resultData = new ResultData();
 
         TotalOrderResult totalOrderResult = new TotalOrderResult();
+
+        if((totalOrderResult= (TotalOrderResult) session.getAttribute("totalOrderResult")) != null){
+            System.out.println(totalOrderResult.toString());
+            resultData.setCode(0);
+            resultData.setData(totalOrderResult);
+
+            return resultData;
+        } else {
+            if(totalOrderResult == null)
+            System.out.println(123);
+        }
 
         // 判断当前redis缓存中是否有totalOrderResult，如果有取出来
         if(redisService.exists(orderId) == true){

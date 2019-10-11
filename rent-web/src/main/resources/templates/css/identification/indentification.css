@@ -1,0 +1,75 @@
+.container-fluid {
+    margin-top: 50px;
+    width: 60%;
+}
+.img-head {
+    height: 40px;
+    width: 40px;
+}
+.btn-group{
+    float: left;
+}
+.form-sunmit{
+    text-align: center;
+}
+.btn-submit{
+    width: 200px;
+    text-align: center;
+}
+#headimage{
+    height: 40px;
+    width: 40px;
+}
+#img-content{
+    width: 180px;
+    border: black 1px solid;
+}
+.upload-img{
+    width: 350px;
+    height: 200px;
+    margin-left: 50px;
+    position: absolute;
+    z-index: -1;
+}
+.upload{
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    margin-left: 50px;
+    z-index: 7;
+    opacity: 0;
+}
+#idcard-submit,#c{
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+#total-submit{
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+
+#total-form{
+    display: none;
+}
+#head{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    margin-left: 250px;
+    z-index: 7;
+    opacity: 0;
+}
+#h{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    margin-left: 250px;
+    z-index: -1;
+    border-radius: 16px;
+}
+#con{
+    display: none;
+}
+

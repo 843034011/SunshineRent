@@ -1,0 +1,343 @@
+html {
+    font-size: 12px;
+    color: #404040;
+    font-family: 'Microsoft YaHei';
+    background-color: #f6f9fb;
+    overflow-x: hidden; overflow-y: auto;
+}
+
+body, button, ul, li, ol, p, dl, dd, h1, h2, h3, h4, h5, h6, img, iframe, form, input {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 0;
+}
+
+#bd {
+    margin: 0 auto;
+    width: 960px;
+    padding-top: 80px;
+}
+
+.body:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+a {
+    color: #1a66b3;
+    text-decoration: none;
+}
+
+a:hover {text-decoration: underline;}
+
+.btn_go_buy {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 7px;
+    margin: 0 16px;
+    vertical-align: middle;
+    margin-top: -3px;
+    color: #666;
+    background-position: 0px -238px;
+}
+
+.btn_back_safe {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 7px;
+    margin: 0 16px;
+    vertical-align: middle;
+    margin-top: -3px;
+    color: #666;
+    background-position: 0px -315px;
+}
+
+.btn_go_buy:hover {
+    color: #1a66b3;
+    text-decoration: none;
+    background-position: -81px -238px;
+}
+
+.btn_back_safe:hover {
+    color: #1a66b3;
+    text-decoration: none;
+}
+
+.register_box .c_9c {
+    color: #9c9c9c;
+}
+
+.register_box .c_9c:hover {
+    color: #1a66b3;
+}
+
+.shadow_box {
+    background-color: #ebeeef;
+    width: 950px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.shadow_box .reg-text{
+    position: relative;
+    top:-20px;
+    left:800px;
+}
+
+.register_box {
+    background: #fff;
+    position: relative;
+    top: -10px;
+    right: -10px;
+    width: 950px;
+    font-family: 'Microsoft YaHei';
+    box-shadow: -1px 1px 1px rgb(232, 235, 236);
+}
+
+.register_box .head {
+    height: 74px;
+    border-bottom: solid 1px #eceef2;
+    padding-right: 15px;
+    margin: 0 10px;
+}
+.register_box .head span{
+    float: right;
+    margin-right:10px;
+    margin-top: 55px;
+}
+.register_box .head .logo {
+    float: left;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+.register_box .head h3 {
+    font-size: 16px;
+    line-height: 18px;
+    padding-left: 13px;
+    float: left;
+    margin-top: 42px;
+}
+
+.register_box .head .more, .register_box .head .dd_more {
+    float: right;
+    color: #646464;
+    line-height: 22px;
+    margin-top: 40px;
+}
+
+.register_box .head .more a {
+    background-color: #9a9fa6;
+    color: #fff;
+    width: 44px;
+    height: 22px;
+    text-align: center;
+    margin-left: 9px;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.register_box .head .more a:hover {
+    background-color: #8e96a0;
+    text-decoration: none;
+}
+
+.register_box .head .dd_more a {
+    color: #646464;
+}
+
+.register_box .head .dd_more a:hover {
+    color: #ff3c00;
+    text-decoration: none;
+}
+
+.head_a:hover {
+    text-decoration: none;
+}
+
+.head_a {
+    width: 135px;
+    height: 46px;
+    background-color: #f5f5f5;
+    display: inline-block;
+    position: relative;
+    left: 20px;
+    border: 1px solid #eceef2;
+    top: 27px;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    color: #464646;
+    margin-left: 6px;
+}
+
+.head_a1 {
+    background-color: white
+}
+
+.register_box .head_a1 {
+    background-color: white;
+    top: 28px;
+    border-bottom: none;
+}
+
+.register_box .body {
+    padding: 45px 0 25px;
+    position: relative;
+}
+
+.register_box table td {
+    padding: 0 0 30px;
+    position: relative;
+}
+
+.register_box .z_index2 {
+    z-index: 2;
+}
+
+.register_box table {
+    color: #9e9e9e;
+}
+
+.register_box table .t {
+    font-size: 14px;
+    width: 338px;
+    padding-right: 10px;
+    text-align: right;
+    vertical-align: top;
+    color: #646464;
+    padding-top: 8px;
+    font-family: 'Microsoft YaHei';
+    _line-height: 24px;
+}
+
+.register_box .text {
+    border: 1px solid #e6e6e6;
+    font-family: 'Microsoft YaHei';
+    height: 18px;
+    float: left;
+    width: 290px;
+    margin-right: 10px;
+    padding: 9px 10px;
+    line-height: 18px;
+    outline: 0 none;
+    border-radius: 2px;
+    color: #333;
+}
+
+.register_box .code_pic {
+    margin-right: 3px;
+    float: left;
+}
+
+.register_box .code_picww {
+    line-height: 38px;
+}
+
+.register_box .text.pin {
+    width: 290px;
+    margin-right: 5px;
+}
+
+.register_box .get_pin {
+    width: 124px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    background-color: #f1f1f1;
+    color: #737373;
+    float: left;
+    display: block;
+    line-height: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.register_box .get_pin:hover {
+    background-color: #ebebeb;
+    text-decoration: none;
+}
+
+.register_box .cue, .register_box .prompt {
+    color: #f00000;
+    display: block;
+    line-height: 14px;
+    padding: 0 4px;
+    margin-right: 5px;
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+}
+
+.register_box .cue .icon, .register_box .prompt .icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-position: -215px -208px;
+    float: left;
+    margin: 2px 4px 0 0;
+}
+
+.register_box .cue .show_pass:hover {
+    background-position: -82px bottom;
+    color: #1a66b3;
+    text-decoration: none;
+}
+
+.register_box .prompt {
+    border: 1px solid #fcd9b0;
+    line-height: 18px;
+    background-color: #fff0cf;
+    color: #ff8400;
+    left: 0;
+    width: 302px;
+}
+
+.register_box .icon_wrong {
+    background-position: 0 -20px;
+}
+
+.register_box .icon_yes.pin_i, .register_box .icon_wrong.pin_i {
+    position: absolute;
+    left: 160px;
+    top: 0px;
+}
+
+.register_box .btn_login {
+    display: inline-block;
+    font-size: 20px;
+    border: 0;
+    width: 178px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+    text-align: center;
+    background-color:  #00A9E0;
+    color: #fff;
+    border-radius: 8px;
+    margin-left: 50px;
+}
+
+.register_box td .hover, .register_box .btn_login:hover, .register_box .login_eamil:hover {
+    background-color: rgba(0, 200, 190, 0.5);
+    text-decoration: none;
+}
+
+.register_box .btn_login.unable, .register_box .btn_login.unable:hover {
+    cursor: default;
+    background-color: #d1d1d1;
+}
+
+.register_box .clause input {
+    vertical-align: middle;
+    margin: -4px 8px 0 0;
+}
+
+input, textarea, select, a:focus {
+    outline: none;
+}

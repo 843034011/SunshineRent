@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户个人信息认证</title>
+
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/identification/indentification.css">
+    <link rel="stylesheet" href="/static/css/identification/jquery.Jcrop.css">
+
+</head>
+<body>
+
+<div class="ident-header"></div>
+
+<div class="container-fluid">
+    <form enctype="multipart/form-data" id="idcard-form">
+        <div style="height: 200px;" class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="file" class="upload" onchange="imgChange(this)" id="f" name="front">
+                    <img class="upload-img" src="/static/img/identification/upload.png" alt="点击此处上传身份证正面" id="front">
+                </div>
+                <div class="col-md-6">
+                    <input type="file" class="upload" onchange="imgChange(this)" id="b" name="back">
+                    <img class="upload-img" src="/static/img/identification/upload.png" alt="点击此处上传身份证正面" id="back">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 text-center"><label for="f">点击此处上传身份证正面</label></div>
+                    <div class="col-md-6 text-center"><label for="b">点击此处上传身份证背面</label></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="display: block" id="first-submit">
+            <div class="form-group text-center">
+                <input type="button" class="btn btn-default btn-submit" id="idcard-submit" value="提交">
+            </div>
+        </div>
+    </form>
+
+    <form enctype="multipart/form-data" id="total-form">
+
+        <div class="form-group">
+            <label for="realname">真实姓名</label>
+            <input type="text" class="form-control" disabled="disabled" id="realname" placeholder="真实姓名">
+        </div>
+
+        <div class="form-group">
+            <label for="idcard">身份证号</label>
+            <input type="text" class="form-control" disabled="disabled" id="idcard" placeholder="身份证号">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">联系电话</label>
+            <input type="text" class="form-control" disabled="disabled" id="phone" placeholder="联系电话">
+        </div>
+
+        <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input type="text" class="form-control" id="nickname" placeholder="昵称">
+        </div>
+
+        <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" class="form-control" id="email" placeholder="邮箱" oninput="emailchange()">
+        </div>
+
+        <div class="form-group" id="con">
+            <label id="confirm"></label>
+        </div>
+
+        <div class="form-group">
+            <label for="head">点击<span style="color: red">此处</span>上传头像</label>
+        </div>
+
+        <div class="form-group" style="height: 400px;">
+            <input type="file" onchange="imgChange(this)" id="head"name="head">
+            <img src="/static/img/identification/default.png" alt="请上传您的头像" id="h">
+        </div>
+
+        <div class="form-group form-sunmit">
+            <input type="button" class="btn btn-default btn-submit" id="c" value="提交">
+        </div>
+    </form>
+</div>
+
+<div class="ident-footer"></div>
+
+<script src="/static/jquery/jquery-3.4.1.js"></script>
+<script src="/static/jquery/jquery.Jcrop.js"></script>
+<script src="/static/jquery/jquery.cookie.js"></script>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="/static/js/identification/identification.js"></script>
+<script>
+    $('.ident-header').load('../headerandfooterin/header/publicheader.html');
+    $('.ident-footer').load('../headerandfooterin/footer/fieldindex-footer.html');
+</script>
+</body>
+
+</html>

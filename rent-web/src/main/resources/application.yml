@@ -33,8 +33,13 @@ spring:
     restart:
       additional-paths: src/main/java
       enabled: true
-  #  thymeleaf:
-  #    cache: true
+    thymeleaf:
+      cache: false
+      check-template-localtion: true
+      prefix: classpath:/templates/
+      suffix: .html
+      content-type: text/html
+      mode: html
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://49.235.97.129:3306/rent?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
@@ -71,10 +76,6 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
-  # 跳转到/WEB-INF/下的.html页面
-  freemarker:
-    template-loader-path: /WEB-INF/
-    suffix: .html
 
 mybatis:
   type-aliases-package: com.elife.pojo

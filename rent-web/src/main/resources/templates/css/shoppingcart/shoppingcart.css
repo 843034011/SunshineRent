@@ -1,0 +1,141 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+#order-choose{
+    width: 1200px;
+    margin: auto;
+    margin-top: 30px;
+
+}
+#all-goods{
+    margin-left: 20px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei UI";
+    font-weight: 600;
+}
+.order-title{
+    width: 1200px;
+    height: 40px;
+    border-bottom: gray 2px solid;
+}
+.show-sp-title{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 1200px;
+}
+.row-title{
+    margin: auto;
+    width: 1190px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.choose-shop-box{
+    width: 1200px;
+}
+.choose-one-box{
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 57px;
+    float: left;
+    border: black 1px solid;
+    border-radius: 2px;
+}
+.choose-all{
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+
+    float: left;
+    border: black 1px solid;
+    border-radius: 2px;
+}
+.choosed{
+    width: 14px;
+    height: 14px;
+    margin-bottom: 3px;
+}
+.choose-list{
+    width: 1200px;
+}
+.list{
+    list-style: none;
+    width: 1190px;
+    height: 130px;
+    line-height: 130px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: gray 2px solid;
+    background-color: #fbfbfb;
+}
+.curr{
+    background-color: #f4fbfb;
+}
+
+.opera-all{
+    width: 1200px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: #f1f1f1;
+}
+.all-box-l{
+    width: 294.8px;
+    height: 49.6px;
+    line-height: 49.6px;
+    float: left;
+}
+#choose-all-bottom{
+    margin-top: 15px;
+    margin-left: 21px;
+}
+.all-box-r{
+    width: 599.5px;
+    height: 49.6px;
+    line-height: 49.6px;
+    float: right;
+}
+.pay-btn{
+    width: 120px;
+    height: 49.6px;
+    text-align: center;
+    background-color: red;
+    float: right;
+    font-size: 18px;
+    color: white;
+}
+.number{
+    font-size: 16px;
+    color: red;
+}
+.order-number{
+    width: 60px;
+    height: 30px;
+    text-align: center;
+}
+.field_picture{
+    margin-top: 14px;
+    width: 150px;
+    height: 100px;
+}
+.info{
+    width: 180px;
+    height: 100px;
+    line-height: 20px;
+    margin-top: 16px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.delete-this{
+    cursor: pointer;
+}
+.three-line{
+    line-height: 40px;
+}
+.two-line{
+    line-height: 60px;
+}
+#total-money{
+    cursor: pointer;
+}
