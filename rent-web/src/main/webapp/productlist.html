@@ -1847,7 +1847,7 @@
         var order = $("#choose").val();
 
         $.get({
-            url: "fields/selectnametype",
+            url: "fields/selectnametypegoods",
             dataType: "json",
             data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
@@ -1935,7 +1935,7 @@
         console.log(renshumax)
         console.log(renshumax)
         $.get({
-            url: "fields/selectnametype",
+            url: "fields/selectnametypegoods",
             dataType: "json",
             data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {
@@ -2572,7 +2572,7 @@
         console.log(order)
         var quyu = $(this).text();
         $.get({
-            url: "fields/selectnametype",
+            url: "fields/selectnametypegoods",
             dataType: "json",
             data: {"nametype": nametype, "name": name, "order": order, "renshumin": renshumin, "renshumax": renshumax,"quyu":quyu},
             success: function (data) {

@@ -115,6 +115,29 @@
   <select id="showAllGoods" resultMap="BaseResultMap" >
       select * from rent_goods
   </select>
+
+  <!-- yy模糊查找-->
+  <select id="selectByNameTypegoods" resultMap="BaseResultMap">
+    select * from rent_goods where 1=1
+    <if test="NameType != null and NameType !=''">
+      and goods_name like concat('%',#{NameType},'%')
+    </if>
+
+    <if test="name != null and name !=''">
+      and goods_type=#{name}
+    </if>
+    <if test="order == 'remark' ">
+      order by goods_grade
+    </if>
+    <if test="order == 'number' ">
+      order by  rent_count
+    </if>
+    <if test="order == 'price' ">
+      order by goods_dayprice
+    </if>
+
+  </select>
+
   <!--
     zgy
     修改商品信息

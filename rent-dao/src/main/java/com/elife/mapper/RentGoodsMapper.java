@@ -1,6 +1,7 @@
 package com.elife.mapper;
 
 import com.elife.pojo.GoodsPicture;
+import com.elife.pojo.RentField;
 import com.elife.pojo.RentGoods;
 import com.elife.pojo.RentGoodsExample;
 import org.apache.ibatis.annotations.Param;
@@ -21,6 +22,10 @@ public interface RentGoodsMapper {
 
 
     List<RentGoods> showAllGoods();
+
+    //模糊查找 排序yy
+    List<RentGoods>selectByNameTypegoods(@Param("NameType")String NameType, @Param("name")String name, @Param("order")String order, @Param("renshumin")Integer renshumin, @Param("renshumax")Integer renshumax, @Param("quyu")String quyu);
+
 
 
     /**

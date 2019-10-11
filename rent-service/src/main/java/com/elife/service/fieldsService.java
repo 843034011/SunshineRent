@@ -1,9 +1,6 @@
 package com.elife.service;
 
-import com.elife.pojo.OrderDetail;
-import com.elife.pojo.RentField;
-import com.elife.pojo.UserOrder;
-import com.elife.pojo.UserShoppingcart;
+import com.elife.pojo.*;
 
 import java.util.Date;
 import java.util.List;
@@ -28,4 +25,7 @@ public interface fieldsService {
    List<UserShoppingcart> selectall();
 
    List<OrderDetail> selectAllOrders();
+
+
+    List<RentGoods> selectByNameTypegoods(String NameType, String name, String order, Integer renshumin, Integer renshumax, String quyu);
 }

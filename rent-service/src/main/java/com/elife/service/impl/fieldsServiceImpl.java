@@ -54,6 +54,14 @@ public class fieldsServiceImpl implements fieldsService {
     }
 
     @Override
+    public List<RentGoods> selectByNameTypegoods(String NameType,String name,String order,Integer renshumin,Integer renshumax,String quyu) {
+        List<RentGoods> list3=rentGoodsMapper.selectByNameTypegoods(NameType,name,order,renshumin,renshumax,quyu);
+        System.out.println("+++=================================================");
+        System.out.println(list3.size());
+        return list3;
+    }
+
+    @Override
     public int insertFields(UserShoppingcart userShoppingcart) {
         int num=userShoppingcartMapper.insertFields(userShoppingcart);
         System.out.println(num);
