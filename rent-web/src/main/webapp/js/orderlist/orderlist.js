@@ -216,7 +216,7 @@ function orderpaging(data){
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "未评价" ){
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>立即评价</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "已完成" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>追加评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }else{
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }
@@ -242,7 +242,7 @@ function orderpaging(data){
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "未评价" ){
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>立即评价</span></a></div></div></div>';
                         }else if( data[4 * n + i].orderDetails[j].productStatus == "已完成" ){
-                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a><br><a href="/userorder/evaluate" onclick="sendInfotoEvaluate(' + data[4 * n + i].orderDetails[j].id +')"><span>追加评价</span></a></div></div></div>';
+                            html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }else{
                             html += '<div class="order-info-detail-operate"><a><span>查看详情</span></a></div></div></div>';
                         }

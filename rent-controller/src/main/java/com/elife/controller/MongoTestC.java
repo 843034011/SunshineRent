@@ -3,11 +3,9 @@ package com.elife.controller;
 
 import com.elife.dao.MongoTestDao;
 import com.elife.dto.EvaluateResult;
-import com.elife.pojo.Pictures;
-import com.elife.pojo.RentRegister;
-import com.elife.pojo.remarks;
-import com.elife.pojo.Zans;
+import com.elife.pojo.*;
 import com.elife.service.EvaluateResultService;
+import com.elife.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +30,9 @@ public class MongoTestC {
 
     @Autowired
     EvaluateResultService evaluateResultService;
+
+    @Autowired
+    OrderDetailService orderDetailService;
 
 
  /* evaluateResult.setRegId(regId);
@@ -89,10 +90,20 @@ public class MongoTestC {
         zansList.add(zans);
         mgtest.setZan(zansList);
         mtdao.saveTest(mgtest);
+
+        OrderDetail orderDetail = orderDetailService.selectById(detailId);
+
         if(mgtest==null){
             return 0;
         }else{
-            return 1;
+            //评价成功后修改订单状态
+            orderDetail.setProductStatus("已完成");
+            int result = orderDetailService.updateByPrimaryKey(orderDetail);
+            if(result>=1){
+                return 1;
+            }else{
+                return 0;
+            }
         }
     }
 
