@@ -63,7 +63,7 @@
         }*/
        #ditu{
            width: 400px;
-           height: 300px;
+           height: 400px;
            float:left
        }
         #ditua{
@@ -607,7 +607,7 @@
                     <div class="tab-pane route" id="proroute">
                         <div class="tab-route">
 
-                            <div id="container1" class="map" style="  width:500px; height: 500px;float:left;">
+                            <div id="container1" class="map" style="  width:750px; height: 500px;float:left;">
 
                                 <div style="background-color: black;height:450px;width:10px"></div>
                             </div> <div id="panel" style="
@@ -1083,7 +1083,7 @@
                             for(var j=0;j<data[6*n+i].remark;j++){
 
 
-                                html1+= '<a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>' }
+                                html1+= '<a title="1 star" href="#" class="rated" style="color:#f65656"><i class="fa fa-star-o"></i></a>' }
 
                             html1+= ' </div>' +
                                 '</div>' +
@@ -1188,7 +1188,7 @@
                         for(var j=0;j<data[6*n+i].remark;j++){
 
 
-                            html1+= '<a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>' }
+                            html1+= '<a title="1 star" href="#" class="rated" style="color:#f65656"><i class="fa fa-star-o" ></i></a>' }
 
                         html1+= ' </div>' +
                             '</div>' +
@@ -1204,8 +1204,8 @@
                             html1+=
                                 '<div class="sliderbox" style="float:left;">' +
                                 '  <div class="slider"   >' +
-                                '<ul>' +
-                                '<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'
+                                '<ul>'
+                                /*'<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'*/
 
                             for(var m=0;m<data[6*n+i].picture.length;m++){
                                 /*  console.log(data[6*n+i].picture[m])*/
@@ -1226,8 +1226,7 @@
                         html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
 
 
-
-                        /* aaaaaaaaaa<li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
                              </ul>
@@ -1822,7 +1821,7 @@ function peoplecenter(){
                     lnglat=[x,y];
                     regeoCode();
 
-                    var search, center = [116.39946, 39.910829];
+                    var search, center = [x, y];
                     var searchOptions = {
                         map: map,
                         panel: 'panel',
@@ -1848,9 +1847,13 @@ function peoplecenter(){
                     });
                     marker.setMap(map);
 
+                    var map1 = new AMap.Map("container1", {
+                        resizeEnable: true,
 
+                        zoom: 13 //地图显示的缩放级别
+                    });
 
-                    map.plugin('AMap.Geolocation', function () {
+                    map1.plugin('AMap.Geolocation', function () {
                         geolocation = new AMap.Geolocation({
                             enableHighAccuracy: true,//是否使用高精度定位，默认:true
                             timeout: 10000,          //超过10秒后停止定位，默认：无穷大
@@ -1864,7 +1867,7 @@ function peoplecenter(){
                             panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
                             zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                         });
-                        map.addControl(geolocation);
+                        map1.addControl(geolocation);
                         geolocation.getCurrentPosition(function(status,result){
                             if(status=='complete'){
                                 onComplete(result)
@@ -1878,14 +1881,10 @@ function peoplecenter(){
                              console.log(address)
 
 
-                            var map = new AMap.Map("container1", {
-                                resizeEnable: true,
-                                center: [data.position.lng, data.position.lat],//地图中心点
-                                zoom: 13 //地图显示的缩放级别
-                            });
+
                             //构造路线导航类
                             var driving = new AMap.Driving({
-                                map: map,
+                                map: map1,
                                 panel: "panel"
                             });
                             // 根据起终点经纬度规划驾车导航路线

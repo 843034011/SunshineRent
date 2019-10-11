@@ -70,6 +70,24 @@ public class fieldsInfo {
 
     }
 
+
+    @RequestMapping("selectnametypegoods")
+    @ResponseBody
+    public ResultData selectByNameTypegoods(String nametype,String name,String order,Integer renshumin,Integer renshumax,String quyu){
+
+        List<RentGoods> orderlist = fieldsService.selectByNameTypegoods(nametype,name,order,renshumin,renshumax,quyu);
+        ResultData resultData = new ResultData();
+        if(null == orderlist || orderlist.size() ==0) {
+            resultData.setCode(3);
+            resultData.setMessage("查无数据");
+        } else {
+            resultData.setCode(0);
+            resultData.setData(orderlist);
+        }
+        return resultData;
+
+    }
+
   /*@RequestMapping("insertshoppingcart")
     @ResponseBody
     public int insertFields(Integer fieldid, HttpSession session){

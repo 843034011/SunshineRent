@@ -981,265 +981,6 @@
 
 
 
-
-    /*全部   */
-
-    function fenye(data){
-        var totalPages;
-        if(data.length%6==0){
-            totalPages=data.length/6
-        }else{
-            totalPages=data.length/6+1
-        }
-        $.jqPaginator('#pagination2', {
-
-            totalPages:Math.floor(totalPages),
-            visiblePages: Math.floor(totalPages),
-            currentPage:1,
-            pageSize:6,
-            first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">前一页</a></li>',
-            next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num,type) {
-                console.log(data.length/6+1)
-                console.log( Math.floor(data.length/6+1))
-                var n=num-1;
-
-                $('.all-grid-product').text("");
-
-
-                if(data.length-n*6>=6)
-                {
-                    var html1 = ''
-                    for (var i = 0; i<6; i++) {
-
-
-
-                        /*  for (var i = 0; i <data.length-6*n; i++) {*/
-
-                        var date = new Date(data[6*n+i].createTime);
-                        var datetimes = dw(date);
-                        var loginid = $.cookie('id');
-                        var colorflag=false;
-
-
-                        html1 +='<div class="comment-show-con-img pull-left"   style="margin-left: 5px">' +
-                            ' <img src="'+data[6*n+i].userImg+'"  alt="" style="width:40px;\n' +
-                            '            height:40px;\n' +
-                            '            border-radius:50px ;">' +
-                            '</div>' +
-                            '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
-
-                            '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
-
-                        for(var p=0;p<data[6*n+i].zan.length;p++){
-                            if(data[6*n+i].zan[p].zan==loginid){
-                                colorflag=true;
-                            }
-                            /* if(data[6*n+i].zan[p].zan==loginid){
-                                 html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-                                 +'<span>16</span>'
-                                 + '</div>'
-                             }*/
-
-                        }
-                        if(colorflag==true){
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="1" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-
-                                + '</div>'
-                        }else{
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="0" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
-
-                                + '</div>'
-                        }
-                        /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
-                              +'<span>16</span>'
-                         + '</div>'*/
-
-
-                        +'<div class="rating-box">'
-
-
-                        for(var j=0;j<data[6*n+i].remark;j++){
-
-
-                            html1+= '<a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>' }
-
-                        html1+= ' </div>' +
-                            '</div>' +
-                            '<br>' +
-                            '<br>'+
-                            '<div class="hf-list-con">' +
-                            ' <div >' +
-                            ' '+data[6*n+i].remarkContent+' ' +
-                            '</div>'
-
-                        if(data[6*n+i].picture.length!=0){
-                            console.log(data[6*n+i].picture.length)
-                            html1+=
-                                '<div class="sliderbox" style="float:left;">' +
-                                '  <div class="slider"   >' +
-                                '<ul>' +
-                                '<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'
-
-                            for(var m=0;m<data[6*n+i].picture.length;m++){
-                                /*  console.log(data[6*n+i].picture[m])*/
-                                html1+='<li style="float:left;"><a href="'+ data[6*n+i].picture[m].picture+'" target="_blank"><img src="'+ data[6*n+i].picture[m].picture+'" width="115" height="74" alt="" /></a></li>'
-
-                            }
-                            html1+='</ul>'+'</div>' +
-                                '</div>'+
-
-                                ' <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>'
-                                +'</div>'
-
-
-
-                        }
-
-
-                        html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
-
-
-                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             </ul>
-                             </div>
-                             &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
-                                 </div>
-                                 <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
-                                 </div>&lt;!&ndash;slider end&ndash;&gt;
-
-                                 <div class="line" style="margin-top:130px"></div>*/
-
-                        $('.clearfix').html(html1);
-                    }
-
-
-                    /* }*/
-                }else if(data.length-n*6>0) {
-
-                    console.log(data.length - 6 * (n - 1))
-                    var html1 = ''
-
-                    for (var i = 0; i < data.length - 6 * n; i++) {
-                        /*  for (var i = 0; i <data.length-6*n; i++) {*/
-
-                        var date = new Date(data[6*n+i].createTime);
-                        var datetimes = dw(date);
-                        var loginid = $.cookie('id');
-                        var colorflag=false;
-
-
-                        html1 +='<div class="comment-show-con-img pull-left"   style="margin-left: 5px">' +
-                            ' <img src="'+data[6*n+i].userImg+'"  alt="" style="width:40px;\n' +
-                            '            height:40px;\n' +
-                            '            border-radius:50px ;">' +
-                            '</div>' +
-                            '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
-
-                            '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
-
-                        for(var p=0;p<data[6*n+i].zan.length;p++){
-                            if(data[6*n+i].zan[p].zan==loginid){
-                                colorflag=true;
-                            }
-                            /* if(data[6*n+i].zan[p].zan==loginid){
-                                 html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-                                 +'<span>16</span>'
-                                 + '</div>'
-                             }*/
-
-                        }
-                        if(colorflag==true){
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="1" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
-
-                                + '</div>'
-                        }else{
-                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="0" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
-
-                                + '</div>'
-                        }
-                        /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
-                              +'<span>16</span>'
-                         + '</div>'*/
-
-
-                        +'<div class="rating-box">'
-
-
-                        for(var j=0;j<data[6*n+i].remark;j++){
-
-
-                            html1+= '<a title="1 star" href="#" class="rated"><i class="fa fa-star-o"></i></a>' }
-
-                        html1+= ' </div>' +
-                            '</div>' +
-                            '<br>' +
-                            '<br>'+
-                            '<div class="hf-list-con">' +
-                            ' <div >' +
-                            ' '+data[6*n+i].remarkContent+' ' +
-                            '</div>'
-
-                        if(data[6*n+i].picture.length!=0){
-                            console.log(data[6*n+i].picture.length)
-                            html1+=
-                                '<div class="sliderbox" style="float:left;">' +
-                                '  <div class="slider"   >' +
-                                '<ul>' +
-                                '<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'
-
-                            for(var m=0;m<data[6*n+i].picture.length;m++){
-                                /*  console.log(data[6*n+i].picture[m])*/
-                                html1+='<li style="float:left;"><a href="'+ data[6*n+i].picture[m].picture+'" target="_blank"><img src="'+ data[6*n+i].picture[m].picture+'" width="115" height="74" alt="" /></a></li>'
-
-                            }
-                            html1+='</ul>'+'</div>' +
-                                '</div>'+
-
-                                ' <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>'
-                                +'</div>'
-
-
-
-                        }
-
-
-                        html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
-
-
-                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
-                             </ul>
-                             </div>
-                             &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
-                                 </div>
-                                 <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
-                                 </div>&lt;!&ndash;slider end&ndash;&gt;
-
-                                 <div class="line" style="margin-top:130px"></div>*/
-
-                        $('.clearfix').html(html1);
-                    }
-
-
-                }
-
-            }
-        })
-    }
-
-
-
-
-
-
-
     //     var dates
     // $.ajax({
     //     url: "orders/showallorders",
@@ -1296,7 +1037,7 @@
             }
 
             for(var i=0;i<data.data.length;i++){
-                if(data.data[fieldid-1].fieldType==data.data[i].fieldType){
+                if(data.data[fieldid-1].goodsType==data.data[i].goodsType){
                     $('.product-carousel-5').append(`
                           <div class="single-product-item">
                             <div class="product-image">
@@ -1307,7 +1048,7 @@
                                 <div class="product-sticker">
                                     <img src="img/product/new1.png" alt="product sticker" />
                                 </div>
-                                <a href="single-product.html" title=""><img src="${data.data[i].fieldPictures[0].fieldPicture}" alt="product image" /></a>
+                                <a href="single-product.html" title=""><img src="${data.data[i].goodsPictures[0].goodsPicture}" alt="product image" /></a>
                                 <div class="single-product-overlay">
                                     <div class="rating-box">
                                         <a title="1 star" class="rated" href="#"><i class="fa fa-star-o"></i></a>
@@ -1326,12 +1067,12 @@
                                 </div>
                             </div>
                             <div class="single-product-text">
-                                <h2><a class="product-title" href="single-product.html" title="">游戏机</a></h2>
+                                <h2><a class="product-title" href="single-product.html" title="">${data.data[i].goodsName}</a></h2>
                                 <div class="product-price">
-                                    <span class="regular-price">¥999.00</span>
+                                    <span class="regular-price">${data.data[i].goodsDayprice}<</span>
                                 </div>
                                 <div class="pro-add-to-cart">
-                                    <p><a href="#" title="Add to Cart">添加到收藏单</a></p>
+                                    <p><a href="#" title="Add to Cart">添加到购物车</a></p>
                                 </div>
                             </div>
                         </div>
@@ -1534,35 +1275,6 @@
 
 
 
-    /* $(".dian").click(function() {
-       if(flag==false){
-           console.log($(this).attr("value"))
-           reg=$(this).attr("value");//fabiaopinglunderen
-           var bch = $(this).children();
-           console.log(bch)
-           bch.css("color",color1)
-           var count=bch.text();
-           bch.text((count-0)+1);
-           console.log(count)
-           console.log(reg)
-           $.post({
-               url:"dianzan",
-               data:{"reid":reid,"reg":reg},
-           })
-       }else if(flag==true){
-           console.log($(this).attr("value"))
-           reg=$(this).attr("value");//fabiaopinglunderen
-           var bch = $(this).children();
-           console.log(bch)
-           bch.css("color",color2)
-           var count=bch.text();
-           bch.text((count-0)-1);
-           console.log(count)
-           console.log(reg)
-       }
-
-
-     })*/
 
     var time;
     $('.ranges_1 ul').remove();
