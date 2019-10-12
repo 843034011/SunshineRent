@@ -40,7 +40,7 @@ public class UserOrderController {
                 userOrders.remove(i);
             }
         }
-        System.out.println("====================================================================");
+
         System.out.println(userOrders.toString());
         ResultData resultData = new ResultData();
         if (null == userOrders || userOrders.size() == 0) {
@@ -53,48 +53,11 @@ public class UserOrderController {
         return resultData;
     }
 
+
+
     /**
-     * @return
      * @author llb
      */
-    @RequestMapping("ensureorder")
-    public String ensureOrder() {
-        return "ensureorder";
-    }
-
-    @RequestMapping("getfirstorder")
-    @ResponseBody
-    public ResultData getFirstOrder(HttpSession session) {
-        ResultData resultData = new ResultData();
-
-        TotalOrderResult totalOrderResult = new TotalOrderResult();
-
-        if((totalOrderResult= (TotalOrderResult) session.getAttribute("totalOrderResult")) != null){
-            System.out.println(totalOrderResult.toString());
-            resultData.setCode(0);
-            resultData.setData(totalOrderResult);
-
-            return resultData;
-        } else {
-            if(totalOrderResult == null)
-            System.out.println(123);
-        }
-
-        // 判断当前redis缓存中是否有totalOrderResult，如果有取出来
-        if(redisService.exists(orderId) == true){
-            totalOrderResult = (TotalOrderResult) redisService.get(orderId);
-        } else {
-            resultData.setCode(1);
-            resultData.setMessage("当前缓存中缺少数据！！！！");
-            return resultData;
-        }
-
-        resultData.setCode(0);
-        resultData.setData(totalOrderResult);
-
-        return resultData;
-    }
-
     private static String orderId;
 
     @RequestMapping(value = "/addinfo")
@@ -105,8 +68,7 @@ public class UserOrderController {
 
         // 生成订单的创建时间
         String timeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        System.out.println(timeStr);
-        System.out.println(timeStr.replaceAll("-","").replaceAll(":","").replaceAll(" ",""));
+
         // 生成订单编号
         orderId = UUID.randomUUID().toString().replaceAll("-", "");
 
@@ -115,35 +77,84 @@ public class UserOrderController {
         totalOrderResult.setOrderStatus("待评价");
         totalOrderResult.setCreateTime(timeStr);
 
-        // 为订单详情添加外键信息
+        // 为订单详情添加外键信息--当前订单编号
         for (int i = 0; i < totalOrderResult.getResults().size(); i++) {
             totalOrderResult.getResults().get(i).setOrderId(orderId);
         }
 
         System.out.println(totalOrderResult.toString());
 
-        // 将订单信息放入redis缓存中
         long l = 15 * 60;
         redisService.set(orderId, totalOrderResult,l);
+
+        System.out.println(orderId);
 
         resultData.setCode(0);
         return resultData;
     }
 
-    @RequestMapping(value = "/addaddress")
+    @RequestMapping("ensureorder")
+    public String ensureOrder() {
+        return "ensureorder";
+    }
+
+    @RequestMapping("getfirstorder")
+    @ResponseBody
+    public ResultData getFirstOrder(HttpSession session) {
+
+        ResultData resultData = new ResultData();
+
+        TotalOrderResult totalOrderResult = new TotalOrderResult();
+
+        System.out.println(orderId);
+
+        // 分流操作
+        // 当前redis缓存中的订单信息
+        if(redisService.exists(orderId) == true){
+            totalOrderResult = (TotalOrderResult) redisService.get(orderId);
+            System.out.println(totalOrderResult.toString());
+
+            resultData.setCode(0);
+            resultData.setData(totalOrderResult);
+            return resultData;
+        } else {
+            resultData.setCode(1);
+            resultData.setMessage("当前缓存中缺少数据！！！！");
+        }
+
+        // 付款失败session中的订单信息
+        totalOrderResult= (TotalOrderResult) session.getAttribute("totalOrderResult");
+
+        if(totalOrderResult != null){
+            // 将订单信息放入redis缓存中，时效15min
+            long l = 15 * 60;
+            redisService.set(orderId, totalOrderResult,l);
+
+            resultData.setCode(0);
+            resultData.setData(totalOrderResult);
+
+            return resultData;
+        } else if(totalOrderResult == null){
+            resultData.setCode(1);
+            resultData.setMessage("当前缓存中缺少数据！！！！");
+        }
+        return resultData;
+    }
+
+    @RequestMapping(value = "addaddress")
     @ResponseBody
     public ResultData addAddress(String id, String address) {
+
         ResultData resultData = new ResultData();
 
         TotalOrderResult totalOrderResult = new TotalOrderResult();
 
         // 判断当前redis缓存中是否有totalOrderResult，如果有取出来
-        if(redisService.exists("totalOrderResult") == true){
-            totalOrderResult = (TotalOrderResult) redisService.get("totalOrderResult");
+        if(redisService.exists(orderId) == true){
+            totalOrderResult = (TotalOrderResult) redisService.get(orderId);
         } else {
             resultData.setCode(1);
             resultData.setMessage("当前缓存中缺少数据！！！！");
-
             return resultData;
         }
 
