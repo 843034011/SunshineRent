@@ -18,6 +18,10 @@ public interface fieldsService {
 
    int insertFields(UserShoppingcart userShoppingcart);
 
+
+   int insertGoods(UserShoppingcart userShoppingcart);
+
+
    // yy 前台获取起止日期查询不能租的
    List<UserOrder> selectCannotOrder(Date startTime, Date endTime);
 

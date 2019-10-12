@@ -29,7 +29,8 @@
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css' />
     <!-- font-awesome css -->
-    <link rel="stylesheet" href="css/fieldinfo/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <!-- style css -->
@@ -114,6 +115,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+
     <link href="css/fieldinfo/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/fieldinfo/daterangepicker.css"/>
 
@@ -1485,16 +1487,16 @@
     var str = url.split("=");
     var fieldid = str[1];
     console.log(fieldid)
-    var fielddatas;
+
     var masterId
 
 
     function shop(){
         var reid = $.cookie('id');
-        console.log(all)
-        for(var q=0;q<all.data.length;q++){
-            if(fieldid==all.data[q].id) {
-                masterId=all.data[q].regId;
+        console.log(fielddatas)
+        for(var q=0;q<fielddatas.data.length;q++){
+            if(fieldid==fielddatas.data[q].id) {
+                masterId=fielddatas.data[q].regId;
             }
         }
         console.log(masterId)
@@ -1502,7 +1504,7 @@
             swal("请先登录")
         }else{
             $.post({
-                url:"fields/insertshoppingcart",
+                url:"fields/insertshoppingcart1",
                 data:{"fieldid": fieldid,"masterId":masterId,"reid":reid},
                 success:function(data){
                     if(data.code==9){
