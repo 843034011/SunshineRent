@@ -172,12 +172,12 @@ a:hover{
 
 /*  商品管理模块  */
 /*.orderinfo{*/
-    /*width:850px;*/
-    /*!*height:600px;*!*/
-    /*margin: 30px auto;*/
-    /*padding: 30px 44px 10px;*/
-    /*border: 1px solid #eee;*/
-    /*!*background-color: #e1e1e1;*!*/
+/*width:850px;*/
+/*!*height:600px;*!*/
+/*margin: 30px auto;*/
+/*padding: 30px 44px 10px;*/
+/*border: 1px solid #eee;*/
+/*!*background-color: #e1e1e1;*!*/
 /*}*/
 .manage{
     width:940px;
@@ -287,11 +287,11 @@ a:hover{
     text-align: center;
 }
 .con-ul li:first-child{
-    width:500px;
+    width:550px;
     /*border-right:1px solid #eee;*/
 }
 .con-ul li:nth-child(2){
-    width:250px;
+    width:280px;
     /*border-right:1px solid #eee;*/
 }
 .con-ul .two{
@@ -339,7 +339,7 @@ a:hover{
     /*height:100px;*/
     width:180px;
     margin-top: 50px;
-    margin-left: 40px;
+    margin-left: 100px;
     /*background-color: #2a6496;*/
     /*float: right;*/
 }
@@ -347,6 +347,7 @@ a:hover{
     width:50px;
     height:30px;
     border: 1px solid #999;
+    border-radius:5px;
     color:#666;
     background-color: #eee;
     margin-left: 20px;

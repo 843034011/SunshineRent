@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="css/fieldindex/fieldindex-footer.css">-->
+    <style>
+        /* 准备模块 消除默认样式*/
+
+        *{margin:0;padding:0;}
+        body,p,ul,ol,dl,dd,h1,h2,h3,h4,input,form{margin:0;padding:0;}
+        li{list-style:none;}
+        body{font:14px/1.5"微软雅黑";color:#333;}
+        a{text-decoration:none;color:inherit;}
+        h1,h2,h3,h4,h5,h6,strong{font-weight:normal;font-size:100%;}
+        i,em{font-style:normal;}
+        input{outline:none;border:0;background-color:transparent;}
+        img{vertical-align:top;}
+
+        .clearfix::after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+
+        .Triangle::after{
+            content:"";
+            width:0px;
+            height:0px;
+            border:5px solid transparent;
+            margin-left:3px;
+            border-top:5px solid #333;
+            position:relative;
+            top:13px;
+            right:0px;
+        }
+        .fl{float:left;}
+        .fr{float:right;}
+        .f12{font-size:12px;}
+        .f18{font-size:18px;}
+        .font-color{color:#999;}
+        .pos-r{position:relative;}
+        .pos-a{position:absolute;}
+
+        .main{
+
+        }
+
+        .footer{
+            margin-top:100px;
+            width:100%;
+            height:300px;
+            background-color: #f2f1f0;
+        }
+        .foot-container{
+            width:1200px;
+            height:300px;
+            margin:auto;
+            /*background-color:red;*/
+            display: flex;
+            justify-content: space-between;
+        }
+        .foot-child{
+            margin-top: 20px;
+            width:180px;
+            height:300px;
+            overflow: hidden;
+        }
+        .foot-child:first-child{
+            margin-left: 35px;
+        }
+        .foot-child:last-child{
+            margin-right: 40px;
+        }
+        .foot-bgimage{
+            width:200px;
+            height:200px;
+            margin:auto;
+        }
+        .foot-bgimage img{
+            height:180px;
+            margin-top:15px;
+        }
+        .foot-child .text{
+            text-align: center;
+            /*background-color: #0abfb6;*/
+        }
+
+        .foot-container .foot-child h4{
+            overflow: hidden;
+            color:#000;
+            font-size:18px;
+        }
+        .foot-grandchild{
+
+            border-top:1px solid #2aabd2;;
+            padding-top:7px;
+        }
+        .foot-grandchild a{
+            color: #959595;
+            line-height:1.5em;
+            text-decoration:none;
+            display: inline-block;
+            padding:2px 7px;
+            margin:0px 7px 7px 0px;
+        }
+        .foot-grandchild a:hover{
+            color:rgb(0,200,190);
+        }
+
+        .site-info{
+            width:100%;
+            height:70px;
+            background-color:#111;
+        }
+        .copyright{
+            text-align:center;
+            font-size:13px;
+            color:#ccc;
+            padding-top:20px;
+        }
+        .copyright span a{
+            color:#ccc;
+            text-decoration:none;
+        }
+        .copyright span a:hover{
+            text-decoration:underline;
+        }
+
+        .more-show{
+            text-align: center;
+            /*line-height: 100px;*/
+            width:1200px;
+            margin: auto;
+            /*background-color: #0abfb6;*/
+        }
+        .more-show input{
+            margin: auto;
+            width:200px;
+            height:40px;
+            font-size: 18px;
+            border: 1px solid rgb(0,200,190);
+            /*font-weight:700 ;*/
+            color:rgb(0,200,190);
+        }
+        .more-show input:hover {
+            color:#fff;
+            background-color: rgb(0,200,190);
+        }
+        .little-show{
+            width:1200px;
+            /*height:500px;*/
+            /*background-color: #0abfb6;*/
+            margin:60px auto 0px;
+        }
+
+        .little-show .ls-nav{
+            width: 100%;
+            height:40px;
+            /*background-color: red;*/
+        }
+        .ls-items{
+            line-height: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .ls-items .ls-item{
+            text-align: center;
+            width:120px;
+            height:40px;
+            border-top:2px solid rgb(0,200,190) ;
+            color:#333;
+        }
+        .ls-items li:first-child{
+            background-color:rgb(0,200,190) ;
+            color:#fff;
+        }
+        .ls-show{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .ls-show .ls-box{
+            width:180px;
+            height:300px;
+            /*background-color: red;*/
+        }
+        .ls .text-box{
+            width:100%;
+            height:50px;
+            /*background-color: #ddd;*/
+            margin-top: 30px;
+
+        }
+
+        .ls .text-box .prod-desc {
+            display: block;
+            color: #666;
+            padding: 0 13px 17px 13px
+        }
+
+        .ls .text-box .prod-desc .prod-rental {
+            margin: 5px 0 3px 0;
+            height: 19px;
+            line-height: 19px;
+            font-size: 14px;
+            color: #de3333
+        }
+
+        .ls .text-box .prod-desc .prod-title {
+            color: #525252;
+            font-size: 13px;
+            height: 19px;
+            line-height: 19px;
+            overflow: hidden
+        }
+
+        .ls .text-box .prod-desc .prod-deposit-timer {
+            font-size: 12px;
+            margin-top: 3px;
+            color: #a3a3a3
+        }
+        /*底部结束*/
+
+        /* 版权申明  */
+        .site-info{
+            width:100%;
+            height:70px;
+            background-color:#111;
+        }
+        .copyright{
+            text-align:center;
+            font-size:13px;
+            color:#ccc;
+            padding-top:20px;
+        }
+        .copyright span a{
+            color:#ccc;
+            text-decoration:none;
+        }
+        .copyright span a:hover{
+            text-decoration:underline;
+        }
+
+        .more-show{
+            text-align: center;
+            /*line-height: 100px;*/
+            width:1200px;
+            margin: auto;
+            /*background-color: #0abfb6;*/
+        }
+        .more-show input{
+            margin: auto;
+            width:200px;
+            height:40px;
+            font-size: 18px;
+            border: 1px solid rgb(0,200,190);
+            /*font-weight:700 ;*/
+            color:rgb(0,200,190);
+        }
+        .more-show input:hover {
+            color:#fff;
+            background-color: rgb(0,200,190);
+        }
+        .little-show{
+            width:1200px;
+            /*height:500px;*/
+            /*background-color: #0abfb6;*/
+            margin:60px auto 0px;
+        }
+
+        .little-show .ls-nav{
+            width: 100%;
+            height:40px;
+            /*background-color: red;*/
+        }
+        .ls-items{
+            line-height: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .ls-items .ls-item{
+            text-align: center;
+            width:120px;
+            height:40px;
+            border-top:2px solid rgb(0,200,190) ;
+            color:#333;
+        }
+        .ls-items li:first-child{
+            background-color:rgb(0,200,190) ;
+            color:#fff;
+        }
+        .ls-show{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .ls-show .ls-box{
+            width:180px;
+            height:300px;
+            /*background-color: red;*/
+        }
+        .ls .text-box{
+            width:100%;
+            height:50px;
+            /*background-color: #ddd;*/
+            margin-top: 30px;
+
+        }
+
+        .ls .text-box .prod-desc {
+            display: block;
+            color: #666;
+            padding: 0 13px 17px 13px
+        }
+
+        .ls .text-box .prod-desc .prod-rental {
+            margin: 5px 0 3px 0;
+            height: 19px;
+            line-height: 19px;
+            font-size: 14px;
+            color: #de3333
+        }
+
+        .ls .text-box .prod-desc .prod-title {
+            color: #525252;
+            font-size: 13px;
+            height: 19px;
+            line-height: 19px;
+            overflow: hidden
+        }
+
+        .ls .text-box .prod-desc .prod-deposit-timer {
+            font-size: 12px;
+            margin-top: 3px;
+            color: #a3a3a3
+        }
+    </style>
+
+</head>
+<body class="main"><!-- body里面全部拿走 -->
+    <!--        底部-->
+    <div class="footer">
+        <div class="foot-container">
+            <div class="foot-child">
+                <h4>租赁指南</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">常见问题</a></li>
+                        <li><a href="#" target="_blank">租赁流程</a></li>
+                        <li><a href="#" target="_blank">租金支付</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                        <li><a href="#" target="_blank">开票说明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-child">
+                <h4>售后服务</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">故障保修</a></li>
+                        <li><a href="#" target="_blank">退换货政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-child">
+                <h4>特色服务</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">故障保修</a></li>
+                        <li><a href="#" target="_blank">退换货政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                        <li><a href="#" target="_blank">售后政策</a></li>
+                    </ul>
+                </div>
+            </div >
+            <div class="foot-child">
+                <h4>关于我们</h4>
+                <div class="foot-grandchild">
+                    <ul>
+                        <li><a href="#" target="_blank">企业概况</a></li>
+                        <li><a href="#" target="_blank">公司地址</a></li>
+                        <li><a href="#" target="_blank">企业资讯</a></li>
+                    </ul>
+                </div>
+            </div >
+            <div class="foot-child">
+                <div class="foot-bgimage">
+                    <img src="img/index/images/two01.png"/>
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <p>想了解更多资讯</p>
+                    </a>
+                    <a href="#">
+                        <p>请扫码关注我们的微信号</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--        site-info -->
+    <div class="site-info">
+        <div class="copyright">
+            <span>Copyright &copy; <a href="#">优站精选</a></span> |
+            <span><a href="#" target="_blank">京ICP备11008151号</a></span>
+        </div>
+    </div>
+</body>
+</html>

@@ -12,6 +12,8 @@ public class RentField {
 
     private String fieldInfo;
 
+    private Integer fieldArea;
+
     private BigDecimal fieldDeposit;
 
     private BigDecimal fieldHourprice;
@@ -80,6 +82,14 @@ public class RentField {
 
     public void setFieldAddress(String fieldAddress) {
         this.fieldAddress = fieldAddress == null ? null : fieldAddress.trim();
+    }
+
+    public Integer getFieldArea() {
+        return fieldArea;
+    }
+
+    public void setFieldArea(Integer fieldArea) {
+        this.fieldArea = fieldArea;
     }
 
     public BigDecimal getFieldDeposit() {

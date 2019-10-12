@@ -301,13 +301,16 @@ $.post({
             if(index < 6){
                 $('.ls-show').append(`
                 <div class="ls-box ls">
-                    <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                    <a href="/productinfo.html?id=${value.id}">
+                        <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                    </a>
                     <div class="text-box">
                         <a  class="prod-desc" target="_blank" href="">
                             <div class="prod-rental sram-ellipsis">
                                 <span>￥${value.goodsDayprice}</span>/天                                                                 </div>
                             <div class="prod-title sram-ellipsis">
-                                ${value.goodsName}                                                                    </div>
+                                ${value.goodsName}                                                                    
+                            </div>
                             <div class="prod-deposit-timer sram-ellipsis">
                                 <span class="deposit">押金:￥${value.goodsDeposit}</span>
                                 <br>
@@ -337,8 +340,10 @@ $('.ls-items').find('li').click(function () {
             $.each(data.data, function (index, value) {
                 if(index < 6){
                     $('.ls-show').append(`
-                <div class="ls-box ls">
-                    <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                        <div class="ls-box ls">
+                    <a href="/productinfo.html?id=${value.id}">
+                        <img src="${value.goodsPictures[0].goodsPicture}" height="180" width="175"/>
+                    </a>
                     <div class="text-box">
                         <a  class="prod-desc" target="_blank" href="">
                             <div class="prod-rental sram-ellipsis">
@@ -353,7 +358,7 @@ $('.ls-items').find('li').click(function () {
                         </a>
                     </div>
                 </div>
-               `)
+                    `)
                 }
             })
         }

@@ -83,36 +83,36 @@ $(".file").change(function() {
 });
 
 //限制商品名称输入框的字数
-function limit_name_words(){
-    //获取input输入框元素
-    var inputText = document.getElementById('goodsname').value;
-    if(inputText.length > 20){
-        var text = inputText.substring(0,20);
-        document.getElementById('goodsname').value = text;//重新设置input输入框的值
-        document.getElementById("goodsname-span").innerHTML="商品名称不能超过20个字符！";
-        document.getElementById("goodsname-span").style.color="#e5312a";
-    }else{
-        document.getElementById("goodsname-span").innerHTML="请输入商品名称！";
-        document.getElementById("goodsname-span").style.color="#0282d3";
-    }
-
-}
+// function limit_name_words(){
+//     //获取input输入框元素
+//     var inputText = document.getElementById('goodsname').value;
+//     if(inputText.length > 20){
+//         var text = inputText.substring(0,20);
+//         document.getElementById('goodsname').value = text;//重新设置input输入框的值
+//         document.getElementById("goodsname-span").innerHTML="商品名称不能超过20个字符！";
+//         document.getElementById("goodsname-span").style.color="#e5312a";
+//     }else{
+//         document.getElementById("goodsname-span").innerHTML="请输入商品名称！";
+//         document.getElementById("goodsname-span").style.color="#0282d3";
+//     }
+//
+// }
 
 //限制商品名称输入框的字数
-function limit_model_words(){
-    //获取input输入框元素
-    var inputText = document.getElementById('goodsmodel').value;
-    if(inputText.length > 50){
-        var text = inputText.substring(0,50);
-        document.getElementById('goodsmodel').value = text;//重新设置input输入框的值
-        document.getElementById("goodsmodel-span").innerHTML="商品型号不能超过50个字符！";
-        document.getElementById("goodsmodel-span").style.color="#e5312a";
-    }else{
-        document.getElementById("goodsmodel-span").innerHTML="请输入商品型号！";
-        document.getElementById("goodsmodel-span").style.color="#0282d3";
-    }
-
-}
+// function limit_model_words(){
+//     //获取input输入框元素
+//     var inputText = document.getElementById('goodsmodel').value;
+//     if(inputText.length > 50){
+//         var text = inputText.substring(0,50);
+//         document.getElementById('goodsmodel').value = text;//重新设置input输入框的值
+//         document.getElementById("goodsmodel-span").innerHTML="商品型号不能超过50个字符！";
+//         document.getElementById("goodsmodel-span").style.color="#e5312a";
+//     }else{
+//         document.getElementById("goodsmodel-span").innerHTML="请输入商品型号！";
+//         document.getElementById("goodsmodel-span").style.color="#0282d3";
+//     }
+//
+// }
 
 //评价字数限制
 function words_deal() {
@@ -141,10 +141,14 @@ if(reg_id !=0 || reg_id != null){
         formData3.append("fieldName",$('#fieldname').val());
         // formData3.append("fieldArea", $('#fieldarea').val());
         formData3.append("fieldVolume", $('#fieldvolume').val());
+        // alert( $('#fieldvolume').val())
         formData3.append("fieldAddress", $('#fieldaddress').val());
         formData3.append("fieldType", $('#fieldtype').val());
-        formData3.append("fieldInfo",$('#fieldinfo').val());
+        var info = $('#filedinfo').val();
+        formData3.append("fieldInfo",info);
+        // alert(info)
         formData3.append("fieldDeposit",$('#fielddeposit').val());
+        formData3.append("fieldArea",$('#fieldarea').val());
         formData3.append("fieldGrade",5);
         formData3.append("fieldCount",0);
         formData3.append("fieldHourprice",$('#fieldhourprice').val());

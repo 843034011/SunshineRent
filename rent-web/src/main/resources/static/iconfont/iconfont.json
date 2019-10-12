@@ -104,11 +104,25 @@
       "unicode_decimal": 58930
     },
     {
+      "icon_id": "3865271",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
       "icon_id": "4549143",
       "name": "购物车",
       "font_class": "shoppingcart-over",
       "unicode": "e600",
       "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5193359",
+      "name": "文具",
+      "font_class": "wenju",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
     },
     {
       "icon_id": "5478999",
@@ -151,6 +165,20 @@
       "font_class": "gouwuche",
       "unicode": "e606",
       "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "6487822",
+      "name": "电脑",
+      "font_class": "diannao",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "6528446",
+      "name": "打印机",
+      "font_class": "dayinji",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
     },
     {
       "icon_id": "7503739",

@@ -36,14 +36,16 @@ public class AddFieldController {
     @RequestMapping("insertRendField")
     @ResponseBody
     public ResultData insertRendField(MultipartFile[] file, String fieldName,
-                                      String fieldType,
+                                      String fieldType,Integer fieldArea,
                                       String fieldInfo, BigDecimal fieldDeposit,
                                       BigDecimal fieldHourprice,BigDecimal fieldDayprice,
                                       BigDecimal fieldWeekprice,BigDecimal fieldMonthprice,
                                       String fieldAddress,BigDecimal fieldGrade,
-                                      Integer regId,
-                                      Integer fieldVolume) throws IOException {
+                                      Integer regId, Integer fieldVolume) throws IOException {
 
+        System.out.println("===================");
+        System.out.println(fieldVolume);
+        System.out.println("===================");
         ResultData resultData = new ResultData();
         FieldPicture fieldPicture = new FieldPicture();
         RentField rentField = new RentField();
@@ -51,6 +53,7 @@ public class AddFieldController {
         rentField.setFieldName(fieldName);
         rentField.setFieldType(fieldType);
         rentField.setFieldInfo(fieldInfo);
+        rentField.setFieldArea(fieldArea);
         rentField.setFieldDeposit(fieldDeposit);
         rentField.setFieldHourprice(fieldHourprice);
         rentField.setFieldDayprice(fieldDayprice);
