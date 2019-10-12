@@ -36,5 +36,7 @@ public interface UserShoppingcartMapper {
 
     int insertFields(UserShoppingcart userShoppingcart);
 
+    int insertGoods(UserShoppingcart userShoppingcart);
+
     List<UserShoppingcart> selectall();
 }

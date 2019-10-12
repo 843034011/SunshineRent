@@ -69,6 +69,13 @@ public class fieldsServiceImpl implements fieldsService {
     }
 
     @Override
+    public int insertGoods(UserShoppingcart userShoppingcart) {
+        int num=userShoppingcartMapper.insertGoods(userShoppingcart);
+        System.out.println(num);
+        return 0;
+    }
+
+    @Override
     public List<UserOrder> selectCannotOrder(Date startTime, Date endTime) {
         List<UserOrder> userOrders= userOrderMapper.selectCannotOrder(startTime,endTime);
         return userOrders;

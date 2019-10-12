@@ -42,7 +42,8 @@
     <link href='http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900' rel='stylesheet'
           type='text/css'/>
     <!-- font-awesome css -->
-    <link rel="stylesheet" href="css/fieldinfo/font-awesome.min.css">
+
+    <!--<link rel="stylesheet" href="font-awesome/font-awesome.min.css">-->
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/fieldinfo/bootstrap.css">
     <!-- style css -->
@@ -56,6 +57,7 @@
 
     <!-- modernizr js -->
     <script src="js/fieldinfo/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="font-awesome/font-awesome.min.css">
     <!--[if lt IE 9]>
     <script src="js/fieldinfo/vendor/html5shiv.min.js"></script>
     <script src="js/fieldinfo/vendor/respond.min.js"></script>
@@ -1750,15 +1752,18 @@
                                 }
                             }
                             if(heartflag==true){
-                                html1 += ' <li><a href="#"><span class="glyphicon glyphicon-heart" > </span></i></a></li>'
+                                html1 += ' <li><a href="#"><span class="iconfont icon-gouwuche" style=" display: inline-block;" > </span></i></a></li>'
                             }else{
-                                html1 += '<li><a href="#"><i class="fa fa-heart-o"></i></a></li>'
+                                html1 += '<li><a href="#"><i class="iconfont icon-shoucangjia3" style=" display: inline-block;"></i></a></li>'
                             }
+
+
+
                         }
 
 
-                        html1 += '<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
-                            ' <li><a href="productinfo.html?id=' + data[6 * n + i].id + '"><i class="fa fa-search"></i></a></li>' +
+                        html1 +=
+                            ' <li><a href="productinfo.html?id=' + data[6 * n + i].id + '"><i class="iconfont icon-shiliangzhinengduixiang1" style=" display: inline-block;"></i></a></li>' +
                             ' </ul>' +
                             '</div>' +
                             '</div>' +
@@ -1805,15 +1810,15 @@
                                 }
                             }
                             if(heartflag==true){
-                                html1 += ' <li><a href="#"><span class="glyphicon glyphicon-heart" > </span></i></a></li>'
+                                html1 += ' <li><a href="#"><span class="iconfont icon-gouwuche" style=" display: inline-block;"> </span></i></a></li>'
                             }else{
-                                html1 += '<li><a href="#"><i class="fa fa-heart-o"></i></a></li>'
+                                html1 += '<li><a href="#"><i class="iconfont icon-shoucangjia3" style=" display: inline-block;"></i></a></li>'
                             }
                         }
 
 
-                        html1 += '<li><a href="#"><i class="fa fa-copy"></i></a></li>' +
-                            ' <li><a href="productinfo.html?id=' + data[6 * n + i].id + '"><i class="fa fa-search"></i></a></li>' +
+                        html1 +=
+                            ' <li><a href="productinfo.html?id=' + data[6 * n + i].id + '"><i class="iconfont icon-shiliangzhinengduixiang1"></i></a></li>' +
                             ' </ul>' +
                             '</div>' +
                             '</div>' +

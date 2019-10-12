@@ -212,4 +212,28 @@ public class fieldsInfo {
 
     }
 
+    /*加入购物车*/
+    @RequestMapping("insertshoppingcart1")
+    @ResponseBody
+    public ResultData insertFields1(Integer fieldid,Integer masterId,Integer reid,Integer goodsid){
+        ResultData resultData = new ResultData();
+        System.out.println("=================================="+fieldid);
+   /*     RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
+        Integer id=rentRegister.getRegId();//登录人*/
+        if(reid==masterId){
+            resultData.setCode(9);
+            return resultData;
+        }else{
+            UserShoppingcart userShoppingcart=new UserShoppingcart();
+            System.out.println(fieldid);
+            userShoppingcart.setGoodsId(fieldid);
+            userShoppingcart.setRegId(reid);
+            fieldsService.insertGoods(userShoppingcart);
+            resultData.setCode(0);
+            return resultData;
+        }
+
+
+    }
+
 }
