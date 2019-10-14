@@ -79,9 +79,8 @@ function unlogin(){
     // window.location.href="/indexCon/clearsession";
     $.post({
         url:"/indexCon/clearsession",
-        success:function () {
-
-        }
+        dataType: "json",
+        success:function (data) {}
     })
     location.reload();
 }
