@@ -53,34 +53,13 @@ public class MongoTestDao {
         System.out.println("zan+++++++++"+remarks.getZan().toString());
         Zans zans=new Zans();
         zans.setZan(remarks.getZan().get(0).getZan());
-
-
+        System.out.println(zans.getZan());
         Query query = new Query(Criteria.where("reg_id").is(remarks.getReg_id()));
          remarks remarks1 = mongoTemplate.findOne(query, remarks.class);
+        System.out.println(remarks1.toString()+"cdevuiuvhuhdviohjdsfvjf");
         List<Zans> zansList = remarks1.getZan();
         zansList.add(zans);
         mongoTemplate.updateFirst(query,new Update().set("zan", zansList), remarks.class);
-
-        /*  System.out.println(likeComment.toString());
-
-       Comment comment = mongoTemplate.findOne(query, Comment.class);
-        List<LikeComment> likeCommentList = comment.getLikeCommentList();
-        for (int i = 0; i < likeCommentList.size(); i++) {
-/          System.out.println(likeCommentList.get(i).toString());
-        }
-//        likeCommentList.remove(likeComment);
-//        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
-
-       /* Update update = new Update().set("zan", remarks.getZans());*/
-
-      /*  Update update = new Update().set("age", remarks.getZans()).set("name", remarks.getName());*/
-        //更新查询返回结果集的第一条
-      /* */
-
-
-
-        //更新查询返回结果集的所有
-        // mongoTemplate.updateMulti(query,update,TestEntity.class);
         return remarks;
     }
 

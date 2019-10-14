@@ -178,7 +178,7 @@
                     <include>**/*</include>
                 </includes>
             </resource>
-            
+
             <excludes>
                 <exclude>static/**</exclude>
             </excludes>

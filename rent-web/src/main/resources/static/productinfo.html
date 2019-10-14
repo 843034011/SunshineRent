@@ -445,17 +445,17 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="product-more-info-tab">
                     <!--  &lt;!&ndash; Nav tabs &ndash;&gt;-->
-                    <ul class="more-info-tab nav nav-tabs">
+                 <!--   <ul class="more-info-tab nav nav-tabs">
 
-                        <li><a name="review" href="#proReview" data-toggle="tab" >其他用户的评价</a></li>
-                        <!-- <li><a href="#proTag" data-toggle="tab">场地商品标签</a></li>-->
-                    </ul>
+                       &lt;!&ndash; <li><a name="review" href="#proReview" data-toggle="tab" >其他用户的评价</a></li>&ndash;&gt;
+                        &lt;!&ndash; <li><a href="#proTag" data-toggle="tab">场地商品标签</a></li>&ndash;&gt;
+                    </ul>-->
 
 
 
 
                     <!--     &lt;!&ndash; Tab panes &ndash;&gt;-->
-                    <div class="product-tab-content tab-content">
+               <!--     <div class="product-tab-content tab-content">
                         <div class="tab-pane active" id="proDescription">
 
 
@@ -482,7 +482,7 @@
                                 <br>
                                 <br>
                                 <br>
-
+-->
                                 <div class="comment-show-con clearfix" >
                                     <!-- <div class="comment-show-con-img pull-left" style="margin-left: 5px">
                                         <img src="img/fieldinfo/header-img-comment_03.png"  id="touxiang" alt="" >
@@ -606,7 +606,7 @@
                                          <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
                                      </div>slider end-->
 
-                                    <br>   <br>
+                   <!--                 <br>   <br>
 
                                 </div>
 
@@ -620,7 +620,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div>-->
 
 
 
@@ -1073,7 +1073,7 @@
                             <div class="single-product-text">
                                 <h2><a class="product-title" href="single-product.html" title="">${data.data[i].goodsName}</a></h2>
                                 <div class="product-price">
-                                    <span class="regular-price">${data.data[i].goodsDayprice}<</span>
+                                    <span class="regular-price">${data.data[i].goodsDayprice}</span>
                                 </div>
                                 <div class="pro-add-to-cart">
                                     <p><a href="#" title="Add to Cart">添加到购物车</a></p>
@@ -1097,7 +1097,7 @@
     var comments;
 
     /* 评论*/
-    $.ajax({
+/*    $.ajax({
         url:"test2",
         dataType: "json",
         success:function(data){
@@ -1118,7 +1118,7 @@
 
         }
 
-    })
+    })*/
 
 
     /* style="background-color: #00a9e0;color: white"*/
@@ -1198,6 +1198,253 @@
 
 
 
+    function fenye(data){
+        var totalPages;
+        if(data.length%6==0){
+            totalPages=data.length/6
+        }else{
+            totalPages=data.length/6+1
+        }
+        $.jqPaginator('#pagination2', {
+
+            totalPages:Math.floor(totalPages),
+            visiblePages: Math.floor(totalPages),
+            currentPage:1,
+            pageSize:6,
+            first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">前一页</a></li>',
+            next: '<li class="next"><a href="javascript:void(0);">下一页</a></li>',
+            last: '<li class="last"><a href="javascript:void(0);">尾页</a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            onPageChange: function (num,type) {
+                console.log(data.length/6+1)
+                console.log( Math.floor(data.length/6+1))
+                var n=num-1;
+
+                $('.all-grid-product').text("");
+
+
+                if(data.length-n*6>=6)
+                {
+                    var html1 = ''
+                    for (var i = 0; i<6; i++) {
+
+
+
+                        /*  for (var i = 0; i <data.length-6*n; i++) {*/
+
+                        var date = new Date(data[6*n+i].createTime);
+                        var datetimes = dw(date);
+                        var loginid = $.cookie('id');
+                        var colorflag=false;
+
+
+                        html1 +='<div class="comment-show-con-img pull-left"   style="margin-left: 5px">' +
+                            ' <img src="'+data[6*n+i].userImg+'"  alt="" style="width:40px;\n' +
+                            '            height:40px;\n' +
+                            '            border-radius:50px ;">' +
+                            '</div>' +
+                            '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
+
+                            '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
+
+                        for(var p=0;p<data[6*n+i].zan.length;p++){
+                            if(data[6*n+i].zan[p].zan==loginid){
+                                colorflag=true;
+                            }
+                            /* if(data[6*n+i].zan[p].zan==loginid){
+                                 html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+                                 +'<span>16</span>'
+                                 + '</div>'
+                             }*/
+
+                        }
+                        if(colorflag==true){
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="iconfont icon-zan2" aria-hidden="true" value="1" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+
+                                + '</div>'
+                        }else{
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="iconfont icon-zan2" aria-hidden="true" value="0" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+
+                                + '</div>'
+                        }
+                        /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+                              +'<span>16</span>'
+                         + '</div>'*/
+
+
+                        +'<div class="rating-box">'
+
+
+                        for(var j=0;j<data[6*n+i].remark;j++){
+
+
+                            html1+= '<a title="1 star" href="#" class="rated" style="color:#f65656"><i class="iconfont icon-shoucangjia2"style="font-size:3px"></i></a>' }
+
+                        html1+= ' </div>' +
+                            '</div>' +
+                            '<br>' +
+                            '<br>'+
+                            '<br>'+
+                            '<div class="hf-list-con">' +
+                            ' <div >' +
+                            ' '+data[6*n+i].remarkContent+' ' +
+                            '</div>'
+
+                        if(data[6*n+i].picture.length!=0){
+                            console.log(data[6*n+i].picture.length)
+                            html1+=
+                                '<div class="sliderbox" style="float:left;">' +
+                                '  <div class="slider"   >' +
+                                '<ul>'
+
+
+                            for(var m=0;m<data[6*n+i].picture.length;m++){
+                                /*  console.log(data[6*n+i].picture[m])*/
+                                html1+='<li style="float:left;"><a href="'+ data[6*n+i].picture[m].picture+'" target="_blank"><img src="'+ data[6*n+i].picture[m].picture+'" width="115" height="74" alt="" /></a></li>'
+
+                            }
+                            html1+='</ul>'+'</div>' +
+                                '</div>'+
+
+                                ' <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>'
+                                +'</div>'
+
+
+
+                        }
+
+
+                        html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
+
+
+                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             </ul>
+                             </div>
+                             &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
+                                 </div>
+                                 <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
+                                 </div>&lt;!&ndash;slider end&ndash;&gt;
+
+                                 <div class="line" style="margin-top:130px"></div>*/
+
+                        $('.clearfix').html(html1);
+                    }
+
+
+                    /* }*/
+                }else if(data.length-n*6>0) {
+
+                    console.log(data.length - 6 * (n - 1))
+                    var html1 = ''
+
+                    for (var i = 0; i < data.length - 6 * n; i++) {
+                        /*  for (var i = 0; i <data.length-6*n; i++) {*/
+
+                        var date = new Date(data[6*n+i].createTime);
+                        var datetimes = dw(date);
+                        var loginid = $.cookie('id');
+                        var colorflag=false;
+
+
+                        html1 +='<div class="comment-show-con-img pull-left"   style="margin-left: 5px">' +
+                            ' <img src="'+data[6*n+i].userImg+'"  alt="" style="width:40px;\n' +
+                            '            height:40px;\n' +
+                            '            border-radius:50px ;">' +
+                            '</div>' +
+                            '<div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix">' +
+
+                            '<a href="#" class="comment-size-name" >'+data[6*n+i].userName+'</a> <span class="my-pl-con" >&nbsp;'+datetimes+'</span> '
+
+                        for(var p=0;p<data[6*n+i].zan.length;p++){
+                            if(data[6*n+i].zan[p].zan==loginid){
+                                colorflag=true;
+                            }
+
+
+                        }
+                        if(colorflag==true){
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="iconfont icon-shoucangjia2" aria-hidden="true" value="1" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#e5312a">'+data[6*n+i].zan.length+'</span></a>'
+
+                                + '</div>'
+                        }else{
+                            html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="iconfont icon-shoucangjia2" aria-hidden="true" value="0" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+
+                                + '</div>'
+                        }
+                        /* html1+= '<a onclick="dianzan()" value="'+data[6*n+i].reg_id+'" class="dian"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" value="'+data[6*n+i].reg_id+'" class="dianzan" style="float:right;margin-left: 30px;font-size:15px;color:#0f0f0f">'+data[6*n+i].zan.length+'</span></a>'
+                              +'<span>16</span>'
+                         + '</div>'*/
+
+
+                        +'<div class="rating-box">'
+
+
+                        for(var j=0;j<data[6*n+i].remark;j++){
+
+
+                            html1+= '<a title="1 star" href="#" class="rated" style="color:#f65656"><i class="iconfont icon-shoucangjia2" ></i></a>' }
+
+                        html1+= ' </div>' +
+                            '</div>' +
+                            '<br>' +
+                            '<br>'+
+                            '<div class="hf-list-con">' +
+                            ' <div >' +
+                            ' '+data[6*n+i].remarkContent+' ' +
+                            '</div>'
+
+                        if(data[6*n+i].picture.length!=0){
+                            console.log(data[6*n+i].picture.length)
+                            html1+=
+                                '<div class="sliderbox" style="float:left;">' +
+                                '  <div class="slider"   >' +
+                                '<ul>'
+                            /*'<li class="current" style="float:left;" ><a href="'+data[6*n+i].picture[0].picture+'" target="_blank"><img src="'+data[6*n+i].picture[0].picture+'" width="115" height="74" alt="" /></a></li>'*/
+
+                            for(var m=0;m<data[6*n+i].picture.length;m++){
+                                /*  console.log(data[6*n+i].picture[m])*/
+                                html1+='<li style="float:left;"><a href="'+ data[6*n+i].picture[m].picture+'" target="_blank"><img src="'+ data[6*n+i].picture[m].picture+'" width="115" height="74" alt="" /></a></li>'
+
+                            }
+                            html1+='</ul>'+'</div>' +
+                                '</div>'+
+
+                                ' <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>'
+                                +'</div>'
+
+
+
+                        }
+
+
+                        html1+='<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<br>'+'<p class="biz-reply" style="color:#06c1ae">商家回复:小如定不辜负亲的支持与信任将会更加努力变得越来越优秀。</p>'+ ' <div class="line" style="margin-top:130px"></div>'+'<br>'+'</div>'+'</div>'+'</div>'
+
+
+                        /* <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             <li style="float:left;"><a href="" target="_blank"><img src="null" width="115" height="74" alt="" /></a></li>
+                             </ul>
+                             </div>
+                             &lt;!&ndash;<div id="btn-right" class="arrow-btn"></div>&ndash;&gt;
+                                 </div>
+                                 <div class="zoompic" style="display:none"><img src="img/fieldinfo/meishi.jpg" width="684" height="394" alt="" /></div>
+                                 </div>&lt;!&ndash;slider end&ndash;&gt;
+
+                                 <div class="line" style="margin-top:130px"></div>*/
+
+                        $('.clearfix').html(html1);
+                    }
+
+
+
+                }
+
+            }
+        })
+    }
 
 
 

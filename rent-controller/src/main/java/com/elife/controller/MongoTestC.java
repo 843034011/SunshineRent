@@ -129,11 +129,6 @@ public class MongoTestC {
 
    @PostMapping(value="/dianzan")
    public int addzan(Integer reid, Integer reg, HttpSession session){
-
-
-     /*  RentRegister rentRegister = (RentRegister) session.getAttribute("rentRegister");
-       int id=rentRegister.getRegId();*/
-
         remarks remarks=new remarks();
         List<Zans>zansList=new ArrayList<>();
         Zans zans1=new Zans();
@@ -146,24 +141,8 @@ public class MongoTestC {
         System.out.println(reid);
         System.out.println(reg);
         remarks remarks1=mtdao.updateTest(remarks);
+       System.out.println("cdwceverv+++++"+remarks.toString());
 
-       /*System.out.println("cccccccccc"+remarks.toString());
-*/
-
-     /* remarks remarks = mtdao.updateTest(query, remarks.class);*/
-
-
-      /*  System.out.println(likeComment.toString());
-
-       Comment comment = mongoTemplate.findOne(query, Comment.class);
-        List<LikeComment> likeCommentList = comment.getLikeCommentList();
-        for (int i = 0; i < likeCommentList.size(); i++) {
-/          System.out.println(likeCommentList.get(i).toString());
-        }
-//        likeCommentList.remove(likeComment);
-//        mongoTemplate.updateFirst(query, new Update().set("likeCommentList", likeCommentList), Comment.class);*/
-//
-//
        return 0;
     }
 
