@@ -114,6 +114,9 @@ public class UserOrderController {
             totalOrderResult = (TotalOrderResult) redisService.get(orderId);
             System.out.println(totalOrderResult.toString());
 
+            // 移除session中订单信息
+            session.removeAttribute("totalOrderResult");
+
             resultData.setCode(0);
             resultData.setData(totalOrderResult);
             return resultData;
