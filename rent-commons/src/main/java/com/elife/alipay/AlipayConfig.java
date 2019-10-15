@@ -25,7 +25,7 @@ public class AlipayConfig {
     public final static String NOTIFY_URL = "";//这里根据你项目中的controller进行配置
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public final static String RETURN_URL = "http://localhost:8080/alipay/returnUrl";//这里根据你项目中的controller进行配置
+    public final static String RETURN_URL = "http://127.0.0.1/alipay/returnUrl";//这里根据你项目中的controller进行配置
 
     // 签名方式
     public final static String SIGN_TYPE = "RSA2";

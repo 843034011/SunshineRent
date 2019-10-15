@@ -106,13 +106,14 @@ $("#c").click(function () {
             contentType: false,
             success: function (data) {
                 alert("成功了！！！")
-                window.location.href = "../index.html"
                 formData.delete("headimg")
                 formData.delete("realname")
                 formData.delete("idcard")
                 formData.delete("phone")
                 formData.delete("nickname")
                 formData.delete("email")
+                window.location.href = "../index.html"
+
             }
         })
     }else{

@@ -168,7 +168,7 @@ public class AliPayController{
 
             return "shoppingcart";//跳转付款成功页面
         }else{
-            return "/orders/ensureorder";//跳转付款失败页面
+            return "ensureorder";//跳转付款失败页面
         }
     }
 }
