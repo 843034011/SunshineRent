@@ -17,21 +17,30 @@ $.ajax({
     dataType:"json",
     data:{"regId":regId},
     success:function(data){
-        orderdatas=data.data;
-        console.log(data);
-        console.log(data.data.length);
-        for(var j=0;j<data.data.length;j++){
-            if(data.data[j].rentId == regId ){
-                databyrentID.push(data.data[j]);
-                /*console.log(databyrentID);*/
+        if(data.code == 0){
+            orderdatas=data.data;
+            console.log(data);
+            console.log(data.data.length);
+            for(var j=0;j<data.data.length;j++){
+                if(data.data[j].rentId == regId ){
+                    databyrentID.push(data.data[j]);
+                    /*console.log(databyrentID);*/
+                }
             }
+            console.log(databyrentID);
+            console.log(databyrentID.length);
+            findresultdata = databyrentID;
+            orderpaging(databyrentID);
+        }else if(data.code == 3){
+            console.log("该用户没有订单信息！")
+            alert("您还没有订单哦！请先下单后再查看订单信息！")
+            window.location.href="https://127.0.0.1/index.html"
+        }else{
+            console.log("数据异常！")
         }
-        console.log(databyrentID);
-        console.log(databyrentID.length);
-        findresultdata = databyrentID;
-        orderpaging(databyrentID);
     }
-})
+
+});
 
 var findresultdata;
 <!--查找全部订单-->
@@ -57,8 +66,14 @@ function findNoReturnOrder(){
             }
         }
     }
-    orderpaging(noReturnOrderdata);
-    findresultdata = noReturnOrderdata;
+    if( noReturnOrderdata.length == 0 ){
+        nodata();
+    }else{
+        console.log(noReturnOrderdata);
+        console.log(noReturnOrderdata.length);
+        orderpaging(noReturnOrderdata);
+        findresultdata = noReturnOrderdata;
+    }
 }
 /*查找未评价的订单*/
 function findNoEvaluatedOrder(){
@@ -70,8 +85,15 @@ function findNoEvaluatedOrder(){
             }
         }
     }
-    orderpaging(noEvaluatedOrderdata);
-    findresultdata = noEvaluatedOrderdata;
+
+    if(noEvaluatedOrderdata.length == 0 ){
+        nodata();
+    }else{
+        console.log(noEvaluatedOrderdata);
+        console.log(noEvaluatedOrderdata.length);
+        orderpaging(noEvaluatedOrderdata);
+        findresultdata = noEvaluatedOrderdata;
+    }
 }
 
 
@@ -84,7 +106,13 @@ function findorderbytime(){
         for(var j=0;j<findresultdata.length;j++){
             findtimeorderdata.push(findresultdata[j]);
         }
-        orderpaging(findtimeorderdata);
+        if(findtimeorderdata.length == 0 ){
+            nodata();
+        }else{
+            console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);
+            orderpaging(findtimeorderdata);
+        }
     }
     if($("#choose").val() == "week"){
         var date1 = new Date();
@@ -97,7 +125,13 @@ function findorderbytime(){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        orderpaging(findtimeorderdata);
+        if(findtimeorderdata.length == 0 ){
+            nodata();
+        }else{
+            console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);
+            orderpaging(findtimeorderdata);
+        }
     }
     if($("#choose").val() == "month"){
         var date1 = new Date();
@@ -110,7 +144,13 @@ function findorderbytime(){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        orderpaging(findtimeorderdata);
+        if(findtimeorderdata.length == 0 ){
+            nodata();
+        }else{
+            console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);
+            orderpaging(findtimeorderdata);
+        }
     }
     if($("#choose").val() == "halfyear"){
         var date1 = new Date();
@@ -123,7 +163,13 @@ function findorderbytime(){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        orderpaging(findtimeorderdata);
+        if(findtimeorderdata.length == 0 ){
+            nodata();
+        }else{
+            console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);
+            orderpaging(findtimeorderdata);
+        }
     }
     if($("#choose").val() == "year"){
         var date1 = new Date();
@@ -136,7 +182,14 @@ function findorderbytime(){
                 findtimeorderdata.push(findresultdata[j]);
             }
         }
-        orderpaging(findtimeorderdata);
+
+        if(findtimeorderdata.length == 0 ){
+            nodata();
+        }else{
+            console.log(findtimeorderdata);
+            console.log(findtimeorderdata.length);
+            orderpaging(findtimeorderdata);
+        }
     }
 }
 
@@ -164,14 +217,38 @@ function findorderbyName(){
                     findresultByName.push(data.data[j]);
                 }
             }
-            console.log(findresultByName);
-            console.log(findresultByName.length);
-            orderpaging(findresultByName);
+            if(findresultByName.length == 0 ){
+                nodata();
+            }else{
+                console.log(findresultByName);
+                console.log(findresultByName.length);
+                orderpaging(findresultByName);
+            }
+
+
         }
     })
 
 
 }
+
+function nodata(){
+    var html  = '';
+    console.log("没有查到符合条件的数据！")
+    html +=  '<div class="MyOrderPersonalList" id="field-goods-order"><div class="noDataTips" style="height:500px;width:960px;margin-top:50px;">' +
+        '<img src="../img/orderlist/icon_page_noData.png" height="337" width="400"/>' +
+        '<p style="color:#666;font-size:16px;">暂无订单</p>' +
+        '<p style="color:#999;font-size:12px;">快去挑选商品或场地吧</p>' +
+        '<button type="button" class="btn btn-primary" onclick="jumptoindex()">前往首页</button>'+
+        '</div></div> ';
+    $('#data-page-div').html(html);
+}
+
+function jumptoindex(){
+    window.location.href="https://127.0.0.1/index.html";
+}
+
+
 function orderpaging(data){
     var totalPages;
     if(data.length%4 == 0 ){
@@ -179,6 +256,10 @@ function orderpaging(data){
     }else{
         totalPages = data.length/4+1;
     }
+    var html1  = '';
+    html1 +='<div class="MyOrderPersonalList" id="field-goods-order"></div>' +
+        '<div class="pagination-nav"><ul class="pagination" id="pagination2"></ul></div>';
+
 
     $.jqPaginator('#pagination2',{
 
@@ -195,7 +276,7 @@ function orderpaging(data){
             console.log(data.length/4+1);
             console.log(Math.floor(data.length/4+1));
             var n=num-1;
-            var html  = ''
+            var html = '';
             if(data.length-n*4>=4){
                 for(i=0;i<4;i++) {
                     var createTime = changeDate(data[4 * n + i].createTime);
@@ -259,7 +340,7 @@ function changeDate(date) {
     var str1=str[1].split('.');
     var createTime = str[0]+" "+str1[0];
     return createTime;
-};
+}
 
 function sendInfotoEvaluate(index){
 
