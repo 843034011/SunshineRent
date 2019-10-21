@@ -41,6 +41,8 @@ public class RedisService {
     public boolean set(final String key, Object value, Long expireTime) {
         boolean result = false;
         try {
+
+
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
