@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author llb
+ * @author yy
  */
 @Controller
 @RequestMapping("register")
